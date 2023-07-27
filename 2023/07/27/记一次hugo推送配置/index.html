@@ -36,7 +36,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1690462567378">
+  <link rel="stylesheet" href="/css/style.css?v=1690462849593">
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -309,7 +309,7 @@
 
         <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2023年07月27日</a>
-    <a><i class="nexmoefont icon-areachart"></i>467 字</a>
+    <a><i class="nexmoefont icon-areachart"></i>473 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
 </div>
 
@@ -335,34 +335,63 @@
 <li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p>
 </li>
 <li><p>进入本地网站目录 </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">cd <span class="hljs-tag">&lt;<span class="hljs-name">YOUR</span> <span class="hljs-attr">PROJECT</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<pre><code>cd &lt;YOUR PROJECT&gt;
+</code></pre>
 </li>
 <li><p>关联远程项目仓库</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">git remote <span class="hljs-keyword">add</span><span class="language-bash"> origin git@github.com:Lonely-Sit/front.git</span><br></code></pre></td></tr></table></figure>
-
-
+<pre><code>git remote add origin git@github.com:Lonely-Sit/front.git
+</code></pre>
 </li>
 <li><p>将本地网站全部内容推送到远程项目仓库</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> main<br></code></pre></td></tr></table></figure>
-
-
+<pre><code>git push -u origin main
+</code></pre>
 </li>
 <li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p>
 </li>
 <li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p>
 </li>
 <li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git submodule add -<span class="hljs-selector-tag">b</span> <span class="hljs-selector-tag">main</span> git@github<span class="hljs-selector-class">.com</span>:Lonely-Sit/front<span class="hljs-selector-class">.git</span> public<br></code></pre></td></tr></table></figure>
+<pre><code>git submodule add -b main git@github.com:Lonely-Sit/front.git public
+</code></pre>
 </li>
 <li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">hugo<br>cd <span class="hljs-built_in">public</span><br>git status<br>git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;first commit&quot;<br>git push -u orgin master<br></code></pre></td></tr></table></figure>
-
-
+<pre><code>hugo
+cd public
+git status
+git add .
+git commit -m &quot;first commit&quot;
+git push -u orgin master
+</code></pre>
 </li>
 <li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p>
 </li>
 <li><p>自动推送脚本 写完项目后点一下即可 后缀改为sh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;</span><br><br><span class="hljs-comment"># Build the project.</span><br>hugo <span class="hljs-comment"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span><br><br><span class="hljs-comment"># Go To Public folder</span><br><span class="hljs-built_in">cd</span> public<br><span class="hljs-comment"># Add changes to git.</span><br>git add .<br><br><span class="hljs-comment"># Commit changes.</span><br>msg=<span class="hljs-string">&quot;rebuilding site `date`&quot;</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$#</span> -eq 1 ]<br>  <span class="hljs-keyword">then</span> msg=<span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span><br><span class="hljs-keyword">fi</span><br>git commit -m <span class="hljs-string">&quot;<span class="hljs-variable">$msg</span>&quot;</span><br><br><span class="hljs-comment"># Push source and build repos.</span><br>git push origin master<br><br><span class="hljs-comment"># Come Back up to the Project Root</span><br><span class="hljs-built_in">cd</span> ..<br></code></pre></td></tr></table></figure></li>
+<pre><code>#!/bin/bash
+
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+</code></pre>
+</li>
 </ol>
 
         </article>
@@ -1081,7 +1110,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1690462567379"></script>
+<script src="/js/app.js?v=1690462849594"></script>
 
 <script src="https://lib.baomitu.com/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
 <script>
