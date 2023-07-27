@@ -5,7 +5,7 @@
 <head>
   
   <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
-  <title>Microsoft365_E5_Renew_X 自己搭建网页版续签服务 - Lonely Sit&#39;s Security Haven</title>
+  <title>记一次hugo推送配置 - Lonely Sit&#39;s Security Haven</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -16,21 +16,18 @@
     <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
 
   <link rel="shortcut icon" href="/images/head/head.jpg" type="image/png" />
-  <meta name="description" content="我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。">
+  <meta name="description" content="如何将使用Hugo搭建的博客推送到GitHub">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Microsoft365_E5_Renew_X 自己搭建网页版续签服务">
-<meta property="og:url" content="https://blog.alone-hk.cn/2023/07/21/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:title" content="记一次hugo推送配置">
+<meta property="og:url" content="https://blog.alone-hk.cn/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Lonely Sit&#39;s Security Haven">
-<meta property="og:description" content="我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。">
+<meta property="og:description" content="如何将使用Hugo搭建的博客推送到GitHub">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Lonely-Sit/img/blog/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Lonely-Sit/img/blog/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/2.png">
-<meta property="article:published_time" content="2023-07-21T02:57:29.000Z">
-<meta property="article:modified_time" content="2023-07-21T03:50:11.676Z">
+<meta property="article:published_time" content="2023-07-27T12:23:01.000Z">
+<meta property="article:modified_time" content="2023-07-27T12:39:53.346Z">
 <meta property="article:author" content="Lonely Sit">
-<meta property="article:tag" content="Onedrive">
+<meta property="article:tag" content="hugo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Lonely-Sit/img/blog/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/1.png">
   <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.8/styles/atom-one-dark.min.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -39,7 +36,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1690461624648">
+  <link rel="stylesheet" href="/css/style.css?v=1690461624504">
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -305,14 +302,14 @@
     
         <div class="nexmoe-post-cover"
              style="padding-bottom: 24.305555555555554%;">
-            <img data-src="/images/background/xiaomai.jpg" data-sizes="auto" alt="Microsoft365_E5_Renew_X 自己搭建网页版续签服务" class="lazyload">
-            <h1>Microsoft365_E5_Renew_X 自己搭建网页版续签服务</h1>
+            <img data-src="/images/background/xiaomai.jpg" data-sizes="auto" alt="记一次hugo推送配置" class="lazyload">
+            <h1>记一次hugo推送配置</h1>
         </div>
     
 
         <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2023年07月21日</a>
-    <a><i class="nexmoefont icon-areachart"></i>391 字</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2023年07月27日</a>
+    <a><i class="nexmoefont icon-areachart"></i>368 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
 </div>
 
@@ -330,55 +327,41 @@
         </div>
 
         <article>
-            <p>我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。</p>
+            <p>如何将使用Hugo搭建的博客推送到<strong>GitHub</strong></p>
 <span id="more"></span>
 
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/Lonely-Sit/img/blog/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/1.png" alt="img" class="lazyload"></p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/Lonely-Sit/img/blog/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/2.png" alt="img" class="lazyload"></p>
-<p>E5账号大家都白嫖上了吧！</p>
-<p>续签服务搭建在自己服务器上或许会安全点。我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。</p>
-<p><strong>买台VPS</strong></p>
-<p>VPS使用教学</p>
-<p>阿里云 腾讯云等服务器即可</p>
-<p><strong>连接VPS</strong></p>
-<p>买好VPS后获取VPS的公网IP地址</p>
-<p>端口默认22</p>
-<p>SSH连接你的VPS</p>
-<p><strong>更新环境</strong></p>
-<p>apt update -y &amp;&amp; apt install -y curl &amp;&amp; apt install -y socat &amp;&amp; apt install wget -y</p>
-<p><strong>安装sudo</strong></p>
-<p>apt-get install sudo</p>
-<p><strong>安装 Docker</strong></p>
-<p>sudo apt install docker.io -y &amp;&amp; sudo apt install docker-compose</p>
-<p><strong>自启动docker</strong></p>
-<p>sudo systemctl enable –now docker</p>
-<p><strong>下载镜像</strong></p>
-<p>docker pull hanhongyong&#x2F;ms365-e5-renew-x:latest</p>
-<p><strong>部署容器</strong></p>
-<p>docker run -d -p 1066:1066 -e TZ&#x3D;Asia&#x2F;Shanghai –name ms365 hanhongyong&#x2F;ms365-e5-renew-x:latest</p>
-<p><strong>初始密码</strong></p>
-<p>123456</p>
-<p><strong>修改密码</strong></p>
-<p>docker exec -it ms365 &#x2F;bin&#x2F;bash</p>
-<p>cd Deploy</p>
-<p>vim Config.xml</p>
-<p>输入i启动编辑模式</p>
-<p>修改密码</p>
-<p>输入esc退出编辑</p>
-<p>:wq! 回车 退出</p>
-<p>重启密码才会生效</p>
-<p><strong>重启续签服务</strong></p>
-<p>重启服务器后E5续签网页不会跟随重启</p>
-<p>需要以下命令</p>
-<p>docker start ms365</p>
-<p><strong>更多docker常用命令</strong></p>
-<p>docker ps -a 查看已经创建的容器</p>
-<p>docker ps -s 查看已经启动的容器</p>
-<p>docker start con_name 启动容器名为con_name的容器</p>
-<p>docker stop con_name 停止容器名为con_name的容器</p>
-<p>docker rm con_name 删除容器名为con_name的容器</p>
-<p><strong>原作者GitHub地址</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/hongyonghan/Docker_Microsoft365_E5_Renew_X">https://github.com/hongyonghan/Docker_Microsoft365_E5_Renew_X</a></p>
+<p>在本地搭建和调试好项目后，接下来就是将它推送到GitHub。下面简述一下如何将使用Hugo搭建的博客推送到GitHub：</p>
+<ol>
+<li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p>
+</li>
+<li><p>进入本地网站目录 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">cd <span class="hljs-tag">&lt;<span class="hljs-name">YOUR</span> <span class="hljs-attr">PROJECT</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>关联远程项目仓库</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">git remote <span class="hljs-keyword">add</span><span class="language-bash"> origin git@github.com:Lonely-Sit/front.git</span><br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>将本地网站全部内容推送到远程项目仓库</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> main<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p>
+</li>
+<li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p>
+</li>
+<li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git submodule add -<span class="hljs-selector-tag">b</span> <span class="hljs-selector-tag">main</span> git@github<span class="hljs-selector-class">.com</span>:Lonely-Sit/front<span class="hljs-selector-class">.git</span> public<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">hugo<br>cd <span class="hljs-built_in">public</span><br>git status<br>git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;first commit&quot;<br>git push -u orgin master<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p>
+</li>
+</ol>
 
         </article>
 
@@ -387,7 +370,7 @@
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>Lonely Sit<br>
     
-    <strong>本文链接：</strong><a href="https://blog.alone-hk.cn/2023/07/21/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/" title="https:&#x2F;&#x2F;blog.alone-hk.cn&#x2F;2023&#x2F;07&#x2F;21&#x2F;Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.alone-hk.cn&#x2F;2023&#x2F;07&#x2F;21&#x2F;Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="https://blog.alone-hk.cn/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/" title="https:&#x2F;&#x2F;blog.alone-hk.cn&#x2F;2023&#x2F;07&#x2F;27&#x2F;%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;blog.alone-hk.cn&#x2F;2023&#x2F;07&#x2F;27&#x2F;%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE&#x2F;</a><br>
 
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
@@ -399,10 +382,10 @@
 
         <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E4%BA%91%E7%9B%98/">云盘</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Web/">Web</a>
     
     
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Onedrive/" rel="tag">Onedrive</a>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/hugo/" rel="tag">hugo</a>
     
 </div>
 
@@ -1096,7 +1079,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1690461624649"></script>
+<script src="/js/app.js?v=1690461624505"></script>
 
 <script src="https://lib.baomitu.com/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
 <script>

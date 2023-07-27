@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>记一次hugo推送配置</title>
+      <link href="/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/"/>
+      <url>/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>如何将使用Hugo搭建的博客推送到<strong>GitHub</strong></p><span id="more"></span><p>在本地搭建和调试好项目后，接下来就是将它推送到GitHub。下面简述一下如何将使用Hugo搭建的博客推送到GitHub：</p><ol><li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p></li><li><p>进入本地网站目录 </p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">cd <span class="hljs-tag">&lt;<span class="hljs-name">YOUR</span> <span class="hljs-attr">PROJECT</span>&gt;</span><br></code></pre></td></tr></table></figure></li><li><p>关联远程项目仓库</p><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">git remote <span class="hljs-keyword">add</span><span class="language-bash"> origin git@github.com:Lonely-Sit/front.git</span><br></code></pre></td></tr></table></figure></li><li><p>将本地网站全部内容推送到远程项目仓库</p><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> main<br></code></pre></td></tr></table></figure></li><li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p></li><li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p></li><li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git submodule add -<span class="hljs-selector-tag">b</span> <span class="hljs-selector-tag">main</span> git@github<span class="hljs-selector-class">.com</span>:Lonely-Sit/front<span class="hljs-selector-class">.git</span> public<br></code></pre></td></tr></table></figure></li><li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">hugo<br>cd <span class="hljs-built_in">public</span><br>git status<br>git <span class="hljs-keyword">add</span> .<br>git <span class="hljs-keyword">commit</span> -m &quot;first commit&quot;<br>git push -u orgin master<br></code></pre></td></tr></table></figure></li><li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hugo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>实战-深度解析逻辑漏洞原理</title>
       <link href="/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/"/>
       <url>/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/</url>
