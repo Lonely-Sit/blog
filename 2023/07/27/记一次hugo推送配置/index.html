@@ -24,7 +24,7 @@
 <meta property="og:description" content="如何将使用Hugo搭建的博客推送到GitHub">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-07-27T12:23:01.000Z">
-<meta property="article:modified_time" content="2023-07-27T12:39:53.346Z">
+<meta property="article:modified_time" content="2023-07-27T12:54:20.331Z">
 <meta property="article:author" content="Lonely Sit">
 <meta property="article:tag" content="hugo">
 <meta name="twitter:card" content="summary">
@@ -36,7 +36,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1690462279936">
+  <link rel="stylesheet" href="/css/style.css?v=1690462567378">
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -309,8 +309,8 @@
 
         <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2023年07月27日</a>
-    <a><i class="nexmoefont icon-areachart"></i>368 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>467 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
 </div>
 
         <div class="nexmoe-post-right">
@@ -361,6 +361,8 @@
 </li>
 <li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p>
 </li>
+<li><p>自动推送脚本 写完项目后点一下即可 后缀改为sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span><br><br><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;</span><br><br><span class="hljs-comment"># Build the project.</span><br>hugo <span class="hljs-comment"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span><br><br><span class="hljs-comment"># Go To Public folder</span><br><span class="hljs-built_in">cd</span> public<br><span class="hljs-comment"># Add changes to git.</span><br>git add .<br><br><span class="hljs-comment"># Commit changes.</span><br>msg=<span class="hljs-string">&quot;rebuilding site `date`&quot;</span><br><span class="hljs-keyword">if</span> [ <span class="hljs-variable">$#</span> -eq 1 ]<br>  <span class="hljs-keyword">then</span> msg=<span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span><br><span class="hljs-keyword">fi</span><br>git commit -m <span class="hljs-string">&quot;<span class="hljs-variable">$msg</span>&quot;</span><br><br><span class="hljs-comment"># Push source and build repos.</span><br>git push origin master<br><br><span class="hljs-comment"># Come Back up to the Project Root</span><br><span class="hljs-built_in">cd</span> ..<br></code></pre></td></tr></table></figure></li>
 </ol>
 
         </article>
@@ -1079,7 +1081,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1690462279937"></script>
+<script src="/js/app.js?v=1690462567379"></script>
 
 <script src="https://lib.baomitu.com/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1128,11 +1130,11 @@
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
 
-<script src="/js/webapp.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <script src="/js/search.js"></script>
+
+<script src="/js/webapp.js"></script>
 <!-- hexo injector body_end end --></body>
 </html>
 
