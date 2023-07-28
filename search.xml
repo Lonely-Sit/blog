@@ -40,8 +40,6 @@
           
           <category> 安全 </category>
           
-          <category> 漏洞利用 </category>
-          
       </categories>
       
       
@@ -66,8 +64,6 @@
       <categories>
           
           <category> 安全 </category>
-          
-          <category> 漏洞利用 </category>
           
       </categories>
       
@@ -112,8 +108,6 @@
       <categories>
           
           <category> 安全 </category>
-          
-          <category> 漏洞利用 </category>
           
       </categories>
       
@@ -213,7 +207,7 @@
       
       <categories>
           
-          <category> 云盘 </category>
+          <category> 实用分享 </category>
           
       </categories>
       
@@ -238,7 +232,7 @@
       
       <categories>
           
-          <category> 云盘 </category>
+          <category> 实用分享 </category>
           
       </categories>
       
@@ -290,7 +284,7 @@
       
       <categories>
           
-          <category> 实用工具 </category>
+          <category> 实用分享 </category>
           
       </categories>
       
@@ -321,7 +315,7 @@
       
       <categories>
           
-          <category> 实用工具 </category>
+          <category> 实用分享 </category>
           
       </categories>
       
