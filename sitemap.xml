@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.alone-hk.cn/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/</loc>
-    
-    <lastmod>2023-08-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2023-07-30</lastmod>
@@ -173,13 +164,6 @@
 
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/Onedrive/</loc>
-    <lastmod>2023-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -187,7 +171,7 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
+    <loc>https://blog.alone-hk.cn/tags/Onedrive/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -209,6 +193,27 @@
   
   <url>
     <loc>https://blog.alone-hk.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <lastmod>2023-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/%E7%AB%AF%E5%8F%A3/</loc>
+    <lastmod>2023-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/%E5%85%8D%E8%B4%B9cdn/</loc>
+    <lastmod>2023-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/cloudflare/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -243,7 +248,7 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/cloudflare/</loc>
+    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -257,21 +262,14 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E5%85%8D%E8%B4%B9cdn/</loc>
-    <lastmod>2023-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/%E7%AB%AF%E5%8F%A3/</loc>
-    <lastmod>2023-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/tags/Web%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2023-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/hugo/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -291,24 +289,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/hugo/</loc>
-    <lastmod>2023-08-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories/%E5%AE%9E%E7%94%A8%E5%88%86%E4%BA%AB/</loc>
+    <loc>https://blog.alone-hk.cn/categories/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories/%E5%AE%89%E5%85%A8/</loc>
+    <loc>https://blog.alone-hk.cn/categories/%E5%AE%9E%E7%94%A8%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2023-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
