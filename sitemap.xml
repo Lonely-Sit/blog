@@ -38,15 +38,6 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories.html</loc>
-    
-    <lastmod>2024-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</loc>
     
     <lastmod>2024-01-23</lastmod>
@@ -225,13 +216,6 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
-    <lastmod>2024-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/tags/npm/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -253,6 +237,20 @@
   </url>
   
   <url>
+    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
+    <lastmod>2024-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2024-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.alone-hk.cn/tags/%E5%BB%BA%E7%AB%99/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -268,13 +266,6 @@
   
   <url>
     <loc>https://blog.alone-hk.cn/tags/Docker/</loc>
-    <lastmod>2024-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -337,14 +328,14 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/cloudflare/</loc>
+    <loc>https://blog.alone-hk.cn/tags/%E5%85%8D%E8%B4%B9cdn/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E5%85%8D%E8%B4%B9cdn/</loc>
+    <loc>https://blog.alone-hk.cn/tags/cloudflare/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -365,13 +356,6 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/hugo/</loc>
-    <lastmod>2024-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/tags/Google%E9%95%9C%E5%83%8F/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
@@ -380,6 +364,13 @@
   
   <url>
     <loc>https://blog.alone-hk.cn/tags/vercel/</loc>
+    <lastmod>2024-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/hugo/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -395,14 +386,14 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories/%E5%AE%89%E5%85%A8/</loc>
+    <loc>https://blog.alone-hk.cn/categories/Web/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories/Web/</loc>
+    <loc>https://blog.alone-hk.cn/categories/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2024-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
