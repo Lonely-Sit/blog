@@ -145,6 +145,112 @@
       </tags>
   </entry>
   <entry>
+    <title>node-npm,yarn和pnpm区别</title>
+    <url>/2023/08/13/node-npm-yarn%E5%92%8Cpnpm%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简单总结下npm,yarn和pnpm三种包管理器的区别</p>
+<span id="more"></span>
+
+<h2 id="一-npm"><a href="#一-npm" class="headerlink" title="一 npm"></a>一 npm</h2><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1 简述"></a>1 简述</h4><p>npm 是 Node Package Manager 的缩写，是一个 NodeJS 包管理和分发工具，我们可以使用它发布、安装和卸载 NodeJS 包。npm 是 JavaScript 运行时环境 Node.js 的默认包管理器。</p>
+<h4 id="2-官网"><a href="#2-官网" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://www.npmjs.com/">https://www.npmjs.com/</a></p>
+<h4 id="3-说明"><a href="#3-说明" class="headerlink" title="3 说明"></a>3 说明</h4><p><strong>npm2</strong>存在很严重的依赖嵌套关系</p>
+<pre><code>node_modules
+- package-A
+-- node_modules
+--- package-B
+----- node_modules
+------ package-C
+-------- some-really-really-really-long-file-name-in-package-c.js
+</code></pre>
+<p><strong>npm3</strong>扁平依赖</p>
+<pre><code>node_modules
+- package-A
+-- node_modules
+--- package-B
+----- node_modules
+------ package-C
+-------- some-really-really-really-long-file-name-in-package-c.js
+</code></pre>
+<p><code>npm</code>必须首先遍历所有的项目依赖关系，然后再决定如何生成扁平的<code>node_modules</code>目录结构。npm必须为所有使用到的模块构建一个完整的依赖关系树，这是一个耗时的操作,是<a href="https://link.juejin.cn/?target=https://github.com/npm/npm/issues/8826">npm安装速度慢的一个很重要的原因</a>。本地缓存的内容可以通过<code>npm cache ls</code>命令进行查看。本地缓存的设计有助于减少安装时间。</p>
+<h2 id="二-yarn"><a href="#二-yarn" class="headerlink" title="二 yarn"></a>二 yarn</h2><h4 id="1-简述-1"><a href="#1-简述-1" class="headerlink" title="1 简述"></a>1 简述</h4><p>yarn 是 facebook 等公司在 npm v3 时推出的一个新的开源的 Node Package Manager，它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。</p>
+<h4 id="2-官网-1"><a href="#2-官网-1" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://yarnpkg.com/">https://yarnpkg.com/</a></p>
+<h4 id="3-说明-1"><a href="#3-说明-1" class="headerlink" title="3 说明"></a>3 说明</h4><p>它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。每个yarn安装都会生成一个类似于<code>npm-shrinkwrap.json</code>的<code>yarn.lock</code>文件，而且它是默认创建的。除了常规信息之外，<code>yarn.lock</code>文件还包含要安装的内容的校验和，以确保使用的库的版本相同。<code>yarn</code>无需互联网连接就能安装本地缓存的依赖项，它提供了离线模式。</p>
+<p>yarn 有以下优点：</p>
+<ol>
+<li><p>安装速度快</p>
+<ul>
+<li>并行安装：npm 是按照队列依次安装每个 package，当前一个 package 安装完成之后，才能继续后面的安装。而 Yarn 是同步执行所有任务。</li>
+<li>缓存：如果一个 package 之前已经安装过，yarn 会直接从缓存中获取，而不是重新下载。</li>
+</ul>
+</li>
+<li><p>版本统一</p>
+<p>yarn 创新性的新增了 yarn.lock 文件，它是 yarn 在安装依赖包时，自动生成的一个文件，作用是记录 yarn 安装的每个 package 的版本，保证之后 install 时的版本一致。不过随着后来 npm 也新增了作用相同的 package-lock.json，这个优势已经不太明显。</p>
+</li>
+</ol>
+<h2 id="三-pnpm"><a href="#三-pnpm" class="headerlink" title="三 pnpm"></a>三 pnpm</h2><h4 id="1-简述-2"><a href="#1-简述-2" class="headerlink" title="1 简述"></a>1 简述</h4><p>2017 年 pnpm 推出。全称 Performance NPM，即高性能的 npm。</p>
+<h4 id="2-官网-2"><a href="#2-官网-2" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://pnpm.io/">https://pnpm.io/</a></p>
+<h4 id="3-说明-2"><a href="#3-说明-2" class="headerlink" title="3 说明"></a>3 说明</h4><p>pnpm采用了一种巧妙的方法，利用硬链接和符号链接来避免复制所有本地缓存源文件,同一个包 pnpm 只会安装一次，磁盘中只有一个地方写入，后面再次使用都会直接使 hardlink。即使一个包的不同版本，pnpm 也会极大程度地复用之前版本的代码。举个例子，比如 lodash 有 100 个文件，更新版本之后多了一个文件，那么磁盘当中并不会重新写入 101 个文件，而是保留原来的 100 个文件的 hardlink，仅仅写入那一个新增的文件。</p>
+<h2 id="四-命令对比"><a href="#四-命令对比" class="headerlink" title="四 命令对比"></a>四 命令对比</h2><h3 id="npm-yarn-和-pnpm-之间命令的区别"><a href="#npm-yarn-和-pnpm-之间命令的区别" class="headerlink" title="npm yarn 和 pnpm 之间命令的区别"></a>npm yarn 和 pnpm 之间命令的区别</h3><table>
+<thead>
+<tr>
+<th>-</th>
+<th>npm</th>
+<th>yarn</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Install all</td>
+<td>npm install</td>
+<td>yarn</td>
+<td>pnpm install</td>
+</tr>
+<tr>
+<td>Install</td>
+<td>npm install [package]</td>
+<td>yarn add [package]</td>
+<td>pnpm add [package]</td>
+</tr>
+<tr>
+<td></td>
+<td>npm install [package] -D</td>
+<td>yarn add [package] -D</td>
+<td>pnpm add -D [package]</td>
+</tr>
+<tr>
+<td></td>
+<td>npm install [package] -g</td>
+<td>yarn global add [package]</td>
+<td>pnpm add -g [package]</td>
+</tr>
+<tr>
+<td>Uninstall</td>
+<td>npm uninstall [package]</td>
+<td>yarn remove [package]</td>
+<td>pnpm remove [package]</td>
+</tr>
+<tr>
+<td>Update</td>
+<td>npm update [package]</td>
+<td>yarn upgrade [package]</td>
+<td>pnpm update [package]</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>参考文档</p>
+<p><a href="http://events.jianshu.io/p/e02ffa9effe6">npm、 yarn 和 pnpm 的区别 - 简书 (jianshu.io)</a></p>
+<p><a href="https://juejin.cn/post/6844903616109641736">一文看懂npm、yarn、pnpm之间的区别 - 掘金 (juejin.cn)</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>npm</tag>
+        <tag>yarn</tag>
+        <tag>pnpm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OWASP TOP 10漏洞介绍</title>
     <url>/2023/07/21/OWASP-TOP-10%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>OWASP项目最具权威的就是其“十大安全漏洞列表”,这个列表总结了Web应用程序最可能、最常见、最危险的十大漏洞</p>
@@ -280,112 +386,6 @@
       </tags>
   </entry>
   <entry>
-    <title>node-npm,yarn和pnpm区别</title>
-    <url>/2023/08/13/node-npm-yarn%E5%92%8Cpnpm%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简单总结下npm,yarn和pnpm三种包管理器的区别</p>
-<span id="more"></span>
-
-<h2 id="一-npm"><a href="#一-npm" class="headerlink" title="一 npm"></a>一 npm</h2><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1 简述"></a>1 简述</h4><p>npm 是 Node Package Manager 的缩写，是一个 NodeJS 包管理和分发工具，我们可以使用它发布、安装和卸载 NodeJS 包。npm 是 JavaScript 运行时环境 Node.js 的默认包管理器。</p>
-<h4 id="2-官网"><a href="#2-官网" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://www.npmjs.com/">https://www.npmjs.com/</a></p>
-<h4 id="3-说明"><a href="#3-说明" class="headerlink" title="3 说明"></a>3 说明</h4><p><strong>npm2</strong>存在很严重的依赖嵌套关系</p>
-<pre><code>node_modules
-- package-A
--- node_modules
---- package-B
------ node_modules
------- package-C
--------- some-really-really-really-long-file-name-in-package-c.js
-</code></pre>
-<p><strong>npm3</strong>扁平依赖</p>
-<pre><code>node_modules
-- package-A
--- node_modules
---- package-B
------ node_modules
------- package-C
--------- some-really-really-really-long-file-name-in-package-c.js
-</code></pre>
-<p><code>npm</code>必须首先遍历所有的项目依赖关系，然后再决定如何生成扁平的<code>node_modules</code>目录结构。npm必须为所有使用到的模块构建一个完整的依赖关系树，这是一个耗时的操作,是<a href="https://link.juejin.cn/?target=https://github.com/npm/npm/issues/8826">npm安装速度慢的一个很重要的原因</a>。本地缓存的内容可以通过<code>npm cache ls</code>命令进行查看。本地缓存的设计有助于减少安装时间。</p>
-<h2 id="二-yarn"><a href="#二-yarn" class="headerlink" title="二 yarn"></a>二 yarn</h2><h4 id="1-简述-1"><a href="#1-简述-1" class="headerlink" title="1 简述"></a>1 简述</h4><p>yarn 是 facebook 等公司在 npm v3 时推出的一个新的开源的 Node Package Manager，它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。</p>
-<h4 id="2-官网-1"><a href="#2-官网-1" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://yarnpkg.com/">https://yarnpkg.com/</a></p>
-<h4 id="3-说明-1"><a href="#3-说明-1" class="headerlink" title="3 说明"></a>3 说明</h4><p>它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。每个yarn安装都会生成一个类似于<code>npm-shrinkwrap.json</code>的<code>yarn.lock</code>文件，而且它是默认创建的。除了常规信息之外，<code>yarn.lock</code>文件还包含要安装的内容的校验和，以确保使用的库的版本相同。<code>yarn</code>无需互联网连接就能安装本地缓存的依赖项，它提供了离线模式。</p>
-<p>yarn 有以下优点：</p>
-<ol>
-<li><p>安装速度快</p>
-<ul>
-<li>并行安装：npm 是按照队列依次安装每个 package，当前一个 package 安装完成之后，才能继续后面的安装。而 Yarn 是同步执行所有任务。</li>
-<li>缓存：如果一个 package 之前已经安装过，yarn 会直接从缓存中获取，而不是重新下载。</li>
-</ul>
-</li>
-<li><p>版本统一</p>
-<p>yarn 创新性的新增了 yarn.lock 文件，它是 yarn 在安装依赖包时，自动生成的一个文件，作用是记录 yarn 安装的每个 package 的版本，保证之后 install 时的版本一致。不过随着后来 npm 也新增了作用相同的 package-lock.json，这个优势已经不太明显。</p>
-</li>
-</ol>
-<h2 id="三-pnpm"><a href="#三-pnpm" class="headerlink" title="三 pnpm"></a>三 pnpm</h2><h4 id="1-简述-2"><a href="#1-简述-2" class="headerlink" title="1 简述"></a>1 简述</h4><p>2017 年 pnpm 推出。全称 Performance NPM，即高性能的 npm。</p>
-<h4 id="2-官网-2"><a href="#2-官网-2" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://pnpm.io/">https://pnpm.io/</a></p>
-<h4 id="3-说明-2"><a href="#3-说明-2" class="headerlink" title="3 说明"></a>3 说明</h4><p>pnpm采用了一种巧妙的方法，利用硬链接和符号链接来避免复制所有本地缓存源文件,同一个包 pnpm 只会安装一次，磁盘中只有一个地方写入，后面再次使用都会直接使 hardlink。即使一个包的不同版本，pnpm 也会极大程度地复用之前版本的代码。举个例子，比如 lodash 有 100 个文件，更新版本之后多了一个文件，那么磁盘当中并不会重新写入 101 个文件，而是保留原来的 100 个文件的 hardlink，仅仅写入那一个新增的文件。</p>
-<h2 id="四-命令对比"><a href="#四-命令对比" class="headerlink" title="四 命令对比"></a>四 命令对比</h2><h3 id="npm-yarn-和-pnpm-之间命令的区别"><a href="#npm-yarn-和-pnpm-之间命令的区别" class="headerlink" title="npm yarn 和 pnpm 之间命令的区别"></a>npm yarn 和 pnpm 之间命令的区别</h3><table>
-<thead>
-<tr>
-<th>-</th>
-<th>npm</th>
-<th>yarn</th>
-<th>pnpm</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Install all</td>
-<td>npm install</td>
-<td>yarn</td>
-<td>pnpm install</td>
-</tr>
-<tr>
-<td>Install</td>
-<td>npm install [package]</td>
-<td>yarn add [package]</td>
-<td>pnpm add [package]</td>
-</tr>
-<tr>
-<td></td>
-<td>npm install [package] -D</td>
-<td>yarn add [package] -D</td>
-<td>pnpm add -D [package]</td>
-</tr>
-<tr>
-<td></td>
-<td>npm install [package] -g</td>
-<td>yarn global add [package]</td>
-<td>pnpm add -g [package]</td>
-</tr>
-<tr>
-<td>Uninstall</td>
-<td>npm uninstall [package]</td>
-<td>yarn remove [package]</td>
-<td>pnpm remove [package]</td>
-</tr>
-<tr>
-<td>Update</td>
-<td>npm update [package]</td>
-<td>yarn upgrade [package]</td>
-<td>pnpm update [package]</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>参考文档</p>
-<p><a href="http://events.jianshu.io/p/e02ffa9effe6">npm、 yarn 和 pnpm 的区别 - 简书 (jianshu.io)</a></p>
-<p><a href="https://juejin.cn/post/6844903616109641736">一文看懂npm、yarn、pnpm之间的区别 - 掘金 (juejin.cn)</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>npm</tag>
-        <tag>yarn</tag>
-        <tag>pnpm</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一键脚本建站</title>
     <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p>
@@ -418,27 +418,6 @@
         <tag>建站</tag>
         <tag>warp</tag>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
-    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
-<span id="more"></span>
-
-<p>视频教程:</p>
-<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
-<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
-<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
-]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>ai</tag>
-        <tag>AutoGPT</tag>
-        <tag>人工智能</tag>
       </tags>
   </entry>
   <entry>
@@ -544,6 +523,27 @@
       </tags>
   </entry>
   <entry>
+    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
+    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
+<span id="more"></span>
+
+<p>视频教程:</p>
+<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
+<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
+<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
+<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>ai</tag>
+        <tag>AutoGPT</tag>
+        <tag>人工智能</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>命令注入之Web应用防火墙绕过技巧</title>
     <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
@@ -622,159 +622,6 @@
       </categories>
       <tags>
         <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>域名注册教学和cloudflare域名解析教程</title>
-    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
-<span id="more"></span>
-
-<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
-<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
-<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
-<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
-<p>NS记录在注册商</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
-<p>选用自定义DNS并改成cloudflare的记录</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
-<p>接下来配置DNS解析</p>
-<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
-<p>将Proxied打开变为黄色代表成功 点击完成</p>
-<p>SSL证书获取</p>
-<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
-<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
-<p>将prm与key部署到服务器即可</p>
-<p>退回到Overview 选择Full (strict)</p>
-<p>到此恭喜你成功了!</p>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
-      <tags>
-        <tag>cloudflare</tag>
-        <tag>免费cdn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实战-深度解析逻辑漏洞原理</title>
-    <url>/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>0x01 登陆处 0x02 密码找回 0x03 支付 0x04 越权</p>
-<span id="more"></span>
-
-<p>0x01 登陆处（不局限登陆，例如下文的短信轰炸等）</p>
-<p>登陆时，是否可以绕过验证码形成撞库</p>
-<ul>
-<li>返回包中有验证码</li>
-<li>返回页面 hidden中有验证码</li>
-<li>有些其他登陆url中不需要验证码 (app 微信 测试url)</li>
-<li>验证码不变，验证码没有一个完整的服务请求，只在刷新url时才变(例如，cookie与验证码绑定，不刷新则不变)</li>
-<li>第一次请求包验证了验证码是否正确，第二次请求不需要验证</li>
-<li>拦截登录时验证码的刷新请求，第一次验证码未失效，可绕过</li>
-<li>验证码和用户名、密码是否一次同时提交</li>
-<li>万能验证码 如000000</li>
-<li>删除验证码参数或者Cookie中的一些值</li>
-<li>利用漏洞中验证码绕过的小技巧</li>
-</ul>
-<p>简单验证码ocr识别</p>
-<p>交给三方打码平台</p>
-<p>邮箱轰炸，短信轰炸，burp Repeate，短信轰炸验证码有60秒限制时，有的参数修改后可绕过</p>
-<p>isVerfi参数 这里是1 回包 3 手机没收到信息 存在验证码限制</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-2.jpg" alt="图片"></p>
-<p>改为0 回显2 绕过了验证码限制</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-3.jpg" alt="图片"></p>
-<p>枚举注册用户 输入用户名，发送请求验证用户名是否正确(若返回次数限制,可测试服务端未限制高频访问)</p>
-<p>登陆失败有次数限制,若包中有限制参数可更改或删除参数</p>
-<p>cookie简单可猜测</p>
-<p>cookie一直有效，（修改密码后）</p>
-<p>第三方账户登录绕过(拦截微博授权成功的请求地址： <a href="https://api.weibo.com/oauth2/sso_authorize?sflag=1">https://api.weibo.com/oauth2/sso_authorize?sflag=1</a> 修改response中uid，服务端没有校验客户端提交的uid与授权成功的uid相同)</p>
-<p>手势登陆某app，修改登陆参数ID，因为手势密码设置一般为常见密码可参见twitter上常见十种手势密码，组成字典枚举即可登陆大部分设置手势密码登陆账号(后端未正确校验)</p>
-<p>0x02 密码找回</p>
-<ul>
-<li>验证码回传</li>
-<li>验证码时间长，不失效可爆破（字典可去除全1重复数多的）</li>
-<li>修改密码，修改发送手机号修改为自己可控，[<a href="http://www.freebuf.com/articles/database/161495.html]">http://www.freebuf.com/articles/database/161495.html]</a></li>
-<li>验证码未绑定 只验证验证码正确，没判断用户id 或手机号，修改想改的id 正确手机验证码即可</li>
-<li>验证码 手机 用户未统一验证</li>
-<li>邮箱验证可猜测(<a href="https://www.secpulse.com/archives/9608.html">https://www.secpulse.com/archives/9608.html</a>)</li>
-<li>假如找回需要4部，最后一部有user参数，用自己账号正常到第三部，第四部修改user实现</li>
-</ul>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-7.png" alt="图片"></p>
-<ul>
-<li>可以跳步找回（直接访问页面）</li>
-<li>本地验证，修改返回值</li>
-<li>本地验证，返回未设置cookie，替换成功验证返回包</li>
-<li>服务器验证为空，包中直接删除验证码</li>
-<li>个别验证码全0可绕过</li>
-</ul>
-<p>token生成可控（wooyun两篇实例） <a href="http://cb.drops.wiki/bugs/wooyun-2014-058210.html">http://cb.drops.wiki/bugs/wooyun-2014-058210.html</a></p>
-<ul>
-<li><a href="http://cb.drops.wiki/bugs/wooyun-2015-094242.html">http://cb.drops.wiki/bugs/wooyun-2015-094242.html</a> <a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&tid=31203&ctid=48">https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=31203&amp;ctid=48</a></li>
-<li>cookie覆盖</li>
-</ul>
-<p>两个手机号</p>
-<p>第一个手机</p>
-<p>正常 忘记密码 到第三步</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-8.png" alt="图片"></p>
-<p>在同一浏览器下 第二手机号 忘记密码 提交到第二部</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-9.png" alt="图片"></p>
-<p>刷新 第一个手机的第三部时可 发现 用户名变为第二个手机</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-10.png" alt="图片"></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-11.png" alt="图片"></p>
-<p>另一种示例</p>
-<p>两种密码重置之综合利用</p>
-<ul>
-<li>邮箱同上</li>
-<li>各种参数fuzz</li>
-</ul>
-<p>0x03 支付</p>
-<ul>
-<li>金额运费修改</li>
-</ul>
-<p>POST &#x2F;iflight&#x2F;submitorder.html HTTP&#x2F;1.1</p>
-<p>Host: wx.17u.cn</p>
-<p>Accept: application&#x2F;json</p>
-<p>X-Requested-With: XMLHttpRequest</p>
-<p>Accept-Encoding: gzip, deflate</p>
-<p>Accept-Language: zh-cn</p>
-<p>Content-Type: application&#x2F;x-www-form-urlencoded</p>
-<p>Origin: <a href="http://wx.17u.cn/">http://wx.17u.cn</a></p>
-<p>Content-Length: 780</p>
-<p>Connetion: keep-alive</p>
-<p>User-Agent: Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12B436 MicroMessenger&#x2F;6.3.13 NetType&#x2F;3G+ Language&#x2F;zh_CN</p>
-<p>Referer: <a href="http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o">http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o</a></p>
-<p>req&#x3D;%7B%22sg%22%3A%220e1d1663-803f-4f0d-962c-6efdd953bfb0%22%2C</p>
-<p>%22opass%22%3A%5B%7B%22ln%22%</p>
-<p>修改bxprice，可改成任意负数金额</p>
-<ul>
-<li>改id 给自己转账 红包</li>
-<li>数量</li>
-<li>请求重放，多次下单</li>
-</ul>
-<p>mysql多线程并发，条件竞争 （数据库操作加锁）</p>
-<ul>
-<li><a href="https://threathunter.org/topic/5942363d44a81b6215130e29">https://threathunter.org/topic/5942363d44a81b6215130e29</a> <a href="http://60.205.228.7/?p=278">http://60.205.228.7/?p=278</a></li>
-<li>参数污染 请求没该参数，却返回该参数，可请求该参数污染返回值 <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-12.png" alt="图片"> <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-13.png" alt="图片"></li>
-</ul>
-<p>实例 <a href="https://threathunter.org/topic/593ff6bc9c58e020408a79d4">https://threathunter.org/topic/593ff6bc9c58e020408a79d4</a></p>
-<p>0x04 越权</p>
-<ul>
-<li>改识别用户参数</li>
-<li>改cookie</li>
-<li>越权访问</li>
-<li>登陆后，修改密码 未校验id与用户 修改id 即可该其他人密码</li>
-<li>修改个人数据时 页面源代码有用户标识符id 抓包修改或添加id</li>
-<li>直接访问后台链接禁用js则不会跳转登录界面，直接登陆</li>
-<li>登陆分为账号和游客登陆，游客功能有限，app端只前端检测，模拟发包即可</li>
-</ul>
-<p>乌云drops – 小川 我的越权之道</p>
-<p><a href="http://static.hx99.net/static/drops/tips-727.html">http://static.hx99.net/static/drops/tips-727.html</a></p>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
-      <tags>
-        <tag>Web安全</tag>
       </tags>
   </entry>
   <entry>
@@ -1538,6 +1385,184 @@
       </tags>
   </entry>
   <entry>
+    <title>域名注册教学和cloudflare域名解析教程</title>
+    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
+<span id="more"></span>
+
+<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
+<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
+<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
+<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
+<p>NS记录在注册商</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
+<p>选用自定义DNS并改成cloudflare的记录</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
+<p>接下来配置DNS解析</p>
+<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
+<p>将Proxied打开变为黄色代表成功 点击完成</p>
+<p>SSL证书获取</p>
+<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
+<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
+<p>将prm与key部署到服务器即可</p>
+<p>退回到Overview 选择Full (strict)</p>
+<p>到此恭喜你成功了!</p>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>cloudflare</tag>
+        <tag>免费cdn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>实战-深度解析逻辑漏洞原理</title>
+    <url>/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>0x01 登陆处 0x02 密码找回 0x03 支付 0x04 越权</p>
+<span id="more"></span>
+
+<p>0x01 登陆处（不局限登陆，例如下文的短信轰炸等）</p>
+<p>登陆时，是否可以绕过验证码形成撞库</p>
+<ul>
+<li>返回包中有验证码</li>
+<li>返回页面 hidden中有验证码</li>
+<li>有些其他登陆url中不需要验证码 (app 微信 测试url)</li>
+<li>验证码不变，验证码没有一个完整的服务请求，只在刷新url时才变(例如，cookie与验证码绑定，不刷新则不变)</li>
+<li>第一次请求包验证了验证码是否正确，第二次请求不需要验证</li>
+<li>拦截登录时验证码的刷新请求，第一次验证码未失效，可绕过</li>
+<li>验证码和用户名、密码是否一次同时提交</li>
+<li>万能验证码 如000000</li>
+<li>删除验证码参数或者Cookie中的一些值</li>
+<li>利用漏洞中验证码绕过的小技巧</li>
+</ul>
+<p>简单验证码ocr识别</p>
+<p>交给三方打码平台</p>
+<p>邮箱轰炸，短信轰炸，burp Repeate，短信轰炸验证码有60秒限制时，有的参数修改后可绕过</p>
+<p>isVerfi参数 这里是1 回包 3 手机没收到信息 存在验证码限制</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-2.jpg" alt="图片"></p>
+<p>改为0 回显2 绕过了验证码限制</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-3.jpg" alt="图片"></p>
+<p>枚举注册用户 输入用户名，发送请求验证用户名是否正确(若返回次数限制,可测试服务端未限制高频访问)</p>
+<p>登陆失败有次数限制,若包中有限制参数可更改或删除参数</p>
+<p>cookie简单可猜测</p>
+<p>cookie一直有效，（修改密码后）</p>
+<p>第三方账户登录绕过(拦截微博授权成功的请求地址： <a href="https://api.weibo.com/oauth2/sso_authorize?sflag=1">https://api.weibo.com/oauth2/sso_authorize?sflag=1</a> 修改response中uid，服务端没有校验客户端提交的uid与授权成功的uid相同)</p>
+<p>手势登陆某app，修改登陆参数ID，因为手势密码设置一般为常见密码可参见twitter上常见十种手势密码，组成字典枚举即可登陆大部分设置手势密码登陆账号(后端未正确校验)</p>
+<p>0x02 密码找回</p>
+<ul>
+<li>验证码回传</li>
+<li>验证码时间长，不失效可爆破（字典可去除全1重复数多的）</li>
+<li>修改密码，修改发送手机号修改为自己可控，[<a href="http://www.freebuf.com/articles/database/161495.html]">http://www.freebuf.com/articles/database/161495.html]</a></li>
+<li>验证码未绑定 只验证验证码正确，没判断用户id 或手机号，修改想改的id 正确手机验证码即可</li>
+<li>验证码 手机 用户未统一验证</li>
+<li>邮箱验证可猜测(<a href="https://www.secpulse.com/archives/9608.html">https://www.secpulse.com/archives/9608.html</a>)</li>
+<li>假如找回需要4部，最后一部有user参数，用自己账号正常到第三部，第四部修改user实现</li>
+</ul>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-7.png" alt="图片"></p>
+<ul>
+<li>可以跳步找回（直接访问页面）</li>
+<li>本地验证，修改返回值</li>
+<li>本地验证，返回未设置cookie，替换成功验证返回包</li>
+<li>服务器验证为空，包中直接删除验证码</li>
+<li>个别验证码全0可绕过</li>
+</ul>
+<p>token生成可控（wooyun两篇实例） <a href="http://cb.drops.wiki/bugs/wooyun-2014-058210.html">http://cb.drops.wiki/bugs/wooyun-2014-058210.html</a></p>
+<ul>
+<li><a href="http://cb.drops.wiki/bugs/wooyun-2015-094242.html">http://cb.drops.wiki/bugs/wooyun-2015-094242.html</a> <a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&tid=31203&ctid=48">https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=31203&amp;ctid=48</a></li>
+<li>cookie覆盖</li>
+</ul>
+<p>两个手机号</p>
+<p>第一个手机</p>
+<p>正常 忘记密码 到第三步</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-8.png" alt="图片"></p>
+<p>在同一浏览器下 第二手机号 忘记密码 提交到第二部</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-9.png" alt="图片"></p>
+<p>刷新 第一个手机的第三部时可 发现 用户名变为第二个手机</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-10.png" alt="图片"></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-11.png" alt="图片"></p>
+<p>另一种示例</p>
+<p>两种密码重置之综合利用</p>
+<ul>
+<li>邮箱同上</li>
+<li>各种参数fuzz</li>
+</ul>
+<p>0x03 支付</p>
+<ul>
+<li>金额运费修改</li>
+</ul>
+<p>POST &#x2F;iflight&#x2F;submitorder.html HTTP&#x2F;1.1</p>
+<p>Host: wx.17u.cn</p>
+<p>Accept: application&#x2F;json</p>
+<p>X-Requested-With: XMLHttpRequest</p>
+<p>Accept-Encoding: gzip, deflate</p>
+<p>Accept-Language: zh-cn</p>
+<p>Content-Type: application&#x2F;x-www-form-urlencoded</p>
+<p>Origin: <a href="http://wx.17u.cn/">http://wx.17u.cn</a></p>
+<p>Content-Length: 780</p>
+<p>Connetion: keep-alive</p>
+<p>User-Agent: Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12B436 MicroMessenger&#x2F;6.3.13 NetType&#x2F;3G+ Language&#x2F;zh_CN</p>
+<p>Referer: <a href="http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o">http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o</a></p>
+<p>req&#x3D;%7B%22sg%22%3A%220e1d1663-803f-4f0d-962c-6efdd953bfb0%22%2C</p>
+<p>%22opass%22%3A%5B%7B%22ln%22%</p>
+<p>修改bxprice，可改成任意负数金额</p>
+<ul>
+<li>改id 给自己转账 红包</li>
+<li>数量</li>
+<li>请求重放，多次下单</li>
+</ul>
+<p>mysql多线程并发，条件竞争 （数据库操作加锁）</p>
+<ul>
+<li><a href="https://threathunter.org/topic/5942363d44a81b6215130e29">https://threathunter.org/topic/5942363d44a81b6215130e29</a> <a href="http://60.205.228.7/?p=278">http://60.205.228.7/?p=278</a></li>
+<li>参数污染 请求没该参数，却返回该参数，可请求该参数污染返回值 <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-12.png" alt="图片"> <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-13.png" alt="图片"></li>
+</ul>
+<p>实例 <a href="https://threathunter.org/topic/593ff6bc9c58e020408a79d4">https://threathunter.org/topic/593ff6bc9c58e020408a79d4</a></p>
+<p>0x04 越权</p>
+<ul>
+<li>改识别用户参数</li>
+<li>改cookie</li>
+<li>越权访问</li>
+<li>登陆后，修改密码 未校验id与用户 修改id 即可该其他人密码</li>
+<li>修改个人数据时 页面源代码有用户标识符id 抓包修改或添加id</li>
+<li>直接访问后台链接禁用js则不会跳转登录界面，直接登陆</li>
+<li>登陆分为账号和游客登陆，游客功能有限，app端只前端检测，模拟发包即可</li>
+</ul>
+<p>乌云drops – 小川 我的越权之道</p>
+<p><a href="http://static.hx99.net/static/drops/tips-727.html">http://static.hx99.net/static/drops/tips-727.html</a></p>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>Web安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最简单的白嫖office 365 E5 账号</title>
+    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
+<span id="more"></span>
+
+<p>注册入口</p>
+<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
+<p>1T改成5T</p>
+<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
+<p>添加新用户</p>
+<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
+<p>续签API设置</p>
+<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
+<p>E5续签软件下载</p>
+<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
+<p>如果你有VPS可以尝试自建续订服务</p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>Onedrive</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>提高Cloudflare站点在中国的体验</title>
     <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p>
@@ -1586,150 +1611,6 @@ cat cloudflare/*.txt &gt; proxy.txt
 大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/
 </code></pre>
 ]]></content>
-  </entry>
-  <entry>
-    <title>最简单的白嫖office 365 E5 账号</title>
-    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
-<span id="more"></span>
-
-<p>注册入口</p>
-<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
-<p>1T改成5T</p>
-<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
-<p>添加新用户</p>
-<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
-<p>续签API设置</p>
-<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
-<p>E5续签软件下载</p>
-<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
-<p>如果你有VPS可以尝试自建续订服务</p>
-]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>Onedrive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通过vercel搭建谷歌镜像站</title>
-    <url>/2023/07/29/%E9%80%9A%E8%BF%87vercel%E6%90%AD%E5%BB%BA%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E7%AB%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>通过vercel搭建谷歌镜像站</p>
-<span id="more"></span>
-
-<p>通过vercel搭建谷歌镜像站，需要准备两样东西。</p>
-<p>1.Nodejs环境</p>
-<p>2.vercel账号</p>
-<p>建议大家使用Windows安装nodejs</p>
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><h4 id="一-下载"><a href="#一-下载" class="headerlink" title="一.下载"></a>一.下载</h4><p>建议使用nvm安装便于管理</p>
-<p>打开项目地址<a href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p>
-<p>可以看到有许多文件</p>
-<p>这里稍做下解释：</p>
-<ul>
-<li>nvm-noinstall.zip： 这个是绿色版本，不需要安装，但是使用之前需要配置环境变量；</li>
-<li>nvm-setup.zip：<strong>推荐</strong>下载这个包，无需配置就可以使用；</li>
-<li>Source code(zip)：zip 压缩的源码；</li>
-<li>Sourc code(tar.gz)：tar.gz 的源码，一般用于 *nix 系统。</li>
-</ul>
-<h4 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h4><p>例如我选择nvm-setup.zip解压后</p>
-<p><strong>1、双击安装文件 nvm-setup.exe</strong></p>
-<p><strong>2、选择nvm安装路径</strong></p>
-<p><strong>3、选择nodejs路径</strong></p>
-<p><strong>4、确认安装即可</strong></p>
-<p><strong>5、安装完确认</strong></p>
-<p>打开CMD，输入命令 nvm ，安装成功则会显示版本号例如Running version 1.1.7</p>
-<h4 id="三-使用"><a href="#三-使用" class="headerlink" title="三.使用"></a>三.使用</h4><p><strong>nvm管理node版本</strong></p>
-<p>1、查看所有可安装的版本</p>
-<pre><code class="shell">nvm list available
-</code></pre>
-<p>2、查看本地已经安装的所有版本</p>
-<pre><code class="shell">nvm list
-</code></pre>
-<p>3、安装，命令中的版本号</p>
-<pre><code class="shell">nvm install 14.18.1
-</code></pre>
-<p>4、使用指定node版本</p>
-<pre><code class="shell">nvm use 14.18.1
-</code></pre>
-<p>5、卸载</p>
-<pre><code class="shell">nvm uninstall 14.18.1
-</code></pre>
-<h4 id="四-其他nvm相关命令"><a href="#四-其他nvm相关命令" class="headerlink" title="四.其他nvm相关命令"></a>四.<strong>其他nvm相关命令</strong></h4><pre><code class="shell">nvm arch ：显示node是运行在32位还是64位。
-nvm install &lt;version&gt; [arch] ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加--insecure绕过远程服务器的SSL。
-nvm list [available] ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。
-nvm on ：开启node.js版本管理。
-nvm off ：关闭node.js版本管理。
-nvm proxy [url] ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。
-nvm node_mirror [url] ：设置node镜像。默认是https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。
-nvm npm_mirror [url] ：设置npm镜像。https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。
-nvm uninstall &lt;version&gt; ：卸载指定版本node。
-nvm use [version] [arch] ：使用制定版本node。可指定32/64位。
-nvm root [path] ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。
-nvm version ：显示nvm版本。version可简化为v。
-</code></pre>
-<h3 id="vercel配置"><a href="#vercel配置" class="headerlink" title="vercel配置"></a>vercel配置</h3><p>安装完成之后，打开cmd输入这个命令</p>
-<pre><code>npm i -g vercel
-npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i -g vercel
-</code></pre>
-<p>运行完毕之后Vercel CLI就安装在你的电脑上了。</p>
-<p>之后我们就要登录Vercel CLI，使用cmd，执行</p>
-<pre><code>vercel login
-</code></pre>
-<p>选择登录方式，推荐使用github登录</p>
-<p>出现这个就代表登录成功啦</p>
-<p>You have been successfully authenticated as:</p>
-<p>CLI Login Success</p>
-<p><a href="mailto:&#x78;&#120;&#x78;&#120;&#x78;&#64;&#120;&#120;&#x78;&#x2e;&#x78;&#x78;&#120;">&#x78;&#120;&#x78;&#120;&#x78;&#64;&#120;&#120;&#x78;&#x2e;&#x78;&#x78;&#120;</a>(您的邮箱）</p>
-<p>You can now close this tab and return to the CLI.</p>
-<p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p>
-<pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;
-</code></pre>
-<p>将其中的website，换成你要代理的网站，需要带https:&#x2F;&#x2F;或http:&#x2F;&#x2F;，就比如你要代理谷歌，那么就要输入<a href="https://www.google.com/">https://www.google.com</a></p>
-<p>替换完成之后保存，改文件扩展名为json，也就是把txt改为JSON，改完之后切换到cmd，这一步就完成了。</p>
-<p>打开cmd，输入</p>
-<pre><code>cd 你的文件夹路径
-</code></pre>
-<p>之后回车</p>
-<p>成功打开文件夹之后输入</p>
-<pre><code>vercel -A 你的文件名（仅限英文）.json --prod
-</code></pre>
-<p>回车之后稍等</p>
-<p>Set up and deploy “你的路径”? [Y&#x2F;n] y</p>
-<p>Which scope do you want to deploy to?（直接回车）</p>
-<p>Link to existing project? [y&#x2F;N] n</p>
-<p>What’s your project’s name? （随便输入名字，仅限英文）</p>
-<p>which directory is your .&#x2F;（直接回车）</p>
-<p>Want to override the settings? [y&#x2F;N] n</p>
-<p>等它跑完就行了。</p>
-<p>之后最后面的地址就是你的镜像站啦~</p>
-<p>进入velcel官方网站之后，还可以绑定自己的域名！</p>
-<p>在域名注册商添加解析添加CNAME解析  </p>
-<p>例如我使用cloudflare</p>
-<table>
-<thead>
-<tr>
-<th align="left">类型</th>
-<th align="left">名称</th>
-<th align="left">内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>CNAME</strong></td>
-<td align="left">google</td>
-<td align="left">cname-china.vercel-dns.com</td>
-</tr>
-</tbody></table>
-<p>然后打开仓库选择settings</p>
-<p>在Domains中添加域名即可</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>Google镜像</tag>
-        <tag>vercel</tag>
-      </tags>
   </entry>
   <entry>
     <title>记一次hugo推送配置</title>
@@ -1806,6 +1687,125 @@ cd ..
       </categories>
       <tags>
         <tag>hugo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通过vercel搭建谷歌镜像站</title>
+    <url>/2023/07/29/%E9%80%9A%E8%BF%87vercel%E6%90%AD%E5%BB%BA%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E7%AB%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>通过vercel搭建谷歌镜像站</p>
+<span id="more"></span>
+
+<p>通过vercel搭建谷歌镜像站，需要准备两样东西。</p>
+<p>1.Nodejs环境</p>
+<p>2.vercel账号</p>
+<p>建议大家使用Windows安装nodejs</p>
+<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><h4 id="一-下载"><a href="#一-下载" class="headerlink" title="一.下载"></a>一.下载</h4><p>建议使用nvm安装便于管理</p>
+<p>打开项目地址<a href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p>
+<p>可以看到有许多文件</p>
+<p>这里稍做下解释：</p>
+<ul>
+<li>nvm-noinstall.zip： 这个是绿色版本，不需要安装，但是使用之前需要配置环境变量；</li>
+<li>nvm-setup.zip：<strong>推荐</strong>下载这个包，无需配置就可以使用；</li>
+<li>Source code(zip)：zip 压缩的源码；</li>
+<li>Sourc code(tar.gz)：tar.gz 的源码，一般用于 *nix 系统。</li>
+</ul>
+<h4 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h4><p>例如我选择nvm-setup.zip解压后</p>
+<p><strong>1、双击安装文件 nvm-setup.exe</strong></p>
+<p><strong>2、选择nvm安装路径</strong></p>
+<p><strong>3、选择nodejs路径</strong></p>
+<p><strong>4、确认安装即可</strong></p>
+<p><strong>5、安装完确认</strong></p>
+<p>打开CMD，输入命令 nvm ，安装成功则会显示版本号例如Running version 1.1.7</p>
+<h4 id="三-使用"><a href="#三-使用" class="headerlink" title="三.使用"></a>三.使用</h4><p><strong>nvm管理node版本</strong></p>
+<p>1、查看所有可安装的版本</p>
+<pre><code class="shell">nvm list available
+</code></pre>
+<p>2、查看本地已经安装的所有版本</p>
+<pre><code class="shell">nvm list
+</code></pre>
+<p>3、安装，命令中的版本号</p>
+<pre><code class="shell">nvm install 14.18.1
+</code></pre>
+<p>4、使用指定node版本</p>
+<pre><code class="shell">nvm use 14.18.1
+</code></pre>
+<p>5、卸载</p>
+<pre><code class="shell">nvm uninstall 14.18.1
+</code></pre>
+<h4 id="四-其他nvm相关命令"><a href="#四-其他nvm相关命令" class="headerlink" title="四.其他nvm相关命令"></a>四.<strong>其他nvm相关命令</strong></h4><pre><code class="shell">nvm arch ：显示node是运行在32位还是64位。
+nvm install &lt;version&gt; [arch] ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加--insecure绕过远程服务器的SSL。
+nvm list [available] ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。
+nvm on ：开启node.js版本管理。
+nvm off ：关闭node.js版本管理。
+nvm proxy [url] ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。
+nvm node_mirror [url] ：设置node镜像。默认是https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。
+nvm npm_mirror [url] ：设置npm镜像。https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。
+nvm uninstall &lt;version&gt; ：卸载指定版本node。
+nvm use [version] [arch] ：使用制定版本node。可指定32/64位。
+nvm root [path] ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。
+nvm version ：显示nvm版本。version可简化为v。
+</code></pre>
+<h3 id="vercel配置"><a href="#vercel配置" class="headerlink" title="vercel配置"></a>vercel配置</h3><p>安装完成之后，打开cmd输入这个命令</p>
+<pre><code>npm i -g vercel
+npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i -g vercel
+</code></pre>
+<p>运行完毕之后Vercel CLI就安装在你的电脑上了。</p>
+<p>之后我们就要登录Vercel CLI，使用cmd，执行</p>
+<pre><code>vercel login
+</code></pre>
+<p>选择登录方式，推荐使用github登录</p>
+<p>出现这个就代表登录成功啦</p>
+<p>You have been successfully authenticated as:</p>
+<p>CLI Login Success</p>
+<p><a href="mailto:&#x78;&#x78;&#x78;&#x78;&#x78;&#64;&#120;&#x78;&#x78;&#x2e;&#x78;&#120;&#x78;">&#x78;&#x78;&#x78;&#x78;&#x78;&#64;&#120;&#x78;&#x78;&#x2e;&#x78;&#120;&#x78;</a>(您的邮箱）</p>
+<p>You can now close this tab and return to the CLI.</p>
+<p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p>
+<pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;
+</code></pre>
+<p>将其中的website，换成你要代理的网站，需要带https:&#x2F;&#x2F;或http:&#x2F;&#x2F;，就比如你要代理谷歌，那么就要输入<a href="https://www.google.com/">https://www.google.com</a></p>
+<p>替换完成之后保存，改文件扩展名为json，也就是把txt改为JSON，改完之后切换到cmd，这一步就完成了。</p>
+<p>打开cmd，输入</p>
+<pre><code>cd 你的文件夹路径
+</code></pre>
+<p>之后回车</p>
+<p>成功打开文件夹之后输入</p>
+<pre><code>vercel -A 你的文件名（仅限英文）.json --prod
+</code></pre>
+<p>回车之后稍等</p>
+<p>Set up and deploy “你的路径”? [Y&#x2F;n] y</p>
+<p>Which scope do you want to deploy to?（直接回车）</p>
+<p>Link to existing project? [y&#x2F;N] n</p>
+<p>What’s your project’s name? （随便输入名字，仅限英文）</p>
+<p>which directory is your .&#x2F;（直接回车）</p>
+<p>Want to override the settings? [y&#x2F;N] n</p>
+<p>等它跑完就行了。</p>
+<p>之后最后面的地址就是你的镜像站啦~</p>
+<p>进入velcel官方网站之后，还可以绑定自己的域名！</p>
+<p>在域名注册商添加解析添加CNAME解析  </p>
+<p>例如我使用cloudflare</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">名称</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>CNAME</strong></td>
+<td align="left">google</td>
+<td align="left">cname-china.vercel-dns.com</td>
+</tr>
+</tbody></table>
+<p>然后打开仓库选择settings</p>
+<p>在Domains中添加域名即可</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>Google镜像</tag>
+        <tag>vercel</tag>
       </tags>
   </entry>
   <entry>
