@@ -216,14 +216,14 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
+    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
     <lastmod>2024-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
+    <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2024-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -272,27 +272,6 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/ai/</loc>
-    <lastmod>2024-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/AutoGPT/</loc>
-    <lastmod>2024-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
-    <lastmod>2024-02-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/tags/bard/</loc>
     <lastmod>2024-02-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -321,6 +300,27 @@
   </url>
   
   <url>
+    <loc>https://blog.alone-hk.cn/tags/ai/</loc>
+    <lastmod>2024-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/AutoGPT/</loc>
+    <lastmod>2024-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <lastmod>2024-02-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.alone-hk.cn/tags/cloudflare/</loc>
     <lastmod>2024-02-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -328,7 +328,7 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/web/</loc>
+    <loc>https://blog.alone-hk.cn/tags/%E5%85%8D%E8%B4%B9cdn/</loc>
     <lastmod>2024-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -342,7 +342,7 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E5%85%8D%E8%B4%B9cdn/</loc>
+    <loc>https://blog.alone-hk.cn/tags/web/</loc>
     <lastmod>2024-02-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

