@@ -219,14 +219,55 @@
       
       <div class="post-body">
           <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 24 个标签
+
+              <!-- 目前共计xxx个标签
+              <div class="tag-cloud-title">
+                  目前共计 24 个标签
+              </div>
+              -->
+          
+              <div class="tag-cloud-tags">
+                <a href="/tags/AutoGPT/" style="font-size: 10px; color: #ccc">AutoGPT</a> <a href="/tags/Chatgpt/" style="font-size: 10px; color: #ccc">Chatgpt</a> <a href="/tags/Docker/" style="font-size: 10px; color: #ccc">Docker</a> <a href="/tags/Google%E9%95%9C%E5%83%8F/" style="font-size: 10px; color: #ccc">Google镜像</a> <a href="/tags/Onedrive/" style="font-size: 12.5px; color: #6f6f6f">Onedrive</a> <a href="/tags/Web%E5%AE%89%E5%85%A8/" style="font-size: 10px; color: #ccc">Web安全</a> <a href="/tags/ai/" style="font-size: 10px; color: #ccc">ai</a> <a href="/tags/bard/" style="font-size: 10px; color: #ccc">bard</a> <a href="/tags/cloudflare/" style="font-size: 15px; color: #111">cloudflare</a> <a href="/tags/hugo/" style="font-size: 10px; color: #ccc">hugo</a> <a href="/tags/new-bing/" style="font-size: 10px; color: #ccc">new bing</a> <a href="/tags/npm/" style="font-size: 10px; color: #ccc">npm</a> <a href="/tags/pnpm/" style="font-size: 10px; color: #ccc">pnpm</a> <a href="/tags/vercel/" style="font-size: 10px; color: #ccc">vercel</a> <a href="/tags/warp/" style="font-size: 10px; color: #ccc">warp</a> <a href="/tags/web/" style="font-size: 10px; color: #ccc">web</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 10px; color: #ccc">web安全</a> <a href="/tags/yarn/" style="font-size: 10px; color: #ccc">yarn</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 10px; color: #ccc">人工智能</a> <a href="/tags/%E5%85%8D%E8%B4%B9cdn/" style="font-size: 10px; color: #ccc">免费cdn</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 10px; color: #ccc">建站</a> <a href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/" style="font-size: 10px; color: #ccc">文心一言</a> <a href="/tags/%E6%BC%8F%E6%B4%9E/" style="font-size: 10px; color: #ccc">漏洞</a> <a href="/tags/%E7%AB%AF%E5%8F%A3/" style="font-size: 10px; color: #ccc">端口</a>
+              </div>
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/AutoGPT/" style="font-size: 12px; color: #ccc">AutoGPT</a> <a href="/tags/Chatgpt/" style="font-size: 12px; color: #ccc">Chatgpt</a> <a href="/tags/Docker/" style="font-size: 12px; color: #ccc">Docker</a> <a href="/tags/Google%E9%95%9C%E5%83%8F/" style="font-size: 12px; color: #ccc">Google镜像</a> <a href="/tags/Onedrive/" style="font-size: 21px; color: #6f6f6f">Onedrive</a> <a href="/tags/Web%E5%AE%89%E5%85%A8/" style="font-size: 12px; color: #ccc">Web安全</a> <a href="/tags/ai/" style="font-size: 12px; color: #ccc">ai</a> <a href="/tags/bard/" style="font-size: 12px; color: #ccc">bard</a> <a href="/tags/cloudflare/" style="font-size: 30px; color: #111">cloudflare</a> <a href="/tags/hugo/" style="font-size: 12px; color: #ccc">hugo</a> <a href="/tags/new-bing/" style="font-size: 12px; color: #ccc">new bing</a> <a href="/tags/npm/" style="font-size: 12px; color: #ccc">npm</a> <a href="/tags/pnpm/" style="font-size: 12px; color: #ccc">pnpm</a> <a href="/tags/vercel/" style="font-size: 12px; color: #ccc">vercel</a> <a href="/tags/warp/" style="font-size: 12px; color: #ccc">warp</a> <a href="/tags/web/" style="font-size: 12px; color: #ccc">web</a> <a href="/tags/web%E5%AE%89%E5%85%A8/" style="font-size: 12px; color: #ccc">web安全</a> <a href="/tags/yarn/" style="font-size: 12px; color: #ccc">yarn</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 12px; color: #ccc">人工智能</a> <a href="/tags/%E5%85%8D%E8%B4%B9cdn/" style="font-size: 12px; color: #ccc">免费cdn</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 12px; color: #ccc">建站</a> <a href="/tags/%E6%96%87%E5%BF%83%E4%B8%80%E8%A8%80/" style="font-size: 12px; color: #ccc">文心一言</a> <a href="/tags/%E6%BC%8F%E6%B4%9E/" style="font-size: 12px; color: #ccc">漏洞</a> <a href="/tags/%E7%AB%AF%E5%8F%A3/" style="font-size: 12px; color: #ccc">端口</a>
-            </div>
-          </div>
-        
+          
+           <script type="text/javascript">
+     var alltags = document.getElementsByClassName('tag-cloud-tags');
+     var tags = alltags[0].getElementsByTagName('a');
+     for (var i = tags.length - 1; i >= 0; i--) {
+       var r=Math.floor(Math.random()*75+130);
+       var g=Math.floor(Math.random()*75+100);
+       var b=Math.floor(Math.random()*75+80);
+       tags[i].style.background = "rgb("+r+","+g+","+b+")";
+     }
+</script>
+
+<style>
+  .tag-cloud-tags{
+    /*font-family: Helvetica, Tahoma, Arial;*/
+    /*font-weight: 100;*/
+    text-align: center;
+    counter-reset: tags;
+  }
+  .tag-cloud-tags a{
+    border-radius: 6px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 8px 5px 0px 0px;
+  }
+  .tag-cloud-tags a:before{
+    content: "🔖";
+  }
+
+  .tag-cloud-tags a:hover{
+     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);
+     transform: scale(1.1);
+     /*box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);*/
+     transition-duration: 0.15s;
+  }
+</style>
+          
+          
       </div>
       
       
