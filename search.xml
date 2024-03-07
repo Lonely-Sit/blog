@@ -61,6 +61,41 @@
       </tags>
   </entry>
   <entry>
+    <title>一键脚本建站</title>
+    <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p>
+<span id="more"></span>
+
+<p>安装下载工具</p>
+<p>如果没有安装，则可以使用<code>yum</code>命令进行安装，命令格式如下：</p>
+<pre><code class="text">yum -y install wget
+</code></pre>
+<p>这里的参数<code>-y</code>表对对于安装软件包之前的任何提示进行确认，相当于如果询问你“是否****[y&#x2F;n]”，你默认选择<code>y</code>。</p>
+<p>如果您使用的是其他的发行版例如<a href="https://link.zhihu.com/?target=https://linux265.com/distro/45.html">Ubuntu</a>，<a href="https://link.zhihu.com/?target=https://linux265.com/distro/10.html">Debian</a>，一般系统默认安装有wget命令，如果没有安装可以通过以下命令安装。</p>
+<pre><code class="text">sudo apt install wget
+</code></pre>
+<p><strong>一键脚本</strong></p>
+<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
+</code></pre>
+<p>若以上地址你无法使用请尝试</p>
+<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
+</code></pre>
+<p>脚本展示图</p>
+<p><a href="https://s1.ax1x.com/2023/08/13/pPufa9K.png"><img src="https://s1.ax1x.com/2023/08/13/pPufa9K.png" alt="img"></a></p>
+<p>目前只支持Ubuntu和Debian系统，暂不支持其它系统！</p>
+<p>此脚本目前比较基础，会不断进化，整合大家常用的脚本。方便使用。</p>
+<p>LDNMP属于原创内容，建站更方便。</p>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>建站</tag>
+        <tag>warp</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Web应用中的信息泄漏以及攻击方法</title>
     <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
@@ -142,41 +177,6 @@
       </categories>
       <tags>
         <tag>web安全</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一键脚本建站</title>
-    <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p>
-<span id="more"></span>
-
-<p>安装下载工具</p>
-<p>如果没有安装，则可以使用<code>yum</code>命令进行安装，命令格式如下：</p>
-<pre><code class="text">yum -y install wget
-</code></pre>
-<p>这里的参数<code>-y</code>表对对于安装软件包之前的任何提示进行确认，相当于如果询问你“是否****[y&#x2F;n]”，你默认选择<code>y</code>。</p>
-<p>如果您使用的是其他的发行版例如<a href="https://link.zhihu.com/?target=https://linux265.com/distro/45.html">Ubuntu</a>，<a href="https://link.zhihu.com/?target=https://linux265.com/distro/10.html">Debian</a>，一般系统默认安装有wget命令，如果没有安装可以通过以下命令安装。</p>
-<pre><code class="text">sudo apt install wget
-</code></pre>
-<p><strong>一键脚本</strong></p>
-<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
-</code></pre>
-<p>若以上地址你无法使用请尝试</p>
-<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
-</code></pre>
-<p>脚本展示图</p>
-<p><a href="https://s1.ax1x.com/2023/08/13/pPufa9K.png"><img src="https://s1.ax1x.com/2023/08/13/pPufa9K.png" alt="img"></a></p>
-<p>目前只支持Ubuntu和Debian系统，暂不支持其它系统！</p>
-<p>此脚本目前比较基础，会不断进化，整合大家常用的脚本。方便使用。</p>
-<p>LDNMP属于原创内容，建站更方便。</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>建站</tag>
-        <tag>warp</tag>
-        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -283,27 +283,6 @@
         <tag>npm</tag>
         <tag>yarn</tag>
         <tag>pnpm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
-    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
-<span id="more"></span>
-
-<p>视频教程:</p>
-<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
-<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
-<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
-]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>ai</tag>
-        <tag>AutoGPT</tag>
-        <tag>人工智能</tag>
       </tags>
   </entry>
   <entry>
@@ -442,45 +421,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用cloudflarre warp保护你的ip</title>
-    <url>/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓</p>
-<span id="more"></span>
-
-<p>最近比较火的一个魔法，那就是由cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓，苹果端都可以轻松使用。不仅如此，只要我们注册一个团队账户，还可以无限流量使用，而且速度丝毫不差，比起很多免费的魔法来说，真的是非常的流畅，在YouTube上看4k视频也是轻轻松松。</p>
-<p>相信不少小伙伴已经体验过了，但是还有一部分小伙伴非常疑惑，为什么自己安装测试之后，发现和博主说的相差很大，不仅网速非常卡，而且有一部分甚至无法连接，一直卡在链接界面。那是因为啊，通过这个WARP客户端自动分配的对端IP地址，仅仅是根据你所在地的位置，分配一个就近的ip ，而不是分配一个网速最快的，延迟最小的IP地址。也就是说，有一部分同学需要通过优选IP，才能实现更低延迟，更快的速度！<br>那么我们现在就来讲一下，如何通过优选IP来让WARP实现真正的高速低延迟的访问，解决大家无法连接，或者连接上也非常卡的问题。</p>
-<p>为了照顾很多新手同学，我就从注册和下载客户端开始讲起，已经知道如何操作使用的同学，可以直接跳到视频后半部分，观看如何进行IP优选。</p>
-<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p>1、访问网址：<a href="https://1.1.1.1/">https://1.1.1.1/</a> 这个网址打不开的同学，<strong>直接从第4步开始操作。</strong> <em><strong><del>那就没办法了吗？</del> 可使用博主提前下载好的安装包</strong></em>  <a href="https://drive.alone-hk.cn/zyxz/10.%E5%B0%8F%E5%B7%A5%E5%85%B7/warp/">点我下载</a>  <strong>若打开提示NOxxx在浏览器地址栏刷新一下就好</strong></p>
-<p>若下载太慢请使用 <a href="https://www.bilibili.com/video/BV11W4y1g7QV/?share_source=copy_web&vd_source=3f75256c56cdcaf5410b3d911906f5bb"><strong>IDM</strong></a>  下载</p>
-<p>2、根据自己的情况，下载对应的客户端，这里需要注意的是，使用iPhone的同学，请用<strong>美区Apple ID</strong>进行下载。</p>
-<p>3、我这里下载windows客户端，下载完成后，点击安装。</p>
-<p><a href="https://imgse.com/i/pPezR2j"><img src="https://s1.ax1x.com/2023/08/10/pPezR2j.png" alt="pPezR2j.png"></a></p>
-<p>4、打开cloudflare官方网站：<a href="https://www.cloudflare.com/zh-cn/">https://www.cloudflare.com/zh-cn/</a> 并进行注册</p>
-<p><a href="https://imgse.com/i/pPez2GQ"><img src="https://s1.ax1x.com/2023/08/10/pPez2GQ.png" alt="pPez2GQ.png"></a></p>
-<p>5、来到左侧列表里的Zero Trust<br>，根据提示一步步注册账号，选择0元的！到结账那一步，直接关闭网页，就等于跳过绑定支付方式。</p>
-<p><a href="https://imgse.com/i/pPezgPg"><img src="https://s1.ax1x.com/2023/08/10/pPezgPg.png" alt="pPezgPg.png"></a></p>
-<p>6、再次回到cloudflare官方网站，点击左侧列表的Zero Trust之后，点击左侧列表my team 第一个，添加邮箱后缀，<strong>如果是谷歌邮箱，那么后缀就是@gmail，如果是qq邮箱，那后缀就是@qq.com</strong></p>
-<p><a href="https://imgse.com/i/pPezWxs"><img src="https://s1.ax1x.com/2023/08/10/pPezWxs.png" alt="pPezWxs.png"></a></p>
-<p>7、添加完成后，也可以直接在此处下载客户端。回到WARP，点击偏好设置，找到账号，登录刚刚申请好的Zero Trust账户即可！</p>
-<p><a href="https://imgse.com/i/pPez4rq"><img src="https://s1.ax1x.com/2023/08/10/pPez4rq.png" alt="pPez4rq.png"></a></p>
-<p><a href="https://imgse.com/i/pPezbiF"><img src="https://s1.ax1x.com/2023/08/10/pPezbiF.png" alt="pPezbiF.png"></a></p>
-<p>6、另一种无限流量获取方式：TG搜索机器人@generatewarpplusbot进行流量添加，需要加入2个群组，回答一个数学题，回答完成后，会送一个密钥，密钥复制，来到WARP客户端，点击偏好设置，点击更改密钥，粘贴刚刚获取的密钥。</p>
-<p><a href="https://imgse.com/i/pPezhMn"><img src="https://s1.ax1x.com/2023/08/10/pPezhMn.png" alt="pPezhMn.png"></a></p>
-<p><a href="https://imgse.com/i/pPezTaT"><img src="https://s1.ax1x.com/2023/08/10/pPezTaT.png" alt="pPezTaT.png"></a></p>
-<p>若无法使用的话这里博主会在公众号不定期更新密钥 <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkzNzUyMjQ3Ng==&scene=124#wechat_redirect">点我回复关键字 “warp key”获取</a></p>
-<p>7、想要优选IP的同学，下载这个优选IP程序：<a href="https://short.alone-hk.cn/9qK6B">点击下载</a></p>
-<p><a href="https://imgse.com/i/pPez5q0"><img src="https://s1.ax1x.com/2023/08/10/pPez5q0.png" alt="pPez5q0.png"></a></p>
-<p>8、使用优选IP软件进行优选，2种方式，首先关闭WARP的连接。点击自动方式，自动的如果出错，就换手动的。手动方式1，打开操作。完成后打开根目录的输出文件，选择第一个延迟较低的ip地址和端口。再次打开手动方式2，右键粘贴刚刚的ip地址和端口。回车确认。WARP会自动连接。这就等于优选成功了！</p>
-<p><a href="https://imgse.com/i/pPez7IU"><img src="https://s1.ax1x.com/2023/08/10/pPez7IU.png" alt="pPez7IU.png"></a></p>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
-      <tags>
-        <tag>cloudflare</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>人工智能AI大战：BARD、ChatGPT、Bing和文心一言谁更具有优势？</title>
     <url>/2023/07/21/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BDAI%E5%A4%A7%E6%88%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不管是bard还是百度的AI现在都得等待候补，也就是排队，所以目前只能无限期等待下去，但是第一批用户已经在查通过平台上遨游了好几个月了.</p>
@@ -544,35 +484,63 @@
       </tags>
   </entry>
   <entry>
-    <title>域名注册教学和cloudflare域名解析教程</title>
-    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
+    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
+    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
 <span id="more"></span>
 
-<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
-<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
-<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
-<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
-<p>NS记录在注册商</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
-<p>选用自定义DNS并改成cloudflare的记录</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
-<p>接下来配置DNS解析</p>
-<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
-<p>将Proxied打开变为黄色代表成功 点击完成</p>
-<p>SSL证书获取</p>
-<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
-<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
-<p>将prm与key部署到服务器即可</p>
-<p>退回到Overview 选择Full (strict)</p>
-<p>到此恭喜你成功了!</p>
+<p>视频教程:</p>
+<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
+<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
+<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
+<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>ai</tag>
+        <tag>AutoGPT</tag>
+        <tag>人工智能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用cloudflarre warp保护你的ip</title>
+    <url>/2023/08/09/%E4%BD%BF%E7%94%A8cloudflarre-warp%E4%BF%9D%E6%8A%A4%E4%BD%A0%E7%9A%84ip/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓</p>
+<span id="more"></span>
+
+<p>最近比较火的一个魔法，那就是由cloudfare出品的WARP，它支持多种平台，windows 、Linux、MacOS 和安卓，苹果端都可以轻松使用。不仅如此，只要我们注册一个团队账户，还可以无限流量使用，而且速度丝毫不差，比起很多免费的魔法来说，真的是非常的流畅，在YouTube上看4k视频也是轻轻松松。</p>
+<p>相信不少小伙伴已经体验过了，但是还有一部分小伙伴非常疑惑，为什么自己安装测试之后，发现和博主说的相差很大，不仅网速非常卡，而且有一部分甚至无法连接，一直卡在链接界面。那是因为啊，通过这个WARP客户端自动分配的对端IP地址，仅仅是根据你所在地的位置，分配一个就近的ip ，而不是分配一个网速最快的，延迟最小的IP地址。也就是说，有一部分同学需要通过优选IP，才能实现更低延迟，更快的速度！<br>那么我们现在就来讲一下，如何通过优选IP来让WARP实现真正的高速低延迟的访问，解决大家无法连接，或者连接上也非常卡的问题。</p>
+<p>为了照顾很多新手同学，我就从注册和下载客户端开始讲起，已经知道如何操作使用的同学，可以直接跳到视频后半部分，观看如何进行IP优选。</p>
+<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p>1、访问网址：<a href="https://1.1.1.1/">https://1.1.1.1/</a> 这个网址打不开的同学，<strong>直接从第4步开始操作。</strong> <em><strong><del>那就没办法了吗？</del> 可使用博主提前下载好的安装包</strong></em>  <a href="https://drive.alone-hk.cn/zyxz/10.%E5%B0%8F%E5%B7%A5%E5%85%B7/warp/">点我下载</a>  <strong>若打开提示NOxxx在浏览器地址栏刷新一下就好</strong></p>
+<p>若下载太慢请使用 <a href="https://www.bilibili.com/video/BV11W4y1g7QV/?share_source=copy_web&vd_source=3f75256c56cdcaf5410b3d911906f5bb"><strong>IDM</strong></a>  下载</p>
+<p>2、根据自己的情况，下载对应的客户端，这里需要注意的是，使用iPhone的同学，请用<strong>美区Apple ID</strong>进行下载。</p>
+<p>3、我这里下载windows客户端，下载完成后，点击安装。</p>
+<p><a href="https://imgse.com/i/pPezR2j"><img src="https://s1.ax1x.com/2023/08/10/pPezR2j.png" alt="pPezR2j.png"></a></p>
+<p>4、打开cloudflare官方网站：<a href="https://www.cloudflare.com/zh-cn/">https://www.cloudflare.com/zh-cn/</a> 并进行注册</p>
+<p><a href="https://imgse.com/i/pPez2GQ"><img src="https://s1.ax1x.com/2023/08/10/pPez2GQ.png" alt="pPez2GQ.png"></a></p>
+<p>5、来到左侧列表里的Zero Trust<br>，根据提示一步步注册账号，选择0元的！到结账那一步，直接关闭网页，就等于跳过绑定支付方式。</p>
+<p><a href="https://imgse.com/i/pPezgPg"><img src="https://s1.ax1x.com/2023/08/10/pPezgPg.png" alt="pPezgPg.png"></a></p>
+<p>6、再次回到cloudflare官方网站，点击左侧列表的Zero Trust之后，点击左侧列表my team 第一个，添加邮箱后缀，<strong>如果是谷歌邮箱，那么后缀就是@gmail，如果是qq邮箱，那后缀就是@qq.com</strong></p>
+<p><a href="https://imgse.com/i/pPezWxs"><img src="https://s1.ax1x.com/2023/08/10/pPezWxs.png" alt="pPezWxs.png"></a></p>
+<p>7、添加完成后，也可以直接在此处下载客户端。回到WARP，点击偏好设置，找到账号，登录刚刚申请好的Zero Trust账户即可！</p>
+<p><a href="https://imgse.com/i/pPez4rq"><img src="https://s1.ax1x.com/2023/08/10/pPez4rq.png" alt="pPez4rq.png"></a></p>
+<p><a href="https://imgse.com/i/pPezbiF"><img src="https://s1.ax1x.com/2023/08/10/pPezbiF.png" alt="pPezbiF.png"></a></p>
+<p>6、另一种无限流量获取方式：TG搜索机器人@generatewarpplusbot进行流量添加，需要加入2个群组，回答一个数学题，回答完成后，会送一个密钥，密钥复制，来到WARP客户端，点击偏好设置，点击更改密钥，粘贴刚刚获取的密钥。</p>
+<p><a href="https://imgse.com/i/pPezhMn"><img src="https://s1.ax1x.com/2023/08/10/pPezhMn.png" alt="pPezhMn.png"></a></p>
+<p><a href="https://imgse.com/i/pPezTaT"><img src="https://s1.ax1x.com/2023/08/10/pPezTaT.png" alt="pPezTaT.png"></a></p>
+<p>若无法使用的话这里博主会在公众号不定期更新密钥 <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzkzNzUyMjQ3Ng==&scene=124#wechat_redirect">点我回复关键字 “warp key”获取</a></p>
+<p>7、想要优选IP的同学，下载这个优选IP程序：<a href="https://short.alone-hk.cn/9qK6B">点击下载</a></p>
+<p><a href="https://imgse.com/i/pPez5q0"><img src="https://s1.ax1x.com/2023/08/10/pPez5q0.png" alt="pPez5q0.png"></a></p>
+<p>8、使用优选IP软件进行优选，2种方式，首先关闭WARP的连接。点击自动方式，自动的如果出错，就换手动的。手动方式1，打开操作。完成后打开根目录的输出文件，选择第一个延迟较低的ip地址和端口。再次打开手动方式2，右键粘贴刚刚的ip地址和端口。回车确认。WARP会自动连接。这就等于优选成功了！</p>
+<p><a href="https://imgse.com/i/pPez7IU"><img src="https://s1.ax1x.com/2023/08/10/pPez7IU.png" alt="pPez7IU.png"></a></p>
 ]]></content>
       <categories>
         <category>安全</category>
       </categories>
       <tags>
         <tag>cloudflare</tag>
-        <tag>免费cdn</tag>
       </tags>
   </entry>
   <entry>
@@ -778,183 +746,35 @@
       </tags>
   </entry>
   <entry>
-    <title>思科模拟器网络搭建命令</title>
-    <url>/2024/03/06/%E6%80%9D%E7%A7%91%E6%A8%A1%E6%8B%9F%E5%99%A8%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>网络搭建</p>
+    <title>域名注册教学和cloudflare域名解析教程</title>
+    <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
 <span id="more"></span>
 
-<!--
-
-[toc]
-
-  -->
-
-<h1 id="网络搭建"><a href="#网络搭建" class="headerlink" title="网络搭建"></a>网络搭建</h1><h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>R1&gt;<strong>enable</strong>    &#x2F;&#x2F;进入特权模式 <br /><br>R1#<strong>disable</strong>    &#x2F;&#x2F;退出特权模式 <br /><br>R1(config)#<strong>hostname</strong> SW1    &#x2F;&#x2F;更改主机名为SW1 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1    &#x2F;&#x2F;进入e0&#x2F;1接口 <br /><br>R1(config-if)#<strong>no shutdown</strong>     &#x2F;&#x2F;开启接口及协议 <br /><br>R1(config-if)#<strong>shutdown</strong>    &#x2F;&#x2F;关闭接口 <br /><br>R1(config)#<strong>end</strong>    &#x2F;&#x2F;返回用户模式 <br /><br>R1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>R1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br /><br>R1#<strong>write</strong>    &#x2F;&#x2F;保存配置 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1 <br /><br>R1(config-if)#<strong>ip address</strong> 172.1.0.129 255.255.255.192    &#x2F;&#x2F;为接口配置ip地址 <br /><br>R1(config-if)#<strong>ipv6 address</strong> 2012::1&#x2F;64    &#x2F;&#x2F;在接口上配置ipv6地址 <br /></p>
-<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><p>Switch&gt;enable <br /><br>Switch#config <br /><br>Switch(config)#<strong>hostname</strong> SW1 <br /><br>SW1(config)#<strong>vlan</strong> 2 <br /><br>SW1(config-vlan)#exit <br /><br>SW1(config)#<strong>interface vlan</strong> 2 <br /><br>SW1(config-if)#<strong>ip add</strong> 172.15.5.2 255.255.255.252 <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#<strong>interface</strong> f0&#x2F;1	&#x2F;&#x2F;（进入端口） <br /><br>SW1(config-if)#<strong>switchport</strong> mode access  <br /><br>SW1(config-if)#<strong>switchport</strong> access vlan 2	&#x2F;&#x2F;（将valn2设进端口中） <br /><br>SW1(config-if)#no shutdown	&#x2F;&#x2F;（打开端口） <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#exit <br /><br>SW1#<strong>show vlan</strong>	&#x2F;&#x2F;（查看vlan在哪个端口） <br /><br>SW1#**show interface **	&#x2F;&#x2F;(所有端口) <br />SW1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>SW1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br />SW1#show interface	&#x2F;&#x2F;端口名（单个端口） <br />SW1(config-if)#<strong>switchport</strong> mode trunk  &#x2F;&#x2F;设置接口为trunk</p>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>1、防火墙的基本配置<br>ciscoasa&gt; en	<br>Password:	默认特权密码为空，直接回车即可<br>ciscoasa# conf t	<br>ciscoasa(config)# hostname 防火墙名称	<br>2、配置特权密码<br>asa(config)# enable password 密码	<br>3、配置远程登录密码（在使用Telnet或SSH时需要输入的密码）<br>asa(config)# passwd 密码	<br>4、配置接口名称和接口安全级别<br>asa(config)# in e0&#x2F;0	<br>asa(config-if)# nameif 接口名称	<br>asa(config-if)# security-level 安全级别{0~100}	<br>如果ASA的型号是5505，则不支持在物理接口上直接进行以上配置，必须通过VLAN虚接口来配置<br>asa(config)#int vlan 1	<br>asa(config-if)# nameif inside	<br>asa(config-if)# security-level 100	<br>asa(config-if)#ip add 10.1.1.254 255.255.255.0	<br>asa(config-if)# no shut	<br>查看conn表	<br>asa#show conn detail	<br>5、配置ACL<br>（1）允许入站连接<br>asa(config)# access-list out_to_in permit ip host 172.16.1.5 host 10.1.1.7	允许外网主机172.16.1.5访问内网主机10.1.1.7，out_to_in为ACL组名<br>asa(config)# access-group out_to_in in int outside	将组名为out_to_in的ACL应用在outside接口<br>（2）控制出站连接的流量<br>asa(config)# access-list in_to_out deny ip 10.0.0.0 255.0.0.0 any	拒绝内网10.0.0.0网段 访问外网所有网段<br>asa(config)# access-list in_to_out permit ip any any	允许其他所有流量通行，因为ACL有隐含的拒绝语句，所以配置ACL时，一般都需要允许所有流量<br>asa(config)# access-group in_to_out in int inside	应用在内网接口<br>（3）ACL其他配置<br>ICMP协议<br>默认情况下，禁止ICMP报文穿越ASA是基于安全性的考虑，有时候为了方便调试，可以配置暂时允许ICMP应答报文穿越ASA</p>
-<p>ciscoasa(config)# access-list 111 permit icmp any any	定义ACL<br>ciscoasa(config)# access-group 111 in int outside	应用到outside接口<br>6、配置静态路由<br>asa(config)# route outside 172.16.0.0 255.255.0.0 10.0.0.1	去往外网172.16.0.0网段的流量下一跳为10.0.0.1<br>asa(config)# route inside 192.168.1.0 255.255.255.0 192.168.2.1	去往内网192.168.1.0网段的流量下一跳为192.168.2.1<br>7、配置命令补充<br>no在前面，当配置错一条命令后，可以在原先的配置命令前加no即可删除配置错的那条命令</p>
-<p>ciscoasa# write memory	保存running configuration配置到startup configuration<br>ciscoasa# copy running-config startup-config	保存running configuration配置到startup configuration<br>ciscoasa(config)# clear configure all	清除running configuration的所有配置<br>ciscoasa(config)# clear configure access-list	清除所有acces-list命令的配置<br>ciscoasa(config)# clear configure access-list in_to_out	只清除access-list in_to_out 的配置<br>ciscoasa# write erase	删除startup-config配置文件<br>8、远程管理ASA<br>ASA支持三种主要的远程管理接入方式：Telnet 、ssh和ASDM</p>
-<p>（1）Telnet配置实例<br>由于使用Telnet远程管理是不安全的，所以一般禁止从外部接口使用Telnet接入，而只允许在内网使用Telnet</p>
-<p>配置允许从inside区域内的192.168.0.0&#x2F;24网段使用telnet接入	<br>ciscoasa(config-if)# telnet 192.168.0.0 255.255.255.0 inside(接口名字)	<br>或者允许单个主机Telnet防火墙（两者根据需要二选一即可）	<br>ciscoasa(config)# telnet 192.168.0.1 255.255.255.255 inside(接口名字)	<br>配置空闲超时时间为30分钟	<br>ciscoasa(config)# telnet timeout 30(1~1440min,默认5min)	<br>（2）配置SSH接入<br>配置主机名和域名，因为在生成RSA密钥对的过程中需要用到主机名和域名<br>ciscoasa(config-if)# host 主机名	配置主机名<br>aaa(config)# domain-name 域名{.com}	配置域名<br>aaa(config)# crypto key generate rsa modulus 1024	指定modulus的大小为1024位，大小可以为512位,768位,1024位或2048位，表示生成的RSA密钥的长度<br>aaa(config)# ssh 192.168.1.0 255.255.255.0 inside	允许内网1.0的网段SSH接入<br>aaa(config)# ssh 0 0 outside	允许外网任何主机SSH接入<br>aaa(config)# ssh timeout 30	配置超时时间为30分钟<br>aaa(config)# ssh version 2	启用SSH的版本2，该命令为可选<br>版本1和版本2，区别是安全机制不一样，配置SSH接入完成后，可以在outside区域内的主机上使用SecureCRT或putty等工具登录ASA的outside接口，注意ASA默认使用用户名为pix，密码为使用password命令设置的密码</p>
-<p>9、ASA防火墙配置NAT<br>（1）动态PAT转换配置<br>把内部全局地址10.1.1.2转换为30.1.1.100<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址<br>ASA(config)# global (outside) nat名称 30.1.1.100-30.1.1.200	声明全局地址，nat名称与内部nat名称要相同<br>ASA(config)# show xlate detai	查看NAT地址转换表<br>转换为outside接口的地址<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址，nat-id为1<br>ASA(config)# global (outside) 1 interface	声明内部地址全部转换为outside区域接口地址<br>（2）静态NAT转换配置<br>dmz区域的20.1.1.2 映射成公网地址100.1.1.1访问<br>ASA(config)# static (dmz,outside) 100.1.1.1 20.1.1.2	第一个IP地址是公网IP地址，第二地址是dmz区域服务器的真实IP地址<br>ASA(config)# access-list 100 permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group 100 in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（3）静态PAT转换配置方法<br>将内部的服务器映射到公网同一个IP，不同端口号<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 http 20.1.1.2 http	<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 smtp 20.1.1.3 smtp	将内部服务器地址映射到同一个公网地址不同端口号<br>ASA(config)# access-list out_to_dmz permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group out_to_dmz in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（4）NAT豁免配置方法<br>ASA(config)# nat-control	表示通过ASA防火墙的数据包都必须使用NAT地址转换技术<br>ASA(config)# access-list ACL组名 extended permit ip 10.1.1.0 255.255.255.0 30.1.1.0 255.255.255.0	<br>ASA(config)# nat (×××ide) 0 access-list ACL组名	×××ide接口应用ACL，注意nat名称为0 表示使用NAT豁免，优先级最高，就是ACL中的地址经过ASA防火墙时，不需要进行地址转换</p>
-<p>原文链接：<a href="https://blog.csdn.net/le616616/article/details/120644648">https://blog.csdn.net/le616616/article/details/120644648</a></p>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
-<p>windows 与Linux配置</p>
-</blockquote>
-<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>暂无</p>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>暂无</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>最简单的白嫖office 365 E5 账号</title>
-    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
-<span id="more"></span>
-
-<p>注册入口</p>
-<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
-<p>1T改成5T</p>
-<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
-<p>添加新用户</p>
-<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
-<p>续签API设置</p>
-<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
-<p>E5续签软件下载</p>
-<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
-<p>如果你有VPS可以尝试自建续订服务</p>
-]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>Onedrive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自由软件中国镜像站汇总</title>
-    <url>/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>自由软件中国镜像站汇总</p>
-<span id="more"></span>
-
-<pre><code>阿里云镜像：http://mirrors.aliyun.com/ 
-网易开源镜像站：http://mirrors.163.com/
-搜狐开源镜像站：http://mirrors.sohu.com/
-北京交通大学开源镜像站：http://mirror.bjtu.edu.cn
-兰州大学开源软件镜像站：http://mirror.lzu.edu.cn/
-厦门大学开源软件镜像站：http://mirrors.xmu.edu.cn/
-上海交通大学开源软件镜像站：http://ftp.sjtu.edu.cn/
-清华大学开源软件镜像站：http://mirrors.tuna.tsinghua.edu.cn/
-天津大学开源软件镜像站：http://mirror.tju.edu.cn/
-中国科学技术大学开源软件镜像站：http://mirrors.ustc.edu.cn/
-东北大学开源软件镜像站：http://mirror.neu.edu.cn/
-东软信息学院开源软件镜像站：http://mirrors.neusoft.edu.cn/
-浙江大学开源软件镜像站：http://mirrors.zju.edu.cn
-北京理工大学开源软件镜像站：http://mirror.bit.edu.cn
-华中科技大学开源软件镜像站：http://mirrors.hust.edu.cn/
-中山大学开源软件镜像站：http://mirror.sysu.edu.cn/
-大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/
-</code></pre>
-]]></content>
-  </entry>
-  <entry>
-    <title>提高Cloudflare站点在中国的体验</title>
-    <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p>
-<span id="more"></span>
-
-<p>从此，Cloudflare不再是减速CDN了</p>
-<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>众所周知，因为很多人用Cloudflare当作梯子中转之类的原因，中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂。最近我发现了一个不错的办法可以在一定程度上避免这个问题，所以今天就来说一说。</p>
-<h1 id="普通用户的解决方法"><a href="#普通用户的解决方法" class="headerlink" title="普通用户的解决方法"></a>普通用户的解决方法</h1><p>对于网站的访问者来说，使用<a href="https://github.com/XIU2/CloudflareSpeedTest">CloudflareSpeedTest</a>这个工具就挺不错的，它能检测到当前网络连哪个IP是最好的。因为Cloudflare网络用的是Anycast，无论从哪个IP进入都可以，所以用这个检测出来的IP直接改Hosts访问就能解决访问网站慢的问题。<br>不过有些地区可能是服务商主动对Cloudflare的IP段进行限速，那这样有可能测试出来没有可以使用的节点，那么还有一种方法，网络上有些可能是企业之类的人会反代Cloudflare的网站用于解决在国内访问慢的问题，并且没有对host头做限制，那么这些第三方的节点同样也可以作为访问Cloudflare网站的方法。具体怎么找到这样的IP有一个<a href="https://github.com/ip-scanner/cloudflare">仓库</a>每天都会扫描全网去找像这样的节点。<br>当然这些节点也不是所有的IP从中国连接速度都很好，这时候可以把这个仓库的所有IP收集起来然后再丢给CloudflareSpeedTest去测试，具体我写了个简单的脚本来处理：</p>
-<pre><code>git clone https://github.com/ip-scanner/cloudflare.git
-cat cloudflare/*.txt &gt; proxy.txt
-./CloudflareST -allip -sl 0.1 -f proxy.txt -n 500
-</code></pre>
-<p>这样获得的第三方IP就基本上不会被限速，里面甚至有可能有通过IPLC或者IEPL的节点，包括拿来当梯子中转速度都几乎可以跑满带宽，另外还有一个优点是这样Cloudflare获得的IP就是第三方节点的IP，可以起到匿名的作用。</p>
-<h1 id="对于站长的解决方法"><a href="#对于站长的解决方法" class="headerlink" title="对于站长的解决方法"></a>对于站长的解决方法</h1><p>上面的方法相当于是用户自己去解决访问的问题，但是操作可能还是会有点复杂，所以对于网站站长来说不可能去期待访客通过这种方法来提高访问自己网站的速度。不过Cloudflare网站接入只能通过NS方式接入，这样接入的话域名解析的IP就是自动分配的，没办法自己设定解析，也就不能选择更合适的IP，另外之前用CF Partner通过CNAME接入的方法基本上都全死光了，那现在应该怎么办呢？后来我搜了一下，Cloudflare原来已经提供了官方通过CNAME接入的方法（应该是新加的功能），除了要绑信用卡之外就没别的要求了。<br>在使用这个功能之前，必须先有2个域名，一个是不重要的域名，通过NS方式接入Cloudflare，另一个是主要使用的域名，可以接到Cloudflare上，也可以接到别的NS服务商上。然后在那个不重要的域名中先设定好源站的解析，可以解析到“@”或者随便一个二级域名也可以，并且打开代理。然后点开SSL&#x2F;TLS-&gt;自定义主机名，第一次使用需要绑定信用卡或者PayPal，好像是因为它是个什么预付费的项目，免费100个CNAME，超过100个每个0.1USD。打开以后在回退源中输入刚刚设置好解析的那个域名，当回退源状态显示有效后就可以添加自定义主机名了。这里添加的主机名就是主要使用的域名，输入后根据提示在主域名上设定好TXT记录，完成后只要看到刚刚设定的主机名后面跟了两个有效就可以了。<br>这样准备工作就做完了，现在只要把主域名的解析设定到Cloudflare网络的任意节点，它就会自动连接到不重要的域名所解析的IP上。至于怎么获得优秀的IP，就可以像普通用户那样操作了，获得优秀的IP以后我们就可以设定一个A记录解析过去。<br>不过这里需要注意一些地方，如果使用的优选IP是Cloudflare官方的IP，那基本上也不会有什么问题，只是这个IP可能有些地区还是会访问缓慢，毕竟它也算是在重点关注对象中。如果是选择第三方节点IP，大多数情况速度都能保障，但是有个很大的问题就是那些节点的主人如果发现了你在使用他们的节点，他们是可以很轻易的进行中间人攻击的，毕竟域名都解析过去了，整个SSL证书也很简单，为了能避免这个问题一定要开启“证书透明度监视”保证能在第一时间避免有人进行中间人攻击。另外还有一个问题就是既然第三方IP可以匿名，那么网站也没办法获取到用户的真实IP地址了，像Cloudflare一些根据IP的防火墙也会无法生效，像WAF中的速率限制规则是万万不能开的，开了很大可能网站就访问不了了。还有就是DDoS是可以击垮第三方节点的，可能会使网站的可用性下降。所以如果对速度没有特别在意的情况下还是解析到官方IP上更好一些。<br>所以为了避免节点可能会用不了的情况，我有个想法（因为我没有大陆地区的服务器所以只是设想），之前我用过一个可以给Cloudflare设定DDNS的脚本，叫<a href="https://github.com/aipeach/cloudflare-api-v4-ddns">cloudflare-api-v4-ddns</a>，原本它是去请求获取本机IP的API设定解析的，那么如果把上面优选IP的结果输入到这个脚本中，放到国内的服务器上，每天自动执行一次，那这样我的网站不就会一直使用最优秀的IP了嘛，可惜我没有国内的服务器，改起来还要费点事就算了吧。</p>
-<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>有了很多辅助的工具，能让Cloudflare不再成为减速CDN，那它岂不是可以吊打国内其他CDN厂商了?，果然还是良心厂商啊。</p>
+<p>视频教程: <a href="https://short.alone-hk.cn/6sugZ">https://short.alone-hk.cn/6sugZ</a></p>
+<p>cloudflare入口: <a href="https://cloudflare.com/">https://cloudflare.com</a></p>
+<p>godaddy入口: <a href="https://www.godaddy.com/">https://www.godaddy.com/</a></p>
+<p>首先注册一个域名添加到cloudflare并修改NS记录为cloudflare</p>
+<p>NS记录在注册商</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-1.png" alt="img">CF NS记录页面</p>
+<p>选用自定义DNS并改成cloudflare的记录</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2023/01/image-3.png" alt="img">NS注册商修改</p>
+<p>接下来配置DNS解析</p>
+<p>添加需要代理的地址选择A记录 名字填写需要代理的地址如www 填写服务器源ip</p>
+<p>将Proxied打开变为黄色代表成功 点击完成</p>
+<p>SSL证书获取</p>
+<p>点击SSL&#x2F;TLS — Origin Server — Create Certificate 创建证书</p>
+<p>如无特殊需要默认即可 默认会创建一个15年的证书 创建完成后要记得保存key 只出现一次(重要)! ! !</p>
+<p>将prm与key部署到服务器即可</p>
+<p>退回到Overview 选择Full (strict)</p>
+<p>到此恭喜你成功了!</p>
 ]]></content>
       <categories>
         <category>安全</category>
       </categories>
       <tags>
         <tag>cloudflare</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记一次hugo推送配置</title>
-    <url>/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>如何将使用Hugo搭建的博客推送到<strong>GitHub</strong></p>
-<span id="more"></span>
-
-<p>在本地搭建和调试好项目后，接下来就是将它推送到GitHub。下面简述一下如何将使用Hugo搭建的博客推送到GitHub：</p>
-<ol>
-<li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p>
-</li>
-<li><p>进入本地网站目录 </p>
-<pre><code>cd &lt;YOUR PROJECT&gt;
-</code></pre>
-</li>
-<li><p>关联远程项目仓库</p>
-<pre><code>git remote add origin git@github.com:Lonely-Sit/front.git
-</code></pre>
-</li>
-<li><p>将本地网站全部内容推送到远程项目仓库</p>
-<pre><code>git push -u origin main
-</code></pre>
-</li>
-<li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p>
-</li>
-<li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p>
-</li>
-<li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p>
-<pre><code>git submodule add -b main git@github.com:Lonely-Sit/front.git public
-</code></pre>
-</li>
-<li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p>
-<pre><code>hugo
-cd public
-git status
-git add .
-git commit -m &quot;first commit&quot;
-git push -u orgin master
-</code></pre>
-</li>
-<li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p>
-</li>
-<li><p>自动推送脚本 写完项目后点一下即可 后缀改为sh</p>
-<pre><code>#!/bin/bash
-
-echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
-
-# Build the project.
-hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
-
-# Go To Public folder
-cd public
-# Add changes to git.
-git add .
-
-# Commit changes.
-msg=&quot;rebuilding site `date`&quot;
-if [ $# -eq 1 ]
-  then msg=&quot;$1&quot;
-fi
-git commit -m &quot;$msg&quot;
-
-# Push source and build repos.
-git push origin master
-
-# Come Back up to the Project Root
-cd ..
-</code></pre>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>hugo</tag>
+        <tag>免费cdn</tag>
       </tags>
   </entry>
   <entry>
@@ -1718,6 +1538,158 @@ cd ..
       </tags>
   </entry>
   <entry>
+    <title>提高Cloudflare站点在中国的体验</title>
+    <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p>
+<span id="more"></span>
+
+<p>从此，Cloudflare不再是减速CDN了</p>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>众所周知，因为很多人用Cloudflare当作梯子中转之类的原因，中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂。最近我发现了一个不错的办法可以在一定程度上避免这个问题，所以今天就来说一说。</p>
+<h1 id="普通用户的解决方法"><a href="#普通用户的解决方法" class="headerlink" title="普通用户的解决方法"></a>普通用户的解决方法</h1><p>对于网站的访问者来说，使用<a href="https://github.com/XIU2/CloudflareSpeedTest">CloudflareSpeedTest</a>这个工具就挺不错的，它能检测到当前网络连哪个IP是最好的。因为Cloudflare网络用的是Anycast，无论从哪个IP进入都可以，所以用这个检测出来的IP直接改Hosts访问就能解决访问网站慢的问题。<br>不过有些地区可能是服务商主动对Cloudflare的IP段进行限速，那这样有可能测试出来没有可以使用的节点，那么还有一种方法，网络上有些可能是企业之类的人会反代Cloudflare的网站用于解决在国内访问慢的问题，并且没有对host头做限制，那么这些第三方的节点同样也可以作为访问Cloudflare网站的方法。具体怎么找到这样的IP有一个<a href="https://github.com/ip-scanner/cloudflare">仓库</a>每天都会扫描全网去找像这样的节点。<br>当然这些节点也不是所有的IP从中国连接速度都很好，这时候可以把这个仓库的所有IP收集起来然后再丢给CloudflareSpeedTest去测试，具体我写了个简单的脚本来处理：</p>
+<pre><code>git clone https://github.com/ip-scanner/cloudflare.git
+cat cloudflare/*.txt &gt; proxy.txt
+./CloudflareST -allip -sl 0.1 -f proxy.txt -n 500
+</code></pre>
+<p>这样获得的第三方IP就基本上不会被限速，里面甚至有可能有通过IPLC或者IEPL的节点，包括拿来当梯子中转速度都几乎可以跑满带宽，另外还有一个优点是这样Cloudflare获得的IP就是第三方节点的IP，可以起到匿名的作用。</p>
+<h1 id="对于站长的解决方法"><a href="#对于站长的解决方法" class="headerlink" title="对于站长的解决方法"></a>对于站长的解决方法</h1><p>上面的方法相当于是用户自己去解决访问的问题，但是操作可能还是会有点复杂，所以对于网站站长来说不可能去期待访客通过这种方法来提高访问自己网站的速度。不过Cloudflare网站接入只能通过NS方式接入，这样接入的话域名解析的IP就是自动分配的，没办法自己设定解析，也就不能选择更合适的IP，另外之前用CF Partner通过CNAME接入的方法基本上都全死光了，那现在应该怎么办呢？后来我搜了一下，Cloudflare原来已经提供了官方通过CNAME接入的方法（应该是新加的功能），除了要绑信用卡之外就没别的要求了。<br>在使用这个功能之前，必须先有2个域名，一个是不重要的域名，通过NS方式接入Cloudflare，另一个是主要使用的域名，可以接到Cloudflare上，也可以接到别的NS服务商上。然后在那个不重要的域名中先设定好源站的解析，可以解析到“@”或者随便一个二级域名也可以，并且打开代理。然后点开SSL&#x2F;TLS-&gt;自定义主机名，第一次使用需要绑定信用卡或者PayPal，好像是因为它是个什么预付费的项目，免费100个CNAME，超过100个每个0.1USD。打开以后在回退源中输入刚刚设置好解析的那个域名，当回退源状态显示有效后就可以添加自定义主机名了。这里添加的主机名就是主要使用的域名，输入后根据提示在主域名上设定好TXT记录，完成后只要看到刚刚设定的主机名后面跟了两个有效就可以了。<br>这样准备工作就做完了，现在只要把主域名的解析设定到Cloudflare网络的任意节点，它就会自动连接到不重要的域名所解析的IP上。至于怎么获得优秀的IP，就可以像普通用户那样操作了，获得优秀的IP以后我们就可以设定一个A记录解析过去。<br>不过这里需要注意一些地方，如果使用的优选IP是Cloudflare官方的IP，那基本上也不会有什么问题，只是这个IP可能有些地区还是会访问缓慢，毕竟它也算是在重点关注对象中。如果是选择第三方节点IP，大多数情况速度都能保障，但是有个很大的问题就是那些节点的主人如果发现了你在使用他们的节点，他们是可以很轻易的进行中间人攻击的，毕竟域名都解析过去了，整个SSL证书也很简单，为了能避免这个问题一定要开启“证书透明度监视”保证能在第一时间避免有人进行中间人攻击。另外还有一个问题就是既然第三方IP可以匿名，那么网站也没办法获取到用户的真实IP地址了，像Cloudflare一些根据IP的防火墙也会无法生效，像WAF中的速率限制规则是万万不能开的，开了很大可能网站就访问不了了。还有就是DDoS是可以击垮第三方节点的，可能会使网站的可用性下降。所以如果对速度没有特别在意的情况下还是解析到官方IP上更好一些。<br>所以为了避免节点可能会用不了的情况，我有个想法（因为我没有大陆地区的服务器所以只是设想），之前我用过一个可以给Cloudflare设定DDNS的脚本，叫<a href="https://github.com/aipeach/cloudflare-api-v4-ddns">cloudflare-api-v4-ddns</a>，原本它是去请求获取本机IP的API设定解析的，那么如果把上面优选IP的结果输入到这个脚本中，放到国内的服务器上，每天自动执行一次，那这样我的网站不就会一直使用最优秀的IP了嘛，可惜我没有国内的服务器，改起来还要费点事就算了吧。</p>
+<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>有了很多辅助的工具，能让Cloudflare不再成为减速CDN，那它岂不是可以吊打国内其他CDN厂商了?，果然还是良心厂商啊。</p>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>cloudflare</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自由软件中国镜像站汇总</title>
+    <url>/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>自由软件中国镜像站汇总</p>
+<span id="more"></span>
+
+<pre><code>阿里云镜像：http://mirrors.aliyun.com/ 
+网易开源镜像站：http://mirrors.163.com/
+搜狐开源镜像站：http://mirrors.sohu.com/
+北京交通大学开源镜像站：http://mirror.bjtu.edu.cn
+兰州大学开源软件镜像站：http://mirror.lzu.edu.cn/
+厦门大学开源软件镜像站：http://mirrors.xmu.edu.cn/
+上海交通大学开源软件镜像站：http://ftp.sjtu.edu.cn/
+清华大学开源软件镜像站：http://mirrors.tuna.tsinghua.edu.cn/
+天津大学开源软件镜像站：http://mirror.tju.edu.cn/
+中国科学技术大学开源软件镜像站：http://mirrors.ustc.edu.cn/
+东北大学开源软件镜像站：http://mirror.neu.edu.cn/
+东软信息学院开源软件镜像站：http://mirrors.neusoft.edu.cn/
+浙江大学开源软件镜像站：http://mirrors.zju.edu.cn
+北京理工大学开源软件镜像站：http://mirror.bit.edu.cn
+华中科技大学开源软件镜像站：http://mirrors.hust.edu.cn/
+中山大学开源软件镜像站：http://mirror.sysu.edu.cn/
+大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/
+</code></pre>
+]]></content>
+  </entry>
+  <entry>
+    <title>最简单的白嫖office 365 E5 账号</title>
+    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
+<span id="more"></span>
+
+<p>注册入口</p>
+<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
+<p>1T改成5T</p>
+<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
+<p>添加新用户</p>
+<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
+<p>续签API设置</p>
+<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
+<p>E5续签软件下载</p>
+<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
+<p>如果你有VPS可以尝试自建续订服务</p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>Onedrive</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次hugo推送配置</title>
+    <url>/2023/07/27/%E8%AE%B0%E4%B8%80%E6%AC%A1hugo%E6%8E%A8%E9%80%81%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>如何将使用Hugo搭建的博客推送到<strong>GitHub</strong></p>
+<span id="more"></span>
+
+<p>在本地搭建和调试好项目后，接下来就是将它推送到GitHub。下面简述一下如何将使用Hugo搭建的博客推送到GitHub：</p>
+<ol>
+<li><p>在Github创建一个仓库，例如名字叫<code>blog</code>，可以是私有的，这个仓库用来存放网站内容和源文件</p>
+</li>
+<li><p>进入本地网站目录 </p>
+<pre><code>cd &lt;YOUR PROJECT&gt;
+</code></pre>
+</li>
+<li><p>关联远程项目仓库</p>
+<pre><code>git remote add origin git@github.com:Lonely-Sit/front.git
+</code></pre>
+</li>
+<li><p>将本地网站全部内容推送到远程项目仓库</p>
+<pre><code>git push -u origin main
+</code></pre>
+</li>
+<li><p>确保本地网站正常，<code>hugo server</code>运行后在本地打开<code>localhost:1313</code>检查网站效果和内容，注意<code>hugo server</code>这个命令不会构建草稿，所以如果有草稿需要发布，将文章中的<code>draft</code>设置为<code>false</code></p>
+</li>
+<li><p>关闭本地Hugo服务器<code>Ctrl+C</code>，然后删除本地网站目录下的<code>public</code>文件夹</p>
+</li>
+<li><p>创建<code>public</code>子模块，注意下面是一行命令，不是两行</p>
+<pre><code>git submodule add -b main git@github.com:Lonely-Sit/front.git public
+</code></pre>
+</li>
+<li><p>然后就可以执行<code>hugo</code>命令，此命令会自动将网站静态内容生成到<code>public</code>文件夹，然后提交到远程项目仓库</p>
+<pre><code>hugo
+cd public
+git status
+git add .
+git commit -m &quot;first commit&quot;
+git push -u orgin master
+</code></pre>
+</li>
+<li><p><strong>注意</strong>：本地网站是关联的<code>front</code>仓库，本地网站下的<code>public</code>文件夹是以子模块的形式关联的<code>front</code>仓库，他们是相对独立的</p>
+</li>
+<li><p>自动推送脚本 写完项目后点一下即可 后缀改为sh</p>
+<pre><code>#!/bin/bash
+
+echo -e &quot;\033[0;32mDeploying updates to GitHub...\033[0m&quot;
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`
+
+# Go To Public folder
+cd public
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg=&quot;rebuilding site `date`&quot;
+if [ $# -eq 1 ]
+  then msg=&quot;$1&quot;
+fi
+git commit -m &quot;$msg&quot;
+
+# Push source and build repos.
+git push origin master
+
+# Come Back up to the Project Root
+cd ..
+</code></pre>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>hugo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>通过vercel搭建谷歌镜像站</title>
     <url>/2023/07/29/%E9%80%9A%E8%BF%87vercel%E6%90%AD%E5%BB%BA%E8%B0%B7%E6%AD%8C%E9%95%9C%E5%83%8F%E7%AB%99/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>通过vercel搭建谷歌镜像站</p>
@@ -1785,7 +1757,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i
 <p>出现这个就代表登录成功啦</p>
 <p>You have been successfully authenticated as:</p>
 <p>CLI Login Success</p>
-<p><a href="mailto:&#x78;&#120;&#120;&#x78;&#120;&#x40;&#x78;&#x78;&#x78;&#x2e;&#x78;&#x78;&#x78;">&#x78;&#120;&#120;&#x78;&#120;&#x40;&#x78;&#x78;&#x78;&#x2e;&#x78;&#x78;&#x78;</a>(您的邮箱）</p>
+<p><a href="mailto:&#x78;&#120;&#120;&#x78;&#120;&#64;&#120;&#x78;&#120;&#x2e;&#x78;&#x78;&#120;">&#x78;&#120;&#120;&#x78;&#120;&#64;&#120;&#x78;&#120;&#x2e;&#x78;&#x78;&#120;</a>(您的邮箱）</p>
 <p>You can now close this tab and return to the CLI.</p>
 <p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p>
 <pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;
@@ -1868,5 +1840,33 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i
       <categories>
         <category>安全</category>
       </categories>
+  </entry>
+  <entry>
+    <title>思科模拟器网络搭建命令</title>
+    <url>/2024/03/06/%E6%80%9D%E7%A7%91%E6%A8%A1%E6%8B%9F%E5%99%A8%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>网络搭建</p>
+<span id="more"></span>
+
+<!--
+
+[toc]
+
+  -->
+
+<h1 id="网络搭建"><a href="#网络搭建" class="headerlink" title="网络搭建"></a>网络搭建</h1><h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>R1&gt;<strong>enable</strong>    &#x2F;&#x2F;进入特权模式 <br /><br>R1#<strong>disable</strong>    &#x2F;&#x2F;退出特权模式 <br /><br>R1(config)#<strong>hostname</strong> SW1    &#x2F;&#x2F;更改主机名为SW1 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1    &#x2F;&#x2F;进入e0&#x2F;1接口 <br /><br>R1(config-if)#<strong>no shutdown</strong>     &#x2F;&#x2F;开启接口及协议 <br /><br>R1(config-if)#<strong>shutdown</strong>    &#x2F;&#x2F;关闭接口 <br /><br>R1(config)#<strong>end</strong>    &#x2F;&#x2F;返回用户模式 <br /><br>R1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>R1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br /><br>R1#<strong>write</strong>    &#x2F;&#x2F;保存配置 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1 <br /><br>R1(config-if)#<strong>ip address</strong> 172.1.0.129 255.255.255.192    &#x2F;&#x2F;为接口配置ip地址 <br /><br>R1(config-if)#<strong>ipv6 address</strong> 2012::1&#x2F;64    &#x2F;&#x2F;在接口上配置ipv6地址 <br /></p>
+<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><p>Switch&gt;enable <br /><br>Switch#config <br /><br>Switch(config)#<strong>hostname</strong> SW1 <br /><br>SW1(config)#<strong>vlan</strong> 2 <br /><br>SW1(config-vlan)#exit <br /><br>SW1(config)#<strong>interface vlan</strong> 2 <br /><br>SW1(config-if)#<strong>ip add</strong> 172.15.5.2 255.255.255.252 <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#<strong>interface</strong> f0&#x2F;1	&#x2F;&#x2F;（进入端口） <br /><br>SW1(config-if)#<strong>switchport</strong> mode access  <br /><br>SW1(config-if)#<strong>switchport</strong> access vlan 2	&#x2F;&#x2F;（将valn2设进端口中） <br /><br>SW1(config-if)#no shutdown	&#x2F;&#x2F;（打开端口） <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#exit <br /><br>SW1#<strong>show vlan</strong>	&#x2F;&#x2F;（查看vlan在哪个端口） <br /><br>SW1#**show interface **	&#x2F;&#x2F;(所有端口) <br />SW1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>SW1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br />SW1#show interface	&#x2F;&#x2F;端口名（单个端口） <br />SW1(config-if)#<strong>switchport</strong> mode trunk  &#x2F;&#x2F;设置接口为trunk</p>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>1、防火墙的基本配置<br>ciscoasa&gt; en	<br>Password:	默认特权密码为空，直接回车即可<br>ciscoasa# conf t	<br>ciscoasa(config)# hostname 防火墙名称	<br>2、配置特权密码<br>asa(config)# enable password 密码	<br>3、配置远程登录密码（在使用Telnet或SSH时需要输入的密码）<br>asa(config)# passwd 密码	<br>4、配置接口名称和接口安全级别<br>asa(config)# in e0&#x2F;0	<br>asa(config-if)# nameif 接口名称	<br>asa(config-if)# security-level 安全级别{0~100}	<br>如果ASA的型号是5505，则不支持在物理接口上直接进行以上配置，必须通过VLAN虚接口来配置<br>asa(config)#int vlan 1	<br>asa(config-if)# nameif inside	<br>asa(config-if)# security-level 100	<br>asa(config-if)#ip add 10.1.1.254 255.255.255.0	<br>asa(config-if)# no shut	<br>查看conn表	<br>asa#show conn detail	<br>5、配置ACL<br>（1）允许入站连接<br>asa(config)# access-list out_to_in permit ip host 172.16.1.5 host 10.1.1.7	允许外网主机172.16.1.5访问内网主机10.1.1.7，out_to_in为ACL组名<br>asa(config)# access-group out_to_in in int outside	将组名为out_to_in的ACL应用在outside接口<br>（2）控制出站连接的流量<br>asa(config)# access-list in_to_out deny ip 10.0.0.0 255.0.0.0 any	拒绝内网10.0.0.0网段 访问外网所有网段<br>asa(config)# access-list in_to_out permit ip any any	允许其他所有流量通行，因为ACL有隐含的拒绝语句，所以配置ACL时，一般都需要允许所有流量<br>asa(config)# access-group in_to_out in int inside	应用在内网接口<br>（3）ACL其他配置<br>ICMP协议<br>默认情况下，禁止ICMP报文穿越ASA是基于安全性的考虑，有时候为了方便调试，可以配置暂时允许ICMP应答报文穿越ASA</p>
+<p>ciscoasa(config)# access-list 111 permit icmp any any	定义ACL<br>ciscoasa(config)# access-group 111 in int outside	应用到outside接口<br>6、配置静态路由<br>asa(config)# route outside 172.16.0.0 255.255.0.0 10.0.0.1	去往外网172.16.0.0网段的流量下一跳为10.0.0.1<br>asa(config)# route inside 192.168.1.0 255.255.255.0 192.168.2.1	去往内网192.168.1.0网段的流量下一跳为192.168.2.1<br>7、配置命令补充<br>no在前面，当配置错一条命令后，可以在原先的配置命令前加no即可删除配置错的那条命令</p>
+<p>ciscoasa# write memory	保存running configuration配置到startup configuration<br>ciscoasa# copy running-config startup-config	保存running configuration配置到startup configuration<br>ciscoasa(config)# clear configure all	清除running configuration的所有配置<br>ciscoasa(config)# clear configure access-list	清除所有acces-list命令的配置<br>ciscoasa(config)# clear configure access-list in_to_out	只清除access-list in_to_out 的配置<br>ciscoasa# write erase	删除startup-config配置文件<br>8、远程管理ASA<br>ASA支持三种主要的远程管理接入方式：Telnet 、ssh和ASDM</p>
+<p>（1）Telnet配置实例<br>由于使用Telnet远程管理是不安全的，所以一般禁止从外部接口使用Telnet接入，而只允许在内网使用Telnet</p>
+<p>配置允许从inside区域内的192.168.0.0&#x2F;24网段使用telnet接入	<br>ciscoasa(config-if)# telnet 192.168.0.0 255.255.255.0 inside(接口名字)	<br>或者允许单个主机Telnet防火墙（两者根据需要二选一即可）	<br>ciscoasa(config)# telnet 192.168.0.1 255.255.255.255 inside(接口名字)	<br>配置空闲超时时间为30分钟	<br>ciscoasa(config)# telnet timeout 30(1~1440min,默认5min)	<br>（2）配置SSH接入<br>配置主机名和域名，因为在生成RSA密钥对的过程中需要用到主机名和域名<br>ciscoasa(config-if)# host 主机名	配置主机名<br>aaa(config)# domain-name 域名{.com}	配置域名<br>aaa(config)# crypto key generate rsa modulus 1024	指定modulus的大小为1024位，大小可以为512位,768位,1024位或2048位，表示生成的RSA密钥的长度<br>aaa(config)# ssh 192.168.1.0 255.255.255.0 inside	允许内网1.0的网段SSH接入<br>aaa(config)# ssh 0 0 outside	允许外网任何主机SSH接入<br>aaa(config)# ssh timeout 30	配置超时时间为30分钟<br>aaa(config)# ssh version 2	启用SSH的版本2，该命令为可选<br>版本1和版本2，区别是安全机制不一样，配置SSH接入完成后，可以在outside区域内的主机上使用SecureCRT或putty等工具登录ASA的outside接口，注意ASA默认使用用户名为pix，密码为使用password命令设置的密码</p>
+<p>9、ASA防火墙配置NAT<br>（1）动态PAT转换配置<br>把内部全局地址10.1.1.2转换为30.1.1.100<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址<br>ASA(config)# global (outside) nat名称 30.1.1.100-30.1.1.200	声明全局地址，nat名称与内部nat名称要相同<br>ASA(config)# show xlate detai	查看NAT地址转换表<br>转换为outside接口的地址<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址，nat-id为1<br>ASA(config)# global (outside) 1 interface	声明内部地址全部转换为outside区域接口地址<br>（2）静态NAT转换配置<br>dmz区域的20.1.1.2 映射成公网地址100.1.1.1访问<br>ASA(config)# static (dmz,outside) 100.1.1.1 20.1.1.2	第一个IP地址是公网IP地址，第二地址是dmz区域服务器的真实IP地址<br>ASA(config)# access-list 100 permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group 100 in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（3）静态PAT转换配置方法<br>将内部的服务器映射到公网同一个IP，不同端口号<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 http 20.1.1.2 http	<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 smtp 20.1.1.3 smtp	将内部服务器地址映射到同一个公网地址不同端口号<br>ASA(config)# access-list out_to_dmz permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group out_to_dmz in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（4）NAT豁免配置方法<br>ASA(config)# nat-control	表示通过ASA防火墙的数据包都必须使用NAT地址转换技术<br>ASA(config)# access-list ACL组名 extended permit ip 10.1.1.0 255.255.255.0 30.1.1.0 255.255.255.0	<br>ASA(config)# nat (×××ide) 0 access-list ACL组名	×××ide接口应用ACL，注意nat名称为0 表示使用NAT豁免，优先级最高，就是ACL中的地址经过ASA防火墙时，不需要进行地址转换</p>
+<p>原文链接：<a href="https://blog.csdn.net/le616616/article/details/120644648">https://blog.csdn.net/le616616/article/details/120644648</a></p>
+<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
+<p>windows 与Linux配置</p>
+</blockquote>
+<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>暂无</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>暂无</p>
+]]></content>
   </entry>
 </search>
