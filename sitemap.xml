@@ -225,20 +225,6 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
-    <lastmod>2024-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2024-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.alone-hk.cn/tags/%E5%BB%BA%E7%AB%99/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -260,6 +246,20 @@
   </url>
   
   <url>
+    <loc>https://blog.alone-hk.cn/tags/web%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2024-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/%E6%BC%8F%E6%B4%9E/</loc>
+    <lastmod>2024-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.alone-hk.cn/tags/npm/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
@@ -275,27 +275,6 @@
   
   <url>
     <loc>https://blog.alone-hk.cn/tags/pnpm/</loc>
-    <lastmod>2024-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/ai/</loc>
-    <lastmod>2024-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/AutoGPT/</loc>
-    <lastmod>2024-03-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.alone-hk.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -330,7 +309,21 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/web/</loc>
+    <loc>https://blog.alone-hk.cn/tags/ai/</loc>
+    <lastmod>2024-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/AutoGPT/</loc>
+    <lastmod>2024-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -351,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/tags/%E7%AB%AF%E5%8F%A3/</loc>
+    <loc>https://blog.alone-hk.cn/tags/web/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -359,6 +352,13 @@
   
   <url>
     <loc>https://blog.alone-hk.cn/tags/Web%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2024-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.alone-hk.cn/tags/%E7%AB%AF%E5%8F%A3/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -395,14 +395,14 @@
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories/%E5%AE%89%E5%85%A8/</loc>
+    <loc>https://blog.alone-hk.cn/categories/Web/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://blog.alone-hk.cn/categories/Web/</loc>
+    <loc>https://blog.alone-hk.cn/categories/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2024-03-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
